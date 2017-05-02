@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import mindmelt.game.MindmeltGDX;
 
@@ -69,7 +68,7 @@ public class PlayScreen  implements Screen,InputProcessor {
     public boolean keyDown(int keycode) {
         if(keycode==Input.Keys.ESCAPE)
             exitGame = true;
-        return false;
+        return true;
     }
 
     @Override
