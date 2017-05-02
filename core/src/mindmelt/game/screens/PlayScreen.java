@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import mindmelt.game.MindmeltGDX;
+import mindmelt.game.maps.World;
 
 import java.util.Random;
 
@@ -20,6 +21,7 @@ public class PlayScreen  implements Screen, InputProcessor {
     private BitmapFont font;
     private boolean exitGame;
     private Random rand;
+    private World world;
 
     public PlayScreen(MindmeltGDX game) {
         this.game = game;
@@ -27,6 +29,9 @@ public class PlayScreen  implements Screen, InputProcessor {
         this.font = game.font;
         exitGame = false;
         Gdx.input.setInputProcessor(this);
+
+        world = new World();
+        world.loadMap("world");
     }
 
     @Override
