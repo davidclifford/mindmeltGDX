@@ -5,6 +5,8 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import mindmelt.game.MindmeltGDX;
 
 import java.util.Random;
@@ -12,13 +14,17 @@ import java.util.Random;
 /**
  * Created by David on 27/04/2017.
  */
-public class PlayScreen  implements Screen,InputProcessor {
+public class PlayScreen  implements Screen, InputProcessor {
     private MindmeltGDX game;
+    private Batch batch;
+    private BitmapFont font;
     private boolean exitGame;
     private Random rand;
 
     public PlayScreen(MindmeltGDX game) {
         this.game = game;
+        this.batch = game.batch;
+        this.font = game.font;
         exitGame = false;
         Gdx.input.setInputProcessor(this);
     }
@@ -33,16 +39,16 @@ public class PlayScreen  implements Screen,InputProcessor {
         Gdx.gl.glClearColor(1, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         rand = new Random(412294L);
-        game.batch.begin();
-        for (int i=0; i<100000; i++) {
+        batch.begin();
+        for (int i=0; i<10000; i++) {
             int id = rand.nextInt(183)+1;
             int x = rand.nextInt(20);
             int y = rand.nextInt(16);
-            game.batch.draw(game.getTile(id), x * 32, Gdx.graphics.getHeight() - y * 32);
+            batch.draw(game.getTile(id), x * 32, Gdx.graphics.getHeight() - y * 32);
         }
-        game.font.draw(game.batch, "fps: " + Gdx.graphics.getFramesPerSecond(), 0, 40);
+        font.draw(batch, "fps: " + Gdx.graphics.getFramesPerSecond(), 0, 40);
 
-        game.batch.end();
+        batch.end();
 
         if(exitGame) {
             game.setScreen(new StartScreen(game));

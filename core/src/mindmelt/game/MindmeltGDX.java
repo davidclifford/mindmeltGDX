@@ -22,18 +22,17 @@ public class MindmeltGDX extends Game {
 	@Override
 	public void create () {
         font = new BitmapFont();
-        skin = new Skin(Gdx.files.internal("uiskin.json"));
+        skin = new Skin(Gdx.files.internal("skin/uiskin.json"));
 
 		batch = new SpriteBatch();
 		manager = new AssetManager();
-		manager.load("theme.ogg", Music.class);
-		manager.load("uiskin.json", Skin.class);
+		manager.load("sound/theme.ogg", Music.class);
 		manager.finishLoading();
 
-		tileImages = new Texture("tiles.png");
+		tileImages = new Texture("image/tiles.png");
 		tile = TextureRegion.split(tileImages, 32, 32);
 
-		startScreen = new Texture("start.bmp");
+		startScreen = new Texture("image/start.bmp");
 		setScreen(new StartScreen(this));
 	}
 
