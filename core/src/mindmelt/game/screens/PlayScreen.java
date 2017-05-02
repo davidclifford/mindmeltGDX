@@ -7,12 +7,15 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import mindmelt.game.MindmeltGDX;
 
+import java.util.Random;
+
 /**
  * Created by David on 27/04/2017.
  */
 public class PlayScreen  implements Screen,InputProcessor {
     private MindmeltGDX game;
     private boolean exitGame;
+    private Random rand;
 
     public PlayScreen(MindmeltGDX game) {
         this.game = game;
@@ -29,8 +32,16 @@ public class PlayScreen  implements Screen,InputProcessor {
     public void render(float delta) {
         Gdx.gl.glClearColor(1, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        rand = new Random(412294L);
         game.batch.begin();
-        game.batch.draw(game.img, 0, 0);
+        for (int i=0; i<100000; i++) {
+            int id = rand.nextInt(183)+1;
+            int x = rand.nextInt(20);
+            int y = rand.nextInt(16);
+            game.batch.draw(game.getTile(id), x * 32, Gdx.graphics.getHeight() - y * 32);
+        }
+        game.font.draw(game.batch, "fps: " + Gdx.graphics.getFramesPerSecond(), 0, 40);
+
         game.batch.end();
 
         if(exitGame) {
