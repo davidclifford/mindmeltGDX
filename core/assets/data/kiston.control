@@ -1,0 +1,129 @@
+@map
+version=1
+name=kiston
+description=Village of Kiston
+id=7
+light=true
+--
+@entry
+filename=world
+desc=Exit to World
+to=71,74,0
+from=21,36,0,N
+--
+@code
+Reply 52,1
+ObjectIn 110,52
+GetObject 110
+-
+Activate 35,8,1
+GotObject 111
+OpenClose
+-
+Activate 22,12,1
+GotObject 111
+OpenClose
+-
+Activate 21,15,1
+GotObject 111
+OpenClose
+-
+Activate 21,21,1
+GotObject 111
+OpenClose
+-
+Activate 20,23,1
+GotObject 111
+OpenClose
+-
+Activate 18,27,1
+GotObject 111
+OpenClose
+-
+Activate 21,28,1
+GotObject 111
+OpenClose
+-
+Activate 21,30,1
+GotObject 111
+OpenClose
+-
+Activate 24,32,1
+GotObject 111
+OpenClose
+--
+@talk
+id=41
+sayfirst=1
+-
+greeting,I am King Romag
+name,Call me Sir
+job,I AM KING!
+sir,I am seeking solitude
+solitude,Because of the dreams  
+dream,That I am not quite myself
+bye,By my leave
+dontknow,I care not
+-
+id=51
+sayfirst=1
+-
+greeting,Yes Sir
+name,Jeave
+job,I am the butler
+butler,Of the king
+king,He has locked himself away
+lock|locked,There is another key to the doors
+key,But we have lost it
+away,Because of his dreams
+dream|dreams,You must ask him Sir
+bye,Goodbye Sir
+dontknow,I see Sir
+-
+id=53
+-
+name,Suzo
+job,I am a maid
+maid,I like to be neat and tidy
+neat,Unlike my brother
+tidy,Unlike my brother
+bye,Be neat
+dontknow,I see Sir
+-
+id=52
+-
+name,Delio
+job,I am a cook
+cook,Someone who cooks food!
+food,Are you stupid?
+recipe,Have one of mine,1
+bye,Dine well
+dontknow,I see Sir
+-
+id=54
+sayfirst=1
+talkfirst=1
+-
+greeting,Hey you!
+name,Kizo
+job,I guard the palace
+guard,And I'm watching YOU
+palace,Of king ROMAG
+romag,The king
+king,Though only of Romagland !
+rune,In the pool of water in the Abbey
+bye,I'm watching you
+dontknow,Sorry?
+-
+id=10
+-
+name,Horiz
+job,Stable boy
+boy,You know - not a G I R L
+stable,I look after the horse
+horse,Its been sick
+sick,Something it ate?
+ate,It'll pass through! 
+bye,Hay Ho!
+dontknow,I see Sir
+--

@@ -1,0 +1,115 @@
+@map
+version=1
+name=Abbey
+description=Abbey of Monks
+id=4
+light=true
+--
+@entry
+filename=world
+desc=Exit to World
+from=21,36,0
+to=74,9,0
+--
+@talk
+id=29
+bye=Have faith
+dontknow=God only knows
+-
+name,Mirog
+job,I'm a monk
+monk,I look after the grapes
+grape|grapes,For making wine
+wine,Whine.. Har Har!
+-
+id=30
+-
+name,Faznilo
+job,I look after the plants
+plant|plants,I talk to them       
+talk,Its supposed to help them grow
+supposed,Maybe I'm boring them
+grow,Into healthy plants 
+healthy,Supposed to
+bye,Have Faith
+dontknow,God only knows
+-
+id=40
+-
+name,Morag
+job,I'm a new monk
+monk,I feel better now
+better,I was not feeling myself
+new,I was once a lumber jack
+lumber|lumberjack|lumber jack|jack,But I got into bad habbits
+bad|habbits,And bad jokes!
+bye,Have faith
+dontknow,God only knows
+-
+id=50
+talkfirst=1
+sayfirst=1
+-
+name,Symons
+job,Bishop of the Abbey
+bishop,I welcome the new monks
+monk,They live in the Abbey
+abbey|building,Yes this building
+welcome,Hello to you too
+new,A new one is in the garden
+brother,Welcome
+garden,At the back
+bye,Fairwell
+dontknow,God only knows
+greeting,Welcome brother, are you a new monk?
+-
+id=47
+-
+name,Bron
+job,A Monk
+monk,Unlike my cousin
+brot,He became a hermit
+herm,In a cave on a hill
+cave|hill,On the island east of Aporto
+bye,Have faith
+dontknow,God only knows
+-
+id=46
+-
+name,Peta
+job,A monk
+monk,I've been one for many years
+years,I have known no other life
+life,Except when I was a teacher
+teacher,And before that a blacksmith
+blacksmith,Thats after my discharge
+discharge,From the guard
+guard,Because of my previous hatter job
+hatter,Said I was MAD!
+mad,Ehrr Crnpt Fgrue.. Don't say that!
+many,Many many many years
+bye,Have faith
+dontknow,God only knows
+-
+id=48
+-
+name,Fonsan
+job,A monk
+monk,A life of poverty
+poverty,And obedience
+obedience,And itchy underwear
+rune,It's in the prison yard    
+prison,Dorma
+yard,Far North West corner
+dontknow,God only knows
+bye,Have faith
+-
+id=49
+-
+name,Bimna
+job,A monk
+monk,In this abbey
+abbey,The abbey of monks    
+bye,Have faith
+dontknow,God only knows
+--

@@ -1,0 +1,249 @@
+@map
+version=1
+name=World
+description=World of Mindmelt
+id=1
+nomonster=36,35,0,42,41,0
+light=true
+--
+@entry
+// entry to Omgras castle
+filename=omgra0
+desc=Omgra's Castle
+from=37,52,0
+to=12,38,0
+-
+//Short cut to omgra
+filename=world
+desc=Short Cut to Omgra's Castle
+from=40,39,0
+to=37,52,0
+-
+// Aporto
+filename=aporto
+desc=The Village of Aporto
+from=61,29,0
+to=20,40,0,N
+-
+//Abbey
+filename=abbey
+desc=The Abbey of Monks
+from=74,9,0
+to=21,36,0,N
+-
+//Cave
+filename=cave
+desc=The Hermit's Cave
+from=75,30,0
+to=11,1,0,N
+-
+//Dorma
+filename=dorma
+desc=Dorma Prison
+from=8,74,0
+to=21,36,0
+-
+//Hove
+filename=hove
+desc=The Village of Hove
+from=72,40,0
+to=21,36,0
+-
+//Lakile
+filename=lakile
+desc=Lake Island
+from=29,19,0
+to=21,36,0,N
+-
+//Pennin
+filename=pennin
+desc=The Village of Pennin
+from=6,7,0
+to=21,36,0,N
+-
+//Milloc
+filename=milloc
+desc=The Village of Milloc
+from=31,33,0
+to=21,36,0,N
+-
+//Kiston
+filename=kiston
+desc=The Kingdom of Kiston
+from=71,74,0
+to=21,36,0,N
+-
+//Under (tree)
+filename=under
+desc=An Underground Cave
+from=8,31,0
+to=21,39,0,N
+-
+//Under (waterfall)
+filename=under
+desc=An Underground Cave
+from=19,33,0
+to=38,20,0,W
+--
+@code
+// Stone circle
+Activate 40,36,1
+Message Mage
+-
+Activate 42,37,1
+Message Wizard
+-
+Activate 43,39,1
+Message Prisoner
+-
+Activate 42,41,1
+Message King
+-
+Activate 40,42,1
+Message Werebeast
+-
+Activate 38,41,1
+Message Monk
+-
+Activate 37,39,1
+Message Hermit
+-
+Activate 38,37,1
+Message Evil One
+-
+// Enchanted wood
+Activate 14,37,1
+Message Beware - Enchanted Wood
+-
+Activate 14,22,1
+Message Beware - Enchanted Wood
+-
+//Places to enter
+Activate 6,7,1
+Message Pennin Village
+-
+Activate 29,19,1
+Message Lakile House
+-
+Activate 74,9,1
+Message Monks Abbey
+-
+Activate 61,29,1
+Message Aporto Village
+-
+Activate 31,33,1
+Message Milloc Village
+-
+Activate 8,74,1
+Message Dorma Prison
+-
+Activate 37,52,1
+Message Dark Castle
+-
+Activate 71,74,1
+Message Kiston Palace
+-
+Activate 72,40,1
+Message Hove Village
+-
+Activate 75,30,1
+Message Hermits Cave
+-
+// Quoxonia - zap
+Reply 67,1
+ObjectIn 102,67
+GetObject 102
+-
+// Finbar - stun
+Reply 68,1
+ObjectIn 101,68
+GotObject 109
+GetObject 101
+MoveObjectInto 109,68
+-
+// Fingle - Overview
+Reply 69,1
+ObjectIn 105,69
+GotObject 110
+GetObject 105
+MoveObjectInto 110,68
+--
+@talk
+id=67
+talkfirst=1
+sayfirst=1
+-
+name,Don't you Know?
+job,A poor old woman
+witch,Be carefull what you say!
+poor,But not in wits!
+old,Older than you maybe
+wits,I know many things
+thing|things,Like spells
+spell,Whats my name?
+quox|quoxonia,You can have a zap spell,1
+rune,I know of no rune FOOL
+greeting,I'm a poor old woman
+dontknow,Wibble wobble!
+bye,Nice Chat
+-
+id=68
+sayfirst=1
+-
+name,Finbar
+job,A bard
+bard,I collect stories
+stories|story,I'll swap a story for a spell
+spell|swap|stun,A stun spell,1
+greeting,I'm Finbar the Bard
+-
+id=69
+-
+name,Fingle
+job,I'm a tinker by trade
+tink|tinker,Tinkers like their food
+food,I collect recipes
+reci|recipe,For cooking food
+trade,I'll trade a recipe for a spell
+spell,The overview spell,1
+bye,Toodle Pop
+-
+id=32
+-
+name,Uptik
+job,A merchant
+merchant,A trader of sorts
+trade,I trade from town to town
+town,Like Milloc
+milloc,A town in the mountains 
+bye,Fair thee well
+-
+id=33
+-
+name,Rinnor
+job,A traveler
+travel|traveler,'Tis bad to travel now
+bad|now,Since the monsters appeared
+monster|monsters,Take refuge in the circle
+circle|stone|magic,The magic stone circle
+refuge,Monsters can't enter it
+bye,Travel well
+-
+id=34
+-
+name,Mad Col
+col,The Mad Twonk
+job,A total Twonk
+total,Yeah! Totaly
+twonk,Twonks can't Jump
+jump,In the park
+park,Blatant it was!
+blatant,What a Twonk
+mad,Because of the Monsters
+monsters,They pop up from nowhere
+nowhere,When one stands near the stones
+stone|stones,In the circle
+bibble,Bibble! 
+dontknow,Bibble! 
+bye,Bottoms up
+--

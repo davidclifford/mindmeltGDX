@@ -1,0 +1,120 @@
+@map
+version=1
+name=milloc
+description=Village of Milloc
+id=8
+light=true
+--
+@entry
+filename=world
+desc=Exit to World
+to=31,33,0
+from=21,36,0,N
+--
+@code
+Reply 78,1
+ObjectIn 109,78
+GetObject 109
+--
+@talk
+id=74
+-
+name,Fyshfays
+job,A fisherman
+fish,Fish fish lovely fish
+love,I love fish
+rune,I've heard of one in Aporto
+aporto,In the bushes making the O
+bye,Fishy Fish
+dontknow,Fish?
+-
+id=75
+-
+name,Soolon
+job,A fisher wife
+wife,Of my husband
+fish,My husband likes fish
+husband,Fish are his life
+bye,I hate fish!
+dontknow,Say again?
+-
+id=27
+-
+name,Lil
+job,I stay with dad
+dad,He's split with mum
+split,Beause she hates fish
+mum,Beause she hates fish
+bye,See you later
+dontknow,Say again?
+-
+id=76
+-
+name,Jen
+job,Milk maid
+milk,I used to milk the cows
+cows|cow,But now they are gone
+gone,Ask Nir about it
+pits,The pits are in OMGRA's castle
+cast,On the lowest level
+lowest,There are three levels
+level,Throw the runes in the pits
+rune,Ask Kathin about them
+omgra,The EVIL one
+bye,Where are the cows?
+dontknow,Say again?
+-
+id=25
+-
+name,Wyne
+job,Farm hand
+farm,On the dairy farm
+hand,Help on the farm
+bye,Yee Ha
+dontknow,Say again?
+-
+id=26
+-
+name,Borri
+job,Farm hand
+farm,The Dairy
+hand|handy,I'm a handy man
+bye,Yee Ho
+dontknow,Say again?
+-
+id=77
+-
+name,Bella
+job,A fisher
+fish,I like to row on the river
+rune,The mage might know
+river,I go to many places
+place,I like to see the old mage
+mage,On an island in the lake
+lake,To the north of here  
+bye,Kissy kiss
+dontknow,Say again?
+-
+id=78
+-
+name,Rebina
+job,I write tales
+write,Yarns and things
+tale|tales,In a book
+story|stories,Have one to read,1
+bye,Read well
+dontknow,Say again?
+-
+id=28
+-
+name,Nir
+job,Dairy farmer
+dairy,With cows and such like
+cows,They have recently disapeared!
+disapeared,I blame the monsters
+monsters,The ones that pop up from nowhere
+nowhere,The hermit may know more
+hermit,He lives near Dorma
+bye,Seen the cows?
+dontknow,Say again?
+--

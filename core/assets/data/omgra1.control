@@ -1,0 +1,246 @@
+@map
+version=1
+id=14
+name=omgra1
+description=Level 1
+light=false
+--
+@entry
+filename=omgra0
+desc=Ground Level
+from=4,12,0
+to=4,12,0
+-
+filename=omgra2
+desc=Level 2
+from=26,26,0
+to=26,26,0
+--
+@code
+// Code
+// return from first pit
+Teleport 5,10,2
+MoveAll 5,10,1
+-
+// Pad closes pit
+PadOn 2,10,1
+ChangeSquare 3,10,1,2
+-
+PadOff 2,10,1
+ChangeSquare 3,10,1,10
+-
+// return from 2nd pit
+Teleport 2,14,2
+MoveAll 2,14,1
+-
+// Pad changes to hidden pit
+PadOn 2,16,1
+ChangeSquare 2,15,1,62
+-
+PadOff 2,16,1
+ChangeSquare 2,15,1,10
+-
+Activate 2,17,2
+ChangeSquare 2,15,1,2
+-
+// return from 3rd pit
+Teleport 9,16,2
+MoveAll 9,16,1
+-
+LeverOn 10,14,2
+ChangeSquare 11,16,1,2
+-
+//Use righthand rule
+Activate 14,13,1
+Message Use the righthand rule
+-
+Teleport 17,10,1
+MoveAll 12,10,1
+-
+Teleport 17,11,1
+MoveAll 10,10,1
+-
+Teleport 18,11,1
+MoveAll 6,12,1
+-
+Teleport 19,11,1
+MoveAll 12,10,1
+-
+Teleport 19,12,1
+MoveAll 10,10,1
+-
+Teleport 19,13,1
+MoveAll 6,12,1
+-
+// Picture riddle - ten
+Activate 14,1,1
+TalkTo 90,1
+-
+Reply 90,1
+Open 15,2,1
+-
+Reply 90,2
+MoveAll 14,2,1,6,12,1
+-
+// Levers in secret passages
+LeverOn 22,4,1
+Open 32,5,1
+-
+LeverOn 30,14,1
+Open 36,5,1
+-
+// Teleport back from hidden pits
+Teleport 26,2,2
+MoveAll 26,2,1
+-
+Activate 34,7,1
+Message Find another lever
+-
+// Lots of teleports
+Teleport 34,13,1
+MoveAll 36,10,1
+-
+Teleport 35,12,1
+MoveAll 36,10,1
+-
+Teleport 36,13,1
+MoveAll 36,10,1
+-
+Teleport 32,13,1
+MoveAll 36,10,1
+-
+Teleport 39,12,1
+MoveAll 36,10,1
+-
+Teleport 40,13,1
+MoveAll 36,10,1
+-
+Teleport 33,14,1
+MoveAll 36,10,1
+-
+Teleport 37,14,1
+MoveAll 36,10,1
+-
+Teleport 39,14,1
+MoveAll 36,10,1
+-
+// the ones that matter
+Teleport 33,12,1
+MoveAll 39,13,1
+-
+Teleport 38,13,1
+MoveAll 36,14,1
+-
+Teleport 37,12,1
+MoveAll 33,13,1
+-
+Teleport 35,14,1
+MoveAll 32,12,1
+-
+// Unlock door
+Activate 36,15,1
+GotObject 132
+OpenClose
+-
+// Walk in the park
+Activate 36,26,1
+Message A walk in the park
+-
+// Hidden teleport down long corridor
+Teleport 22,26,1
+MoveAll 22,21,1
+-
+//2 way lever & 2 gates
+LeverOn 19,22,1
+OpenClose 19,24,1
+OpenClose 17,24,1
+-
+LeverOff 19,22,1
+OpenClose 19,24,1
+OpenClose 17,24,1
+-
+// Hidden door ( v.difficult)
+Activate 20,31,1
+ChangeSquare 2
+-
+//Clue for hidden door
+Activate 20,28,1
+Message Knock 3 South
+-
+// Buttons and Gates
+Activate 25,33,1
+OpenClose 24,28,1
+OpenClose 24,29,1
+-
+Activate 24,33,1
+OpenClose 24,29,1
+OpenClose 24,30,1
+-
+Activate 26,33,1
+OpenClose 24,30,1 
+OpenClose 24,31,1 
+-
+//Rune message
+Activate 28,25,1
+Message A Rune to pass
+-
+// G RUNE
+Activate 26,25,1
+GotObject 114
+Open
+-
+//DEAD END
+Activate 24,12,1
+Message DEAD END
+-
+// Glass key door
+Activate 21,38,1
+GotObject 133
+Open
+-
+// Message for above door
+Activate 21,39,1
+Message Virtualy open
+-
+// 4 Square teleports onto rugs
+Teleport 18,40,1
+MoveAll 18,32,1
+-
+Teleport 14,40,1
+MoveAll 10,22,1
+-
+Teleport 14,38,1
+MoveAll 10,37,1
+-
+Teleport 18,38,1
+MoveAll 4,38,1
+-
+// Teleport Return
+Teleport 4,32,1
+MoveAll 16,39,1
+-
+// Hidden Message
+Activate 6,28,1
+Message You Bloody Cheat!
+-
+// 4 doors and 4 keys
+Activate 2,30,1
+GotType 63
+OpenClose
+DestroyType 63
+-
+Activate 2,29,1
+GotType 63
+OpenClose
+DestroyType 63
+-
+Activate 2,28,1
+GotType 63
+OpenClose
+DestroyType 63
+-
+Activate 2,27,1
+GotType 63
+OpenClose
+DestroyType 63
+--

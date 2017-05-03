@@ -1,0 +1,264 @@
+@map
+version=1
+name=Dorma
+description=Dorma Prison
+id=12
+light=true
+--
+@entry
+filename=world
+desc=Exit to World
+to=8,74,0
+from=21,36,0
+--
+@code
+Activate 19,33,1
+Message Main Office
+-
+Activate 23,33,1
+Message Private
+-
+Reply 55,2
+GotObject 106
+Message Give the key back later
+-
+Reply 56,2
+GotObject 106
+Message Give the key back later
+-
+Reply 24,2
+GotObject 106
+Message Give the key back later
+-
+Activate 35,28,1
+ObjectIn 106,55
+GetObject 106 
+-
+Reply 55,1
+ObjectIn 106,55
+GotObject 107
+GetObject 106
+MoveObjectInto 107,55
+Message Take the key
+-
+Reply 58,1
+ObjectIn 58,103
+GotObject 108
+GetObject 103
+MoveObjectInto 108,58
+Message Take the heal spell
+-
+Activate 3,21,1
+GotObject 106
+OpenClose
+-
+Activate 7,21,1
+GotObject 106
+OpenClose
+-
+Activate 11,21,1
+GotObject 106
+OpenClose
+-
+Activate 15,21,1
+GotObject 106
+OpenClose
+-
+Activate 27,21,1
+GotObject 106
+OpenClose
+-
+Activate 31,21,1
+GotObject 106
+OpenClose
+-
+Activate 35,21,1
+GotObject 106
+OpenClose
+-
+Activate 39,21,1
+GotObject 106
+OpenClose
+-
+Activate 3,23,1
+GotObject 106
+OpenClose
+-
+Activate 7,23,1
+GotObject 106
+OpenClose
+-
+Activate 11,23,1
+GotObject 106
+OpenClose
+-
+Activate 15,23,1
+GotObject 106
+OpenClose
+-
+Activate 27,23,1
+GotObject 106
+OpenClose
+-
+Activate 31,23,1
+GotObject 106
+OpenClose
+-
+Activate 35,23,1
+GotObject 106
+OpenClose
+-
+Activate 39,23,1
+GotObject 106
+OpenClose
+-
+Activate 17,22,1
+GotObject 106
+OpenClose
+-
+Activate 25,22,1
+GotObject 106
+OpenClose
+-
+PadOn 3,22,1
+Execute CloseGates
+-
+PadOn 7,22,1
+Execute CloseGates
+-
+PadOn 11,22,1
+Execute CloseGates
+-
+PadOn 15,22,1
+Execute CloseGates
+-
+PadOn 27,22,1
+Execute CloseGates
+-
+PadOn 31,22,1
+Execute CloseGates
+-
+PadOn 35,22,1
+Execute CloseGates
+-
+PadOn 39,22,1
+Execute CloseGates
+-
+Routine CloseGates
+Close 3,21,1
+Close 7,21,1
+Close 11,21,1
+Close 15,21,1
+Close 27,21,1
+Close 31,21,1
+Close 35,21,1
+Close 39,21,1
+Close 3,23,1
+Close 7,23,1
+Close 11,23,1
+Close 15,23,1
+Close 27,23,1
+Close 31,23,1
+Close 35,23,1
+Close 39,31,1
+Close 17,22,1
+Close 25,22,1
+--
+@talk
+id=43
+-
+name,Gorma
+job,I'm a prisoner
+prisoner,I changed overnight
+changed,Into a thief
+thief,And now I pay
+bye,So long
+dontknow,You What?
+-
+id=55
+-
+name,I am Frid 
+job,I'm head guard
+guard,Of Dorma Prison
+head,I charge the money
+charge,This is a privitised jail
+money|privitised,Give me money to see a prisoner,1
+prisoner,To see one give me some money,1
+bye,Be good!
+dontknow,Come again?
+-
+id=56
+-
+name,I am Frod 
+job,I guard the prisoners
+guard,Of Dorma Prison
+prison|prisoners,Have you come to see someone?
+someone|see,Give Frid the money        
+bye,Be good!
+dontknow,Come again?
+-
+id=24
+-
+name,I Frud be
+job,I guard the yard do
+guard,That I be
+yard,For the exercise do
+exercise,For the prisoners it be
+bye,Be good do!
+dontknow,Come again do?
+-
+id=58
+-
+name,Wym
+job,I was once a mage like yourself
+mage,I know a spell
+spell,The heal spell
+heal,If you get me a letter from my wife
+wife,A dancer in Hove
+letter,Have you the letter?,1
+bye,Goodbye
+dontknow,You What?
+-
+id=57
+-
+name,Grunk
+job,A thief
+bye,Bugger Orf!
+dontknow,You What?
+-
+id=59
+-
+name,Who wants to know
+job,I'm a political prisoner
+political,Dishonesty is the best policy      
+rune,Like the one near Kiston?
+kiston,On the peninsular north of Kiston
+bye,Close the door after
+dontknow,You What?
+-
+id=60
+-
+name,Big Josk
+job,Ex-boxer
+boxer|ex-boxer,Kill a man I did
+kill|man,You be next?
+bye,Shove it!
+dontknow,You What?
+-
+id=22
+-
+name,Mik the Nik
+nik,Because I'm always in the Nick
+job,Cat burglar
+burglar,Or was it buggerer?
+cat,Got lots of em
+bye,Watch your self
+dontknow,You What?
+-
+id=23
+-
+name,Fast Ekki
+job,Pick pocket
+dontknow,You What?
+bye,Check your robe
+--

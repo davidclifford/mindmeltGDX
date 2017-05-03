@@ -1,0 +1,37 @@
+@map
+version=1
+name=under
+description=Underground Cave
+id=10
+light=false
+--
+@entry
+filename=world
+desc=Exit to World
+to=8,31,0
+from=21,39,0,N
+-
+// Exit (waterfall)
+filename=world
+desc=Exit to World
+from=38,20,0
+to=19,33,0
+--
+@talk
+id=42
+sayfirst=1
+-
+name,MARGO! 
+job,I am cursed
+curse|cursed,A witch cast a spell on me
+spell,She turned me into a beast
+beast,Now I hide away
+witch,The hag Quoxonia!
+hag,The witch!
+quoxonia,But she said I changed myself
+changed|myself,But she did it, I know
+rune,In one of my caverns
+greeting,GRRRRRR!
+dontknow,Grrr ahhh!
+bye,Beware the Witch
+--
