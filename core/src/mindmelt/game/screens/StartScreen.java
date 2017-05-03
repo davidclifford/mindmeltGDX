@@ -68,7 +68,6 @@ public class StartScreen  implements Screen {
         table.row().pad(20);
         table.add(exitGame);
 
-
         stage.addActor(table);
     }
 
@@ -83,6 +82,7 @@ public class StartScreen  implements Screen {
         tbs.down = new NinePatchDrawable(np);
         but.setStyle(tbs);
         return but;
+
     }
 
     @Override

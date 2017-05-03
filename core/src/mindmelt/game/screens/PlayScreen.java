@@ -8,6 +8,8 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import mindmelt.game.MindmeltGDX;
+import mindmelt.game.gui.Button;
+import mindmelt.game.gui.Window;
 import mindmelt.game.maps.World;
 
 import java.util.Random;
@@ -23,12 +25,22 @@ public class PlayScreen  implements Screen, InputProcessor {
     private Random rand;
     private World world;
 
+    private Window window;
+    private Window subWindow;
+    private Button button;
+
     public PlayScreen(MindmeltGDX game) {
         this.game = game;
         this.batch = game.batch;
         this.font = game.font;
         exitGame = false;
         Gdx.input.setInputProcessor(this);
+
+        window = (Window) new Window(0,0,640,480).setName("Main");
+        subWindow = (Window) new Window(100,100,120,80).setName("Sub");
+        window.addElement(subWindow);
+        button = (Button) new Button(32,64, 32, 32).setName("Button");
+        subWindow.addElement(button);
 
         world = new World();
         world.loadMap("world");
@@ -105,7 +117,8 @@ public class PlayScreen  implements Screen, InputProcessor {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        return false;
+        window.click(screenX,screenY);
+        return true;
     }
 
     @Override
@@ -127,4 +140,6 @@ public class PlayScreen  implements Screen, InputProcessor {
     public boolean scrolled(int amount) {
         return false;
     }
+
+
 }
