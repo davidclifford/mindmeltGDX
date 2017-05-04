@@ -4,6 +4,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -28,6 +29,7 @@ public class MindmeltGDX extends Game {
 		batch = new SpriteBatch();
 		manager = new AssetManager();
 		manager.load("sound/theme.ogg", Music.class);
+		manager.load("sound/wilhelm.ogg", Sound.class);
 		manager.finishLoading();
 
 		tileImages = new Texture("image/tiles.png");

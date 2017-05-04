@@ -39,7 +39,8 @@ public class PlayScreen  implements Screen, InputProcessor {
         window = (Window) new Window(0,0,640,480).setName("Main");
         subWindow = (Window) new Window(100,100,120,80).setName("Sub");
         window.addElement(subWindow);
-        button = (Button) new Button(32,64, 32, 32).setName("Button");
+        button = (Button) new Button(40,40, 32, 32).setName("Button");
+        button.setUpIcon(140);
         subWindow.addElement(button);
 
         world = new World();
@@ -57,12 +58,14 @@ public class PlayScreen  implements Screen, InputProcessor {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         rand = new Random(412294L);
         batch.begin();
-        for (int i=0; i<10000; i++) {
-            int id = rand.nextInt(183)+1;
-            int x = rand.nextInt(20);
-            int y = rand.nextInt(16);
-            batch.draw(game.getTile(id), x * 32, Gdx.graphics.getHeight() - y * 32);
-        }
+
+        window.render(batch,game);
+//        for (int i=0; i<10000; i++) {
+//            int id = rand.nextInt(183)+1;
+//            int x = rand.nextInt(20);
+//            int y = rand.nextInt(16);
+//            batch.draw(game.getTile(id), x * 32, Gdx.graphics.getHeight() - y * 32);
+//        }
         font.draw(batch, "fps: " + Gdx.graphics.getFramesPerSecond(), 0, 40);
 
         batch.end();

@@ -1,6 +1,9 @@
 package mindmelt.game.gui;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.g2d.Batch;
+import mindmelt.game.MindmeltGDX;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +22,7 @@ public abstract class GuiElem {
     protected String name;
 
     List<GuiElem> children = new ArrayList<>();
+    Sound wilhelm = Gdx.audio.newSound(Gdx.files.internal("sound/wilhelm.ogg"));
 
     protected GuiElem(int x, int y, int w, int h) {
         this.x = x;
@@ -91,6 +95,9 @@ public abstract class GuiElem {
             return el.click(xx,yy);
         //do something
         Gdx.app.log("do it",String.format("%s:x=%d,y=%d",getName(),xx,yy));
+
+        if (this instanceof Button ) wilhelm.play();
+
         return this;
     }
 
@@ -104,5 +111,25 @@ public abstract class GuiElem {
 
     private boolean isInside(int x, int y) {
         return (x>=this.x && x<=(this.x+this.w) && y>=this.y && y<=(this.y+this.h));
+    }
+
+    public void render(Batch batch, MindmeltGDX game) {
+        for(GuiElem child: children) {
+            child.render(batch,game);
+        }
+    }
+
+    public int getAbsX() {
+        if(parent==null)
+            return x;
+        else
+            return x+parent.getAbsX();
+    }
+
+    public int getAbsY() {
+        if(parent==null)
+            return y;
+        else
+            return y+parent.getAbsY();
     }
 }
