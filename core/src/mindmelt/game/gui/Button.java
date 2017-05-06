@@ -10,35 +10,58 @@ import mindmelt.game.MindmeltGDX;
  */
 public class Button extends GuiElem {
 
-    private int upIcon;
-    private int downIcon;
+    public static final int OFF = 0;
+    public static final int UP = 1;
+    public static final int DOWN = 2;
 
-    public Button(int x, int y, int w, int h) {
-        super(x, y, w, h);
+    private int activeIcon;
+    private int inactiveIcon = 149;
+    private int state = OFF;
+
+    public Button(int x, int y, int icon) {
+        super(x, y, 1, 1);
+        activeIcon = icon;
     }
 
-    public int getUpIcon() {
-        return upIcon;
+    public int getActiveIcon() {
+        return activeIcon;
     }
 
-    public void setUpIcon(int upIcon) {
-        this.upIcon = upIcon;
+    public void setActiveIcon(int activeIcon) {
+        this.activeIcon = activeIcon;
     }
 
-    public int getDownIcon() {
-        return downIcon;
+    public int getState() {
+        return state;
     }
 
-    public void setDownIcon(int downIcon) {
-        this.downIcon = downIcon;
+    public void setState(int state) {
+        this.state = state;
     }
 
     @Override
-    public void render(Batch batch, MindmeltGDX game) {
+    public void renderThis(MindmeltGDX game) {
+        Batch batch = game.batch;
         int xx = getAbsX();
         int yy = getAbsY();
-        batch.draw(game.getTile(upIcon), xx , Gdx.graphics.getHeight()-yy-h );
+        if (state==UP) {
+            batch.draw(game.getTile(activeIcon), xx, height - yy);
+            batch.draw(game.getTile(150), xx, height - yy);
+        } else if (state==DOWN) {
+            batch.draw(game.getTile(activeIcon), xx, height - yy - 1);
+            batch.draw(game.getTile(151), xx, height - yy);
+        } else {
+            batch.draw(game.getTile(inactiveIcon), xx, height - yy);
+        }
+    }
 
+    @Override
+    protected void activate(int x, int y, MindmeltGDX game) {
 
+        if (state==UP)
+            state = DOWN;
+        else if (state==DOWN)
+            state = UP;
+        //Gdx.audio.newSound(Gdx.files.internal("sound/wilhelm.ogg")).play();
     }
 }

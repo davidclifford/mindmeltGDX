@@ -2,6 +2,7 @@ package mindmelt.game.gui;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import mindmelt.game.MindmeltGDX;
 
@@ -13,6 +14,9 @@ import java.util.List;
  */
 public abstract class GuiElem {
     static final int SZ = 32;
+    static final int pixel = 184;
+    static final int height = 480-32;
+    static final boolean debug = true;
 
     protected int x;
     protected int y;
@@ -25,10 +29,10 @@ public abstract class GuiElem {
     Sound wilhelm = Gdx.audio.newSound(Gdx.files.internal("sound/wilhelm.ogg"));
 
     protected GuiElem(int x, int y, int w, int h) {
-        this.x = x;
-        this.y = y;
-        this.w = w;
-        this.h = h;
+        this.x = x*SZ;
+        this.y = y*SZ;
+        this.w = w*SZ;
+        this.h = h*SZ;
     }
 
     protected  int getX() {
@@ -86,19 +90,23 @@ public abstract class GuiElem {
         return this;
     }
 
-    public GuiElem click(int x, int y) {
+    public GuiElem click(int x, int y, MindmeltGDX game) {
         int xx = x-this.x;
         int yy = y-this.y;
         Gdx.app.log(getName(),String.format("x=%d,y=%d",xx,yy));
         GuiElem el = findElem(xx,yy);
         if (el != null)
-            return el.click(xx,yy);
+            return el.click(xx,yy, game);
         //do something
         Gdx.app.log("do it",String.format("%s:x=%d,y=%d",getName(),xx,yy));
 
-        if (this instanceof Button ) wilhelm.play();
+        activate(x,y,game);
 
         return this;
+    }
+
+    protected void activate(int x, int y, MindmeltGDX game) {
+        //do nowt for now
     }
 
     private GuiElem findElem(int x, int y) {
@@ -113,10 +121,19 @@ public abstract class GuiElem {
         return (x>=this.x && x<=(this.x+this.w) && y>=this.y && y<=(this.y+this.h));
     }
 
-    public void render(Batch batch, MindmeltGDX game) {
+    protected void renderChildren(MindmeltGDX game) {
         for(GuiElem child: children) {
-            child.render(batch,game);
+            child.render(game);
         }
+    }
+
+    protected void renderThis(MindmeltGDX game) {
+        // draw lines
+    }
+
+    public void render(MindmeltGDX game) {
+        renderChildren(game);
+        renderThis(game);
     }
 
     public int getAbsX() {
@@ -131,5 +148,21 @@ public abstract class GuiElem {
             return y;
         else
             return y+parent.getAbsY();
+    }
+
+    protected void rectangle(int x, int y, int w, int h, MindmeltGDX game) {
+        for (int xx=x; xx<x+w; xx++) {
+            game.batch.setColor(Color.CYAN);
+            game.batch.draw(game.getTile(pixel), xx, height - y );
+            game.batch.setColor(Color.RED);
+            game.batch.draw(game.getTile(pixel), xx, height - y - h);
+        }
+        for (int yy=y; yy<y+h; yy++) {
+            game.batch.setColor(Color.YELLOW);
+            game.batch.draw(game.getTile(pixel), x, height - yy);
+            game.batch.setColor(Color.MAGENTA);
+            game.batch.draw(game.getTile(pixel), x+w, height - yy);
+        }
+        game.batch.setColor(Color.WHITE);
     }
 }

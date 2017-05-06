@@ -26,7 +26,7 @@ public class PlayScreen  implements Screen, InputProcessor {
     private World world;
 
     private Window window;
-    private Window subWindow;
+    private Window spellWindow;
     private Button button;
 
     public PlayScreen(MindmeltGDX game) {
@@ -36,12 +36,15 @@ public class PlayScreen  implements Screen, InputProcessor {
         exitGame = false;
         Gdx.input.setInputProcessor(this);
 
-        window = (Window) new Window(0,0,640,480).setName("Main");
-        subWindow = (Window) new Window(100,100,120,80).setName("Sub");
-        window.addElement(subWindow);
-        button = (Button) new Button(40,40, 32, 32).setName("Button");
-        button.setUpIcon(140);
-        subWindow.addElement(button);
+        window = (Window) new Window(0,0,20,24).setName("Main");
+        spellWindow = (Window) new Window(10,10,7,2).setName("Spells");
+        window.addElement(spellWindow);
+        for (int i=0;i<14;i++) {
+            button = (Button) new Button(i%7, i/7, i+135).setName(String.format("Spell %d",i+1));
+            if (i<3) button.setState(Button.UP);
+            spellWindow.addElement(button);
+            button = null;
+        }
 
         world = new World();
         world.loadMap("world");
@@ -54,12 +57,12 @@ public class PlayScreen  implements Screen, InputProcessor {
 
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(1, 0, 0, 1);
+        Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         rand = new Random(412294L);
         batch.begin();
 
-        window.render(batch,game);
+        window.render(game);
 //        for (int i=0; i<10000; i++) {
 //            int id = rand.nextInt(183)+1;
 //            int x = rand.nextInt(20);
@@ -120,7 +123,7 @@ public class PlayScreen  implements Screen, InputProcessor {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        window.click(screenX,screenY);
+        window.click(screenX,screenY,game);
         return true;
     }
 
