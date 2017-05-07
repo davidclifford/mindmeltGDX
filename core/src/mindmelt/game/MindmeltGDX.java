@@ -58,7 +58,7 @@ public class MindmeltGDX extends Game {
 
 	public void exit() {
 	    dispose();
-        System.exit(0);
+	    Gdx.app.exit();
     }
 
     public TextureRegion getTile(int tileId) {
