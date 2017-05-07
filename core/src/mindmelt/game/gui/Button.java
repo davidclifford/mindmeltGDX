@@ -14,6 +14,9 @@ public class Button extends GuiElem {
     public static final int UP = 1;
     public static final int DOWN = 2;
 
+    protected static final int upButton = 150;
+    protected static final int downButton = 151;
+
     private int activeIcon;
     private int inactiveIcon = 149;
     private int state = OFF;
@@ -45,13 +48,13 @@ public class Button extends GuiElem {
         int xx = getAbsX();
         int yy = getAbsY();
         if (state==UP) {
-            batch.draw(game.getTile(activeIcon), xx, height - yy);
-            batch.draw(game.getTile(150), xx, height - yy);
+            drawIcon(xx,yy,activeIcon,game);
+            drawIcon(xx,yy,upButton,game);
         } else if (state==DOWN) {
-            batch.draw(game.getTile(activeIcon), xx, height - yy - 1);
-            batch.draw(game.getTile(151), xx, height - yy);
+            drawIcon(xx,yy+1,activeIcon, game);
+            drawIcon(xx,yy,downButton,game);
         } else {
-            batch.draw(game.getTile(inactiveIcon), xx, height - yy);
+            drawIcon(xx,yy,inactiveIcon,game);
         }
     }
 

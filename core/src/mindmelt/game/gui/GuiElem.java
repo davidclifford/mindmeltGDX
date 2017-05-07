@@ -152,17 +152,26 @@ public abstract class GuiElem {
 
     protected void rectangle(int x, int y, int w, int h, MindmeltGDX game) {
         for (int xx=x; xx<x+w; xx++) {
-            game.batch.setColor(Color.CYAN);
-            game.batch.draw(game.getTile(pixel), xx, height - y );
-            game.batch.setColor(Color.RED);
-            game.batch.draw(game.getTile(pixel), xx, height - y - h);
+            plot(xx,y,Color.CYAN,game);
+            plot(xx,y+h, Color.RED,game);
         }
         for (int yy=y; yy<y+h; yy++) {
-            game.batch.setColor(Color.YELLOW);
-            game.batch.draw(game.getTile(pixel), x, height - yy);
-            game.batch.setColor(Color.MAGENTA);
-            game.batch.draw(game.getTile(pixel), x+w, height - yy);
+            plot(x,yy,Color.YELLOW,game);
+            plot(x+w,yy, Color.MAGENTA,game);
         }
         game.batch.setColor(Color.WHITE);
+    }
+
+    protected void plot(int x, int y, Color color, MindmeltGDX game) {
+        game.batch.setColor(color);
+        game.batch.draw(game.getTile(pixel), x, height - y);
+    }
+
+    protected void drawIcon(int x, int y, int icon, MindmeltGDX game) {
+        drawIcon(x,y,icon,Color.WHITE,game);
+    }
+
+    protected void drawIcon(int x, int y, int icon, Color color, MindmeltGDX game) {
+        game.batch.draw(game.getTile(icon), x, height - y);
     }
 }
