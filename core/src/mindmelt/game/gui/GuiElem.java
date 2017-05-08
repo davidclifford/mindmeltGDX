@@ -12,10 +12,10 @@ import java.util.List;
  * Created by David on 3/05/2017.
  */
 public abstract class GuiElem {
-    static final int SZ = 32;
-    static final int pixel = 184;
-    static final int height = 480-32;
-    static final boolean debug = false;
+    static final protected int SZ = 32;
+    static final protected int pixel = 184;
+    static final protected int height = 480-32;
+    static final protected boolean debug = false;
 
     static final protected int SQUARE = 124;
     static final protected int TOP = 125;

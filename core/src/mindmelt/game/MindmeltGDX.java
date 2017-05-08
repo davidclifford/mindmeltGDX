@@ -16,14 +16,14 @@ import mindmelt.game.screens.StartScreen;
 public class MindmeltGDX extends Game {
 	public AssetManager manager;
 	public SpriteBatch batch;
-	public Texture tileImages, startScreen;
+	public Texture tileImages, startScreen, mainWindow;
     public TextureRegion[][] tile;
 	public Skin skin;
 	public BitmapFont font;
 	
 	@Override
 	public void create () {
-        font = new BitmapFont();
+        font = new BitmapFont(Gdx.files.internal("skin/courier.fnt"));
         skin = new Skin(Gdx.files.internal("skin/uiskin.json"));
 
 		batch = new SpriteBatch();
@@ -38,6 +38,7 @@ public class MindmeltGDX extends Game {
 		Pixmap px = new Pixmap(Gdx.files.internal("image/pointer.png"));
 		Gdx.graphics.setCursor(Gdx.graphics.newCursor(px,0,0));
 
+		mainWindow = new Texture("image/mainWindow.png");
 		startScreen = new Texture("image/start.bmp");
 		setScreen(new StartScreen(this));
 	}

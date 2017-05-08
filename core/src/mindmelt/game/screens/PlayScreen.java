@@ -84,7 +84,7 @@ public class PlayScreen  implements Screen, InputProcessor {
 //            int y = rand.nextInt(16);
 //            batch.draw(game.getTile(id), x * 32, Gdx.graphics.getHeight() - y * 32);
 //        }
-        font.draw(batch, "fps: " + Gdx.graphics.getFramesPerSecond(), 0, 40);
+        font.draw(batch, "fps: " + Gdx.graphics.getFramesPerSecond(), 0, 16);
 
         batch.end();
 

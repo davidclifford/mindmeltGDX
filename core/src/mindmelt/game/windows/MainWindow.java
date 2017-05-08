@@ -15,8 +15,10 @@ public class MainWindow extends Window {
 
     @Override
     public void renderThis(MindmeltGDX game, float delta) {
+        game.batch.draw(game.mainWindow, 0, 128);
         //super.render(game,delta);
-
+    }
+/*
         //Window
         for(int i=0;i<20;i++) {
             drawTile(i, 0, SQUARE, Color.LIGHT_GRAY, game);
@@ -75,4 +77,5 @@ public class MainWindow extends Window {
             drawTile(19,i,LEFT,Color.WHITE,game);
         }
     }
+    */
 }
