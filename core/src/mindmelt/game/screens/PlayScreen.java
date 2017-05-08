@@ -11,6 +11,7 @@ import mindmelt.game.MindmeltGDX;
 import mindmelt.game.gui.Button;
 import mindmelt.game.gui.Window;
 import mindmelt.game.maps.World;
+import mindmelt.game.windows.MainWindow;
 
 import java.util.Random;
 
@@ -27,6 +28,10 @@ public class PlayScreen  implements Screen, InputProcessor {
 
     private Window window;
     private Window spellWindow;
+    private Window viewWindow;
+    private Window backPackWindow;
+    private Window stausWindow;
+    private Window messageWindow;
     private Button button;
 
     public PlayScreen(MindmeltGDX game) {
@@ -36,9 +41,19 @@ public class PlayScreen  implements Screen, InputProcessor {
         exitGame = false;
         Gdx.input.setInputProcessor(this);
 
-        window = (Window) new Window(0,0,20,24).setName("Main");
-        spellWindow = (Window) new Window(10,10,7,2).setName("Spells");
+        window = (MainWindow) new MainWindow(0,0,20,24).setName("Main");
+        viewWindow = (Window) new Window(1,1,9,9).setName("View");
+        backPackWindow = (Window) new Window(11,1, 8, 3).setName("Backpack");
+        stausWindow = (Window) new Window(11,5, 8, 2).setName("Status");
+        spellWindow = (Window) new Window(11,8,7,2).setName("Spells");
+        messageWindow = (Window) new Window(0,11,20,4).setName("Messages");
+
         window.addElement(spellWindow);
+        window.addElement(viewWindow);
+        window.addElement(backPackWindow);
+        window.addElement(stausWindow);
+        window.addElement(messageWindow);
+
         for (int i=0;i<14;i++) {
             button = (Button) new Button(i%7, i/7, i+135).setName(String.format("Spell %d",i+1));
             if (i<3) button.setState(Button.UP);
@@ -62,7 +77,7 @@ public class PlayScreen  implements Screen, InputProcessor {
         rand = new Random(412294L);
         batch.begin();
 
-        window.render(game);
+        window.render(game,delta);
 //        for (int i=0; i<10000; i++) {
 //            int id = rand.nextInt(183)+1;
 //            int x = rand.nextInt(20);

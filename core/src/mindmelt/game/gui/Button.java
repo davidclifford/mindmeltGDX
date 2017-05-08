@@ -43,7 +43,7 @@ public class Button extends GuiElem {
     }
 
     @Override
-    public void renderThis(MindmeltGDX game) {
+    public void renderThis(MindmeltGDX game, float delta) {
         Batch batch = game.batch;
         int xx = getAbsX();
         int yy = getAbsY();

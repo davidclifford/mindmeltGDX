@@ -3,7 +3,6 @@ package mindmelt.game.gui;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.Batch;
 import mindmelt.game.MindmeltGDX;
 
 import java.util.ArrayList;
@@ -17,6 +16,12 @@ public abstract class GuiElem {
     static final int pixel = 184;
     static final int height = 480-32;
     static final boolean debug = false;
+
+    static final protected int SQUARE = 124;
+    static final protected int TOP = 125;
+    static final protected int LEFT = 126;
+    static final protected int BOTTOM = 127;
+    static final protected int RIGHT = 128;
 
     protected int x;
     protected int y;
@@ -121,19 +126,19 @@ public abstract class GuiElem {
         return (x>=this.x && x<=(this.x+this.w) && y>=this.y && y<=(this.y+this.h));
     }
 
-    protected void renderChildren(MindmeltGDX game) {
+    protected void renderChildren(MindmeltGDX game, float delta) {
         for(GuiElem child: children) {
-            child.render(game);
+            child.render(game,delta);
         }
     }
 
-    protected void renderThis(MindmeltGDX game) {
+    protected void renderThis(MindmeltGDX game, float delta) {
         // draw lines
     }
 
-    public void render(MindmeltGDX game) {
-        renderChildren(game);
-        renderThis(game);
+    public void render(MindmeltGDX game, float delta) {
+        renderChildren(game,delta);
+        renderThis(game,delta);
     }
 
     public int getAbsX() {
@@ -178,6 +183,10 @@ public abstract class GuiElem {
 
     protected void drawTile(int x, int y, int icon, int brightness, MindmeltGDX game) {
         Color color = new Color(brightness/256,brightness/256,brightness/256,1);
+        drawIcon(x*SZ,y*SZ,icon,color,game);
+    }
+
+    protected void drawTile(int x, int y, int icon, Color color, MindmeltGDX game) {
         drawIcon(x*SZ,y*SZ,icon,color,game);
     }
 }

@@ -12,7 +12,7 @@ public class Window extends GuiElem {
     }
 
     @Override
-    protected void renderThis(MindmeltGDX game) {
+    protected void renderThis(MindmeltGDX game, float delta) {
         if (debug) rectangle(getAbsX(),getAbsY(),w,h,game);
     }
 }
