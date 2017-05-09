@@ -15,7 +15,7 @@ public abstract class GuiElem {
     static final protected int SZ = 32;
     static final protected int pixel = 184;
     static final protected int height = 480-32;
-    static final protected boolean debug = false;
+    static final protected boolean debug = true;
 
     static final protected int SQUARE = 124;
     static final protected int TOP = 125;
@@ -168,8 +168,10 @@ public abstract class GuiElem {
     }
 
     protected void plot(int x, int y, Color color, MindmeltGDX game) {
+        int xx = getAbsX()+x;
+        int yy = getAbsY()+y;
         game.batch.setColor(color);
-        game.batch.draw(game.getTile(pixel), x, height - y);
+        game.batch.draw(game.getTile(pixel), xx, height - yy);
     }
 
     protected void drawIcon(int x, int y, int icon, MindmeltGDX game) {
@@ -178,11 +180,11 @@ public abstract class GuiElem {
 
     protected void drawIcon(int x, int y, int icon, Color color, MindmeltGDX game) {
         game.batch.setColor(color);
-        game.batch.draw(game.getTile(icon), x, height - y);
+        game.batch.draw(game.getTile(icon), x+getAbsX(), height - (y+getAbsY()));
     }
 
-    protected void drawTile(int x, int y, int icon, int brightness, MindmeltGDX game) {
-        Color color = new Color(brightness/256,brightness/256,brightness/256,1);
+    protected void drawTile(int x, int y, int icon, float brightness, MindmeltGDX game) {
+        Color color = new Color(brightness,brightness,brightness,1);
         drawIcon(x*SZ,y*SZ,icon,color,game);
     }
 

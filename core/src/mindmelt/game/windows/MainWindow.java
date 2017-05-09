@@ -15,7 +15,8 @@ public class MainWindow extends Window {
 
     @Override
     public void renderThis(MindmeltGDX game, float delta) {
-        game.batch.draw(game.mainWindow, 0, 128);
+        super.renderThis(game,delta);
+        game.batch.draw(game.mainWindow, getAbsX(), height-getAbsY()-game.mainWindow.getHeight()+32);
         //super.render(game,delta);
     }
 /*

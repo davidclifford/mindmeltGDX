@@ -12,6 +12,7 @@ import mindmelt.game.gui.Button;
 import mindmelt.game.gui.Window;
 import mindmelt.game.maps.World;
 import mindmelt.game.windows.MainWindow;
+import mindmelt.game.windows.ViewWindow;
 
 import java.util.Random;
 
@@ -41,8 +42,8 @@ public class PlayScreen  implements Screen, InputProcessor {
         exitGame = false;
         Gdx.input.setInputProcessor(this);
 
-        window = (MainWindow) new MainWindow(0,0,20,24).setName("Main");
-        viewWindow = (Window) new Window(1,1,9,9).setName("View");
+        window = (MainWindow) new MainWindow(0,0,20,15).setName("Main");
+        viewWindow = (ViewWindow) new ViewWindow(1,1,9,9).setName("View");
         backPackWindow = (Window) new Window(11,1, 8, 3).setName("Backpack");
         stausWindow = (Window) new Window(11,5, 8, 2).setName("Status");
         spellWindow = (Window) new Window(11,8,7,2).setName("Spells");
@@ -61,8 +62,9 @@ public class PlayScreen  implements Screen, InputProcessor {
             button = null;
         }
 
-        world = new World();
-        world.loadMap("world");
+        game.world = new World();
+        game.world.loadMap("world");
+
     }
 
     @Override

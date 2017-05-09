@@ -45,16 +45,14 @@ public class Button extends GuiElem {
     @Override
     public void renderThis(MindmeltGDX game, float delta) {
         Batch batch = game.batch;
-        int xx = getAbsX();
-        int yy = getAbsY();
         if (state==UP) {
-            drawIcon(xx,yy,activeIcon,game);
-            drawIcon(xx,yy,upButton,game);
+            drawIcon(0,0,activeIcon,game);
+            drawIcon(0,0,upButton,game);
         } else if (state==DOWN) {
-            drawIcon(xx,yy+1,activeIcon, game);
-            drawIcon(xx,yy,downButton,game);
+            drawIcon(0,1,activeIcon, game);
+            drawIcon(0,0,downButton,game);
         } else {
-            drawIcon(xx,yy,inactiveIcon,game);
+            drawIcon(0,0,inactiveIcon,game);
         }
     }
 

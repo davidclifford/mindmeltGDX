@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import mindmelt.game.maps.World;
 import mindmelt.game.screens.StartScreen;
 
 public class MindmeltGDX extends Game {
@@ -20,6 +21,7 @@ public class MindmeltGDX extends Game {
     public TextureRegion[][] tile;
 	public Skin skin;
 	public BitmapFont font;
+	public World world;
 	
 	@Override
 	public void create () {
