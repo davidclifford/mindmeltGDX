@@ -15,7 +15,8 @@ public class MainWindow extends Window {
 
     @Override
     public void renderThis(MindmeltGDX game, float delta) {
-        super.renderThis(game,delta);
+        //super.renderThis(game,delta);
+        game.batch.setColor(Color.WHITE);
         game.batch.draw(game.mainWindow, getAbsX(), height-getAbsY()-game.mainWindow.getHeight()+32);
         //super.render(game,delta);
     }

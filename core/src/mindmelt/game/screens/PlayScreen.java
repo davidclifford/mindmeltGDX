@@ -11,6 +11,9 @@ import mindmelt.game.MindmeltGDX;
 import mindmelt.game.gui.Button;
 import mindmelt.game.gui.Window;
 import mindmelt.game.maps.World;
+import mindmelt.game.objects.Obj;
+import mindmelt.game.objects.ObjPlayer;
+import mindmelt.game.objects.ObjectStore;
 import mindmelt.game.windows.MainWindow;
 import mindmelt.game.windows.ViewWindow;
 
@@ -25,7 +28,6 @@ public class PlayScreen  implements Screen, InputProcessor {
     private BitmapFont font;
     private boolean exitGame;
     private Random rand;
-    private World world;
 
     private Window window;
     private Window spellWindow;
@@ -62,9 +64,14 @@ public class PlayScreen  implements Screen, InputProcessor {
             button = null;
         }
 
+        game.objects = new ObjectStore();
+        game.objects.loadObjects("initial");
+
         game.world = new World();
         game.world.loadMap("world");
 
+        game.objects.initMap(game.world);
+        game.player = (ObjPlayer) game.objects.getPlayer();
     }
 
     @Override
@@ -125,6 +132,10 @@ public class PlayScreen  implements Screen, InputProcessor {
     public boolean keyDown(int keycode) {
         if(keycode==Input.Keys.ESCAPE)
             exitGame = true;
+        if(keycode==Input.Keys.LEFT) game.player.setX(game.player.getX()-1);
+        if(keycode==Input.Keys.RIGHT) game.player.setX(game.player.getX()+1);
+        if(keycode==Input.Keys.UP) game.player.setY(game.player.getY()-1);
+        if(keycode==Input.Keys.DOWN) game.player.setY(game.player.getY()+1);
         return true;
     }
 

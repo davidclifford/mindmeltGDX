@@ -15,10 +15,14 @@ public class ViewWindow extends Window {
     @Override
     protected void renderThis(MindmeltGDX game, float delta) {
         super.renderThis(game,delta);
+
+        int playerX = game.player.getX();
+        int playerY = game.player.getY();
+
         for(int dy=-4;dy<5;dy++) {
             for(int dx=-4;dx<5;dx++) {
-                double bright = (4f-Math.sqrt(dx*dx+dy*dy))/4f;
-                drawTile(dx+4,dy+4,game.world.getTile(dx+40,dy+39,0).getIcon(),(float)bright,game);
+                double bright = (5f-Math.sqrt(dx*dx+dy*dy))/5f;
+                drawTile(dx+4,dy+4,game.world.getTile(dx+playerX,dy+playerY,0).getIcon(),(float)bright,game);
             }
         }
     }

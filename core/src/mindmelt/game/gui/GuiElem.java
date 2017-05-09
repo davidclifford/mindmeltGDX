@@ -15,7 +15,7 @@ public abstract class GuiElem {
     static final protected int SZ = 32;
     static final protected int pixel = 184;
     static final protected int height = 480-32;
-    static final protected boolean debug = true;
+    static final protected boolean debug = false;
 
     static final protected int SQUARE = 124;
     static final protected int TOP = 125;
