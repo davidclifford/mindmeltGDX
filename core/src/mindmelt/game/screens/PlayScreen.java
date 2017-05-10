@@ -37,6 +37,12 @@ public class PlayScreen  implements Screen, InputProcessor {
     private Window messageWindow;
     private Button button;
 
+    private boolean left;
+    private boolean right;
+    private boolean up;
+    private boolean down;
+
+
     public PlayScreen(MindmeltGDX game) {
         this.game = game;
         this.batch = game.batch;
@@ -81,20 +87,26 @@ public class PlayScreen  implements Screen, InputProcessor {
 
     @Override
     public void render(float delta) {
+        boolean ready = true;
+        int px = game.player.getX();
+        int py = game.player.getY();
+        int pz = game.player.getZ();
+        if (up||down||right||left) ready = game.player.isReady(delta);
+
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         rand = new Random(412294L);
+
+        if (left && ready) game.player.moveToMap(px-1,py,pz,game.world,game.objects);
+        if (right && ready) game.player.moveToMap(px+1,py,pz,game.world,game.objects);
+        if (up && ready) game.player.moveToMap(px,py-1,pz,game.world,game.objects);
+        if (down && ready) game.player.moveToMap(px,py+1,pz,game.world,game.objects);
+
         batch.begin();
-
-        window.render(game,delta);
-//        for (int i=0; i<10000; i++) {
-//            int id = rand.nextInt(183)+1;
-//            int x = rand.nextInt(20);
-//            int y = rand.nextInt(16);
-//            batch.draw(game.getTile(id), x * 32, Gdx.graphics.getHeight() - y * 32);
-//        }
-        font.draw(batch, "fps: " + Gdx.graphics.getFramesPerSecond(), 0, 16);
-
+          window.render(game,delta);
+          font.draw(batch, "fps: " + Gdx.graphics.getFramesPerSecond(), 0, 16);
+          font.draw(batch, "wait: "+game.player.getWait(),0,32);
+          font.draw(batch, "speed: "+game.player.getSpeed(),0,48);
         batch.end();
 
         if(exitGame) {
@@ -130,18 +142,36 @@ public class PlayScreen  implements Screen, InputProcessor {
 
     @Override
     public boolean keyDown(int keycode) {
-        if(keycode==Input.Keys.ESCAPE)
-            exitGame = true;
-        if(keycode==Input.Keys.LEFT) game.player.setX(game.player.getX()-1);
-        if(keycode==Input.Keys.RIGHT) game.player.setX(game.player.getX()+1);
-        if(keycode==Input.Keys.UP) game.player.setY(game.player.getY()-1);
-        if(keycode==Input.Keys.DOWN) game.player.setY(game.player.getY()+1);
+        switch (keycode) {
+            case Input.Keys.ESCAPE:
+                exitGame = true;
+                break;
+            case Input.Keys.LEFT:
+                left = true;
+                break;
+            case Input.Keys.RIGHT:
+                right = true;
+                break;
+            case Input.Keys.UP:
+                up = true;
+                break;
+            case Input.Keys.DOWN:
+                down = true;
+                break;
+
+        }
+
         return true;
     }
 
     @Override
     public boolean keyUp(int keycode) {
-        return false;
+        up = false;
+        down = false;
+        right = false;
+        left = false;
+        game.player.setWait(game.player.getSpeed());
+        return true;
     }
 
     @Override

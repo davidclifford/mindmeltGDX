@@ -14,8 +14,8 @@ public class Obj {
     public int z = 0;
     public int mapId = 0;
     public int dir = 0;
-    public int speed = 10;
-    public int wait = 0;
+    public float speed = 0.1f;
+    public float wait = 0;
     public String message = "";
     
     public Obj inside = null;
@@ -152,19 +152,19 @@ public class Obj {
         return this;
     }
 
-    public int getSpeed() {
+    public float getSpeed() {
         return speed;
     }
 
-    public void setSpeed(int speed) {
+    public void setSpeed(float speed) {
         this.speed = speed;
     }
 
-    public int getWait() {
+    public float getWait() {
         return wait;
     }
 
-    public void setWait(int wait) {
+    public void setWait(float wait) {
         this.wait = wait;
     }
 
@@ -289,10 +289,10 @@ public class Obj {
         this.message = message;
     }
     
-    public boolean isReady(int delta) {
+    public boolean isReady(float delta) {
         wait+=delta;
         if (wait>=speed) {
-            wait-=speed;
+            wait=0;
             setMessage("");
             return true;
         }
