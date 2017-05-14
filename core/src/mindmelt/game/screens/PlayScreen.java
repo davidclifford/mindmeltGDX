@@ -88,25 +88,30 @@ public class PlayScreen  implements Screen, InputProcessor {
     @Override
     public void render(float delta) {
         boolean ready = true;
-        int px = game.player.getX();
-        int py = game.player.getY();
-        int pz = game.player.getZ();
-        if (up||down||right||left) ready = game.player.isReady(delta);
+
 
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         rand = new Random(412294L);
 
-        if (left && ready) game.player.moveToMap(px-1,py,pz,game.world,game.objects);
-        if (right && ready) game.player.moveToMap(px+1,py,pz,game.world,game.objects);
-        if (up && ready) game.player.moveToMap(px,py-1,pz,game.world,game.objects);
-        if (down && ready) game.player.moveToMap(px,py+1,pz,game.world,game.objects);
+        int px = game.player.getX();
+        int py = game.player.getY();
+        int pz = game.player.getZ();
+        if ((up||down||right||left) && game.player.isReady(delta)) {
+            if (up) py--;
+            if (down) py++;
+            if (right) px++;
+            if (left) px--;
+            if (game.world.canEnter(game.player,px,py,pz)) {
+                game.player.moveToMap(px, py, pz, game.world, game.objects);
+            }
+        }
 
         batch.begin();
           window.render(game,delta);
           font.draw(batch, "fps: " + Gdx.graphics.getFramesPerSecond(), 0, 16);
-          font.draw(batch, "wait: "+game.player.getWait(),0,32);
-          font.draw(batch, "speed: "+game.player.getSpeed(),0,48);
+          font.draw(batch, "tile: "+game.world.getTile(px,py,pz).getId(),0,32);
+          font.draw(batch, "coords: "+px+" "+py,0,48);
         batch.end();
 
         if(exitGame) {
