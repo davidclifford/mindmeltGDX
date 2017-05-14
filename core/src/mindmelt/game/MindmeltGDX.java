@@ -29,7 +29,7 @@ public class MindmeltGDX extends Game {
 	
 	@Override
 	public void create () {
-        font = new BitmapFont(Gdx.files.internal("skin/courier.fnt"));
+        font = new BitmapFont(Gdx.files.internal("skin/courier12.fnt"));
         skin = new Skin(Gdx.files.internal("skin/uiskin.json"));
 
 		batch = new SpriteBatch();

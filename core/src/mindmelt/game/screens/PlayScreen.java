@@ -4,12 +4,15 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import mindmelt.game.MindmeltGDX;
 import mindmelt.game.gui.Button;
 import mindmelt.game.gui.Window;
+import mindmelt.game.maps.EntryExit;
+import mindmelt.game.maps.TileType;
 import mindmelt.game.maps.World;
 import mindmelt.game.objects.Obj;
 import mindmelt.game.objects.ObjPlayer;
@@ -28,6 +31,7 @@ public class PlayScreen  implements Screen, InputProcessor {
     private BitmapFont font;
     private boolean exitGame;
     private Random rand;
+    private Sound wilhelm;
 
     private Window window;
     private Window spellWindow;
@@ -78,6 +82,8 @@ public class PlayScreen  implements Screen, InputProcessor {
 
         game.objects.initMap(game.world);
         game.player = (ObjPlayer) game.objects.getPlayer();
+
+        wilhelm = game.manager.get("sound/wilhelm.ogg");
     }
 
     @Override
@@ -87,16 +93,28 @@ public class PlayScreen  implements Screen, InputProcessor {
 
     @Override
     public void render(float delta) {
-        boolean ready = true;
-
-
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        rand = new Random(412294L);
 
+        updatePlayer(delta);
+
+
+        batch.begin();
+        window.render(game,delta);
+        font.draw(batch, "fps: " + Gdx.graphics.getFramesPerSecond(), 0, 16);
+        batch.end();
+
+        if(exitGame) {
+            game.setScreen(new StartScreen(game));
+            dispose();
+        }
+    }
+
+    private void updatePlayer(float delta) {
         int px = game.player.getX();
         int py = game.player.getY();
         int pz = game.player.getZ();
+
         if ((up||down||right||left) && game.player.isReady(delta)) {
             if (up) py--;
             if (down) py++;
@@ -104,19 +122,54 @@ public class PlayScreen  implements Screen, InputProcessor {
             if (left) px--;
             if (game.world.canEnter(game.player,px,py,pz)) {
                 game.player.moveToMap(px, py, pz, game.world, game.objects);
+            } else {
+                activateTile(px,py,pz);
             }
         }
+    }
 
-        batch.begin();
-          window.render(game,delta);
-          font.draw(batch, "fps: " + Gdx.graphics.getFramesPerSecond(), 0, 16);
-          font.draw(batch, "tile: "+game.world.getTile(px,py,pz).getId(),0,32);
-          font.draw(batch, "coords: "+px+" "+py,0,48);
-        batch.end();
+    private void activateTile(int x, int y, int z) {
+        int tile = game.world.getTile(x, y, z).getId();
 
-        if(exitGame) {
-            game.setScreen(new StartScreen(game));
-            dispose();
+        if (tile == TileType.door.getId()) {
+            game.world.changeTile(x, y, z, TileType.opendoor);
+        } else if (tile == TileType.opendoor.getId()) {
+            game.world.changeTile(x, y, z, TileType.door);
+        } else if (tile == TileType.lockeddoor.getId()) {
+            game.world.changeTile(x, y, z, TileType.openlockeddoor);
+        } else if (tile == TileType.openlockeddoor.getId()) {
+            game.world.changeTile(x, y, z, TileType.lockeddoor);
+        } else if (tile == TileType.gate.getId()) {
+            game.world.changeTile(x, y, z, TileType.openlockedgate);
+        } else if (tile == TileType.openlockedgate.getId()) {
+            game.world.changeTile(x, y, z, TileType.gate);
+        } else if (tile == TileType.uplever.getId()) {
+            game.world.changeTile(x, y, z, TileType.downlever);
+        } else if (tile == TileType.downlever.getId()) {
+            game.world.changeTile(x, y, z, TileType.uplever);
+        }
+    }
+
+    private void enterExit(int x, int y, int z) {
+        if(game.world.isEntryExit(x, y, z)) {
+            if(game.player.isAt(x,y,z)) {
+                doEntryExit(x, y, z);
+            } else {
+                EntryExit entry = game.world.getEntryExit(x, y, z);
+                game.player.setMessage(entry.getDescription());
+            }
+        }
+    }
+
+    public void doEntryExit(int x, int y, int z) {
+        EntryExit entry = game.world.getEntryExit(x, y, z);
+        if (entry!=null) {
+            if(!entry.getToMap().equals(game.world.getFilename())) {
+                game.world = new World();
+                game.world.loadMap(entry.getToMap());
+                game.objects.initMap(game.world);
+            }
+            game.objects.getPlayer().moveToMap(entry.getToX(),entry.getToY(),entry.getToZ(), game.world, game.objects);
         }
     }
 
@@ -163,7 +216,12 @@ public class PlayScreen  implements Screen, InputProcessor {
             case Input.Keys.DOWN:
                 down = true;
                 break;
-
+            case Input.Keys.SPACE:
+                wilhelm.play();
+                break;
+            case Input.Keys.E:
+                enterExit(game.player.getX(),game.player.getY(),game.player.getZ());
+                break;
         }
 
         return true;
