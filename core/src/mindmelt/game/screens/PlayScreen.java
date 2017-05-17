@@ -6,10 +6,14 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.TextureData;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import mindmelt.game.MindmeltGDX;
 import mindmelt.game.gui.Button;
+import mindmelt.game.gui.GuiElem;
 import mindmelt.game.gui.Window;
 import mindmelt.game.maps.EntryExit;
 import mindmelt.game.maps.TileType;
@@ -47,8 +51,16 @@ public class PlayScreen  implements Screen, InputProcessor {
     private boolean up;
     private boolean down;
 
+    private TextureData tex;
+    private Pixmap pix;
+    private Pixmap newMouse;
 
     public PlayScreen(MindmeltGDX game) {
+
+        tex = game.tileImages.getTextureData();
+        tex.prepare();
+        pix = tex.consumePixmap();
+
         this.game = game;
         this.batch = game.batch;
         this.font = game.font;
@@ -87,6 +99,23 @@ public class PlayScreen  implements Screen, InputProcessor {
         game.player = (ObjPlayer) game.objects.getPlayer();
 
         wilhelm = game.manager.get("sound/wilhelm.ogg");
+
+        setMouse(103);
+        setMouse(182);
+    }
+
+    private void setMouse(int sprite) {
+        int px = (sprite%20)*GuiElem.SZ;
+        int py = (sprite/20)*GuiElem.SZ;
+
+        newMouse = new Pixmap(GuiElem.SZ,GuiElem.SZ, Pixmap.Format.RGBA8888);
+        for (int y=0; y<GuiElem.SZ; y++) {
+            for (int x=0; x<GuiElem.SZ; x++) {
+                newMouse.drawPixel(x,y,pix.getPixel(px+x,py+y));
+            }
+        }
+        Gdx.graphics.setCursor(Gdx.graphics.newCursor(newMouse,GuiElem.SZ/2,GuiElem.SZ/2));
+        newMouse.dispose();
     }
 
     @Override
@@ -101,11 +130,9 @@ public class PlayScreen  implements Screen, InputProcessor {
 
         updatePlayer(delta);
 
-
         batch.begin();
-        window.render(game,delta);
-        font.draw(batch, "fps: " + Gdx.graphics.getFramesPerSecond(), 0, 16);
-        //batch.draw(game.getTile(103),Gdx.input.getX(),448-Gdx.input.getY());
+          window.render(game,delta);
+          font.draw(batch, "fps: " + Gdx.graphics.getFramesPerSecond(), 0, 16);
         batch.end();
 
         if(exitGame) {
@@ -199,7 +226,8 @@ public class PlayScreen  implements Screen, InputProcessor {
 
     @Override
     public void dispose() {
-
+        pix.dispose();
+        tex.disposePixmap();
     }
 
     @Override
