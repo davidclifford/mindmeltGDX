@@ -36,6 +36,7 @@ public class PlayScreen  implements Screen, InputProcessor {
     private Window window;
     private Window spellWindow;
     private Window viewWindow;
+    private Window adjacentWindow;
     private Window backPackWindow;
     private Window stausWindow;
     private Window messageWindow;
@@ -60,12 +61,14 @@ public class PlayScreen  implements Screen, InputProcessor {
         stausWindow = (Window) new Window(11,5, 8, 2).setName("Status");
         spellWindow = (Window) new Window(11,8,7,2).setName("Spells");
         messageWindow = (Window) new Window(0,11,20,4).setName("Messages");
+        adjacentWindow = (Window) new Window(3,3,3,3).setName("Adjacent");
 
         window.addElement(spellWindow);
         window.addElement(viewWindow);
         window.addElement(backPackWindow);
         window.addElement(stausWindow);
         window.addElement(messageWindow);
+        viewWindow.addElement(adjacentWindow);
 
         for (int i=0;i<14;i++) {
             button = (Button) new Button(i%7, i/7, i+135).setName(String.format("Spell %d",i+1));
@@ -102,6 +105,7 @@ public class PlayScreen  implements Screen, InputProcessor {
         batch.begin();
         window.render(game,delta);
         font.draw(batch, "fps: " + Gdx.graphics.getFramesPerSecond(), 0, 16);
+        //batch.draw(game.getTile(103),Gdx.input.getX(),448-Gdx.input.getY());
         batch.end();
 
         if(exitGame) {

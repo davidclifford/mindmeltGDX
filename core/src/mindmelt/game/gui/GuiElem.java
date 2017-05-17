@@ -103,7 +103,7 @@ public abstract class GuiElem {
         if (el != null)
             return el.click(xx,yy, game);
         //do something
-        Gdx.app.log("do it",String.format("%s:x=%d,y=%d",getName(),xx,yy));
+        Gdx.app.log("do it",String.format("%s:x=%d,y=%d",getName(),xx/SZ,yy/SZ));
 
         activate(x,y,game);
 
