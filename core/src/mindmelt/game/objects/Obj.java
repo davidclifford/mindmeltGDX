@@ -115,7 +115,7 @@ public class Obj {
         this.y = y;
         this.z = z;
         return this;
-    }  
+    }
 
     public Obj inside(Obj in) {
         this.inside = in;
@@ -297,6 +297,11 @@ public class Obj {
             return true;
         }
         return false;
+    }
+
+    public void rotate(int d) {
+        dir+=d;
+        dir = dir>3 ? dir-4 : dir<0 ? dir+4 : dir;
     }
        
     public void update(Engine engine, int delta) {

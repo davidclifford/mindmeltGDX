@@ -145,12 +145,28 @@ public class PlayScreen  implements Screen, InputProcessor {
         int px = game.player.getX();
         int py = game.player.getY();
         int pz = game.player.getZ();
+        int dir = game.player.getDirection();
+
+        int a[] = {1,0,-1,0};
+        int b[] = {0,-1,0,1};
 
         if ((up||down||right||left) && game.player.isReady(delta)) {
-            if (up) py--;
-            if (down) py++;
-            if (right) px++;
-            if (left) px--;
+            if (up) {
+                px-=b[dir];
+                py-=a[dir];
+            }
+            if (down) {
+                px+=b[dir];
+                py+=a[dir];
+            }
+            if (right) {
+                px+=a[dir];
+                py-=b[dir];
+            }
+            if (left) {
+                px-=a[dir];
+                py+=b[dir];
+            }
             if (game.world.canEnter(game.player,px,py,pz)) {
                 game.player.moveToMap(px, py, pz, game.world, game.objects);
             } else {
@@ -247,6 +263,12 @@ public class PlayScreen  implements Screen, InputProcessor {
                 break;
             case Input.Keys.DOWN:
                 down = true;
+                break;
+            case Input.Keys.PAGE_DOWN:
+                game.player.rotate(1);
+                break;
+            case Input.Keys.PAGE_UP:
+                game.player.rotate(-1);
                 break;
             case Input.Keys.SPACE:
                 wilhelm.play();
