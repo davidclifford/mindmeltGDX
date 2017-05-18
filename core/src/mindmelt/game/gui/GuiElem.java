@@ -105,7 +105,7 @@ public abstract class GuiElem {
         //do something
         Gdx.app.log("do it",String.format("%s:x=%d,y=%d",getName(),xx/SZ,yy/SZ));
 
-        activate(x,y,game);
+        activate(xx,yy,game);
 
         return this;
     }

@@ -21,6 +21,7 @@ import mindmelt.game.maps.World;
 import mindmelt.game.objects.Obj;
 import mindmelt.game.objects.ObjPlayer;
 import mindmelt.game.objects.ObjectStore;
+import mindmelt.game.windows.AdjacentWindow;
 import mindmelt.game.windows.MainWindow;
 import mindmelt.game.windows.ViewWindow;
 
@@ -73,7 +74,7 @@ public class PlayScreen  implements Screen, InputProcessor {
         stausWindow = (Window) new Window(11,5, 8, 2).setName("Status");
         spellWindow = (Window) new Window(11,8,7,2).setName("Spells");
         messageWindow = (Window) new Window(0,11,20,4).setName("Messages");
-        adjacentWindow = (Window) new Window(3,3,3,3).setName("Adjacent");
+        adjacentWindow = (Window) new AdjacentWindow(3,3,3,3).setName("Adjacent");
 
         window.addElement(spellWindow);
         window.addElement(viewWindow);
@@ -167,7 +168,8 @@ public class PlayScreen  implements Screen, InputProcessor {
                 px-=a[dir];
                 py+=b[dir];
             }
-            if (game.world.canEnter(game.player,px,py,pz)) {
+            Obj topOb=game.world.getTopObject(px,py,pz);
+            if (game.world.canEnter(game.player,px,py,pz) && (topOb==null || (topOb!=null && !topOb.isBlocked()))) {
                 game.player.moveToMap(px, py, pz, game.world, game.objects);
             } else {
                 activateTile(px,py,pz);
@@ -195,6 +197,8 @@ public class PlayScreen  implements Screen, InputProcessor {
         } else if (tile == TileType.downlever.getId()) {
             game.world.changeTile(x, y, z, TileType.uplever);
         }
+
+        Obj ob = game.world.getTopObject(x,y,z);
     }
 
     private void enterExit(int x, int y, int z) {

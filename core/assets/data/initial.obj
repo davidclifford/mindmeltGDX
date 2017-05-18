@@ -18,3 +18,4 @@ id,name,desc,type,x,y,z,map,inside,icon
 17,imp,Imp,monster,30,36,0,1,0,77
 18,mummy,Mummy,monster,30,36,0,1,0,78
 19,compost,Compost,monster,11,34,0,13,0,160
+20,rock,Rock,object,40,39,0,1,0,121
