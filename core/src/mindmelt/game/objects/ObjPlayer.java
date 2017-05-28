@@ -11,5 +11,7 @@ package mindmelt.game.objects;
  * @author w18749
  */
 public class ObjPlayer extends Obj {
+
+
     
 }

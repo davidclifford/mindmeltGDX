@@ -22,6 +22,7 @@ import mindmelt.game.objects.Obj;
 import mindmelt.game.objects.ObjPlayer;
 import mindmelt.game.objects.ObjectStore;
 import mindmelt.game.windows.AdjacentWindow;
+import mindmelt.game.windows.BackpackWindow;
 import mindmelt.game.windows.MainWindow;
 import mindmelt.game.windows.ViewWindow;
 
@@ -70,7 +71,7 @@ public class PlayScreen  implements Screen, InputProcessor {
 
         window = (MainWindow) new MainWindow(0,0,20,15).setName("Main");
         viewWindow = (ViewWindow) new ViewWindow(1,1,9,9).setName("View");
-        backPackWindow = (Window) new Window(11,1, 8, 3).setName("Backpack");
+        backPackWindow = (Window) new BackpackWindow(11,1, 8, 3).setName("Backpack");
         stausWindow = (Window) new Window(11,5, 8, 2).setName("Status");
         spellWindow = (Window) new Window(11,8,7,2).setName("Spells");
         messageWindow = (Window) new Window(0,11,20,4).setName("Messages");

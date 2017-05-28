@@ -21,6 +21,7 @@ public class ViewWindow extends Window {
     private boolean light = false;
     private boolean see_all = false;
     private boolean cheat = false;
+    private float lighting = 0;
 
     public ViewWindow(int x, int y, int w, int h) {
         super(x, y, w, h);
@@ -72,7 +73,10 @@ public class ViewWindow extends Window {
         int mask[][] = new int[SIZE][SIZE]; //0 = see & thru, 1 = see & not thru, 2 = not see & not thru
         List<Obj> obj[][] = new ArrayList[SIZE][SIZE];
         Obj top[][] = new Obj[SIZE][SIZE];
-        boolean dark = !game.world.getLight() && !light;
+        boolean dark = !game.world.getLight() && !light && false;
+        if (lighting>60f) lighting = 0;
+        float darkness = 3f*(lighting/60f);
+        if(game.world.getLight() || light) darkness = 0f;
 
         for (DispXY xy : dispList) {
             boolean canSee = game.world.getTile(px+xy.xf, py+xy.yf, 0).isSeeThru();
@@ -93,7 +97,8 @@ public class ViewWindow extends Window {
         List<DispXYString> xyStrings = new ArrayList<>();
         for (int y=-HALF;y<=HALF;y++) {
             for (int x=-HALF;x<=HALF;x++) {
-                float bright = (float)(6f-Math.sqrt(x*x+y*y))/6f;
+                float bright = 1f-darkness*(float)(Math.sqrt(x*x+y*y)/Math.sqrt(HALF*HALF*2));
+                bright = 1f-darkness*Math.max(Math.abs(x),Math.abs(y))/HALF;
                 int tile = game.world.getTile(px+x, py+y, 0).getIcon();
                 int xx = dir==0 ? x : dir==1 ? y : dir==2 ? -x : -y;
                 int yy = dir==0 ? y : dir==1 ? -x : dir==2 ? -y : x;
@@ -121,6 +126,7 @@ public class ViewWindow extends Window {
 
     @Override
     protected void renderThis(MindmeltGDX game, float delta) {
+        //lighting += delta;
         super.renderThis(game,delta);
 
         int playerX = game.player.getX();
