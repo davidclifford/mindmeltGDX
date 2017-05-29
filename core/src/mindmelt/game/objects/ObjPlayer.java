@@ -12,6 +12,7 @@ package mindmelt.game.objects;
  */
 public class ObjPlayer extends Obj {
 
-
-    
+    public ObjPlayer() {
+        inventory = new Inventory(24);
+    }
 }

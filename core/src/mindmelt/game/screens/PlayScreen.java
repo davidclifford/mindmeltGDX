@@ -56,6 +56,7 @@ public class PlayScreen  implements Screen, InputProcessor {
     private TextureData tex;
     private Pixmap pix;
     private Pixmap newMouse;
+    private int lastMouse;
 
     public PlayScreen(MindmeltGDX game) {
 
@@ -133,6 +134,7 @@ public class PlayScreen  implements Screen, InputProcessor {
         updatePlayer(delta);
 
         batch.begin();
+          updateMouse();
           window.render(game,delta);
           font.draw(batch, "fps: " + Gdx.graphics.getFramesPerSecond(), 0, 16);
         batch.end();
@@ -140,6 +142,17 @@ public class PlayScreen  implements Screen, InputProcessor {
         if(exitGame) {
             game.setScreen(new StartScreen(game));
             dispose();
+        }
+    }
+
+    private void updateMouse() {
+        Obj handObject = game.player.inventory.getHandObject();
+        if(handObject!=null && handObject.getIcon()!=lastMouse) {
+            setMouse(handObject.getIcon());
+            lastMouse = handObject.getIcon();
+        } else if (handObject==null && lastMouse!=0) {
+            lastMouse = 0;
+            setMouse(182);
         }
     }
 

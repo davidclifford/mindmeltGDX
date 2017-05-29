@@ -23,8 +23,15 @@ public class AdjacentWindow extends Window {
         int py = game.player.getY();
         int pz = game.player.getZ();
         Obj topObj = game.world.getTopObject(px+xx,py+yy,pz);
-        if (topObj!=null && !topObj.isBlocked()) {
-            topObj.moveToObject(game.player,game.world);
+        //Pick up
+        if (topObj!=null && !topObj.isBlocked() && game.player.inventory.getHandObject()==null) {
+            game.player.inventory.objToHand(topObj,game);
+        } else
+        // Drop
+        if (game.player.inventory.getHandObject()!=null) {
+            if(topObj==null || (topObj!=null && !topObj.isBlocked())) {
+                game.player.inventory.handToMap(px+xx,py+yy,pz,game.world,game.objects);
+            }
         }
     }
 }

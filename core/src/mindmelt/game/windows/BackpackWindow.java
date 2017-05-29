@@ -2,6 +2,7 @@ package mindmelt.game.windows;
 
 import mindmelt.game.MindmeltGDX;
 import mindmelt.game.gui.Window;
+import mindmelt.game.objects.Inventory;
 import mindmelt.game.objects.Obj;
 import mindmelt.game.objects.ObjPlayer;
 
@@ -18,12 +19,12 @@ public class BackpackWindow extends Window {
     @Override
     protected void renderThis(MindmeltGDX game, float delta) {
         ObjPlayer player = game.player;
-        List<Obj> backpack = player.getObjects();
-        if(backpack==null) return;
         int xx=0;
         int yy=0;
-        for(Obj item : backpack) {
-            drawIcon(xx,yy,item.getIcon(),game);
+        for(int pos=1; pos<=24; pos++) {
+            Obj item = player.inventory.getObject(pos);
+            if(item!=null)
+                drawIcon(xx,yy,item.getIcon(),game);
             if((xx+=SZ)>=w) {
                 xx=0;
                 yy+=SZ;
@@ -35,10 +36,11 @@ public class BackpackWindow extends Window {
     protected void activate(int x, int y, MindmeltGDX game) {
         int pos = ((x/SZ)+(y/SZ)*(w/SZ));
         System.out.println(String.format("Backpack %d,%d = %d",x/SZ,y/SZ,pos));
-        List<Obj> backpack = game.player.getObjects();
-        if(backpack==null || pos+1>backpack.size()) return;
-        Obj item = backpack.get(pos);
-        System.out.println("item = "+item.getId());
-        item.moveToMap(game.player.getX(),game.player.getY(),game.player.getZ(),game.world,game.objects);
+        Inventory inv = game.player.inventory;
+        if(inv.getHandObject()==null) {
+            inv.inventoryToHand(pos+1);
+        } else {
+            inv.handToInventory(pos+1);
+        }
     }
 }

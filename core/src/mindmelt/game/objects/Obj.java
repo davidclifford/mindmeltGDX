@@ -1,7 +1,6 @@
 package mindmelt.game.objects;
 // basic objects
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import mindmelt.game.engine.Engine;
@@ -19,7 +18,8 @@ public class Obj {
     public String message = "";
     
     public Obj inside = null;
-    public List<Obj> objects = null;
+
+    public Inventory inventory = new Inventory();
     
     public int icon = 0;
     public String name = "object";
@@ -41,12 +41,13 @@ public class Obj {
     }
     
     public boolean hasObjectInside() {
-        return (objects!=null && objects.size()>0) ;
+        return (inventory.hasObjects()) ;
     }
     
     public boolean isAt(int x, int y, int z) {
         return (this.x == x && this.y == y && this.z == z);
     }
+
     public void moveToObject(Obj obTo, World world) {
         if (isInMap()) unlink(world);
         if (isInObject()) unlink();
@@ -55,10 +56,7 @@ public class Obj {
     }
     
     private void addObject(Obj ob) {
-        if (objects==null) {
-            objects = new ArrayList<Obj>();
-        }        
-        objects.add(ob);
+        inventory.objToInventory(ob);
     }
     
     public Obj moveToMap(World world) {
@@ -84,8 +82,7 @@ public class Obj {
     private void unlink() {
         if (inside==null) 
             return;
-        List<Obj> objects = inside.objects;
-        objects.remove(this);
+        inside.inventory.remove(this);
         inside = null;
     }
     
@@ -258,7 +255,7 @@ public class Obj {
     }
     
     public List<Obj> getObjects() {
-        return objects;
+        return inventory.getObjects();
     }
  
     public boolean isMonster() {
