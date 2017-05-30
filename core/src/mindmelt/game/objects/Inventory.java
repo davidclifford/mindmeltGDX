@@ -20,7 +20,7 @@ public class Inventory {
 
     public Inventory(int inventorySize) {
         this.inventorySize = inventorySize;
-        slot = new Obj[inventorySize+1];
+        slot = new Obj[inventorySize];
     }
 
     public boolean hasObjects() {
@@ -45,12 +45,13 @@ public class Inventory {
     }
 
     public void handToInventory(int s) {
+        if(s>=inventorySize) return;
         slot[s] = hand;
         hand = null;
     }
 
     public void inventoryToHand(int s) {
-        if(s>inventorySize) return;
+        if(s>=inventorySize) return;
         hand = slot[s];
         slot[s] = null;
     }
