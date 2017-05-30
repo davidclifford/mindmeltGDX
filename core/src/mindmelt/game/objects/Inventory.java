@@ -50,6 +50,7 @@ public class Inventory {
     }
 
     public void inventoryToHand(int s) {
+        if(s>inventorySize) return;
         hand = slot[s];
         slot[s] = null;
     }
