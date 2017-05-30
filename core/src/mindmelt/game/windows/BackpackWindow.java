@@ -21,8 +21,9 @@ public class BackpackWindow extends Window {
         ObjPlayer player = game.player;
         int xx=0;
         int yy=0;
-        for(int pos=1; pos<=24; pos++) {
+        for(int pos=0; pos<24; pos++) {
             Obj item = player.inventory.getObject(pos);
+            drawIcon(xx,yy,152,game);
             if(item!=null)
                 drawIcon(xx,yy,item.getIcon(),game);
             if((xx+=SZ)>=w) {
@@ -38,9 +39,10 @@ public class BackpackWindow extends Window {
         System.out.println(String.format("Backpack %d,%d = %d",x/SZ,y/SZ,pos));
         Inventory inv = game.player.inventory;
         if(inv.getHandObject()==null) {
-            inv.inventoryToHand(pos+1);
+            inv.inventoryToHand(pos);
         } else {
-            inv.handToInventory(pos+1);
+            if(inv.getObject(pos)==null)
+                inv.handToInventory(pos);
         }
     }
 }

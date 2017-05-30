@@ -28,7 +28,7 @@ public class AdjacentWindow extends Window {
             game.player.inventory.objToHand(topObj,game);
         } else
         // Drop
-        if (game.player.inventory.getHandObject()!=null) {
+        if (game.player.inventory.getHandObject()!=null && game.world.canEnter(game.player.inventory.getHandObject(),px+xx,py+yy,pz)) {
             if(topObj==null || (topObj!=null && !topObj.isBlocked())) {
                 game.player.inventory.handToMap(px+xx,py+yy,pz,game.world,game.objects);
             }

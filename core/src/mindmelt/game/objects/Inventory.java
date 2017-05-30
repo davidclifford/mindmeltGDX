@@ -11,16 +11,16 @@ import java.util.List;
  */
 public class Inventory {
     private int inventorySize;
-    private int hand = 0;
-    private int slot[];
-    List<Obj> objects = new ArrayList<>();
+    private Obj hand = null;
+    private Obj slot[];
+    private List<Obj> objects = new ArrayList<>();
 
     public Inventory() {
     }
 
     public Inventory(int inventorySize) {
         this.inventorySize = inventorySize;
-        slot = new int[inventorySize+1];
+        slot = new Obj[inventorySize+1];
     }
 
     public boolean hasObjects() {
@@ -35,45 +35,38 @@ public class Inventory {
         objects.add(obj);
     }
 
-    public Obj getFirstObject() {
-        Obj obj = objects.get(0);
-        objects.remove(obj);
-        return obj;
-    }
-
     public List<Obj> getObjects() {
         return objects;
     }
 
     public void objToHand(Obj obj, MindmeltGDX game) {
         obj.moveToObject(game.player,game.world);
-        hand = objects.indexOf(obj)+1;
+        hand = obj;
     }
 
     public void handToInventory(int s) {
         slot[s] = hand;
-        hand = 0;
+        hand = null;
     }
 
     public void inventoryToHand(int s) {
-        hand = s;
-        slot[s] = 0;
+        hand = slot[s];
+        slot[s] = null;
     }
 
     public Obj getHandObject() {
-        if(hand==0) return null;
-        return objects.get(hand-1);
+        return hand;
     }
 
     public Obj getObject(int s) {
-        if(s>1 && s<inventorySize && slot[s]!=0) {
-            return objects.get(slot[s]-1);
+        if(s>=0 && s<inventorySize && slot[s]!=null) {
+            return slot[s];
         }
         return null;
     }
 
     public void handToMap(int x, int y, int z, World world, ObjectStore objectStore) {
-        objects.get(hand-1).moveToMap(x,y,z,world,objectStore);
-        hand = 0;
+        hand.moveToMap(x,y,z,world,objectStore);
+        hand = null;
     }
 }
