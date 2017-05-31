@@ -2,6 +2,8 @@ package mindmelt.game.engine;
 
 import java.util.List;
 import java.util.Map.Entry;
+
+import mindmelt.game.MindmeltGDX;
 import mindmelt.game.maps.EntryExit;
 import mindmelt.game.maps.TileType;
 import mindmelt.game.maps.World;
@@ -9,13 +11,15 @@ import mindmelt.game.objects.Obj;
 import mindmelt.game.objects.ObjectStore;
 
 public class Engine {
-    
+
+    private MindmeltGDX game;
     private World world;
     private ObjectStore objects;
     
-    public Engine(World world, ObjectStore objects) {
-        this.world = world;
-        this.objects = objects;
+    public Engine(MindmeltGDX game) {
+        this.game = game;
+        this.world = game.world;
+        this.objects = game.objects;
     }
 
     public World getWorld() {

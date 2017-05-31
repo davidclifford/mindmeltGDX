@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import mindmelt.game.engine.Engine;
 import mindmelt.game.maps.World;
 import mindmelt.game.objects.ObjPlayer;
 import mindmelt.game.objects.ObjectStore;
@@ -26,6 +27,7 @@ public class MindmeltGDX extends Game {
 	public World world;
     public ObjectStore objects;
     public ObjPlayer player;
+    public Engine engine;
 	
 	@Override
 	public void create () {

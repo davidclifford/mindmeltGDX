@@ -12,6 +12,7 @@ import com.badlogic.gdx.graphics.TextureData;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import mindmelt.game.MindmeltGDX;
+import mindmelt.game.engine.Engine;
 import mindmelt.game.gui.Button;
 import mindmelt.game.gui.GuiElem;
 import mindmelt.game.gui.Window;
@@ -101,9 +102,10 @@ public class PlayScreen  implements Screen, InputProcessor {
         game.objects.initMap(game.world);
         game.player = (ObjPlayer) game.objects.getPlayer();
 
+        game.engine = new Engine(game);
+
         wilhelm = game.manager.get("sound/wilhelm.ogg");
 
-        setMouse(103);
         setMouse(182);
     }
 
