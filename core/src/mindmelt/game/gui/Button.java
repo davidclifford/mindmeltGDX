@@ -4,7 +4,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import mindmelt.game.MindmeltGDX;
+import mindmelt.game.engine.ChangeTile;
 import mindmelt.game.engine.Engine;
+
+import java.util.Map;
 
 /**
  * Created by David on 3/05/2017.
@@ -45,7 +48,6 @@ public class Button extends GuiElem {
 
     @Override
     public void renderThis(MindmeltGDX game, float delta) {
-        Batch batch = game.batch;
         if (state==UP) {
             drawIcon(0,0,activeIcon,game);
             drawIcon(0,0,upButton,game);
@@ -60,10 +62,15 @@ public class Button extends GuiElem {
     @Override
     protected void activate(int x, int y, Engine engine) {
 
-        if (state==UP)
+        if (state==UP) {
             state = DOWN;
-        else if (state==DOWN)
+        } else if (state==DOWN) {
             state = UP;
+        }
         //Gdx.audio.newSound(Gdx.files.internal("sound/wilhelm.ogg")).play();
+        Gdx.app.log("spell = ",""+activeIcon);
+        if (activeIcon==148) {
+            engine.debugChangeTiles();
+        }
     }
 }

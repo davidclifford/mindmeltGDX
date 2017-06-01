@@ -1,8 +1,10 @@
 package mindmelt.game.engine;
 
+import java.util.HashMap;
 import java.util.List;
-import java.util.Map.Entry;
+import java.util.Map;
 
+import com.badlogic.gdx.Gdx;
 import mindmelt.game.MindmeltGDX;
 import mindmelt.game.maps.EntryExit;
 import mindmelt.game.maps.TileType;
@@ -16,8 +18,10 @@ public class Engine {
     private MindmeltGDX game;
     private World world;
     private ObjectStore objects;
+    private Map<String,ChangeTile> changeTiles;
     
     public Engine(MindmeltGDX game) {
+        changeTiles = new HashMap<>();
         this.game = game;
         this.world = game.world;
         this.objects = game.objects;
@@ -37,6 +41,8 @@ public class Engine {
 
     public void moveObjToMap(Obj object, int x, int y, int z) {
         object.moveToMap(x, y, z, this);
+        //CODE!!!
+        // do it here (need from & to)
     }
     
     public boolean canEnter(Obj ob, int x, int y, int z) {
@@ -124,10 +130,31 @@ public class Engine {
         
     }
     
-    public void changeTile(int x, int y, int z, TileType tile) {
-        world.changeTile(x,y,z,tile);
+    public void changeTile(int x, int y, int z, TileType newTile) {
+        int current = world.getTile(x,y,z).getId();
+        world.changeTile(x, y, z, newTile);
+        String coord = String.format("%d:%d:%d,%d", x, y, z, world.getId());
+        ChangeTile original = changeTiles.get(coord);
+        if (original != null) {
+            changeTiles.remove(coord);
+        }
+        if (original == null || original.getIcon() != newTile.getIcon()) {
+            changeTiles.put(coord, new ChangeTile(x, y, z, world.getId(), current));
+        }
+        //CODE !!!!
+        // do it here (ie pits, pressure pads, teleports etc...)
     }
-    
+
+    public void debugChangeTiles() {
+        changeTiles.entrySet().forEach(
+                changeTile -> {
+                    ChangeTile tile = changeTile.getValue();
+                    Gdx.app.log("debugChangeTiles",String.format("%d,%d,%d,%d = %d",tile.getX(),tile.getY(),tile.getZ(),tile.getMap(),tile.getIcon()));
+                }
+        );
+
+    }
+
     public Obj getTopObject(int x, int y, int z) {
         List<Obj> objs = world.getObjects(x, y, z);
         if (objs==null) return null;
