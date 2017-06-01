@@ -55,12 +55,25 @@ public class Engine {
                 objects.initMap(world);
             }
             objects.getPlayer().moveToMap(entry.getToX(),entry.getToY(),entry.getToZ(), world, objects);
+            game.world = world;
+            game.objects = objects;
         }
     }
     
     public EntryExit getEntryExit(int x, int y, int z) {
         return world.getEntryExit(x, y, z);
     }
+
+    //Player stuff
+    public Obj getPlayerHandObject() {
+        return objects.getPlayer().inventory.getHandObject();
+    }
+
+    public int getPlayerX() { return objects.getPlayer().getX(); }
+    public int getPlayerY() { return objects.getPlayer().getY(); }
+    public int getPlayerZ() { return objects.getPlayer().getZ(); }
+    public int getPlayerDirection() { return objects.getPlayer().getDirection(); }
+    public boolean isPlayerReady(float delta) { return objects.getPlayer().isReady(delta); }
 
     public void activateTile(int x, int y, int z) {
         Obj player = objects.getPlayer();
