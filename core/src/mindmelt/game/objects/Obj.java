@@ -64,19 +64,19 @@ public class Obj {
         return this;
     }
     
-    public void moveToMap(int x, int y, int z, World world, ObjectStore objects) {
+    public void moveToMap(int x, int y, int z, Engine engine) {
         Obj ob = this;
-        int mapId = world.getId();
+        int mapId = engine.getWorld().getId();
         if (isInMap()) { 
-            unlink(world);
+            unlink(engine.getWorld());
         }
         else if (isInObject()) {
             unlink();
         }
-        world.setTop(x, y, z, ob);
+        engine.getWorld().setTop(x, y, z, ob);
         setCoords(x, y, z);
         setMapId(mapId);
-        objects.addToActiveObjects(ob);
+        engine.getObjects().addToActiveObjects(ob);
     }
 
     private void unlink() {

@@ -7,6 +7,7 @@ import mindmelt.game.MindmeltGDX;
 import mindmelt.game.maps.EntryExit;
 import mindmelt.game.maps.TileType;
 import mindmelt.game.maps.World;
+import mindmelt.game.objects.Inventory;
 import mindmelt.game.objects.Obj;
 import mindmelt.game.objects.ObjectStore;
 
@@ -35,7 +36,7 @@ public class Engine {
     }
 
     public void moveObjToMap(Obj object, int x, int y, int z) {
-        object.moveToMap(x, y, z, world, objects);
+        object.moveToMap(x, y, z, this);
     }
     
     public boolean canEnter(Obj ob, int x, int y, int z) {
@@ -54,7 +55,7 @@ public class Engine {
                 world.loadMap(entry.getToMap());
                 objects.initMap(world);
             }
-            objects.getPlayer().moveToMap(entry.getToX(),entry.getToY(),entry.getToZ(), world, objects);
+            objects.getPlayer().moveToMap(entry.getToX(),entry.getToY(),entry.getToZ(), this);
             game.world = world;
             game.objects = objects;
         }
@@ -64,7 +65,19 @@ public class Engine {
         return world.getEntryExit(x, y, z);
     }
 
+    public Obj getPlayer() {
+        return objects.getPlayer();
+    }
+
     //Player stuff
+    public void setPlayerWait() {
+        getPlayer().setWait(getPlayer().getSpeed());
+    }
+
+    public Inventory getPlayerInventory() {
+        return objects.getPlayer().inventory;
+    }
+
     public Obj getPlayerHandObject() {
         return objects.getPlayer().inventory.getHandObject();
     }
@@ -76,7 +89,7 @@ public class Engine {
     public boolean isPlayerReady(float delta) { return objects.getPlayer().isReady(delta); }
 
     public void activateTile(int x, int y, int z) {
-        Obj player = objects.getPlayer();
+        Obj player = getPlayer();
         TileType tile = world.getTile(x, y, z);
         if(tile==TileType.space) {
             return;

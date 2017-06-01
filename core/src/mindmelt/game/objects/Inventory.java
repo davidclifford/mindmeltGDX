@@ -1,6 +1,7 @@
 package mindmelt.game.objects;
 
 import mindmelt.game.MindmeltGDX;
+import mindmelt.game.engine.Engine;
 import mindmelt.game.maps.World;
 
 import java.util.ArrayList;
@@ -39,8 +40,8 @@ public class Inventory {
         return objects;
     }
 
-    public void objToHand(Obj obj, MindmeltGDX game) {
-        obj.moveToObject(game.player,game.world);
+    public void objToHand(Obj obj, Engine engine) {
+        obj.moveToObject(engine.getPlayer(),engine.getWorld());
         hand = obj;
     }
 
@@ -67,8 +68,8 @@ public class Inventory {
         return null;
     }
 
-    public void handToMap(int x, int y, int z, World world, ObjectStore objectStore) {
-        hand.moveToMap(x,y,z,world,objectStore);
+    public void handToMap(int x, int y, int z, Engine engine) {
+        hand.moveToMap(x,y,z,engine);
         hand = null;
     }
 }

@@ -1,6 +1,7 @@
 package mindmelt.game.windows;
 
 import mindmelt.game.MindmeltGDX;
+import mindmelt.game.engine.Engine;
 import mindmelt.game.gui.Window;
 import mindmelt.game.objects.Inventory;
 import mindmelt.game.objects.Obj;
@@ -34,10 +35,10 @@ public class BackpackWindow extends Window {
     }
 
     @Override
-    protected void activate(int x, int y, MindmeltGDX game) {
+    protected void activate(int x, int y, Engine engine) {
         int pos = ((x/SZ)+(y/SZ)*(w/SZ));
         System.out.println(String.format("Backpack %d,%d = %d",x/SZ,y/SZ,pos));
-        Inventory inv = game.player.inventory;
+        Inventory inv = engine.getPlayerInventory();
         if(inv.getHandObject()==null) {
             inv.inventoryToHand(pos);
         } else {

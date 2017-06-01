@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import mindmelt.game.MindmeltGDX;
+import mindmelt.game.engine.Engine;
 
 /**
  * Created by David on 3/05/2017.
@@ -57,7 +58,7 @@ public class Button extends GuiElem {
     }
 
     @Override
-    protected void activate(int x, int y, MindmeltGDX game) {
+    protected void activate(int x, int y, Engine engine) {
 
         if (state==UP)
             state = DOWN;

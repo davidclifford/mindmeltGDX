@@ -109,7 +109,7 @@ public class PlayScreen implements Screen, InputProcessor {
 
         setMouse(182);
 
-        game.player.setWait(game.player.getSpeed());
+        engine.setPlayerWait();
     }
 
     private void setMouse(int sprite) {
@@ -188,7 +188,7 @@ public class PlayScreen implements Screen, InputProcessor {
                 py+=b[dir];
             }
             Obj topOb=engine.getTopObject(px,py,pz);
-            if (engine.canEnter(game.player,px,py,pz) && (topOb==null || (topOb!=null && !topOb.isBlocked()))) {
+            if (engine.canEnter(game.player,px,py,pz) && (topOb==null || !topOb.isBlocked())) {
                 engine.moveObjToMap(game.player,px, py, pz);
             } else {
                 engine.activateTile(px,py,pz);
@@ -274,7 +274,7 @@ public class PlayScreen implements Screen, InputProcessor {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        window.click(screenX,screenY,game);
+        window.click(screenX,screenY,engine);
         return true;
     }
 

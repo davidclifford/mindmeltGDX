@@ -2,6 +2,7 @@ package mindmelt.game.windows;
 
 import com.badlogic.gdx.Gdx;
 import mindmelt.game.MindmeltGDX;
+import mindmelt.game.engine.Engine;
 import mindmelt.game.gui.Window;
 import mindmelt.game.objects.Obj;
 
@@ -138,7 +139,7 @@ public class ViewWindow extends Window {
     }
 
     @Override
-    public void activate(int x, int y, MindmeltGDX game) {
+    public void activate(int x, int y, Engine engine) {
         Gdx.app.log("ViewWindow",String.format("%d,%d",x,y));
     }
 }
