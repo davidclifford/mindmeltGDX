@@ -92,8 +92,31 @@ public class World implements ITileAccess {
         if(objects!=null) {
             objects.remove(ob);
             if (objects.isEmpty())
-                top[ob.x][ob.y][ob.z] = null;
+                top[ob.z][ob.y][ob.x] = null;
         }
+    }
+
+    public List<Obj> removeAllObjects(int x, int y, int z) {
+        List<Obj> objects = getObjects(x, y, z);
+        objects.stream().forEach(ob-> {
+            ob.setCoords(0,0,0);
+            ob.setMapId(0);
+        });
+        top[z][y][x] = null;
+        return objects;
+    }
+
+    public void addAllObjects(List<Obj> objects, int x, int y, int z) {
+        if(objects==null) return;
+
+        for(Obj ob : objects) {
+            ob.setCoords(x,y,z);
+            ob.setMapId(getId());
+        }
+        if(top[z][y][x]!=null) {
+            top[z][y][x].addAll(objects);
+        }
+        top[z][y][x] = objects;
     }
     
     public void loadMap(String mapName) {

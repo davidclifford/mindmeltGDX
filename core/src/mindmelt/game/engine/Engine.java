@@ -44,7 +44,12 @@ public class Engine {
         //CODE!!!
         // do it here (need from & to)
     }
-    
+
+    public void moveAllToMap(int xf, int yf, int zf, int xt, int yt, int zt) {
+        List<Obj> all = world.removeAllObjects(xf,yf,zf);
+        world.addAllObjects(all,xt,yt,zt);
+    }
+
     public boolean canEnter(Obj ob, int x, int y, int z) {
         return world.canEnter(ob, x,y,z);
     }
@@ -165,7 +170,7 @@ public class Engine {
         }
         return ob;
     }
-    
+
     public void moveObjToObj(Obj from, Obj to) {
         from.moveToObject(to, world);
     }
