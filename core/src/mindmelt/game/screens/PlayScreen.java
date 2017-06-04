@@ -183,7 +183,7 @@ public class PlayScreen implements Screen, InputProcessor {
                 py+=b[dir];
             }
             Obj topOb=engine.getTopObject(px,py,pz);
-            if (engine.canEnter(game.player,px,py,pz) && (topOb==null || !topOb.isBlocked())) {
+            if (engine.isCheat() || (engine.canEnter(game.player,px,py,pz) && (topOb==null || !topOb.isBlocked()))) {
                 engine.moveObjToMap(game.player,px, py, pz);
             } else {
                 engine.activateTile(px,py,pz);
@@ -246,6 +246,27 @@ public class PlayScreen implements Screen, InputProcessor {
                 break;
             case Input.Keys.E:
                 engine.doEntryExit(engine.getPlayerX(),engine.getPlayerY(),engine.getPlayerZ());
+                break;
+            case Input.Keys.P:
+                Gdx.app.log("Coords: ",String.format("%d,%d,%d",engine.getPlayerX(),engine.getPlayerY(),engine.getPlayerZ()));
+                break;
+            case Input.Keys.F1:
+                engine.setCheat(!engine.isCheat());
+                break;
+            case Input.Keys.F2:
+                engine.setSeeall(!engine.isSeeall());
+                break;
+            case Input.Keys.F3:
+                engine.setXray(!engine.isXray());
+                break;
+            case Input.Keys.F4:
+                engine.setLighting(engine.getLighting()+1f);
+                break;
+            case Input.Keys.F5:
+                engine.setLighting(engine.getLighting()-1f);
+                break;
+            default:
+                Gdx.app.log("Key = ",""+keycode);
                 break;
         }
 

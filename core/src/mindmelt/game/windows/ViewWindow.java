@@ -18,11 +18,7 @@ public class ViewWindow extends Window {
     private final int HALF = SIZE/2;
     private int tile[][];
     private List<DispXY> dispList;
-    private boolean xray = false;
-    private boolean light = false;
-    private boolean see_all = false;
-    private boolean cheat = false;
-    private float lighting = 0;
+    private boolean light;
 
     public ViewWindow(int x, int y, int w, int h) {
         super(x, y, w, h);
@@ -71,13 +67,15 @@ public class ViewWindow extends Window {
     }
 
     private void displayPosition(int px, int py, int dir, MindmeltGDX game) {
+        Engine en = game.engine;
         int mask[][] = new int[SIZE][SIZE]; //0 = see & thru, 1 = see & not thru, 2 = not see & not thru
         List<Obj> obj[][] = new ArrayList[SIZE][SIZE];
         Obj top[][] = new Obj[SIZE][SIZE];
-        boolean dark = !game.world.getLight() && !light && false;
-        if (lighting>60f) lighting = 0;
-        float darkness = 3f*(lighting/60f);
-        if(game.world.getLight() || light) darkness = 0f;
+        //boolean dark = !game.world.getLight() && !light || false;
+        boolean dark = false;
+        if (en.getLighting()>60f) en.setLighting(0);
+        float darkness = 3f*(en.getLighting()/60f);
+        //if(game.world.getLight() || light) darkness = 0f;
 
         for (DispXY xy : dispList) {
             boolean canSee = game.world.getTile(px+xy.xf, py+xy.yf, 0).isSeeThru();
@@ -86,7 +84,7 @@ public class ViewWindow extends Window {
             } else if (mask[xy.xt+HALF][xy.yt+HALF]>=1) {
                 mask[xy.xf+HALF][xy.yf+HALF] = 2;
             }
-            if(xy.xf <= 1 && xy.xf >= -1 && xy.yf <= 1 && xy.yf >= -1 && xray) {
+            if(xy.xf <= 1 && xy.xf >= -1 && xy.yf <= 1 && xy.yf >= -1 && en.isXray()) {
                 mask[xy.xf+HALF][xy.yf+HALF] = 0;
             }
             if((xy.xf > 1 || xy.xf < -1 || xy.yf > 1 || xy.yf < -1) && dark) {
@@ -103,7 +101,7 @@ public class ViewWindow extends Window {
                 int tile = game.world.getTile(px+x, py+y, 0).getIcon();
                 int xx = dir==0 ? x : dir==1 ? y : dir==2 ? -x : -y;
                 int yy = dir==0 ? y : dir==1 ? -x : dir==2 ? -y : x;
-                if (mask[x+HALF][y+HALF] < 2 || see_all) {
+                if (mask[x+HALF][y+HALF] < 2 || en.isSeeall()) {
                     drawTile(HALF+xx, HALF+yy, tile,bright,game);
                     List<Obj> objects = game.world.getObjects(px+x, py+y, 0);
                     if (objects!=null) {

@@ -12,6 +12,8 @@ public class Obj {
     public int y = 0;
     public int z = 0;
     public int mapId = 0;
+    public int strength;
+    public int order;
     public int dir = 0;
     public float speed = 0.1f;
     public float wait = 0;
@@ -138,12 +140,22 @@ public class Obj {
         this.type = type;
         return this;
     }
-    
+
     public Obj icon(int icon) {
         this.icon = icon;
         return this;
-    }    
-    
+    }
+
+    public Obj strength(int strength) {
+        this.strength = strength;
+        return this;
+    }
+
+    public Obj order(int order) {
+        this.order = order;
+        return this;
+    }
+
     public Obj id(int id) {
         this.id = id;
         return this;
@@ -253,7 +265,23 @@ public class Obj {
     public void setDirection(int dir) {
         this.dir = dir;
     }
-    
+
+    public int getStrength() {
+        return strength;
+    }
+
+    public void setStrength(int strength) {
+        this.strength = strength;
+    }
+
+    public int getOrder() {
+        return order;
+    }
+
+    public void setOrder(int order) {
+        this.order = order;
+    }
+
     public List<Obj> getObjects() {
         return inventory.getObjects();
     }

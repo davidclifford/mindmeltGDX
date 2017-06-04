@@ -19,12 +19,57 @@ public class Engine {
     private World world;
     private ObjectStore objects;
     private Map<String,ChangeTile> changeTiles;
+    private boolean xray = false;
+    private boolean light = false;
+    private boolean seeall = false;
+    private boolean cheat = false;
+    private float lighting = 60f;
     
     public Engine(MindmeltGDX game) {
         changeTiles = new HashMap<>();
         this.game = game;
         this.world = game.world;
         this.objects = game.objects;
+    }
+
+    public boolean isXray() {
+        return xray;
+    }
+
+    public void setXray(boolean xray) {
+        this.xray = xray;
+    }
+
+    public boolean isLight() {
+        return light;
+    }
+
+    public void setLight(boolean light) {
+        this.light = light;
+    }
+
+    public boolean isSeeall() {
+        return seeall;
+    }
+
+    public void setSeeall(boolean seeall) {
+        this.seeall = seeall;
+    }
+
+    public boolean isCheat() {
+        return cheat;
+    }
+
+    public void setCheat(boolean cheat) {
+        this.cheat = cheat;
+    }
+
+    public float getLighting() {
+        return lighting;
+    }
+
+    public void setLighting(float lighting) {
+        this.lighting = lighting;
     }
 
     public World getWorld() {

@@ -28,9 +28,11 @@ public class ObjectStore {
                 int z = Integer.parseInt(line[6]);
                 int mapId = Integer.parseInt(line[7]);
                 int inside = Integer.parseInt(line[8]);
+                int order = Integer.parseInt(line[9]);
+                int strength = Integer.parseInt(line[10]);
                 Obj in = objects[inside];
-                int icon = Integer.parseInt(line[9]);
-                Obj ob = Obj.builder(type).id(id).name(name).description(desc).setCoords(x,y,z).inside(in).mapId(mapId).icon(icon);
+                int icon = Integer.parseInt(line[11]);
+                Obj ob = Obj.builder(type).id(id).name(name).description(desc).setCoords(x,y,z).inside(in).mapId(mapId).order(order).strength(strength).icon(icon);
                 ob.setSpeed(0.2f);
                 objects[id] = ob;
             }
