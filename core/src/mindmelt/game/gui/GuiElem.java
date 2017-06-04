@@ -175,6 +175,11 @@ public abstract class GuiElem {
         game.batch.draw(game.getTile(pixel), xx, height - yy);
     }
 
+    protected void drawText(int x, int y, Color color, String text, MindmeltGDX game) {
+        game.font.setColor(color);
+        game.font.draw(game.batch,text,getAbsX()+x,Gdx.graphics.getHeight() - getAbsY()-y);
+    }
+
     protected void drawIcon(int x, int y, int icon, MindmeltGDX game) {
         drawIcon(x,y,icon,Color.WHITE,game);
     }

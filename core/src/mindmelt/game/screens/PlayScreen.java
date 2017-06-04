@@ -15,16 +15,11 @@ import mindmelt.game.engine.Engine;
 import mindmelt.game.gui.Button;
 import mindmelt.game.gui.GuiElem;
 import mindmelt.game.gui.Window;
-import mindmelt.game.maps.EntryExit;
-import mindmelt.game.maps.TileType;
 import mindmelt.game.maps.World;
 import mindmelt.game.objects.Obj;
 import mindmelt.game.objects.ObjPlayer;
 import mindmelt.game.objects.ObjectStore;
-import mindmelt.game.windows.AdjacentWindow;
-import mindmelt.game.windows.BackpackWindow;
-import mindmelt.game.windows.MainWindow;
-import mindmelt.game.windows.ViewWindow;
+import mindmelt.game.windows.*;
 
 import java.util.Random;
 
@@ -45,7 +40,7 @@ public class PlayScreen implements Screen, InputProcessor {
     private Window viewWindow;
     private Window adjacentWindow;
     private Window backPackWindow;
-    private Window stausWindow;
+    private Window statusWindow;
     private Window messageWindow;
     private Button button;
 
@@ -74,7 +69,7 @@ public class PlayScreen implements Screen, InputProcessor {
         window = (MainWindow) new MainWindow(0,0,20,15).setName("Main");
         viewWindow = (ViewWindow) new ViewWindow(1,1,9,9).setName("View");
         backPackWindow = (Window) new BackpackWindow(11,1, 8, 3).setName("Backpack");
-        stausWindow = (Window) new Window(11,5, 8, 2).setName("Status");
+        statusWindow = (Window) new StatusWindow(11,5, 8, 2).setName("Status");
         spellWindow = (Window) new Window(11,8,7,2).setName("Spells");
         messageWindow = (Window) new Window(0,11,20,4).setName("Messages");
         adjacentWindow = (Window) new AdjacentWindow(3,3,3,3).setName("Adjacent");
@@ -82,7 +77,7 @@ public class PlayScreen implements Screen, InputProcessor {
         window.addElement(spellWindow);
         window.addElement(viewWindow);
         window.addElement(backPackWindow);
-        window.addElement(stausWindow);
+        window.addElement(statusWindow);
         window.addElement(messageWindow);
         viewWindow.addElement(adjacentWindow);
 
