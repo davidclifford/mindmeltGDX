@@ -89,6 +89,7 @@ public class PlayScreen implements Screen, InputProcessor {
         }
 
         game.objects = new ObjectStore();
+        //game.objects.convertObjects("OBJ.DAT","initial.obj");
         game.objects.loadObjects("initial");
 
         game.world = new World();

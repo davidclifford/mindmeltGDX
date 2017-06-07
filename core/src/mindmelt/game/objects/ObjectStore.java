@@ -1,7 +1,11 @@
 package mindmelt.game.objects;
 
 import com.opencsv.CSVReader;
+
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -12,6 +16,33 @@ public class ObjectStore {
     static public final int NUM_OBJECTS = 256;
     private List<Obj> current; 
     private Obj[] objects = new Obj[NUM_OBJECTS];
+
+    public void convertObjects(String fileFrom, String fileTo) {
+        try {
+            CSVReader reader = new CSVReader(new FileReader("data/"+fileFrom),',','\'',1);
+            File file = new File("data/"+fileTo);
+            BufferedWriter output = new BufferedWriter(new FileWriter(file));
+
+            String line[];
+            output.write("id,name,desc,type,x,y,z,map,inside,order,strength,icon\n");
+            while ( (line = reader.readNext()) != null) {
+                String id = line[0].trim();
+                String x = line[1].trim();
+                String y = line[2].trim();
+                String up = line[3].trim();
+                String down = line[4].trim();
+                String map = line[5].trim();
+                Integer i = new Integer(line[6].trim())+60;
+                String icon = i.toString();
+                String str = line[7].trim();
+                output.write(id+",name,desc,type,"+x+","+y+",0,"+map+",0,0,"+str+","+icon+"\n");
+            }
+            reader.close();
+            output.close();
+        } catch(Exception ex) {
+            ex.printStackTrace();
+        }
+    }
     
     public void loadObjects(String filename) {
         Random rand = new Random();
