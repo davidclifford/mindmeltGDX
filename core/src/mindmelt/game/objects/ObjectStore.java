@@ -26,6 +26,7 @@ public class ObjectStore {
             String line[];
             output.write("id,name,desc,type,x,y,z,map,inside,order,strength,icon\n");
             while ( (line = reader.readNext()) != null) {
+                if (line[0].startsWith("//")) continue;
                 String id = line[0].trim();
                 String x = line[1].trim();
                 String y = line[2].trim();
@@ -50,6 +51,7 @@ public class ObjectStore {
             CSVReader reader = new CSVReader(new FileReader("data/"+filename+".obj"),',','\'',1);
             String line[];
             while ( (line = reader.readNext()) != null) {
+                if (line[0].startsWith("//")) continue;
                 int id = Integer.parseInt(line[0]);
                 String name = line[1];
                 String desc = line[2];
