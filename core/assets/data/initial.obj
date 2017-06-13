@@ -20,31 +20,29 @@ id,name,desc,type,x,y,z,map,inside,order,strength,icon
 //cave
 16,cat,cat,animal,11,2,0,5,0,0,48,100
 //hove
-17,name,desc,type,29,22,0,6,0,0,21,93
-18,name,desc,type,14,13,0,6,0,0,37,89
-19,name,desc,type,19,26,0,6,0,0,31,96
-20,name,desc,type,38,27,0,6,0,0,48,95
-21,name,desc,type,37,13,0,6,0,0,16,98
+17,Yik,Yik,person,29,22,0,6,0,0,21,93
+18,Dofty,Dofty,person,14,13,0,6,0,0,37,89
+19,Katin,Katin,person,19,26,0,6,0,0,31,96
+20,Nella,Nella,person,38,27,0,6,0,0,48,95
+21,Eldrid,Eldrid,person,37,13,0,6,0,0,16,98
 //dorma
 22,mik,Mik the Nik,person,2,24,0,12,0,0,28,82
 23,ekki,Fast Ekki,person,30,24,0,12,0,0,13,82
 24,Frud,Frud,person,21,9,0,12,0,0,20,87
 //milloc
-25,name,desc,type,29,21,0,8,0,0,39,98
-26,name,desc,type,35,23,0,8,0,0,34,98
-27,name,desc,type,16,20,0,8,0,0,25,96
-28,name,desc,type,24,29,0,8,0,0,37,93
+25,Wyne,Wyne,person,29,21,0,8,0,0,39,98
+26,Borri,Borri,person,35,23,0,8,0,0,34,98
+27,Lil,Lil,person,16,20,0,8,0,0,25,96
+28,nir,nir,person,24,29,0,8,0,0,37,93
 //abbey
-29,name,desc,type,25,2,0,4,0,0,48,79
-30,name,desc,type,24,18,0,4,0,0,34,79
+29,Mirog,Mirog,person,25,2,0,4,0,0,48,79
+30,Faznilo,Faznilo,person,24,18,0,4,0,0,34,79
 //under
-31,name,desc,type,3,14,0,10,0,0,27,99
-//kiston
-32,name,desc,type,16,7,0,1,0,0,29,92
-//under
-33,name,desc,type,30,10,0,1,0,0,2,91
+31,dog,dog,animal,3,14,0,10,0,0,27,99
 //world
-34,name,desc,type,7,31,0,1,0,0,26,84
+32,Uptik,Uptik,person,32,14,0,1,0,0,29,92
+33,Rinnor,Rinnor,animal,60,20,0,1,0,0,2,91
+34,madcol,Mad Col,type,8,57,0,1,0,0,26,84
 //nowhere
 35,name,desc,type,0,0,0,0,0,0,34,62
 36,name,desc,type,0,0,0,0,0,0,34,78
@@ -52,23 +50,23 @@ id,name,desc,type,x,y,z,map,inside,order,strength,icon
 38,name,desc,type,0,0,0,0,0,0,40,72
 39,name,desc,type,0,0,0,0,0,0,0,60
 //abbey
-40,name,desc,type,19,8,0,4,0,0,0,79
+40,Morag,Morag,person,19,8,0,4,0,0,0,79
 //kiston
-41,romag,King Romag,person,19,4,0,7,0,0,0,80
+41,Romag,King Romag,person,19,4,0,7,0,0,0,80
 //under
-42,name,desc,type,6,5,0,10,0,0,0,81
+42,Margo,margo,person,6,5,0,10,0,0,0,81
 //dorma
 43,Gorma,Gorma,person,12,25,0,12,0,0,0,82
 //lakile
-44,name,desc,type,21,15,0,11,0,0,0,83
+44,Ramog,ramog,person,21,15,0,11,0,0,0,83
 //cave
 45,Garom,Garom,person,4,7,0,5,0,0,0,84
 //abbey
-46,name,desc,type,7,25,0,4,0,0,0,79
-47,name,desc,type,6,30,0,4,0,0,0,79
-48,name,desc,type,36,32,0,4,0,0,0,79
-49,name,desc,type,37,22,0,4,0,0,0,79
-50,name,desc,type,25,30,0,4,0,0,0,86
+46,Peta,Peta,person,7,25,0,4,0,0,0,79
+47,Bron,Bron,person,6,30,0,4,0,0,0,79
+48,Fonsan,Fonsan,person,36,32,0,4,0,0,0,79
+49,Bimna,Bimna,person,37,22,0,4,0,0,0,79
+50,Symons,Symons,person,25,30,0,4,0,0,0,86
 //kiston
 51,jeave,Jeave,person,22,26,0,7,0,0,0,85
 52,delio,Delio,person,6,17,0,7,0,0,0,88
@@ -82,7 +80,7 @@ id,name,desc,type,x,y,z,map,inside,order,strength,icon
 59,who,who,person,40,25,0,12,0,0,0,82
 60,josk,Big Josk,person,14,25,0,12,0,0,0,82
 //lakile
-61,name,desc,type,21,34,0,11,0,0,0,85
+61,Joms,Joms,person,21,34,0,11,0,0,0,85
 //aporto
 62,ternios,Ternios,person,16,2,0,3,0,0,0,93
 63,tetia,Tetia,person,27,31,0,3,0,0,0,94
@@ -90,25 +88,25 @@ id,name,desc,type,x,y,z,map,inside,order,strength,icon
 65,grinpus,Grinpus,person,7,13,0,3,0,0,0,98
 66,winina,Winina,person,31,11,0,3,0,0,0,96
 //world
-67,name,desc,type,11,31,0,1,0,0,0,90
-68,name,desc,type,16,28,0,1,0,0,0,91
-69,name,desc,type,31,27,0,1,0,0,0,92
+67,Quoxonia,Quoxonia,person,22,62,0,1,0,0,0,90
+68,Finbar,Finbar,person,32,56,0,1,0,0,0,91
+69,Fingle,Fingle,type,62,54,0,1,0,0,0,92
 //pennin
 70,drong,Drong,person,9,24,0,9,0,0,0,93
 71,arias,Arias,person,23,36,0,9,0,0,0,93
 72,garina,Garina,person,30,2,0,9,0,0,0,94
 73,bib,Bib,person,21,11,0,9,0,0,0,97
 //milloc
-74,name,desc,type,8,15,0,8,0,0,0,93
-75,name,desc,type,3,29,0,8,0,0,0,94
-76,name,desc,type,8,34,0,8,0,0,0,95
-77,name,desc,type,33,10,0,8,0,0,0,95
-78,name,desc,type,28,37,0,8,0,0,0,96
+74,Fyshfays,Fyshfays,person,8,15,0,8,0,0,0,93
+75,Soolon,Soolon,person,3,29,0,8,0,0,0,94
+76,Jen,Jen,person,8,34,0,8,0,0,0,95
+77,Bella,Bella,person,33,10,0,8,0,0,0,95
+78,Rebina,Rebina,person,28,37,0,8,0,0,0,96
 //hove
-79,name,desc,type,11,3,0,6,0,0,0,98
-80,name,desc,type,3,32,0,6,0,0,0,95
-81,name,desc,type,24,10,0,6,0,0,0,96
-82,name,desc,type,3,22,0,6,0,0,0,97
+79,Henium,Henium,person,11,3,0,6,0,0,0,98
+80,Wyma,Wyma,person,3,32,0,6,0,0,0,95
+81,Kathin,Kathin,person,24,10,0,6,0,0,0,96
+82,Barp,Barp,person,3,22,0,6,0,0,0,97
 //nowhere
 83,name,desc,type,0,0,0,0,0,0,0,60
 84,name,desc,type,0,0,0,0,0,0,0,60
@@ -127,77 +125,77 @@ id,name,desc,type,x,y,z,map,inside,order,strength,icon
 97,name,desc,type,0,0,0,0,0,0,0,60
 98,name,desc,type,0,0,0,0,0,0,0,60
 99,name,desc,type,0,0,0,0,0,0,0,60
-100,name,desc,type,44,64,0,0,0,0,0,102
-101,name,desc,type,68,64,0,0,0,0,0,102
-102,name,desc,type,67,64,0,0,0,0,0,102
-103,name,desc,type,58,64,0,0,0,0,0,102
-104,name,desc,type,45,64,0,0,0,0,0,102
-105,name,desc,type,69,64,0,0,0,0,0,102
-106,name,desc,type,55,64,0,0,0,0,0,103
-107,name,desc,type,72,64,0,0,0,0,0,105
-108,name,desc,type,80,64,0,0,0,0,0,106
-109,name,desc,type,78,64,0,0,0,0,0,107
-110,name,desc,type,52,64,0,0,0,0,0,106
+100,scroll,X-ray scroll,thing,44,64,0,0,0,0,0,102
+101,scroll,Stun scroll,thing,68,64,0,0,0,0,0,102
+102,scroll,Zap scroll,thing,67,64,0,0,0,0,0,102
+103,scroll,Heal scroll,thing,58,64,0,0,0,0,0,102
+104,scroll,Back scroll,thing,45,64,0,0,0,0,0,102
+105,scroll,Overview scroll,thing,69,64,0,0,0,0,0,102
+106,key,Jail key,thing,55,64,0,0,0,0,0,103
+107,money,Bag of Money,thing,72,64,0,0,0,0,0,105
+108,letter,Letter,thing,80,64,0,0,0,0,0,106
+109,book,Stories,thing,78,64,0,0,0,0,0,107
+110,recipe,Recipe,thing,52,64,0,0,0,0,0,106
 //kiston
-111,name,desc,type,2,3,0,7,0,0,0,104
+111,key,King key,thing,2,3,0,7,0,0,0,104
 //aporto
-112,name,desc,type,16,25,0,3,0,0,0,108
+112,orune,O rune,thing,16,25,0,3,0,0,0,108
 //dorma
-113,name,desc,type,2,2,0,12,0,0,0,109
+113,mrune,M rune,thing,2,2,0,12,0,0,0,109
 //world
-114,name,desc,type,39,31,0,1,0,0,0,110
+114,grune,G rune,thing,75,58,0,1,0,0,0,110
 //under
-115,name,desc,type,4,14,0,10,0,0,0,111
+115,rrune,R rune,thing,4,14,0,10,0,0,0,111
 //abbey
-116,name,desc,type,21,28,0,4,0,0,0,112
+116,arune,A rune,thing,21,28,0,4,0,0,0,112
 //aporto
-117,name,desc,type,16,25,0,3,0,0,0,114
+117,turf,Turf,thing,16,25,0,3,0,0,0,114
 //dorma
-118,name,desc,type,2,2,0,12,0,0,0,114
+118,turf,Turf,thing,2,2,0,12,0,0,0,114
 //world
-119,name,desc,type,39,31,0,1,0,0,0,114
+119,turf,Turf,thing,75,58,0,1,0,0,0,114
 //under
-120,name,desc,type,4,14,0,10,0,0,0,113
+120,floor,Floor,thing,4,14,0,10,0,0,0,113
 //abbey
-121,name,desc,type,21,28,0,4,0,0,0,115
+121,water,Water,thing,21,28,0,4,0,0,0,115
 //omgra0
-122,name,desc,type,8,34,0,13,0,0,0,103
-123,name,desc,type,15,38,0,13,0,0,0,116
-124,name,desc,type,6,22,0,13,0,0,0,117
-125,name,desc,type,36,18,0,13,0,0,0,104
-126,name,desc,type,38,8,0,13,0,0,0,118
+122,key,Brass key,thing,8,34,0,13,0,0,0,103
+123,gem,Red gem,thing,15,38,0,13,0,0,0,116
+124,gem,Green gem,thing,6,22,0,13,0,0,0,117
+125,key,Iron key,thing,36,18,0,13,0,0,0,104
+126,key,Gold key,thing,38,8,0,13,0,0,0,118
 //omgra2
-127,name,desc,type,22,26,0,15,0,0,0,113
+127,floor,Floor,thing,22,26,0,15,0,0,0,113
 //omgra0
-128,name,desc,type,7,36,0,13,0,0,0,121
-129,name,desc,type,9,37,0,13,0,0,0,121
-130,name,desc,type,8,37,0,13,0,0,0,121
-131,name,desc,type,6,10,0,13,0,0,0,118
+128,rock,Rock,thing,7,36,0,13,0,0,0,121
+129,rock,Rock,thing,9,37,0,13,0,0,0,121
+130,rock,Rock,thing,8,37,0,13,0,0,0,121
+131,key,Gold key,thing,6,10,0,13,0,0,0,118
 //omgra1
-132,name,desc,type,34,10,0,14,0,0,0,118
-133,name,desc,type,37,38,0,14,0,0,0,122
+132,key,Gold key,thing,34,10,0,14,0,0,0,118
+133,key,Virtual key,thing,37,38,0,14,0,0,0,122
 //nowhere
-134,name,desc,type,212,64,0,0,0,0,0,123
-135,name,desc,type,213,64,0,0,0,0,0,123
-136,name,desc,type,214,64,0,0,0,0,0,123
-137,name,desc,type,215,64,0,0,0,0,0,123
+134,key,Magenta key,thing,212,64,0,0,0,0,0,123
+135,key,Magenta key,thing,213,64,0,0,0,0,0,123
+136,key,Magenta key,thing,214,64,0,0,0,0,0,123
+137,key,Magenta key,thing,215,64,0,0,0,0,0,123
 //pennin
-138,name,desc,type,5,24,0,9,0,0,0,169
-139,name,desc,type,19,29,0,9,0,0,0,170
-140,name,desc,type,2,13,0,9,0,0,0,171
-141,name,desc,type,3,4,0,9,0,0,0,172
-142,name,desc,type,10,28,0,9,0,0,0,173
-143,name,desc,type,19,3,0,9,0,0,0,174
-144,name,desc,type,19,3,0,9,0,0,0,103
+138,knife,Ranger knife,thing,5,24,0,9,0,0,0,169
+139,loaf,Bread,thing,19,29,0,9,0,0,0,170
+140,spade,Spade,thing,2,13,0,9,0,0,0,171
+141,axe,Axe,thing,3,4,0,9,0,0,0,172
+142,wood,Wood,thing,10,28,0,9,0,0,0,173
+143,bottle,Bottle,thing,19,3,0,9,0,0,0,174
+144,key,Shed key,thing,19,3,0,9,0,0,0,103
 //aporto
-145,name,desc,type,15,17,0,3,0,0,0,169
-146,name,desc,type,17,3,0,3,0,0,0,175
-147,name,desc,type,9,2,0,3,0,0,0,176
-148,name,desc,type,27,30,0,3,0,0,0,177
-149,name,desc,type,34,32,0,3,0,0,0,178
-150,name,desc,type,8,10,0,3,0,0,0,179
-151,name,desc,type,37,17,0,3,0,0,0,180
-152,name,desc,type,35,14,0,3,0,0,0,181
+145,knife,Ranger knife,thing,15,17,0,3,0,0,0,169
+146,hammer,Hammer,thing,17,3,0,3,0,0,0,175
+147,moon,Moon ball,thing,9,2,0,3,0,0,0,176
+148,wheel,Spinning wheel,thing,27,30,0,3,0,0,0,177
+149,scisors,Scisors,thing,34,32,0,3,0,0,0,178
+150,hoe,Hoe,thing,8,10,0,3,0,0,0,179
+151,saw,Saw,thing,37,17,0,3,0,0,0,180
+152,loop,Barrel loop,thing,35,14,0,3,0,0,0,181
 //nowhere
 153,name,desc,type,0,0,0,0,0,0,33,61
 154,name,desc,type,0,0,0,0,0,0,33,61
@@ -247,64 +245,64 @@ id,name,desc,type,x,y,z,map,inside,order,strength,icon
 198,name,desc,type,0,0,0,0,0,0,29,76
 199,name,desc,type,0,0,0,0,0,0,47,75
 //omgra0
-200,name,desc,type,5,26,0,13,0,0,88,62
-201,name,desc,type,2,20,0,13,0,0,64,63
-202,name,desc,type,14,16,0,13,0,0,54,64
-203,name,desc,type,22,30,0,13,0,0,84,65
-204,name,desc,type,35,21,0,13,0,0,74,66
-205,name,desc,type,17,4,0,13,0,0,64,67
-206,name,desc,type,10,12,0,13,0,0,54,68
-207,name,desc,type,2,10,0,13,0,0,99,69
-208,name,desc,type,12,3,0,13,0,0,80,78
-209,name,desc,type,10,8,0,13,0,0,90,76
+200,gremlin,desc,monster,5,26,0,13,0,0,88,62
+201,warg,desc,monster,2,20,0,13,0,0,64,63
+202,wurm,desc,monster,14,16,0,13,0,0,54,64
+203,octo,desc,monster,22,30,0,13,0,0,84,65
+204,gnome,desc,monster,35,21,0,13,0,0,74,66
+205,centaur,desc,monster,17,4,0,13,0,0,64,67
+206,harpy,desc,monster,10,12,0,13,0,0,54,68
+207,ogre,desc,monster,2,10,0,13,0,0,99,69
+208,mummy,desc,monster,12,3,0,13,0,0,80,78
+209,slug,desc,monster,10,8,0,13,0,0,90,76
 //omgra1
-210,name,desc,type,27,18,0,14,0,0,100,155
-211,name,desc,type,36,29,0,14,0,0,75,156
-212,name,desc,type,12,28,0,14,0,0,80,158
-213,name,desc,type,14,34,0,14,0,0,80,158
-214,name,desc,type,8,38,0,14,0,0,80,158
-215,name,desc,type,10,27,0,14,0,0,80,158
-216,name,desc,type,26,26,0,14,0,0,100,155
+210,shroom,desc,monster,27,18,0,14,0,0,100,155
+211,eye,desc,monster,36,29,0,14,0,0,75,156
+212,dalek,desc,monster,12,28,0,14,0,0,80,158
+213,dalek,desc,monster,14,34,0,14,0,0,80,158
+214,dalek,desc,monster,8,38,0,14,0,0,80,158
+215,dalek,desc,monster,10,27,0,14,0,0,80,158
+216,shroom,desc,monster,26,26,0,14,0,0,100,155
 //omgra2
-217,name,desc,type,26,21,0,15,0,0,80,168
-218,name,desc,type,29,26,0,15,0,0,80,168
-219,name,desc,type,26,30,0,15,0,0,80,168
-220,name,desc,type,20,21,0,15,0,0,80,168
-221,name,desc,type,38,28,0,15,0,0,75,159
-222,name,desc,type,24,22,0,15,0,0,75,159
-223,name,desc,type,33,4,0,15,0,0,77,154
-224,name,desc,type,20,10,0,15,0,0,99,163
-225,name,desc,type,6,14,0,15,0,0,90,165
-226,name,desc,type,4,15,0,15,0,0,95,165
-227,name,desc,type,8,14,0,15,0,0,95,165
-228,name,desc,type,10,14,0,15,0,0,95,165
-229,name,desc,type,6,3,0,15,0,0,65,153
-230,name,desc,type,5,2,0,15,0,0,65,153
-231,name,desc,type,4,2,0,15,0,0,65,153
+217,trog,desc,monster,26,21,0,15,0,0,80,168
+218,trog,desc,monster,29,26,0,15,0,0,80,168
+219,trog,desc,monster,26,30,0,15,0,0,80,168
+220,trog,desc,monster,20,21,0,15,0,0,80,168
+221,cyclops,desc,monster,38,28,0,15,0,0,75,159
+222,cyclops,desc,monster,24,22,0,15,0,0,75,159
+223,cloud,desc,monster,33,4,0,15,0,0,77,154
+224,lamprey,desc,monster,20,10,0,15,0,0,99,163
+225,spiro,desc,monster,6,14,0,15,0,0,90,165
+226,spiro,desc,monster,4,15,0,15,0,0,95,165
+227,spiro,desc,monster,8,14,0,15,0,0,95,165
+228,spiro,desc,monster,10,14,0,15,0,0,95,165
+229,shrimp,desc,monster,6,3,0,15,0,0,65,153
+230,shrimp,desc,monster,5,2,0,15,0,0,65,153
+231,shrimp,desc,monster,4,2,0,15,0,0,65,153
 //omgra3
-232,name,desc,type,12,2,0,16,0,0,120,158
-233,name,desc,type,10,4,0,16,0,0,120,158
-234,name,desc,type,24,14,0,16,0,0,99,164
-235,name,desc,type,20,2,0,16,0,0,99,164
-236,name,desc,type,39,6,0,16,0,0,75,166
-237,name,desc,type,24,38,0,16,0,0,150,161
-238,name,desc,type,10,30,0,16,0,0,150,161
-239,name,desc,type,9,14,0,16,0,0,130,167
-240,name,desc,type,32,40,0,16,0,0,130,167
-241,name,desc,type,16,12,0,16,0,0,130,167
-242,name,desc,type,10,20,0,16,0,0,80,166
-243,name,desc,type,28,23,0,16,0,0,110,162
-244,name,desc,type,36,22,0,16,0,0,110,162
-245,name,desc,type,38,30,0,16,0,0,110,162
-246,name,desc,type,26,14,0,16,0,0,150,161
-247,name,desc,type,8,28,0,16,0,0,150,161
-248,name,desc,type,18,26,0,16,0,0,60,163
-249,name,desc,type,24,32,0,16,0,0,200,160
-250,name,desc,type,35,28,0,16,0,0,200,160
+232,name,desc,monster,12,2,0,16,0,0,120,158
+233,name,desc,monster,10,4,0,16,0,0,120,158
+234,name,desc,monster,24,14,0,16,0,0,99,164
+235,name,desc,monster,20,2,0,16,0,0,99,164
+236,name,desc,monster,39,6,0,16,0,0,75,166
+237,name,desc,monster,24,38,0,16,0,0,150,161
+238,name,desc,monster,10,30,0,16,0,0,150,161
+239,name,desc,monster,9,14,0,16,0,0,130,167
+240,name,desc,monster,32,40,0,16,0,0,130,167
+241,name,desc,monster,16,12,0,16,0,0,130,167
+242,name,desc,monster,10,20,0,16,0,0,80,166
+243,name,desc,monster,28,23,0,16,0,0,110,162
+244,name,desc,monster,36,22,0,16,0,0,110,162
+245,name,desc,monster,38,30,0,16,0,0,110,162
+246,name,desc,monster,26,14,0,16,0,0,150,161
+247,name,desc,monster,8,28,0,16,0,0,150,161
+248,name,desc,monster,18,26,0,16,0,0,60,163
+249,name,desc,monster,24,32,0,16,0,0,200,160
+250,name,desc,monster,35,28,0,16,0,0,200,160
 //spare
 251,name,desc,type,0,0,0,0,0,0,34,91
 252,name,desc,type,0,0,0,0,0,0,34,91
 253,name,desc,type,0,0,0,0,0,0,34,91
 254,name,desc,type,0,0,0,0,0,0,34,91
 //omgra3
-255,name,desc,type,47,9,0,16,0,0,255,101
+255,Omgra,omgra,monster,47,9,0,16,0,0,255,101

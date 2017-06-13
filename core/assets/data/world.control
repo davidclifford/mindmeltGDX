@@ -35,7 +35,7 @@ to=21,36,0,N
 filename=cave
 desc=The Hermit's Cave
 from=75,30,0
-to=11,1,0,N
+to=11,17,0,N
 -
 //Dorma
 filename=dorma
