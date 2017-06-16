@@ -6,10 +6,16 @@
 package mindmelt.game.objects;
 
 
+import mindmelt.game.engine.Engine;
+
 /**
  *
  * @author w18749
  */
 public class ObjThing extends Obj {
-    
+
+    @Override
+    public void update(Engine engine, float delta) {
+        //throwing
+    }
 }

@@ -63,14 +63,14 @@ public class TileType {
     public static final TileType openlockedgate = new TileType(46).name("opened locked gate").ch('>').seeThru().enter().icon(46);
     public static final TileType castle = new TileType(47).name("omgra's castle").ch('&').seeThru().enter().icon(47);
     public static final TileType chair = new TileType(48).name("chair").ch('h').seeThru().enter().icon(48);
-    public static final TileType table = new TileType(49).name("table").ch('A').seeThru().enter().icon(49);
+    public static final TileType table = new TileType(49).name("table").ch('A').seeThru().icon(49);
     public static final TileType plant = new TileType(50).name("plant").ch('p').seeThru().enter().icon(50);
     public static final TileType barrel = new TileType(51).name("barrel").ch('D').seeThru().icon(51);
     public static final TileType wardrobe = new TileType(52).name("wardrobe").ch('I').seeThru().icon(52);
     public static final TileType drawers = new TileType(53).name("drawers").ch('d').seeThru().icon(53);
     public static final TileType lamp = new TileType(54).name("lamp").ch('l').seeThru().enter().icon(54);
     public static final TileType bed = new TileType(55).name("bed").ch('L').seeThru().enter().icon(55);
-    public static final TileType fireplace = new TileType(56).name("firepace").ch('f').icon(56);
+    public static final TileType fireplace = new TileType(56).name("fireplace").ch('f').icon(56);
     public static final TileType books = new TileType(57).name("books").ch('E').icon(57);
     public static final TileType picture = new TileType(58).name("picture").ch('P').icon(58);
     public static final TileType rug = new TileType(59).name("rug").ch('r').seeThru().enter().icon(59);

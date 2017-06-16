@@ -6,10 +6,12 @@
 package mindmelt.game.objects;
 
 
+import mindmelt.game.engine.Engine;
+
 /**
  *
  * @author w18749
  */
-public class ObjPerson extends Obj  {
+public class ObjPerson extends Obj {
 
 }

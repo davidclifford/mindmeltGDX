@@ -6,6 +6,8 @@
 package mindmelt.game.objects;
 
 
+import mindmelt.game.engine.Engine;
+
 /**
  *
  * @author w18749
@@ -24,5 +26,10 @@ public class ObjPlayer extends Obj {
 
     public void setLevel(int level) {
         this.level = level;
+    }
+
+    @Override
+    public void update(Engine engine, float delta) {
+        //auto stuff?
     }
 }

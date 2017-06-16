@@ -66,7 +66,8 @@ public class ObjectStore {
                 Obj in = objects[inside];
                 int icon = Integer.parseInt(line[11]);
                 Obj ob = Obj.builder(type).id(id).name(name).description(desc).setCoords(x,y,z).inside(in).mapId(mapId).order(order).strength(strength).icon(icon);
-                ob.setSpeed(0.2f);
+                ob.setSpeed(rand.nextFloat()+0.2f);
+                if(id==1) ob.setSpeed(0.2f);
                 objects[id] = ob;
             }
         } catch(Exception e) {
@@ -76,7 +77,7 @@ public class ObjectStore {
     
     public void initMap(World world) {
         int mapId = world.getId();
-        current = new ArrayList<Obj>();
+        current = new ArrayList<>();
         for (int i=1; i<NUM_OBJECTS; i++) {
             if (objects[i]==null) 
                 continue;

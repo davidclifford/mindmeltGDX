@@ -15,7 +15,7 @@ public class Obj {
     public int strength;
     public int order;
     public int dir = 0;
-    public float speed = 0.1f;
+    public float speed = 0.3f;
     public float wait = 0;
     public String message = "";
     
@@ -328,9 +328,26 @@ public class Obj {
         dir+=d;
         dir = dir>3 ? dir-4 : dir<0 ? dir+4 : dir;
     }
-       
-    public void update(Engine engine, int delta) {
-        
+
+    public void update(Engine engine, float delta) {
+        int dx = x;
+        int dy = y;
+
+        if (rand.nextInt(2)==0) {
+            dx += rand.nextInt(2)*2-1;
+        } else {
+            dy += rand.nextInt(2)*2-1;
+        }
+
+        if (isReady(delta)) {
+            if (engine.canEnter(this, dx, dy, z)) {
+                engine.moveObjToMap(this, dx, dy, z);
+            }
+        }
     }
-    
+
+    protected int sign(int s) {
+        return (s<0) ? -1 : (s>0) ? 1 : 0;
+    }
+
 }

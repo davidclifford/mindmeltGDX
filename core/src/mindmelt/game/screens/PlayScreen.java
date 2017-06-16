@@ -21,6 +21,7 @@ import mindmelt.game.objects.ObjPlayer;
 import mindmelt.game.objects.ObjectStore;
 import mindmelt.game.windows.*;
 
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -133,6 +134,7 @@ public class PlayScreen implements Screen, InputProcessor {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         updatePlayer(delta);
+        updateObjects(delta);
 
         batch.begin();
           updateMouse();
@@ -190,6 +192,11 @@ public class PlayScreen implements Screen, InputProcessor {
                 engine.activateTile(px,py,pz);
             }
         }
+    }
+
+    private void updateObjects(float delta) {
+        List<Obj> objects =  game.objects.getActiveObjects();
+        objects.stream().forEach(obj -> obj.update(game.engine,delta));
     }
 
     @Override
