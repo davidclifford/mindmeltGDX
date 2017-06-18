@@ -8,10 +8,6 @@ package mindmelt.game.objects;
 
 import mindmelt.game.engine.Engine;
 
-/**
- *
- * @author w18749
- */
 public class ObjPlayer extends Obj {
 
     private int level = 1;

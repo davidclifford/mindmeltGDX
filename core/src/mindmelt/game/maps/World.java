@@ -12,7 +12,7 @@ import mindmelt.game.objects.Obj;
 public class World implements ITileAccess {
 
     public static final int MAP_SIZE = 80;
-    public static final int LAYERS = 8;
+    public static final int LAYERS = 1;
     private TileType map[][][] = new TileType[LAYERS][MAP_SIZE+1][MAP_SIZE+1];
     private List<Obj> top[][][] = new ArrayList[LAYERS][MAP_SIZE+1][MAP_SIZE+1];
     private List<Area> nomonsters = new ArrayList<>();

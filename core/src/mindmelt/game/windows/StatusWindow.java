@@ -2,12 +2,10 @@ package mindmelt.game.windows;
 
 import com.badlogic.gdx.graphics.Color;
 import mindmelt.game.MindmeltGDX;
+import mindmelt.game.engine.Engine;
 import mindmelt.game.gui.Window;
 import mindmelt.game.objects.ObjPlayer;
 
-/**
- * Created by david_000 on 04/06/2017.
- */
 public class StatusWindow extends Window {
     public StatusWindow(int x, int y, int w, int h) {
         super(x, y, w, h);
@@ -15,10 +13,13 @@ public class StatusWindow extends Window {
 
     @Override
     protected void renderThis(MindmeltGDX game, float delta) {
-        //super.renderThis(game, delta);
-        drawText(4,4,Color.GREEN,"Strength "+(int)(game.engine.getPlayer().getStrength()),game);
-        drawText(4,16,Color.CYAN,"Level "+(int)((ObjPlayer)game.engine.getPlayer()).getLevel(),game);
+        Engine en = game.engine;
+
+        drawText(4,4,Color.GREEN,"Strength "+(int)(en.getPlayer().getStrength()),game);
+        drawText(4,16,Color.CYAN,"Level "+(int)((ObjPlayer)en.getPlayer()).getLevel(),game);
         drawText(4,28,Color.RED, game.world.getDescription(), game);
-        drawText(4,40,Color.YELLOW,game.engine.getPlayerHandObject()==null?"":game.engine.getPlayerHandObject().getDescription(),game);
+        drawText(4,40,Color.YELLOW,en.getPlayerHandObject()==null?"":en.getPlayerHandObject().getDescription(),game);
+
+        drawText(3*SZ,4,Color.WHITE,""+(en.isCheat()?"C":"c")+(en.isSeeall()?"S":"s")+(en.isXray()?"X":"x"),game);
     }
 }

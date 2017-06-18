@@ -23,7 +23,7 @@ public class Engine {
     private boolean light = false;
     private boolean seeall = false;
     private boolean cheat = false;
-    private float lighting = 60f;
+    private float lighting = 0f;
     
     public Engine(MindmeltGDX game) {
         changeTiles = new HashMap<>();

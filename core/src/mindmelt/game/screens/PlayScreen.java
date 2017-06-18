@@ -267,12 +267,6 @@ public class PlayScreen implements Screen, InputProcessor {
             case Input.Keys.F3:
                 engine.setXray(!engine.isXray());
                 break;
-            case Input.Keys.F4:
-                engine.setLighting(engine.getLighting()+1f);
-                break;
-            case Input.Keys.F5:
-                engine.setLighting(engine.getLighting()-1f);
-                break;
             default:
                 Gdx.app.log("Key = ",""+keycode);
                 break;
