@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.TextureData;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import mindmelt.game.MindmeltGDX;
+import mindmelt.game.buttons.MapSpellButton;
 import mindmelt.game.engine.Engine;
 import mindmelt.game.gui.Button;
 import mindmelt.game.gui.GuiElem;
@@ -71,7 +72,7 @@ public class PlayScreen implements Screen, InputProcessor {
         viewWindow = (ViewWindow) new ViewWindow(1,1,9,9).setName("View");
         backPackWindow = (Window) new BackpackWindow(11,1, 8, 3).setName("Backpack");
         statusWindow = (Window) new StatusWindow(11,5, 8, 2).setName("Status");
-        spellWindow = (Window) new Window(11,8,7,2).setName("Spells");
+        spellWindow = (SpellWindow) new SpellWindow(11,8,7,2).setName("Spells");
         messageWindow = (Window) new Window(0,11,20,4).setName("Messages");
         adjacentWindow = (Window) new AdjacentWindow(3,3,3,3).setName("Adjacent");
 
@@ -82,11 +83,24 @@ public class PlayScreen implements Screen, InputProcessor {
         window.addElement(messageWindow);
         viewWindow.addElement(adjacentWindow);
 
-        for (int i=0;i<14;i++) {
-            button = (Button) new Button(i%7, i/7, i+135).setName(String.format("Spell %d",i+1));
-            if (i<14) button.setState(Button.UP);
+        //Set up spell buttons
+        for (int b=0;b<14;b++) {
+            if (b==0) button = new Button(b%7, b/7, b+135);
+            else if (b==1) button = new Button(b%7, b/7, b+135);
+            else if (b==2) button = new Button(b%7, b/7, b+135);
+            else if (b==3) button = new Button(b%7, b/7, b+135);
+            else if (b==4) button = new Button(b%7, b/7, b+135);
+            else if (b==5) button = new Button(b%7, b/7, b+135);
+            else if (b==6) button = new Button(b%7, b/7, b+135);
+            else if (b==7) button = new Button(b%7, b/7, b+135);
+            else if (b==8) button = new Button(b%7, b/7, b+135);
+            else if (b==9) button = new Button(b%7, b/7, b+135);
+            else if (b==10) button = new Button(b%7, b/7, b+135);
+            else if (b==11) button = new Button(b%7, b/7, b+135);
+            else if (b==12) button = new Button(b%7, b/7, b+135);
+            else if (b==13) button = new MapSpellButton(b%7, b/7, b+135);
+            button.setState(Button.UP);
             spellWindow.addElement(button);
-            button = null;
         }
 
         game.objects = new ObjectStore();
@@ -107,6 +121,13 @@ public class PlayScreen implements Screen, InputProcessor {
         setMouse(182);
 
         engine.setPlayerWait();
+
+        try {
+            String a = null;
+            int i = a.indexOf('x');
+        } catch (NullPointerException ex) {
+            Gdx.app.log("1","ERROR!");
+        }
     }
 
     private void setMouse(int sprite) {
