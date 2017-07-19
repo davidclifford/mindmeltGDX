@@ -78,7 +78,7 @@ public class StartScreen  implements Screen {
         np.setColor(Color.MAGENTA);
         tbs.up = new NinePatchDrawable(np);
         np = new NinePatch(skin.getPatch("default-round"));
-        np.setColor(Color.YELLOW);
+        np.setColor(Color.WHITE);
         tbs.down = new NinePatchDrawable(np);
         but.setStyle(tbs);
         return but;

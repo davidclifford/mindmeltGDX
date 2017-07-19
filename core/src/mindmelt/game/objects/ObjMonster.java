@@ -13,7 +13,7 @@ public class ObjMonster extends Obj {
         Obj player = engine.getObjects().getPlayer();
         int px = player.getX();
         int py = player.getY();
-        ObjMonster mon = this;
+
         int dx = x;
         int dy = y;
         
