@@ -7,6 +7,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import mindmelt.game.code.Code;
+import mindmelt.game.code.CodeStore;
+import mindmelt.game.code.Instruction;
+import mindmelt.game.code.Trigger;
 import mindmelt.game.objects.Obj;
 
 public class World implements ITileAccess {
@@ -17,7 +22,9 @@ public class World implements ITileAccess {
     private List<Obj> top[][][] = new ArrayList[LAYERS][MAP_SIZE+1][MAP_SIZE+1];
     private List<Area> nomonsters = new ArrayList<>();
     private List<EntryExit> entries = new ArrayList<>();
-    
+    private CodeStore codeStore = new CodeStore();
+
+
     private int id = 0;
     private int version = 0;
     private boolean light;
@@ -277,6 +284,21 @@ public class World implements ITileAccess {
         while( (line=readLine(input))!= null) {
             if(line.startsWith("--"))
                 return;
+            if(line.startsWith("//"))
+                continue;
+            Trigger trigger = new Trigger(line);
+            Code code = new Code(trigger);
+            while ( (line=readLine(input))!= null) {
+                if(line.startsWith("-"))
+                    break;
+                if(line.startsWith("//"))
+                    continue;
+                Instruction instruction = new Instruction(line);
+                code.add(instruction);
+            }
+            codeStore.add(code);
+            if(line.startsWith("--"))
+                return;
         }
     }
     
@@ -406,5 +428,9 @@ public class World implements ITileAccess {
             return;
         }
         setTile(x,y,z,tile);
+    }
+
+    public CodeStore getCodeStore() {
+        return codeStore;
     }
 }

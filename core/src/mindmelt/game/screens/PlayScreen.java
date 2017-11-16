@@ -70,11 +70,11 @@ public class PlayScreen implements Screen, InputProcessor {
 
         window = (MainWindow) new MainWindow(0,0,20,15).setName("Main");
         viewWindow = (ViewWindow) new ViewWindow(1,1,9,9).setName("View");
-        backPackWindow = (Window) new BackpackWindow(11,1, 8, 3).setName("Backpack");
+        backPackWindow = (BackpackWindow) new BackpackWindow(11,1, 8, 3).setName("Backpack");
         statusWindow = (Window) new StatusWindow(11,5, 8, 2).setName("Status");
         spellWindow = (SpellWindow) new SpellWindow(11,8,7,2).setName("Spells");
         messageWindow = (Window) new Window(0,11,20,4).setName("Messages");
-        adjacentWindow = (Window) new AdjacentWindow(3,3,3,3).setName("Adjacent");
+        adjacentWindow = (AdjacentWindow) new AdjacentWindow(3,3,3,3).setName("Adjacent");
 
         window.addElement(spellWindow);
         window.addElement(viewWindow);
