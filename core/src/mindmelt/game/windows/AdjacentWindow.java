@@ -34,6 +34,7 @@ public class AdjacentWindow extends Window {
                 engine.getPlayerInventory().handToMap(px+xx,py+yy,pz,engine);
             }
         } else {
+            Gdx.app.log("Activate tile ",String.format("%d,%d,%d",px+xx,py+yy,pz));
             engine.activateTile(px + xx, py + yy, pz);
         }
     }

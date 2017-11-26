@@ -1,5 +1,7 @@
 package mindmelt.game.code;
 
+import mindmelt.game.engine.Engine;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,5 +15,16 @@ public class Code {
 
     public void add(Instruction instruction) {
         instructions.add(instruction);
+    }
+
+    public boolean isTrigger(Trigger trig) {
+        return (trigger.is(trig));
+    }
+
+    public void runCode(Engine engine) {
+        for(Instruction instruction:instructions) {
+            boolean cont = instruction.run(engine);
+            if (cont==false) break;
+        }
     }
 }

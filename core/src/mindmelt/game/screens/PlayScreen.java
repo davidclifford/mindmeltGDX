@@ -156,6 +156,7 @@ public class PlayScreen implements Screen, InputProcessor {
 
         updatePlayer(delta);
         updateObjects(delta);
+        engine.runTriggers();
 
         batch.begin();
           updateMouse();

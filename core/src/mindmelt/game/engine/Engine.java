@@ -1,11 +1,13 @@
 package mindmelt.game.engine;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.badlogic.gdx.Gdx;
 import mindmelt.game.MindmeltGDX;
+import mindmelt.game.code.Trigger;
 import mindmelt.game.maps.EntryExit;
 import mindmelt.game.maps.TileType;
 import mindmelt.game.maps.World;
@@ -24,6 +26,7 @@ public class Engine {
     private boolean seeall = false;
     private boolean cheat = false;
     private float lighting = 0f;
+    private List<Trigger> triggerQueue = new ArrayList<>();
     
     public Engine(MindmeltGDX game) {
         changeTiles = new HashMap<>();
@@ -155,18 +158,22 @@ public class Engine {
             changeTile(x,y,z,TileType.opendoor);
         } else if(tile==TileType.opendoor) {
             changeTile(x,y,z,TileType.door);         
-        } else if (tile==TileType.lockeddoor) {
-            changeTile(x,y,z,TileType.openlockeddoor);
-        } else if(tile==TileType.openlockeddoor) {
-            changeTile(x,y,z,TileType.lockeddoor);    
-        } else if (tile==TileType.gate) {
-            changeTile(x,y,z,TileType.openlockedgate);
-        } else if(tile==TileType.openlockedgate) {
-            changeTile(x,y,z,TileType.gate);        
+//        } else if (tile==TileType.lockeddoor) {
+//            changeTile(x,y,z,TileType.openlockeddoor);
+//        } else if(tile==TileType.openlockeddoor) {
+//            changeTile(x,y,z,TileType.lockeddoor);
+//        } else if (tile==TileType.gate) {
+//            changeTile(x,y,z,TileType.openlockedgate);
+//        } else if(tile==TileType.openlockedgate) {
+//            changeTile(x,y,z,TileType.gate);
         } else if(tile==TileType.uplever) {
             changeTile(x,y,z,TileType.downlever);
+            addTrigger("LeverDown",x,y,z);
         } else if(tile==TileType.downlever) {
             changeTile(x,y,z,TileType.uplever);
+            addTrigger("LeverUp",x,y,z);
+        } else {
+            addTrigger("Activate",x,y,z+1);
         }
         //Entry/Exit
         if(isAnEntryExit(x, y, z)) {
@@ -179,7 +186,22 @@ public class Engine {
         }
         
     }
-    
+
+    public void addTrigger(String trigger, int x, int y, int z) {
+        Gdx.app.log("addTrigger",String.format("%d,%d,%d",x,y,z));
+        Trigger trigg = new Trigger(trigger,x,y,z);
+        triggerQueue.add(trigg);
+    }
+
+    public void runTriggers() {
+        while (!triggerQueue.isEmpty()) {
+            Trigger trigger = triggerQueue.get(0);
+            world.getCodeStore().runTriggerCode(trigger, this);
+            triggerQueue.remove(trigger);
+        }
+
+    }
+
     public void changeTile(int x, int y, int z, TileType newTile) {
         int current = world.getTile(x,y,z).getId();
         world.changeTile(x, y, z, newTile);
