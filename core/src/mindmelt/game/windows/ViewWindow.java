@@ -116,6 +116,7 @@ public class ViewWindow extends Window {
                 }
             }
         }
+        //Display messages
 
         //Display any strings
 //        for(DispXYString xys:xyStrings ) {

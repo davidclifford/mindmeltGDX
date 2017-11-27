@@ -23,7 +23,7 @@ public class Code {
 
     public void runCode(Engine engine) {
         for(Instruction instruction:instructions) {
-            boolean cont = instruction.run(engine);
+            boolean cont = instruction.run(trigger, engine);
             if (cont==false) break;
         }
     }

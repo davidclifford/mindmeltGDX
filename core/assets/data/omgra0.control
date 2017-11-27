@@ -17,60 +17,60 @@ from=4,12,0
 to=4,12,0
 --
 @code
-Teleport 7,36,3
-MoveAll 7,36,1
+Teleport 7,36,2
+MoveAll 7,36,0
 -
-Activate 4,37,1
+Activate 4,37,0
 Message A Rune to pass
 -
-Activate 3,38,1
+Activate 3,38,0
 GotObject 112
 OpenClose
 -
 // lever & door 1
-LeverOn 4,32,1
-Open 8,19,1
+LeverOn 4,32,0
+Open 8,19,0
 -
 //open door
-Activate 8,31,1
+Activate 8,31,0
 GotObject 122
 OpenClose
 -
 //Gem messages
-Activate 20,23,1
+Activate 20,23,0
 Message Red Gem to Pass
 -
-Activate 20,21,1
+Activate 20,21,0
 Message Green Gem to Pass
 -
 // Gems on pads
-PadOn 20,22,1
-ObjectAt 20,22,1,123
-ObjectAt 20,20,1,124
-Open 22,19,1
+PadOn 20,22,0
+ObjectAt 20,22,0,123
+ObjectAt 20,20,0,124
+Open 22,19,0
 -
-PadOn 20,20,1
-ObjectAt 20,22,1,123
-ObjectAt 20,20,1,124
-Open 22,19,1
+PadOn 20,20,0
+ObjectAt 20,22,0,123
+ObjectAt 20,20,0,124
+Open 22,19,0
 -
 // Message to find lever
-Activate 22,17,1
+Activate 22,07,0
 Message Find a Lever
 -
 // Button opens/closes gate
-Activate 25,24,1
-OpenClose 24,25,1
+Activate 25,24,0
+OpenClose 24,25,0
 -
 // Lever opens door
-LeverOn 26,39,1
-Open 24,17,1
+LeverOn 26,39,0
+Open 24,17,0
 -
 // Messages for following puzzle
-Activate 30,41,1
+Activate 30,41,0
 Message Pad Room
 -
-Activate 22,41,1
+Activate 22,41,0
 Message Mirror Room
 -
 // 3 Pressure pads (out of 9) active then open gate.
@@ -79,183 +79,183 @@ Message Mirror Room
 //   then testing if the 3 squares are all floor squares.
 //
 // 1
-PadOn 31,37,1
-ChangeSquare 21,37,1,2
+PadOn 31,37,0
+ChangeSquare 21,37,0,2
 Execute MirrorRoom
 -
-PadOff 31,37,1
-ChangeSquare 21,37,1,38
+PadOff 31,37,0
+ChangeSquare 21,37,0,38
 Execute MirrorRoom
 // 2
 -
-PadOn 29,38,1
-ChangeSquare 23,38,1,2
+PadOn 29,38,0
+ChangeSquare 23,38,0,2
 Execute MirrorRoom
 -
-PadOff 29,38,1
-ChangeSquare 23,38,1,38
+PadOff 29,38,0
+ChangeSquare 23,38,0,38
 Execute MirrorRoom
 -
 // 3
-PadOn 30,39,1
-ChangeSquare 22,39,1,2
+PadOn 30,39,0
+ChangeSquare 22,39,0,2
 Execute MirrorRoom
 -
-PadOff 30,39,1
-ChangeSquare 22,39,1,38
+PadOff 30,39,0
+ChangeSquare 22,39,0,38
 Execute MirrorRoom
 -
 // 4
-PadOn 29,37,1
-ChangeSquare 23,37,1,38
+PadOn 29,37,0
+ChangeSquare 23,37,0,38
 Execute MirrorRoom
 -
-PadOff 29,37,1
-ChangeSquare 23,37,1,2
+PadOff 29,37,0
+ChangeSquare 23,37,0,2
 Execute MirrorRoom
 -
 // 5
-PadOn 30,38,1
-ChangeSquare 22,38,1,38
+PadOn 30,38,0
+ChangeSquare 22,38,0,38
 Execute MirrorRoom
 -
-PadOff 30,38,1
-ChangeSquare 22,38,1,2 
+PadOff 30,38,0
+ChangeSquare 22,38,0,2
 Execute MirrorRoom
 -
 // 6
-PadOn 31,38,1
-ChangeSquare 21,38,1,38
+PadOn 31,38,0
+ChangeSquare 21,38,0,38
 Execute MirrorRoom
 -
-PadOff 31,38,1
-ChangeSquare 21,38,1,2 
+PadOff 31,38,0
+ChangeSquare 21,38,0,2
 Execute MirrorRoom
 -
 // 7
-PadOn 29,39,1
-ChangeSquare 23,39,1,38
+PadOn 29,39,0
+ChangeSquare 23,39,0,38
 Execute MirrorRoom
 -
-PadOff 29,39,1
-ChangeSquare 23,39,1,2 
+PadOff 29,39,0
+ChangeSquare 23,39,0,2
 Execute MirrorRoom
 -
 // 8
-PadOn 30,37,1
-ChangeSquare 22,37,1,38
+PadOn 30,37,0
+ChangeSquare 22,37,0,38
 Execute MirrorRoom
 -
-PadOff 30,37,1
-ChangeSquare 22,37,1,2 
+PadOff 30,37,0
+ChangeSquare 22,37,0,2
 Execute MirrorRoom
 -
 // 9
-PadOn 31,39,1
-ChangeSquare 21,39,1,38
+PadOn 31,39,0
+ChangeSquare 21,39,0,38
 Execute MirrorRoom
 -
-PadOff 31,39,1
-ChangeSquare 21,39,1,2 
+PadOff 31,39,0
+ChangeSquare 21,39,0,2
 Execute MirrorRoom
 -
 // Open the gate
 Routine MirrorRoom
-IsType 21,37,1,2
-IsType 23,38,1,2
-IsType 22,39,1,2
-IsType 21,38,1,2
-IsType 21,39,1,2
-IsType 22,37,1,2
-IsType 22,38,1,2
-IsType 23,37,1,2
-IsType 23,39,1,2
-Open 26,35,1
+IsType 21,37,0,2
+IsType 23,38,0,2
+IsType 22,39,0,2
+IsType 21,38,0,2
+IsType 21,39,0,2
+IsType 22,37,0,2
+IsType 22,38,0,2
+IsType 23,37,0,2
+IsType 23,39,0,2
+Open 26,35,0
 -
 // off PP with key closes gate
-PadOff 36,18,1
-Close 30,17,1
+PadOff 36,18,0
+Close 30,17,0
 -
 // open gate
-PadOn 36,18,1
-Open 30,17,1
+PadOn 36,18,0
+Open 30,17,0
 -
 // rune door
-Activate 4,11,1
+Activate 4,11,0
 GotObject 113
 Open
 -
-Activate 4,9,1
+Activate 4,9,0
 Message A Rune to Pass
 -
 // silver key door
-Activate 26,15,1
+Activate 26,15,0
 GotObject 125
 OpenClose
 -
 // 6 buttons 3 gates
-Activate 15,8,1
-Open 16,7,1
-Close 16,5,1
+Activate 15,8,0
+Open 16,7,0
+Close 16,5,0
 -
-Activate 15,9,1
-Open 16,5,1
-Close 16,6,1
+Activate 15,9,0
+Open 16,5,0
+Close 16,6,0
 -
-Activate 15,10,1
-Open 16,6,1
-Close 16 5,21,1
+Activate 15,10,0
+Open 16,6,0
+Close 16 5,21,0
 -
-Activate 17,8,1
-Open 16,5,1
-Close 16,7,1
+Activate 17,8,0
+Open 16,5,0
+Close 16,7,0
 -
-Activate 17,9,1
-Open 16,7,1
+Activate 17,9,0
+Open 16,7,0
 -
-Activate 17,10,1
-Open 16,6,1
-Close 16,7,1
+Activate 17,10,0
+Open 16,6,0
+Close 16,7,0
 -
 // PP closes & locks door
-PadOn 25,12,1
-Close 24,11,1
-ChangeSquare 24,11,1,19
+PadOn 25,12,0
+Close 24,11,0
+ChangeSquare 24,11,0,19
 -
 // gold key doors
-Activate 24,11,1
+Activate 24,11,0
 GotObject 126
 OpenClose
 -
-Activate 34,3,1
+Activate 34,3,0
 GotObject 126
 OpenClose
 -
 // Door in square room
-Activate 8,11,1
+Activate 8,11,0
 GotObject 131
 OpenClose
 -
 // Teleport to square room
-Teleport 4,4,1
-MoveAll 8,10,1
+Teleport 4,4,0
+MoveAll 8,10,0
 -
 // Square room
-PadOn 7,10,1
-MoveAll 6,10,1,6,8,1
-MoveAll 8,10,1,8,8,1
+PadOn 7,10,0
+MoveAll 6,10,0,6,8,0
+MoveAll 8,10,0,8,8,0
 -
-PadOn 6,9,1
-MoveAll 6,10,1,8,10,1
-MoveAll 6,8,1,8,8,1
+PadOn 6,9,0
+MoveAll 6,10,0,8,10,0
+MoveAll 6,8,0,8,8,0
 -
-PadOn 7,8,1
-MoveAll 6,8,1,6,10,1
-MoveAll 8,8,1,8,10,1
+PadOn 7,8,0
+MoveAll 6,8,0,6,10,0
+MoveAll 8,8,0,8,10,0
 -
-PadOn 8,9,1
-MoveAll 8,8,1,6,8,1
-MoveAll 8,10,1,6,10,1
+PadOn 8,9,0
+MoveAll 8,8,0,6,8,0
+MoveAll 8,10,0,6,10,0
 --
 @talk
 --

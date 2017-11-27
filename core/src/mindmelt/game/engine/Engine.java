@@ -27,6 +27,7 @@ public class Engine {
     private boolean cheat = false;
     private float lighting = 0f;
     private List<Trigger> triggerQueue = new ArrayList<>();
+    private List<Message> messages = new ArrayList<>();
     
     public Engine(MindmeltGDX game) {
         changeTiles = new HashMap<>();
@@ -173,7 +174,7 @@ public class Engine {
             changeTile(x,y,z,TileType.uplever);
             addTrigger("LeverUp",x,y,z);
         } else {
-            addTrigger("Activate",x,y,z+1);
+            addTrigger("Activate",x,y,z);
         }
         //Entry/Exit
         if(isAnEntryExit(x, y, z)) {
@@ -242,4 +243,11 @@ public class Engine {
         from.moveToObject(to, world);
     }
 
+    public void addMessage(Message message) {
+        messages.add(message);
+    }
+
+    public List<Message> getMessages() {
+        return messages;
+    }
 }
