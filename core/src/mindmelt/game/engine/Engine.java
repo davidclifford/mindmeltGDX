@@ -27,8 +27,8 @@ public class Engine {
     private boolean cheat = false;
     private float lighting = 0f;
     private List<Trigger> triggerQueue = new ArrayList<>();
-    private List<Message> messages = new ArrayList<>();
-    
+    private Messages messages = new Messages();
+
     public Engine(MindmeltGDX game) {
         changeTiles = new HashMap<>();
         this.game = game;
@@ -247,7 +247,11 @@ public class Engine {
         messages.add(message);
     }
 
-    public List<Message> getMessages() {
-        return messages;
+    public Message getMessage(int x, int y, int z) {
+        return messages.getMessage(x,y,z);
+    }
+
+    public void expireMessages() {
+        messages.expireMessages();
     }
 }

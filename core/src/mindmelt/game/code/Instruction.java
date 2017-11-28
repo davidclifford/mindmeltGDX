@@ -1,6 +1,7 @@
 package mindmelt.game.code;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import mindmelt.game.engine.Engine;
 import mindmelt.game.engine.Message;
 
@@ -14,15 +15,15 @@ public class Instruction {
     public boolean run(Trigger trigger, Engine engine) {
         String[] parts = getParts(command);
         if(command.startsWith("Message ")) {
-            return do_message(command,trigger,engine);
+            return doMessage(command,trigger,engine);
         } else {
             return true;
         }
     }
 
-    private boolean do_message(String command,Trigger trig, Engine engine) {
+    private boolean doMessage(String command, Trigger trig, Engine engine) {
         String message = command.substring("Message ".length());
-        engine.addMessage(new Message(trig.getX(),trig.getY(),trig.getZ(),message));
+        engine.addMessage(new Message(trig.getX(),trig.getY(),trig.getZ(),message, Color.MAGENTA, 1000L));
         Gdx.app.log("Message",message);
         return true;
     }
