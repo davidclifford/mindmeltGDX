@@ -17,7 +17,7 @@ from=4,12,0
 to=4,12,0
 --
 @code
-Teleport 7,36,2
+Teleport 7,36,1
 MoveAll 7,36,0
 -
 Activate 4,37,0
@@ -55,7 +55,7 @@ ObjectAt 20,20,0,124
 Open 22,19,0
 -
 // Message to find lever
-Activate 22,07,0
+Activate 22,7,0
 Message Find a Lever
 -
 // Button opens/closes gate

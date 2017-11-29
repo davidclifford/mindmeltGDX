@@ -130,7 +130,7 @@ public class ViewWindow extends Window {
 
         //Display any strings
         for(DispXYString xys:xyStrings ) {
-            drawString(xys.x, xys.y, Color.MAGENTA, xys.string, game);
+            drawString(xys.x, xys.y, Color.BLUE, xys.string, game);
         }
     }
 

@@ -28,4 +28,10 @@ public class ObjPlayer extends Obj {
     public void update(Engine engine, float delta) {
         //auto stuff?
     }
+
+    public boolean isHolding(int obj) {
+        Obj holding = inventory.getHandObject();
+        if(holding==null) return false;
+        return (holding.getId()==obj);
+    }
 }

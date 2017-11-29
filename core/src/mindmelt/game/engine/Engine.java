@@ -13,6 +13,7 @@ import mindmelt.game.maps.TileType;
 import mindmelt.game.maps.World;
 import mindmelt.game.objects.Inventory;
 import mindmelt.game.objects.Obj;
+import mindmelt.game.objects.ObjPlayer;
 import mindmelt.game.objects.ObjectStore;
 
 public class Engine {
@@ -120,13 +121,16 @@ public class Engine {
             game.objects = objects;
         }
     }
-    
+
+    public TileType getTile(int x, int y, int z) {
+        return world.getTile(x,y,z);
+    }
     public EntryExit getEntryExit(int x, int y, int z) {
         return world.getEntryExit(x, y, z);
     }
 
-    public Obj getPlayer() {
-        return objects.getPlayer();
+    public ObjPlayer getPlayer() {
+        return (ObjPlayer) objects.getPlayer();
     }
 
     //Player stuff

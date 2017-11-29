@@ -41,11 +41,11 @@ public class Obj {
     public boolean isInInventory() {
         return (inside!=null && type.equals("player"));
     }
-    
+
     public boolean hasObjectInside() {
         return (inventory.hasObjects()) ;
     }
-    
+
     public boolean isAt(int x, int y, int z) {
         return (this.x == x && this.y == y && this.z == z);
     }
