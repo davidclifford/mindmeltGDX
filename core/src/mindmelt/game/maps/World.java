@@ -10,7 +10,7 @@ import java.util.List;
 
 import mindmelt.game.code.Code;
 import mindmelt.game.code.CodeStore;
-import mindmelt.game.code.Instruction;
+import mindmelt.game.code.instruction.Instruction;
 import mindmelt.game.code.Trigger;
 import mindmelt.game.objects.Obj;
 

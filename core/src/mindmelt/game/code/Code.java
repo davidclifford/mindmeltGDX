@@ -1,5 +1,6 @@
 package mindmelt.game.code;
 
+import mindmelt.game.code.instruction.Instruction;
 import mindmelt.game.engine.Engine;
 
 import java.util.ArrayList;

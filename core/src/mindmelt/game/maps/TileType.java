@@ -3,16 +3,16 @@ package mindmelt.game.maps;
 import java.awt.Color;
 
 public class TileType {
-    public int id = 0;
-    public int icon = 0;
-    public String name = "space";
-    public boolean canEnter = false;
-    public boolean seeThru = false;
-    public int speed = 1;
-    public int ch = '$';
-    public Color color = Color.BLACK;
-    
-    public static TileType tileType[] = new TileType[256];
+    private int id = 0;
+    private int icon = 0;
+    private String name = "space";
+    private boolean canEnter = false;
+    private boolean seeThru = false;
+    private int speed = 1;
+    private int ch = '$';
+    private Color color = Color.BLACK;
+
+    private static TileType tileType[] = new TileType[256];
 
     public static final TileType space = new TileType(0).name("space").ch('$');
     public static final TileType floor = new TileType(1).name("floor").enter().seeThru().ch(' ').icon(1);
@@ -76,7 +76,7 @@ public class TileType {
     public static final TileType rug = new TileType(59).name("rug").ch('r').seeThru().enter().icon(59);
     public static final TileType stone = new TileType(60).name("stone").ch('Q').icon(60);
        
-    public TileType(int id) {
+    private TileType(int id) {
         if (tileType[id] != null) {
             System.out.println("Tile already registered");
             System.exit(1);
@@ -85,31 +85,31 @@ public class TileType {
         this.id = id;
     }
 
-    public TileType icon(int icon) {
+    private TileType icon(int icon) {
         this.icon = icon;
         return this;
     }
-    public TileType name(String name) {
+    private TileType name(String name) {
         this.name = name;
         return this;
     }
-    public TileType enter() {
+    private TileType enter() {
         canEnter = true;
         return this;
     }
-    public TileType seeThru() {
+    private TileType seeThru() {
         this.seeThru = true;
         return this;
     }
-    public TileType speed(int speed) {
+    private TileType speed(int speed) {
         this.speed = speed;
         return this;
     }
-    public TileType ch(char c) {
+    private TileType ch(char c) {
         ch = c;
         return this;
     }
-    public TileType color(Color color) {
+    private TileType color(Color color) {
         this.color = color;
         return this;
     }
