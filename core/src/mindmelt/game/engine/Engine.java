@@ -89,15 +89,42 @@ public class Engine {
         return objects;
     }
 
-    public void moveObjToMap(Obj object, int x, int y, int z) {
-        object.moveToMap(x, y, z, this);
-        //CODE!!!
-        // do it here (need from & to)
+    public void moveObjToMap(Obj object, int tx, int ty, int tz) {
+        int fx = object.getX();
+        int fy = object.getY();
+        int fz = object.getZ();
+        object.moveToMap(tx, ty, tz, this);
+        fromTo(fx, fy, fz, tx, ty, tz);
+    }
+
+    public void fromTo(int fx, int fy, int fz, int tx, int ty, int tz) {//From
+        TileType fromTile = world.getTile(fx, fy, fz);
+        TileType toTile = world.getTile(tx, ty, tz);
+
+        //From
+        if(fromTile == TileType.presurepad || fromTile==TileType.hiddenpp) {
+            if(world.getObjects(fx,fy,fz).size()==0) //empty
+                addTrigger("PadOff",fx,fy,fz);
+        }
+
+        //To
+        if(toTile == TileType.presurepad || toTile==TileType.hiddenpp) {
+            if(world.getObjects(tx,ty,tz).size()==1) //first object to land on pad
+                addTrigger("PadOn",tx,ty,tz);
+        }
+        if(toTile == TileType.teleport || toTile == TileType.hiddentele) {
+            addTrigger("Teleport",tx,ty,tz);
+        }
+        if(toTile == TileType.pit || toTile == TileType.hiddenpit) {
+            addTrigger("Teleport",tx,ty,tz);
+        }
+
     }
 
     public void moveAllToMap(int xf, int yf, int zf, int xt, int yt, int zt) {
         List<Obj> all = world.removeAllObjects(xf,yf,zf);
         world.addAllObjects(all,xt,yt,zt);
+        fromTo(xf,yf,zf, xt,yt,zt);
     }
 
     public boolean canEnter(Obj ob, int x, int y, int z) {
@@ -163,14 +190,6 @@ public class Engine {
             changeTile(x,y,z,TileType.opendoor);
         } else if(tile==TileType.opendoor) {
             changeTile(x,y,z,TileType.door);         
-//        } else if (tile==TileType.lockeddoor) {
-//            changeTile(x,y,z,TileType.openlockeddoor);
-//        } else if(tile==TileType.openlockeddoor) {
-//            changeTile(x,y,z,TileType.lockeddoor);
-//        } else if (tile==TileType.gate) {
-//            changeTile(x,y,z,TileType.openlockedgate);
-//        } else if(tile==TileType.openlockedgate) {
-//            changeTile(x,y,z,TileType.gate);
         } else if(tile==TileType.uplever) {
             changeTile(x,y,z,TileType.downlever);
             addTrigger("LeverDown",x,y,z);
@@ -193,7 +212,7 @@ public class Engine {
     }
 
     public void addTrigger(String trigger, int x, int y, int z) {
-        Gdx.app.log("addTrigger",String.format("%d,%d,%d",x,y,z));
+        Gdx.app.log("addTrigger",String.format("%s: %d,%d,%d",trigger,x,y,z));
         Trigger trigg = new Trigger(trigger,x,y,z);
         triggerQueue.add(trigg);
     }

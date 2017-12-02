@@ -16,26 +16,33 @@ public class AdjacentWindow extends Window {
 
     @Override
     protected void activate(int x, int y, Engine engine) {
-        int xx = x / SZ - 1;
-        int yy = y / SZ - 1;
-        Gdx.app.log("AdjacentWindow", String.format("%d,%d", xx, yy));
+        int dir = engine.getPlayerDirection();
+        int x1 = x / SZ - 1;
+        int y1 = y / SZ - 1;
+        int xx = dir==0 ? x1 : dir==3 ? y1 : dir==2 ? -x1 : -y1;
+        int yy = dir==0 ? y1 : dir==3 ? -x1 : dir==2 ? -y1 : x1;
         //Object ??
-        int px = engine.getPlayerX();
-        int py = engine.getPlayerY();
+        int px = engine.getPlayerX()+xx;
+        int py = engine.getPlayerY()+yy;
         int pz = engine.getPlayerZ();
-        Obj topObj = engine.getTopObject(px + xx, py + yy, pz);
+        Gdx.app.log("AdjacentWindow", String.format("%d,%d", px, py));
+        Obj topObj = engine.getTopObject(px, py, pz);
         //Pick up
         if (topObj != null && !topObj.isBlocked() && engine.getPlayerHandObject() == null) {
+            int fx = topObj.getX();
+            int fy = topObj.getY();
+            int fz = topObj.getZ();
             engine.getPlayerInventory().objToHand(topObj,engine);
-
+            engine.fromTo(fx,fy,fz,0,0,0);
         // Drop
-        } else if (engine.getPlayerHandObject()!=null && engine.canEnter(engine.getPlayerHandObject(),px+xx,py+yy,pz)) {
+        } else if (engine.getPlayerHandObject()!=null && engine.canEnter(engine.getPlayerHandObject(),px,py,pz)) {
             if(topObj==null || (topObj!=null && !topObj.isBlocked())) {
-                engine.getPlayerInventory().handToMap(px+xx,py+yy,pz,engine);
+                engine.getPlayerInventory().handToMap(px,py,pz,engine);
+                engine.fromTo(0,0,0, px, py, pz);
             }
         } else {
-            Gdx.app.log("Activate tile ",String.format("%d,%d,%d",px+xx,py+yy,pz));
-            engine.activateTile(px + xx, py + yy, pz);
+            Gdx.app.log("Activate tile ",String.format("%d,%d,%d",px,py,pz));
+            engine.activateTile(px, py, pz);
         }
     }
 }

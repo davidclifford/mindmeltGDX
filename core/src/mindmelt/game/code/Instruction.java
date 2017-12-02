@@ -1,8 +1,7 @@
-package mindmelt.game.code.instruction;
+package mindmelt.game.code;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import mindmelt.game.code.Trigger;
 import mindmelt.game.engine.Engine;
 import mindmelt.game.engine.Message;
 import mindmelt.game.maps.TileType;

@@ -181,7 +181,7 @@ public abstract class GuiElem {
     }
 
     protected void drawString(int x, int y, Color color, String text, MindmeltGDX game) {
-        game.font.setColor(color);
+        game.font.setColor(Color.BLUE);
         game.font.draw(game.batch,text,getAbsX()+x*SZ+1,height - (getAbsY()+y*SZ-SZ/2)-1);
         game.font.draw(game.batch,text,getAbsX()+x*SZ-1,height - (getAbsY()+y*SZ-SZ/2)-1);
         game.font.draw(game.batch,text,getAbsX()+x*SZ+1,height - (getAbsY()+y*SZ-SZ/2)+1);
