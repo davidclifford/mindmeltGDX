@@ -1,10 +1,5 @@
 package mindmelt.game.engine;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import com.badlogic.gdx.Gdx;
 import mindmelt.game.MindmeltGDX;
 import mindmelt.game.code.Trigger;
@@ -15,6 +10,11 @@ import mindmelt.game.objects.Inventory;
 import mindmelt.game.objects.Obj;
 import mindmelt.game.objects.ObjPlayer;
 import mindmelt.game.objects.ObjectStore;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Engine {
 
@@ -192,10 +192,10 @@ public class Engine {
             changeTile(x,y,z,TileType.door);         
         } else if(tile==TileType.uplever) {
             changeTile(x,y,z,TileType.downlever);
-            addTrigger("LeverDown",x,y,z);
+            addTrigger("LeverOn",x,y,z);
         } else if(tile==TileType.downlever) {
             changeTile(x,y,z,TileType.uplever);
-            addTrigger("LeverUp",x,y,z);
+            addTrigger("LeverOff",x,y,z);
         } else {
             addTrigger("Activate",x,y,z);
         }
@@ -217,13 +217,18 @@ public class Engine {
         triggerQueue.add(trigg);
     }
 
+    public void addTrigger(String trigger) {
+        Gdx.app.log("addTrigger",String.format("%s",trigger));
+        Trigger trigg = new Trigger(trigger);
+        triggerQueue.add(trigg);
+    }
+
     public void runTriggers() {
         while (!triggerQueue.isEmpty()) {
             Trigger trigger = triggerQueue.get(0);
             world.getCodeStore().runTriggerCode(trigger, this);
             triggerQueue.remove(trigger);
         }
-
     }
 
     public void changeTile(int x, int y, int z, TileType newTile) {
@@ -255,11 +260,15 @@ public class Engine {
         List<Obj> objs = world.getObjects(x, y, z);
         if (objs==null) return null;
         if (objs.isEmpty()) return null;
-        Obj ob =  objs.get(objs.size()-1);
+        Obj ob = objs.get(objs.size()-1);
         if (ob.isPlayer() && objs.size()>1) {
             ob = objs.get(objs.size()-2);
         }
         return ob;
+    }
+
+    public boolean isObjectAt(int x, int y, int z, int id) {
+        return objects.isObjectAt(x,y,z,id);
     }
 
     public void moveObjToObj(Obj from, Obj to) {

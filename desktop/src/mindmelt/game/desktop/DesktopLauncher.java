@@ -10,7 +10,7 @@ public class DesktopLauncher {
 		config.foregroundFPS = 0; // Setting to 0 disables foreground fps throttling
 		config.backgroundFPS = 0; // Setting to 0 disables background fps throttling
 		config.vSyncEnabled = false; // Setting to false disables vertical sync
-		config.useGL30 = true;
+		//config.useGL30 = true;
 		config.width = 640;
 		config.height = 480;
 		config.fullscreen = false;

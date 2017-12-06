@@ -17,8 +17,10 @@ public class Instruction {
     public Instruction(String fullCommand) {
         String[] parts = getParts(fullCommand);
         command = parts[0];
+        text = "";
+        if (parts.length>1) text = fullCommand.substring(command.length()+1);
         if(command.equals("Message") || command.equals("Execute") ) {
-            text = fullCommand.substring(command.length()+1);
+//            text = fullCommand.substring(command.length()+1);
             return;
         }
         if(parts.length==1) return;
@@ -39,8 +41,11 @@ public class Instruction {
     }
 
     public boolean run(Trigger trigger, Engine engine) {
+        Gdx.app.log("Command",String.format("%s %s",command,text));
         if(command.equals("Message")) {
             return doMessage(trigger, engine);
+        } else if(command.equals("Execute")) {
+            return executeRoutine(trigger, engine);
         } else if (command.equals("GotObject")) {
             return gotObject(trigger, engine);
         } else if (command.equals("OpenClose")) {
@@ -48,13 +53,91 @@ public class Instruction {
         } else if (command.equals("Open")) {
             return open(trigger, engine);
         } else if (command.equals("Close")) {
-            return close(trigger, engine);        }
+            return close(trigger, engine);
+        } else if (command.equals("ChangeSquare")) {
+            return changeSquare(trigger, engine);
+        } else if (command.equals("MoveAll")) {
+            return moveAll(trigger, engine);
+        } else if (command.equals("IsType")) {
+            return isType(trigger, engine);
+        } else if (command.equals("ObjectAt")) {
+            return objectAt(trigger, engine);        }
+        return true;
+    }
+
+    private boolean moveAll(Trigger trigger, Engine engine) {
+        int xf = trigger.getX();
+        int yf = trigger.getY();
+        int zf = trigger.getZ();
+        int xt=0;
+        int yt=0;
+        int zt=0;
+        if(args.size()==3) {
+            xt = args.get(0);
+            yt = args.get(1);
+            zt = args.get(2);
+        } else if(args.size()==6) {
+            xf = args.get(0);
+            yf = args.get(1);
+            zf = args.get(2);
+            xt = args.get(3);
+            yt = args.get(4);
+            zt = args.get(5);
+        }
+        engine.moveAllToMap(xf,yf,zf,xt,yt,zt);
+        return true;
+    }
+
+    private boolean executeRoutine(Trigger trigger, Engine engine) {
+        engine.addTrigger(String.format("Routine %s",text));
+        return true;
+    }
+
+    private boolean isType(Trigger trigger, Engine engine) {
+        int x = trigger.getX();
+        int y = trigger.getY();
+        int z = trigger.getZ();
+        int id = args.get(0);
+        if(args.size()==4) {
+            x = args.get(0);
+            y = args.get(1);
+            z = args.get(2);
+            id = args.get(3);
+        }
+        return engine.getTile(x,y,z).getId()==id;
+    }
+
+    private boolean objectAt(Trigger trigger, Engine engine) {
+        int x = trigger.getX();
+        int y = trigger.getY();
+        int z = trigger.getZ();
+        int id = args.get(0);
+        if(args.size()==4) {
+            x = args.get(0);
+            y = args.get(1);
+            z = args.get(2);
+            id = args.get(3);
+        }
+        return engine.isObjectAt(x,y,z,id);
+    }
+
+    private boolean changeSquare(Trigger trigger, Engine engine) {
+        int x = trigger.getX();
+        int y = trigger.getY();
+        int z = trigger.getZ();
+        int id = args.get(0);
+        if(args.size()==4) {
+            x = args.get(0);
+            y = args.get(1);
+            z = args.get(2);
+            id = args.get(3);
+        }
+        engine.changeTile(x,y,z,TileType.getTileType(id));
         return true;
     }
 
     private boolean doMessage(Trigger trig, Engine engine) {
         engine.addMessage(new Message(trig.getX(),trig.getY(),trig.getZ(),text, Color.MAGENTA, 1000L));
-        Gdx.app.log("Message",text);
         return true;
     }
 

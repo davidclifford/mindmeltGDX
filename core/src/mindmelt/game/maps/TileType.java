@@ -1,6 +1,6 @@
 package mindmelt.game.maps;
 
-import java.awt.Color;
+import java.awt.*;
 
 public class TileType {
     private int id = 0;
@@ -75,7 +75,11 @@ public class TileType {
     public static final TileType picture = new TileType(58).name("picture").ch('P').icon(58);
     public static final TileType rug = new TileType(59).name("rug").ch('r').seeThru().enter().icon(59);
     public static final TileType stone = new TileType(60).name("stone").ch('Q').icon(60);
-       
+
+    public static TileType getTileType(int id) {
+        return tileType[id];
+    }
+
     private TileType(int id) {
         if (tileType[id] != null) {
             System.out.println("Tile already registered");

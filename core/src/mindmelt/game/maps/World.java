@@ -1,5 +1,11 @@
 package mindmelt.game.maps;
 
+import mindmelt.game.code.Code;
+import mindmelt.game.code.CodeStore;
+import mindmelt.game.code.Instruction;
+import mindmelt.game.code.Trigger;
+import mindmelt.game.objects.Obj;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -7,12 +13,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import mindmelt.game.code.Code;
-import mindmelt.game.code.CodeStore;
-import mindmelt.game.code.Instruction;
-import mindmelt.game.code.Trigger;
-import mindmelt.game.objects.Obj;
 
 public class World implements ITileAccess {
 
@@ -23,7 +23,6 @@ public class World implements ITileAccess {
     private List<Area> nomonsters = new ArrayList<>();
     private List<EntryExit> entries = new ArrayList<>();
     private CodeStore codeStore = new CodeStore();
-
 
     private int id = 0;
     private int version = 0;
@@ -105,10 +104,12 @@ public class World implements ITileAccess {
 
     public List<Obj> removeAllObjects(int x, int y, int z) {
         List<Obj> objects = getObjects(x, y, z);
-        objects.stream().forEach(ob-> {
-            ob.setCoords(0,0,0);
-            ob.setMapId(0);
-        });
+        if(objects!=null) {
+            objects.stream().forEach(ob -> {
+                ob.setCoords(0, 0, 0);
+                ob.setMapId(0);
+            });
+        }
         top[z][y][x] = null;
         return objects;
     }

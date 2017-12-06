@@ -55,7 +55,7 @@ ObjectAt 20,20,0,124
 Open 22,19,0
 -
 // Message to find lever
-Activate 22,7,0
+Activate 22,17,0
 Message Find a Lever
 -
 // Button opens/closes gate
@@ -67,10 +67,10 @@ LeverOn 26,39,0
 Open 24,17,0
 -
 // Messages for following puzzle
-Activate 30,41,0
+Activate 30,39,0
 Message Pad Room
 -
-Activate 22,41,0
+Activate 22,39,0
 Message Mirror Room
 -
 // 3 Pressure pads (out of 9) active then open gate.
@@ -79,98 +79,98 @@ Message Mirror Room
 //   then testing if the 3 squares are all floor squares.
 //
 // 1
-PadOn 31,37,0
-ChangeSquare 21,37,0,2
+PadOn 31,35,0
+ChangeSquare 21,35,0,1
 Execute MirrorRoom
 -
-PadOff 31,37,0
-ChangeSquare 21,37,0,38
+PadOff 31,35,0
+ChangeSquare 21,35,0,37
 Execute MirrorRoom
 // 2
 -
-PadOn 29,38,0
-ChangeSquare 23,38,0,2
+PadOn 29,36,0
+ChangeSquare 23,36,0,1
 Execute MirrorRoom
 -
-PadOff 29,38,0
-ChangeSquare 23,38,0,38
+PadOff 29,36,0
+ChangeSquare 23,36,0,37
 Execute MirrorRoom
 -
 // 3
-PadOn 30,39,0
-ChangeSquare 22,39,0,2
-Execute MirrorRoom
--
-PadOff 30,39,0
-ChangeSquare 22,39,0,38
-Execute MirrorRoom
--
-// 4
-PadOn 29,37,0
-ChangeSquare 23,37,0,38
-Execute MirrorRoom
--
-PadOff 29,37,0
-ChangeSquare 23,37,0,2
-Execute MirrorRoom
--
-// 5
-PadOn 30,38,0
-ChangeSquare 22,38,0,38
-Execute MirrorRoom
--
-PadOff 30,38,0
-ChangeSquare 22,38,0,2
-Execute MirrorRoom
--
-// 6
-PadOn 31,38,0
-ChangeSquare 21,38,0,38
-Execute MirrorRoom
--
-PadOff 31,38,0
-ChangeSquare 21,38,0,2
-Execute MirrorRoom
--
-// 7
-PadOn 29,39,0
-ChangeSquare 23,39,0,38
-Execute MirrorRoom
--
-PadOff 29,39,0
-ChangeSquare 23,39,0,2
-Execute MirrorRoom
--
-// 8
 PadOn 30,37,0
-ChangeSquare 22,37,0,38
+ChangeSquare 22,37,0,1
 Execute MirrorRoom
 -
 PadOff 30,37,0
-ChangeSquare 22,37,0,2
+ChangeSquare 22,37,0,37
+Execute MirrorRoom
+-
+// 4
+PadOn 29,35,0
+ChangeSquare 23,35,0,37
+Execute MirrorRoom
+-
+PadOff 29,35,0
+ChangeSquare 23,35,0,1
+Execute MirrorRoom
+-
+// 5
+PadOn 30,36,0
+ChangeSquare 22,36,0,37
+Execute MirrorRoom
+-
+PadOff 30,36,0
+ChangeSquare 22,36,0,1
+Execute MirrorRoom
+-
+// 6
+PadOn 31,36,0
+ChangeSquare 21,36,0,37
+Execute MirrorRoom
+-
+PadOff 31,36,0
+ChangeSquare 21,36,0,1
+Execute MirrorRoom
+-
+// 7
+PadOn 29,37,0
+ChangeSquare 23,37,0,37
+Execute MirrorRoom
+-
+PadOff 29,37,0
+ChangeSquare 23,37,0,1
+Execute MirrorRoom
+-
+// 8
+PadOn 30,35,0
+ChangeSquare 22,35,0,37
+Execute MirrorRoom
+-
+PadOff 30,35,0
+ChangeSquare 22,35,0,1
 Execute MirrorRoom
 -
 // 9
-PadOn 31,39,0
-ChangeSquare 21,39,0,38
+PadOn 31,37,0
+ChangeSquare 21,37,0,37
 Execute MirrorRoom
 -
-PadOff 31,39,0
-ChangeSquare 21,39,0,2
+PadOff 31,37,0
+ChangeSquare 21,37,0,1
 Execute MirrorRoom
 -
 // Open the gate
 Routine MirrorRoom
-IsType 21,37,0,2
-IsType 23,38,0,2
-IsType 22,39,0,2
-IsType 21,38,0,2
-IsType 21,39,0,2
-IsType 22,37,0,2
-IsType 22,38,0,2
-IsType 23,37,0,2
-IsType 23,39,0,2
-Open 26,35,0
+IsType 21,35,0,1
+IsType 23,36,0,1
+IsType 22,37,0,1
+IsType 21,36,0,1
+IsType 21,37,0,1
+IsType 22,35,0,1
+IsType 22,36,0,1
+IsType 23,35,0,1
+IsType 23,37,0,1
+Open 26,33,0
 -
 // off PP with key closes gate
 PadOff 36,18,0
@@ -219,8 +219,7 @@ Close 16,7,0
 -
 // PP closes & locks door
 PadOn 25,12,0
-Close 24,11,0
-ChangeSquare 24,11,0,19
+ChangeSquare 24,11,0,18
 -
 // gold key doors
 Activate 24,11,0

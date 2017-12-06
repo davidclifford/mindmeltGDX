@@ -1,6 +1,7 @@
 package mindmelt.game.objects;
 
 import com.opencsv.CSVReader;
+import mindmelt.game.maps.World;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -9,7 +10,6 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import mindmelt.game.maps.World;
 
 public class ObjectStore {
     static public final int PLAYER_ID = 1;
@@ -97,7 +97,12 @@ public class ObjectStore {
     public List<Obj> getActiveObjects() {
         return current;
     }
-    
+
+    public boolean isObjectAt(int x, int y, int z, int id) {
+        if(!current.contains(objects[id])) return false;
+        return objects[id].x==x && objects[id].y==y &&objects[id].z==z;
+    }
+
     public void addToActiveObjects(Obj ob) {
         if (!ob.isInMap()) 
             return;
