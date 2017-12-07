@@ -123,8 +123,9 @@ public class World implements ITileAccess {
         }
         if(top[z][y][x]!=null) {
             top[z][y][x].addAll(objects);
+        } else {
+            top[z][y][x] = objects;
         }
-        top[z][y][x] = objects;
     }
     
     public void loadMap(String mapName) {
