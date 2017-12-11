@@ -1,5 +1,6 @@
 package mindmelt.game.code;
 
+import mindmelt.game.code.instructions.Instruction;
 import mindmelt.game.engine.Engine;
 
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ public class Code {
 
     public void runCode(Engine engine) {
         for(Instruction instruction:instructions) {
-            boolean cont = instruction.run(trigger, engine);
+            boolean cont = instruction.run(engine);
             if (cont==false) break;
         }
     }

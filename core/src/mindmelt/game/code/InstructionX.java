@@ -9,12 +9,12 @@ import mindmelt.game.maps.TileType;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Instruction {
+public class InstructionX {
     private String command;
     private List<Integer> args = new ArrayList<>();
     private String text;
 
-    public Instruction(String fullCommand) {
+    public InstructionX(String fullCommand) {
         String[] parts = getParts(fullCommand);
         command = parts[0];
         text = "";

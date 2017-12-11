@@ -2,7 +2,7 @@ package mindmelt.game.maps;
 
 import mindmelt.game.code.Code;
 import mindmelt.game.code.CodeStore;
-import mindmelt.game.code.Instruction;
+import mindmelt.game.code.instructions.Instruction;
 import mindmelt.game.code.Trigger;
 import mindmelt.game.objects.Obj;
 
@@ -295,7 +295,7 @@ public class World implements ITileAccess {
                     break;
                 if(line.startsWith("//"))
                     continue;
-                Instruction instruction = new Instruction(line);
+                Instruction instruction = Instruction.create(trigger,line);
                 code.add(instruction);
             }
             codeStore.add(code);
@@ -365,11 +365,7 @@ public class World implements ITileAccess {
     public boolean canEnter(Obj ob, int x, int y, int z) {
         if (getTile(x,y,z).canEnter()) {
             if(getTopObject(x,y,z)== null || ob.isPlayer() || !getTopObject(x,y,z).isBlocked()) {
-                if(ob.isMonster() && inNoMonsterArea(x,y,z)) {
-                    return false;
-                } else {
-                    return true;        
-                }
+                return !(ob.isMonster() && inNoMonsterArea(x,y,z));
             }
         }
         return false;
