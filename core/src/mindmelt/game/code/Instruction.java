@@ -5,28 +5,52 @@ import com.badlogic.gdx.graphics.Color;
 import mindmelt.game.engine.Engine;
 import mindmelt.game.engine.Message;
 import mindmelt.game.maps.TileType;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-public class InstructionX {
+public class Instruction {
+    private static final String[] commands = {"Message","Execute","GotObject","OpenClose","Open","Close","ChangeSquare","MoveAll","IsType","ObjectAt"};
+    private static final int[] commandArgs = {1,1,1,3,3,3,4,6,4,4};
     private String command;
-    private List<Integer> args = new ArrayList<>();
+    private int commandCode;
+    private List<Integer> iargs = new ArrayList<>();
     private String text;
+    private Trigger trigger;
 
-    public InstructionX(String fullCommand) {
+    public Instruction(Trigger trigger, String fullCommand) {
+        this.trigger = trigger;
         String[] parts = getParts(fullCommand);
         command = parts[0];
         text = "";
         if (parts.length>1) text = fullCommand.substring(command.length()+1);
         if(command.equals("Message") || command.equals("Execute") ) {
-//            text = fullCommand.substring(command.length()+1);
             return;
         }
-        if(parts.length==1) return;
-        args = getNums(parts[1]);
+        if(parts.length==1)
+            iargs = new ArrayList<>();
+        else
+            iargs = getNums(parts[1]);
+        commandCode = getCommandCode(command);
+        if(commandCode<0) return;
+        if(iargs.size()<commandArgs[commandCode]) {
+            List<Integer> trigs = new ArrayList<>();
+            trigs.add(trigger.getX());
+            trigs.add(trigger.getY());
+            trigs.add(trigger.getZ());
+            trigs.addAll(iargs);
+            iargs = trigs;
+        }
+        Gdx.app.log("Instruction code",""+commandCode);
+        Gdx.app.log("Args", StringUtils.join(iargs, ","));
     }
 
+    private int getCommandCode(String command) {
+        List<String> coms = Arrays.asList(commands);
+        return coms.indexOf(command);
+    }
     private String[] getParts(String command) {
         return command.split(" ");
     }
@@ -35,12 +59,15 @@ public class InstructionX {
         List<Integer> args = new ArrayList<>();
         String[] nn = nums.split(",");
         for(String n:nn) {
-            args.add(Integer.parseInt(n));
+            if(n.matches("\\d+"))
+                args.add(Integer.parseInt(n));
+            else
+                args.add(0);
         }
         return args;
     }
 
-    public boolean run(Trigger trigger, Engine engine) {
+    public boolean run(Engine engine) {
         Gdx.app.log("Command",String.format("%s %s",command,text));
         if(command.equals("Message")) {
             return doMessage(trigger, engine);
@@ -66,24 +93,12 @@ public class InstructionX {
     }
 
     private boolean moveAll(Trigger trigger, Engine engine) {
-        int xf = trigger.getX();
-        int yf = trigger.getY();
-        int zf = trigger.getZ();
-        int xt=0;
-        int yt=0;
-        int zt=0;
-        if(args.size()==3) {
-            xt = args.get(0);
-            yt = args.get(1);
-            zt = args.get(2);
-        } else if(args.size()==6) {
-            xf = args.get(0);
-            yf = args.get(1);
-            zf = args.get(2);
-            xt = args.get(3);
-            yt = args.get(4);
-            zt = args.get(5);
-        }
+        int xf = iargs.get(0);
+        int yf = iargs.get(1);
+        int zf = iargs.get(2);
+        int xt = iargs.get(3);
+        int yt = iargs.get(4);
+        int zt = iargs.get(5);
         engine.moveAllToMap(xf,yf,zf,xt,yt,zt);
         return true;
     }
@@ -94,44 +109,26 @@ public class InstructionX {
     }
 
     private boolean isType(Trigger trigger, Engine engine) {
-        int x = trigger.getX();
-        int y = trigger.getY();
-        int z = trigger.getZ();
-        int id = args.get(0);
-        if(args.size()==4) {
-            x = args.get(0);
-            y = args.get(1);
-            z = args.get(2);
-            id = args.get(3);
-        }
+        int x = iargs.get(0);
+        int y = iargs.get(1);
+        int z = iargs.get(2);
+        int id = iargs.get(3);
         return engine.getTile(x,y,z).getId()==id;
     }
 
     private boolean objectAt(Trigger trigger, Engine engine) {
-        int x = trigger.getX();
-        int y = trigger.getY();
-        int z = trigger.getZ();
-        int id = args.get(0);
-        if(args.size()==4) {
-            x = args.get(0);
-            y = args.get(1);
-            z = args.get(2);
-            id = args.get(3);
-        }
+        int x = iargs.get(0);
+        int y = iargs.get(1);
+        int z = iargs.get(2);
+        int id = iargs.get(3);
         return engine.isObjectAt(x,y,z,id);
     }
 
     private boolean changeSquare(Trigger trigger, Engine engine) {
-        int x = trigger.getX();
-        int y = trigger.getY();
-        int z = trigger.getZ();
-        int id = args.get(0);
-        if(args.size()==4) {
-            x = args.get(0);
-            y = args.get(1);
-            z = args.get(2);
-            id = args.get(3);
-        }
+        int x = iargs.get(0);
+        int y = iargs.get(1);
+        int z = iargs.get(2);
+        int id = iargs.get(3);
         engine.changeTile(x,y,z,TileType.getTileType(id));
         return true;
     }
@@ -142,45 +139,30 @@ public class InstructionX {
     }
 
     private boolean gotObject(Trigger trigger, Engine engine) {
-        int obj = args.get(0);
+        int obj = iargs.get(0);
         return (engine.getPlayer().isHolding(obj));
     }
 
     private boolean openClose(Trigger trigger, Engine engine) {
-        int x = trigger.getX();
-        int y = trigger.getY();
-        int z = trigger.getZ();
-        if(args.size()==3) {
-            x = args.get(0);
-            y = args.get(1);
-            z = args.get(2);
-        }
+        int x = iargs.get(0);
+        int y = iargs.get(1);
+        int z = iargs.get(2);
         openCloseIt(x,y,z,engine);
         return true;
     }
 
     private boolean open(Trigger trigger, Engine engine) {
-        int x = trigger.getX();
-        int y = trigger.getY();
-        int z = trigger.getZ();
-        if(args.size()==3) {
-            x = args.get(0);
-            y = args.get(1);
-            z = args.get(2);
-        }
+        int x = iargs.get(0);
+        int y = iargs.get(1);
+        int z = iargs.get(2);
         openIt(x,y,z,engine);
         return true;
     }
 
     private boolean close(Trigger trigger, Engine engine) {
-        int x = trigger.getX();
-        int y = trigger.getY();
-        int z = trigger.getZ();
-        if(args.size()==3) {
-            x = args.get(0);
-            y = args.get(1);
-            z = args.get(2);
-        }
+        int x = iargs.get(0);
+        int y = iargs.get(1);
+        int z = iargs.get(2);
         closeIt(x,y,z,engine);
         return true;
     }

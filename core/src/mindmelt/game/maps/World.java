@@ -2,7 +2,7 @@ package mindmelt.game.maps;
 
 import mindmelt.game.code.Code;
 import mindmelt.game.code.CodeStore;
-import mindmelt.game.code.instructions.Instruction;
+import mindmelt.game.code.Instruction;
 import mindmelt.game.code.Trigger;
 import mindmelt.game.objects.Obj;
 
@@ -295,7 +295,7 @@ public class World implements ITileAccess {
                     break;
                 if(line.startsWith("//"))
                     continue;
-                Instruction instruction = Instruction.create(trigger,line);
+                Instruction instruction = new Instruction(trigger, line);
                 code.add(instruction);
             }
             codeStore.add(code);
