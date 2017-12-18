@@ -18,37 +18,72 @@ to=26,26,0
 --
 @code
 // Code
+//hidden teleports to below
+Teleport 29,2,0
+MoveAll 53,2,0
+-
+Teleport 29,3,0
+MoveAll 53,3,0
+-
+Teleport 31,3,0
+MoveAll 55,3,0
+-
+Teleport 32,3,0
+MoveAll 56,3,0
+-
+Teleport 33,3,0
+MoveAll 57,3,0
+-
+Teleport 31,4,0
+MoveAll 55,4,0
+-
+//hidden teleports below return
+Teleport 50,2,0
+MoveAll 26,2,0
+-
+// first pit
+Teleport 3,10,0
+MoveAll 54,10,0
+-
 // return from first pit
-Teleport 5,10,2
+Teleport 56,10,0
 MoveAll 5,10,0
 -
 // Pad closes pit
 PadOn 2,10,0
-ChangeSquare 3,10,0,2
+ChangeSquare 3,10,0,1
 -
 PadOff 2,10,0
-ChangeSquare 3,10,0,10
+ChangeSquare 3,10,0,9
+-
+// 2nd pit
+Teleport 2,15,0
+MoveAll 53,15,0
 -
 // return from 2nd pit
-Teleport 2,14,2
-MoveAll 2,14,0
+Teleport 54,16,0
+MoveAll 3,16,0
 -
 // Pad changes to hidden pit
 PadOn 2,16,0
-ChangeSquare 2,15,0,62
+ChangeSquare 2,15,0,61
 -
 PadOff 2,16,0
-ChangeSquare 2,15,0,10
+ChangeSquare 2,15,0,9
 -
-Activate 2,17,2
-ChangeSquare 2,15,0,2
+Activate 54,16,0
+ChangeSquare 54,16,0,23
+-
+// 3rd pit
+Teleport 11,16,0
+MoveAll 60,16,0
 -
 // return from 3rd pit
-Teleport 9,16,2
+Teleport 58,16,0
 MoveAll 9,16,0
 -
-LeverOn 10,14,2
-ChangeSquare 11,16,0,2
+LeverOn 59,14,0
+ChangeSquare 11,16,0,1
 -
 //Use righthand rule
 Activate 14,13,0
