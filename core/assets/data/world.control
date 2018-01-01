@@ -14,10 +14,10 @@ from=37,52,0
 to=12,38,0
 -
 //Short cut to omgra
-filename=world
-desc=Short Cut to Omgra's Castle
+filename=debug
+desc=Debug map
 from=40,39,0
-to=37,52,0
+to=16,8,0
 -
 // Aporto
 filename=aporto

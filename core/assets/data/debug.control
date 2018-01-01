@@ -1,0 +1,38 @@
+@map
+version=1
+name=Debug
+description=Debug map
+id=17
+light=true
+--
+@entry
+//Back to Stone circle
+filename=world
+desc=Exit to World
+from=16,8,0
+to=40,39,0
+-
+//Omgra's Castle 0
+filename=omgra0
+desc=Shortcut to Omgras Castle level 0
+to=12,38,0
+from=16,6,0
+-
+//Omgra's Castle
+filename=omgra1
+desc=Shortcut to Omgras Castle level 1
+to=4,12,0
+from=17,6,0
+-
+//Omgra's Castle
+filename=omgra2
+desc=Shortcut to Omgras Castle level 2
+to=26,26,0
+from=18,6,0
+-
+//Omgra's Castle
+filename=omgra3
+desc=Shortcut to Omgras Castle level 3
+to=2,2,0
+from=19,6,0
+--
