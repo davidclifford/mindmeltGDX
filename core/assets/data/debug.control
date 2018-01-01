@@ -35,4 +35,64 @@ filename=omgra3
 desc=Shortcut to Omgras Castle level 3
 to=2,2,0
 from=19,6,0
+-
+//Abbey
+filename=abbey
+desc=Abbey of Monks
+from=19,4,0
+to=21,36,0
+-
+//
+filename=aporto
+desc=Village of Aporto
+from=21,6,0
+to=20,40,0
+-
+//
+filename=cave
+desc=A Cave
+from=23,6,0
+to=11,17,0
+-
+//
+filename=dorma
+desc=Dorma Prison
+from=14,8,0
+to=21,36,0
+-
+//
+filename=hove
+desc=Village of Hove
+from=22,7,0
+to=21,36,0
+-
+//
+filename=kiston
+desc=Kiston Castle
+from=18,8,0
+to=21,36,0
+-
+//
+filename=lakile
+desc=Lakile House
+from=16,5,0
+to=21,36,0
+-
+//
+filename=milloc
+desc=Village of Milloc
+from=14,6,0
+to=21,36,0
+-
+//
+filename=pennin
+desc=Village of Pennin
+from=13,4,0
+to=21,36,0
+-
+//
+filename=under
+desc=Underground Cave
+from=12,6,0
+to=8,31,0
 --
