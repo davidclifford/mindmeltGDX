@@ -3,7 +3,7 @@ version=1
 name=World
 description=World of Mindmelt
 id=1
-nomonster=37,36,0,43,42,0
+nomonster=37,36,43,42,0
 light=true
 --
 @entry

@@ -16,13 +16,10 @@ import java.util.List;
 
 public class World implements ITileAccess {
 
-    public static final int MAP_SIZE = 80;
-    public static final int LAYERS = 1;
-    private TileType map[][][] = new TileType[LAYERS][MAP_SIZE+1][MAP_SIZE+1];
-    private List<Obj> top[][][] = new ArrayList[LAYERS][MAP_SIZE+1][MAP_SIZE+1];
-    private List<Area> nomonsters = new ArrayList<>();
     private List<EntryExit> entries = new ArrayList<>();
     private CodeStore codeStore = new CodeStore();
+    private List<Area> areas = new ArrayList<>();
+    private List<Area> nomonsters = new ArrayList<>();
 
     private int id = 0;
     private int version = 0;
@@ -30,102 +27,58 @@ public class World implements ITileAccess {
     private String name = "";
     private String description = "";
     private String filename = "";
-    
-    class Coord {
-        int x;
-        int y;
-        int z;
-        
-        Coord(int x, int y, int z) {
-            this.x = x;
-            this.y = y;
-            this.z = z;
+
+    private Area getArea(int x, int y, int z) {
+        for(Area area: areas) {
+            if(area.inArea(x,y,z))
+                return area;
         }
-    }
-    
-    class Area {
-        Coord topleft;
-        Coord botright;
-        
-        Area(int x1, int y1, int z1, int x2, int y2, int z2) {
-            this.topleft = new Coord(x1,y1,z1);
-            this.botright = new Coord(x2,y2,z2);
-        }       
-        
-        Area(List<Integer> coords) {
-            this.topleft = new Coord(coords.get(0),coords.get(1),coords.get(2));
-            this.botright = new Coord(coords.get(3),coords.get(4),coords.get(5));
-        }
+        return null;
     }
 
     @Override
     public TileType getTile(int x, int y, int level) {
-        if (x<0 || y<0) return TileType.space;
-        if (x>=MAP_SIZE || y>=MAP_SIZE) return TileType.space;
-        if (map[level][y][x]==null) return TileType.space;
-        return map[level][y][x];
-    }     
+        Area area = getArea(x,y,level);
+        if(area == null) return TileType.space;
+        return area.getTile(x,y);
+    }
     
     public List<Obj> getObjects(int x, int y, int level) {
-        if (x<0 || y<0) return null;
-        if (x>=MAP_SIZE || y>=MAP_SIZE) return null;
-        return top[level][y][x];
+        Area area = getArea(x,y,level);
+        if(area == null) return null;
+        return area.getObjects(x,y);
+
     }
     
     public Obj getTopObject(int x, int y, int level) {
-        if (x<0 || y<0) return null;
-        if (x>=MAP_SIZE || y>=MAP_SIZE) return null;
-        List<Obj> objects = top[level][y][x];
-        if (objects==null || objects.size()==0) return null;
-        return objects.get(objects.size()-1); //return last in list (ie the top)
+        Area area = getArea(x,y,level);
+        if(area == null) return null;
+        return area.getTopObject(x,y);
     }    
     
     public void setTop(int x, int y, int level, Obj ob) {
-        if (x<0 || y<0) return;
-        if (x>=MAP_SIZE || y>=MAP_SIZE) return;
-        List<Obj> objects = top[level][y][x];
-        if (objects==null) {
-            objects = new ArrayList<Obj>();
-            top[level][y][x] = objects;
-        }
-        objects.add(ob);
-    }  
+        Area area = getArea(x,y,level);
+        if(area == null) return;
+        area.setTopObject(ob,x,y);
+    }
     
     public void removeObject(Obj ob) {
-        List<Obj> objects = getObjects(ob.x, ob.y, ob.z);
-        ob.setCoords(0, 0, 0);
-        ob.setMapId(0);
-        if(objects!=null) {
-            objects.remove(ob);
-            if (objects.isEmpty())
-                top[ob.z][ob.y][ob.x] = null;
-        }
+        Area area = getArea(ob.x,ob.y,ob.z);
+        if(area==null) return;
+        area.removeObject(ob);
     }
 
     public List<Obj> removeAllObjects(int x, int y, int z) {
-        List<Obj> objects = getObjects(x, y, z);
-        if(objects!=null) {
-            objects.stream().forEach(ob -> {
-                ob.setCoords(0, 0, 0);
-                ob.setMapId(0);
-            });
-        }
-        top[z][y][x] = null;
-        return objects;
+        Area area = getArea(x,y,z);
+        if(area==null) return null;
+        return area.removeAllObjects(x,y);
     }
 
     public void addAllObjects(List<Obj> objects, int x, int y, int z) {
         if(objects==null) return;
-
-        for(Obj ob : objects) {
-            ob.setCoords(x,y,z);
-            ob.setMapId(getId());
-        }
-        if(top[z][y][x]!=null) {
-            top[z][y][x].addAll(objects);
-        } else {
-            top[z][y][x] = objects;
-        }
+        Area area = getArea(x,y,z);
+        if(area==null) return;
+        area.addAllObjects(objects,x,y,id);
     }
     
     public void loadMap(String mapName) {
@@ -323,7 +276,9 @@ public class World implements ITileAccess {
             String line = "";
             int topleftX=1;
             int topleftY=1;
-            
+            int botrightX = 1;
+            int botrightY = 1;
+
             while(line != null) {
                 while ((line = input.readLine())!=null && !line.equals("--")) {
                     String kv[] = keyValue(line);
@@ -333,6 +288,11 @@ public class World implements ITileAccess {
                             topleftX = coords.get(0);
                             topleftY = coords.get(1);
                             break;
+                        case "botright" :
+                            coords = numbers(kv[1]);
+                            botrightX = coords.get(0);
+                            botrightY = coords.get(1);
+                            break;
                         case "level" :
                             level = Integer.parseInt(kv[1]);
                             break;
@@ -340,13 +300,15 @@ public class World implements ITileAccess {
                             System.out.println("Unknown map keyword "+kv[0]);                } 
                 }
 
+                Area area = new Area(topleftX,topleftY,level,botrightX,botrightY);
+                areas.add(area);
                 int y = topleftY;
                 while ((line = input.readLine())!=null && !line.equals("--")) {
                     int x = topleftX;
                     for(int c=0; c<line.length();c++) {
                         char ch = line.charAt(c);
                         TileType tile = TileType.getFromChar(ch);
-                        map[level][y][x] = tile;
+                        area.setTile(x,y,tile);
                         x++;
                     }
                     y++;
@@ -373,7 +335,7 @@ public class World implements ITileAccess {
     
     private boolean inNoMonsterArea(int x, int y, int z) {
         for(Area a : nomonsters) {
-            if (a.topleft.z == z && a.topleft.x <= x && a.topleft.y <= y && a.botright.x >= x && a.botright.y >= y) {
+            if (a.getLevel() == z && a.getTopleft().getX() <= x && a.getTopleft().getY() <= y && a.getBotright().getX() >= x && a.getBotright().getY() >= y) {
                 return true;
             }
         }
@@ -418,13 +380,12 @@ public class World implements ITileAccess {
     
     public void setTile(int x, int y, int z, TileType tile)
     {
-        map[z][y][x] = tile;
+        Area area = getArea(x,y,z);
+        if(area==null) return;
+        area.setTile(x,y,tile);
     }
     
     public void changeTile(int x, int y, int z, TileType tile) {
-        if (x<0 || x>MAP_SIZE || y<0 || y>MAP_SIZE || z<0 || z>=LAYERS || tile == null) {
-            return;
-        }
         setTile(x,y,z,tile);
     }
 
