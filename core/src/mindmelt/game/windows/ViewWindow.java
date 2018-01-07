@@ -7,6 +7,7 @@ import mindmelt.game.engine.Engine;
 import mindmelt.game.engine.Message;
 import mindmelt.game.gui.Window;
 import mindmelt.game.objects.Obj;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,7 +68,7 @@ public class ViewWindow extends Window {
         }
     }
 
-    private void displayPosition(int px, int py, int dir, MindmeltGDX game) {
+    private void displayPosition(int px, int py, int pz, int dir, MindmeltGDX game) {
         Engine engine = game.engine;
         int mask[][] = new int[SIZE][SIZE]; //0 = see & thru, 1 = see & not thru, 2 = not see & not thru
         List<Obj> obj[][] = new ArrayList[SIZE][SIZE];
@@ -79,7 +80,7 @@ public class ViewWindow extends Window {
         //if(game.world.getLight() || light) darkness = 0f;
 
         for (DispXY xy : dispList) {
-            boolean canSee = game.world.getTile(px+xy.xf, py+xy.yf, 0).isSeeThru();
+            boolean canSee = game.world.getTile(px+xy.xf, py+xy.yf, pz).isSeeThru();
             if (mask[xy.xt+HALF][xy.yt+HALF]==0 && !canSee) {
                 mask[xy.xf+HALF][xy.yf+HALF] = 1;
             } else if (mask[xy.xt+HALF][xy.yt+HALF]>=1) {
@@ -99,7 +100,7 @@ public class ViewWindow extends Window {
             for (int x=-HALF;x<=HALF;x++) {
                 int sx = px+x;
                 int sy = py+y;
-                int sz = 0;
+                int sz = pz;
                 float bright = 1f-darkness*(float)(Math.sqrt(x*x+y*y)/Math.sqrt(HALF*HALF*2));
                 bright = 1f-darkness*Math.max(Math.abs(x),Math.abs(y))/HALF;
                 int tile = game.world.getTile(sx, sy, sz).getIcon();
@@ -141,9 +142,10 @@ public class ViewWindow extends Window {
 
         int playerX = game.player.getX();
         int playerY = game.player.getY();
+        int playerZ = game.player.getZ();
         int direction = game.player.getDirection();
 
-        displayPosition(playerX,playerY,direction,game);
+        displayPosition(playerX,playerY,playerZ,direction,game);
 
     }
 

@@ -252,7 +252,7 @@ public class World implements ITileAccess {
                 code.add(instruction);
             }
             codeStore.add(code);
-            if(line.startsWith("--"))
+            if(line==null || line.startsWith("--"))
                 return;
         }
     }
@@ -267,6 +267,7 @@ public class World implements ITileAccess {
     
     private void loadWorld(String mapName) {
         String filename = "data/"+mapName+".map";
+        boolean finished = false;
         
         try {
             BufferedReader input = new BufferedReader(new FileReader(filename));
@@ -279,39 +280,44 @@ public class World implements ITileAccess {
             int botrightX = 1;
             int botrightY = 1;
 
-            while(line != null) {
-                while ((line = input.readLine())!=null && !line.equals("--")) {
-                    String kv[] = keyValue(line);
-                    switch(kv[0]) {
-                        case "topleft" :
-                            coords = numbers(kv[1]);
-                            topleftX = coords.get(0);
-                            topleftY = coords.get(1);
-                            break;
-                        case "botright" :
-                            coords = numbers(kv[1]);
-                            botrightX = coords.get(0);
-                            botrightY = coords.get(1);
-                            break;
-                        case "level" :
-                            level = Integer.parseInt(kv[1]);
-                            break;
-                        default:
-                            System.out.println("Unknown map keyword "+kv[0]);                } 
-                }
-
-                Area area = new Area(topleftX,topleftY,level,botrightX,botrightY);
-                areas.add(area);
-                int y = topleftY;
-                while ((line = input.readLine())!=null && !line.equals("--")) {
-                    int x = topleftX;
-                    for(int c=0; c<line.length();c++) {
-                        char ch = line.charAt(c);
-                        TileType tile = TileType.getFromChar(ch);
-                        area.setTile(x,y,tile);
-                        x++;
+            while(!finished) {
+                while (line != null) {
+                    while ((line = input.readLine()) != null && !line.startsWith("-")) {
+                        String kv[] = keyValue(line);
+                        switch (kv[0]) {
+                            case "topleft":
+                                coords = numbers(kv[1]);
+                                topleftX = coords.get(0);
+                                topleftY = coords.get(1);
+                                break;
+                            case "botright":
+                                coords = numbers(kv[1]);
+                                botrightX = coords.get(0);
+                                botrightY = coords.get(1);
+                                break;
+                            case "level":
+                                level = Integer.parseInt(kv[1]);
+                                break;
+                            default:
+                                System.out.println("Unknown map keyword " + kv[0]);
+                        }
                     }
-                    y++;
+
+                    Area area = new Area(topleftX, topleftY, level, botrightX, botrightY);
+                    areas.add(area);
+                    int y = topleftY;
+                    while ((line = input.readLine()) != null && !line.equals("-") && !line.equals("--")) {
+                        int x = topleftX;
+                        for (int c = 0; c < line.length(); c++) {
+                            char ch = line.charAt(c);
+                            TileType tile = TileType.getFromChar(ch);
+                            area.setTile(x, y, tile);
+                            x++;
+                        }
+                        y++;
+                    }
+                    if(line == null || line.equals("--"))
+                        finished = true;
                 }
             }
         } catch (Exception e)   {

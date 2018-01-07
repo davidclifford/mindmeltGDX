@@ -103,7 +103,7 @@ public class Engine {
 
         //From
         if(fromTile == TileType.presurepad || fromTile==TileType.hiddenpp) {
-            if(world.getObjects(fx,fy,fz).size()==0) //empty
+            if(world.getObjects(fx,fy,fz)==null) //empty
                 addTrigger("PadOff",fx,fy,fz);
         }
 
@@ -116,7 +116,8 @@ public class Engine {
             addTrigger("Teleport",tx,ty,tz);
         }
         if(toTile == TileType.pit || toTile == TileType.hiddenpit) {
-            addTrigger("Teleport",tx,ty,tz);
+            //addTrigger("Teleport",tx,ty,tz);
+            game.player.moveToMap(tx,ty,tz+1,this);
         }
 
     }
