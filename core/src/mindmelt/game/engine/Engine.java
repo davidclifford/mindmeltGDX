@@ -97,10 +97,13 @@ public class Engine {
         fromTo(fx, fy, fz, tx, ty, tz);
     }
 
-    public void fromTo(int fx, int fy, int fz, int tx, int ty, int tz) {//From
+    public void fromTo(int fx, int fy, int fz, int tx, int ty, int tz) {
         TileType fromTile = world.getTile(fx, fy, fz);
         TileType toTile = world.getTile(tx, ty, tz);
+        fromTo(fromTile, toTile, fx, fy, fz, tx, ty, tz);
+    }
 
+    public void fromTo(TileType fromTile, TileType toTile, int fx, int fy, int fz, int tx, int ty, int tz) {
         //From
         if(fromTile == TileType.presurepad || fromTile==TileType.hiddenpp) {
             if(world.getObjects(fx,fy,fz)==null) //empty
@@ -116,8 +119,7 @@ public class Engine {
             addTrigger("Teleport",tx,ty,tz);
         }
         if(toTile == TileType.pit || toTile == TileType.hiddenpit) {
-            //addTrigger("Teleport",tx,ty,tz);
-            game.player.moveToMap(tx,ty,tz+1,this);
+            moveAllToMap(tx,ty,tz,tx,ty,tz+1);
         }
 
     }
@@ -233,7 +235,8 @@ public class Engine {
     }
 
     public void changeTile(int x, int y, int z, TileType newTile) {
-        int current = world.getTile(x,y,z).getId();
+        TileType oldTile = world.getTile(x,y,z);
+        int current = oldTile.getId();
         world.changeTile(x, y, z, newTile);
         String coord = String.format("%d:%d:%d,%d", x, y, z, world.getId());
         ChangeTile original = changeTiles.get(coord);
@@ -243,8 +246,8 @@ public class Engine {
         if (original == null || original.getIcon() != newTile.getIcon()) {
             changeTiles.put(coord, new ChangeTile(x, y, z, world.getId(), current));
         }
-        //CODE !!!!
-        // do it here (ie pits, pressure pads, teleports etc...)
+        // CODE
+        fromTo(oldTile, newTile, x,y,z, x,y,z);
     }
 
     public void debugChangeTiles() {
