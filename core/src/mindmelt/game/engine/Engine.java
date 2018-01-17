@@ -112,7 +112,7 @@ public class Engine {
 
         //To
         if(toTile == TileType.presurepad || toTile==TileType.hiddenpp) {
-            if(world.getObjects(tx,ty,tz).size()==1) //first object to land on pad
+            if(world.getObjects(tx,ty,tz)!= null && world.getObjects(tx,ty,tz).size()==1) //first object to land on pad
                 addTrigger("PadOn",tx,ty,tz);
         }
         if(toTile == TileType.teleport || toTile == TileType.hiddentele) {
