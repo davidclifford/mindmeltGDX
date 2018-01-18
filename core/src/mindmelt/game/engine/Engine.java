@@ -121,8 +121,16 @@ public class Engine {
         if(toTile == TileType.pit || toTile == TileType.hiddenpit) {
             moveAllToMap(tx,ty,tz,tx,ty,tz+1);
         }
-
-    }
+        Obj topObj = world.getTopObject(tx,ty,tz);
+        if(topObj==null || !topObj.isPlayer())
+            return;
+        if(toTile == TileType.leftturn)
+            getPlayer().rotate(-1);
+        if(toTile == TileType.rightturn)
+            getPlayer().rotate(1);
+        if(toTile == TileType.uturn)
+            getPlayer().rotate(2);
+   }
 
     public void moveAllToMap(int xf, int yf, int zf, int xt, int yt, int zt) {
         List<Obj> all = world.removeAllObjects(xf,yf,zf);

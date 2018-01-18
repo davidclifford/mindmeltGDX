@@ -54,7 +54,7 @@ public class TileType {
     public static final TileType path = new TileType(37).name("path").ch('=').seeThru().enter().icon(37);
     public static final TileType bridge = new TileType(38).name("bridge").ch('-').seeThru().enter().icon(38);
     public static final TileType waterfall = new TileType(39).name("waterfall").ch('W').seeThru().icon(39);
-    public static final TileType hiddenpit = new TileType(40).name("hidden pit").ch('x').seeThru().enter().icon(1);
+    public static final TileType hiddenpit = new TileType(40).name("hidden pit").ch('x').seeThru().enter().icon(40);
     public static final TileType rocks = new TileType(41).name("rocks").ch('O').icon(41);
     public static final TileType fence = new TileType(42).name("fence").ch('F').seeThru().icon(42);
     public static final TileType house = new TileType(43).name("house").ch('H').seeThru().enter().icon(43);
