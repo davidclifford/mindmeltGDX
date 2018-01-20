@@ -109,4 +109,9 @@ public class ObjectStore {
         if(!current.contains(ob))
             current.add(ob);
     }
+
+    public Obj getObject(int ob) {
+        if(ob<0 || ob>NUM_OBJECTS-1) return null;
+        return objects[ob];
+    }
 }

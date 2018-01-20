@@ -11,75 +11,81 @@ from=2,2,0
 to=2,2,0
 desc=Level 2
 --
+@entry
+filename=omgra2
+from=2,2,1
+to=2,2,0
+desc=Back to Entrance
+--
 @code
-Activate 7,1,1
+Activate 7,1,0
 Message No Runes Beyond!
 -
-Activate 6,7,1
+Activate 6,7,0
 Message Rune Room
 -
 // Pad opens pits and returns runes to rune room
-PadOn 8,2,1
+PadOn 8,2,0
 Execute MoveRunesToRoom
 -
 Routine MoveRunesToRoom
-MoveObject 4,4,1,112
-MoveObject 2,4,1,113
-MoveObject 6,4,1,114
-MoveObject 5,4,1,115
-MoveObject 3,4,1,116
-ChangeSquare 32,2,1,10
-ChangeSquare 22,12,1,10
-ChangeSquare 20,28,1,10
-ChangeSquare 8,32,1,10
-ChangeSquare 22,36,1,10
+MoveObject 4,4,0,112
+MoveObject 2,4,0,113
+MoveObject 6,4,0,114
+MoveObject 5,4,0,115
+MoveObject 3,4,0,116
+ChangeSquare 32,2,0,9
+ChangeSquare 22,12,0,9
+ChangeSquare 20,28,0,9
+ChangeSquare 8,32,0,9
+ChangeSquare 22,36,0,9
 -
-PadOn 32,2,2
-ChangeSquare 32,2,1,2
-MoveAll 2,2,2
+PadOn 32,2,1
+ChangeSquare 32,2,0,1
+MoveAll 2,2,1
 Execute TeleportToEndRoom
 -
-PadOn 22,12,2
-ChangeSquare 22,12,1,2
-MoveAll 2,2,2
+PadOn 22,12,1
+ChangeSquare 22,12,0,1
+MoveAll 2,2,1
 Execute TeleportToEndRoom
 -
-PadOn 20,28,2
-ChangeSquare 20,28,1,2
-MoveAll 2,2,2
+PadOn 20,28,1
+ChangeSquare 20,28,0,1
+MoveAll 2,2,1
 Execute TeleportToEndRoom
 -
-PadOn 8,32,2
-ChangeSquare 8,32,1,2
-MoveAll 2,2,2
+PadOn 8,32,1
+ChangeSquare 8,32,0,1
+MoveAll 2,2,1
 Execute TeleportToEndRoom
 -
-PadOn 22,36,2
-ChangeSquare 22,36,1,2
-MoveAll 2,2,2
+PadOn 22,36,1
+ChangeSquare 22,36,0,1
+MoveAll 2,2,1
 Execute TeleportToEndRoom
 -
 Routine TeleportToEndRoom
-ObjectAt 2,2,2,112
-ObjectAt 2,2,2,113
-ObjectAt 2,2,2,114
-ObjectAt 2,2,2,115
-ObjectAt 2,2,2,116
-MovePlayer 23,25,1
+ObjectAt 2,2,1,112
+ObjectAt 2,2,1,113
+ObjectAt 2,2,1,114
+ObjectAt 2,2,1,115
+ObjectAt 2,2,1,116
+MovePlayer 23,25,0
 -
 // Riddle picture
-Activate 23,27,1
+Activate 23,27,0
 TalkTo 92,1
 -
 // Correct reply - open gate
 Reply 92,1
-Open 22,27,1
+Open 22,27,0
 -
 // Go meet Omgra!
-Teleport 22,28,1
-MoveAll 20,19,2
+Teleport 22,28,0
+MoveAll 20,19,1
 -
 // Rune pits teleport back (for player)
-Teleport 3,2,2
-MoveAll 8,2,1
+Teleport 3,2,1
+MoveAll 8,2,0
 --

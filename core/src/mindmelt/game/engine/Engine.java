@@ -97,6 +97,13 @@ public class Engine {
         fromTo(fx, fy, fz, tx, ty, tz);
     }
 
+
+    public void moveObjToMap(int ob, int tx, int ty, int tz) {
+        Obj object = getObjects().getObject(ob);
+        if(object==null) return;
+        moveObjToMap(object,tx,ty,tz);
+    }
+
     public void fromTo(int fx, int fy, int fz, int tx, int ty, int tz) {
         TileType fromTile = world.getTile(fx, fy, fz);
         TileType toTile = world.getTile(tx, ty, tz);

@@ -88,7 +88,10 @@ public class Instruction {
         } else if (command.equals("IsType")) {
             return isType(trigger, engine);
         } else if (command.equals("ObjectAt")) {
-            return objectAt(trigger, engine);        }
+            return objectAt(trigger, engine);
+        } else if (command.equals("MoveObject")) {
+            return moveObject(trigger, engine);
+        }
         return true;
     }
 
@@ -100,6 +103,15 @@ public class Instruction {
         int yt = iargs.get(4);
         int zt = iargs.get(5);
         engine.moveAllToMap(xf,yf,zf,xt,yt,zt);
+        return true;
+    }
+
+    private boolean moveObject(Trigger trigger, Engine engine) {
+        int tx = iargs.get(0);
+        int ty = iargs.get(1);
+        int tz = iargs.get(2);
+        int ob = iargs.get(3);
+        engine.moveObjToMap(ob,tx,ty,tz);
         return true;
     }
 

@@ -1,8 +1,6 @@
 package mindmelt.game.objects;
 
-import mindmelt.game.MindmeltGDX;
 import mindmelt.game.engine.Engine;
-import mindmelt.game.maps.World;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +27,12 @@ public class Inventory {
     }
 
     public void remove(Obj obj) {
+        if(hand==obj)
+            hand = null;
+        for(int s=0; s<inventorySize; s++) {
+            if (slot[s]==obj)
+                slot[s] = null;
+        }
         objects.remove(obj);
     }
 
