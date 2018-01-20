@@ -12,7 +12,7 @@ public class EntryExit {
     private int toZ;
     private String toMap;
     
-    EntryExit(int fx, int fy, int fz, int tx, int ty, int tz, String tmap, String desc) {
+    public EntryExit(int fx, int fy, int fz, int tx, int ty, int tz, String tmap, String desc) {
         description = desc;
         
         fromX = fx;

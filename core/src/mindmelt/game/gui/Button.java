@@ -1,13 +1,8 @@
 package mindmelt.game.gui;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.g2d.Batch;
 import mindmelt.game.MindmeltGDX;
-import mindmelt.game.engine.ChangeTile;
 import mindmelt.game.engine.Engine;
-
-import java.util.Map;
 
 /**
  * Created by David on 3/05/2017.
@@ -21,9 +16,9 @@ public class Button extends GuiElem {
     protected static final int upButton = 150;
     protected static final int downButton = 151;
 
-    private int activeIcon;
-    private int inactiveIcon = 149;
-    private int state = OFF;
+    protected int activeIcon;
+    protected int inactiveIcon = 149;
+    protected int state = OFF;
 
     public Button(int x, int y, int icon) {
         super(x, y, 1, 1);
@@ -72,5 +67,9 @@ public class Button extends GuiElem {
         if (activeIcon==148) {
             engine.debugChangeTiles();
         }
+    }
+
+    public void reset() {
+        state = UP;
     }
 }

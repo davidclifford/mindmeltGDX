@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.TextureData;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import mindmelt.game.MindmeltGDX;
+import mindmelt.game.buttons.CircleSpellButton;
 import mindmelt.game.buttons.MapSpellButton;
 import mindmelt.game.engine.Engine;
 import mindmelt.game.gui.Button;
@@ -86,7 +87,7 @@ public class PlayScreen implements Screen, InputProcessor {
         //Set up spell buttons
         for (int b=0;b<14;b++) {
             if (b==0) button = new Button(b%7, b/7, b+135);
-            else if (b==1) button = new Button(b%7, b/7, b+135);
+            else if (b==1) button = new CircleSpellButton(b%7, b/7, b+135);
             else if (b==2) button = new Button(b%7, b/7, b+135);
             else if (b==3) button = new Button(b%7, b/7, b+135);
             else if (b==4) button = new Button(b%7, b/7, b+135);
@@ -158,6 +159,7 @@ public class PlayScreen implements Screen, InputProcessor {
         updateObjects(delta);
         engine.runTriggers();
         engine.expireMessages();
+        engine.resetSpells();
 
         batch.begin();
           updateMouse();

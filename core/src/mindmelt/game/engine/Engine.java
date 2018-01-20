@@ -1,8 +1,10 @@
 package mindmelt.game.engine;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.utils.TimeUtils;
 import mindmelt.game.MindmeltGDX;
 import mindmelt.game.code.Trigger;
+import mindmelt.game.gui.Button;
 import mindmelt.game.maps.EntryExit;
 import mindmelt.game.maps.TileType;
 import mindmelt.game.maps.World;
@@ -17,7 +19,6 @@ import java.util.List;
 import java.util.Map;
 
 public class Engine {
-
     private MindmeltGDX game;
     private World world;
     private ObjectStore objects;
@@ -29,6 +30,7 @@ public class Engine {
     private float lighting = 0f;
     private List<Trigger> triggerQueue = new ArrayList<>();
     private Messages messages = new Messages();
+    private List<SpellReset> spellResets = new ArrayList<>();
 
     public Engine(MindmeltGDX game) {
         changeTiles = new HashMap<>();
@@ -155,6 +157,10 @@ public class Engine {
     
     public void doEntryExit(int x, int y, int z) {
         EntryExit entry = getEntryExit(x, y, z);
+        moveToMap(entry);
+    }
+
+    public void moveToMap(EntryExit entry) {
         if (entry!=null) {
             if(!entry.getToMap().equals(world.getFilename())) {
                 world = new World();
@@ -164,6 +170,25 @@ public class Engine {
             objects.getPlayer().moveToMap(entry.getToX(),entry.getToY(),entry.getToZ(), this);
             game.world = world;
             game.objects = objects;
+        }
+    }
+
+    public void resetSpell(Button spell, float time) {
+        float systemTime = TimeUtils.nanoTime()/1000000000f;
+        SpellReset reset = new SpellReset(spell,systemTime+time);
+        spellResets.add(reset);
+    }
+
+    public void resetSpells() {
+        float systemTime = TimeUtils.nanoTime()/1000000000f;
+        List<SpellReset> dead = new ArrayList<>();
+        for(SpellReset spell:spellResets) {
+            if(spell.needToReset(systemTime)) {
+                dead.add(spell);
+            }
+        }
+        for(SpellReset spell:dead) {
+            spellResets.remove(spell);
         }
     }
 
