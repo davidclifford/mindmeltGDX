@@ -91,7 +91,10 @@ public class Instruction {
             return objectAt(trigger, engine);
         } else if (command.equals("MoveObject")) {
             return moveObject(trigger, engine);
-        }
+        } else if (command.equals("MovePlayer")) {
+            return movePlayer(trigger, engine);
+        } else if (command.equals("AtPosition")) {
+            return atPosition(trigger, engine);        }
         return true;
     }
 
@@ -113,6 +116,21 @@ public class Instruction {
         int ob = iargs.get(3);
         engine.moveObjToMap(ob,tx,ty,tz);
         return true;
+    }
+
+    private boolean movePlayer(Trigger trigger, Engine engine) {
+        int tx = iargs.get(0);
+        int ty = iargs.get(1);
+        int tz = iargs.get(2);
+        engine.moveObjToMap(engine.getPlayer(),tx,ty,tz);
+        return true;
+    }
+
+    private boolean atPosition(Trigger trigger, Engine engine) {
+        int tx = iargs.get(0);
+        int ty = iargs.get(1);
+        int tz = iargs.get(2);
+        return engine.getPlayer().isAt(tx,ty,tz);
     }
 
     private boolean executeRoutine(Trigger trigger, Engine engine) {

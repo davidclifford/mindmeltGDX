@@ -130,20 +130,19 @@ OpenClose
 -
 // 4 direction sign
 Activate 23,37,0
-?AtPosition 23,36,0
-Skip 2
+AtPosition 23,36,0
 Message North
-End
-?AtPosition 22,37,0
-Skip 2
+-
+Activate 23,37,0
+AtPosition 22,37,0
 Message West
-End
-?AtPosition 23,38,0
-Skip 2
+-
+Activate 23,37,0
+AtPosition 23,38,0
 Message South
-End
-?AtPosition 24,37,0
-End
+-
+Activate 23,37,0
+AtPosition 24,37,0
 Message East
 -
 // Talking picture 
