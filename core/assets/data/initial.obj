@@ -305,4 +305,4 @@ id,name,desc,type,x,y,z,map,inside,order,strength,icon
 253,name,desc,type,0,0,0,0,0,0,34,91
 254,name,desc,type,0,0,0,0,0,0,34,91
 //omgra3
-255,Omgra,omgra,monster,47,9,0,16,0,0,255,101
+255,Omgra,omgra,monster,6,6,2,16,0,0,255,101
