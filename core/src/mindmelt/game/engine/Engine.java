@@ -3,8 +3,8 @@ package mindmelt.game.engine;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.TimeUtils;
 import mindmelt.game.MindmeltGDX;
+import mindmelt.game.buttons.SpellButton;
 import mindmelt.game.code.Trigger;
-import mindmelt.game.gui.Button;
 import mindmelt.game.maps.EntryExit;
 import mindmelt.game.maps.TileType;
 import mindmelt.game.maps.World;
@@ -30,7 +30,7 @@ public class Engine {
     private float lighting = 0f;
     private List<Trigger> triggerQueue = new ArrayList<>();
     private Messages messages = new Messages();
-    private List<SpellReset> spellResets = new ArrayList<>();
+    private List<SpellButton> activeButtons;
 
     public Engine(MindmeltGDX game) {
         changeTiles = new HashMap<>();
@@ -89,6 +89,10 @@ public class Engine {
 
     public ObjectStore getObjects() {
         return objects;
+    }
+
+    public void setButtons(List<SpellButton> activeButtons) {
+        this.activeButtons = activeButtons;
     }
 
     public void moveObjToMap(Obj object, int tx, int ty, int tz) {
@@ -173,23 +177,8 @@ public class Engine {
         }
     }
 
-    public void resetSpell(Button spell, float time) {
-        float systemTime = TimeUtils.nanoTime()/1000000000f;
-        SpellReset reset = new SpellReset(spell,systemTime+time);
-        spellResets.add(reset);
-    }
-
-    public void resetSpells() {
-        float systemTime = TimeUtils.nanoTime()/1000000000f;
-        List<SpellReset> dead = new ArrayList<>();
-        for(SpellReset spell:spellResets) {
-            if(spell.needToReset(systemTime)) {
-                dead.add(spell);
-            }
-        }
-        for(SpellReset spell:dead) {
-            spellResets.remove(spell);
-        }
+    public float getSystemTime() {
+        return TimeUtils.nanoTime()/1000000000f;
     }
 
     public TileType getTile(int x, int y, int z) {

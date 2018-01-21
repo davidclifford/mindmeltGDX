@@ -24,9 +24,9 @@ Execute MoveRunesToRoom
 -
 Routine MoveRunesToRoom
 MoveObject 4,4,0,112
-MoveObject 2,4,0,113
-MoveObject 6,4,0,114
-MoveObject 5,4,0,115
+MoveObject 5,4,0,113
+MoveObject 5,5,0,114
+MoveObject 3,5,0,115
 MoveObject 3,4,0,116
 ChangeSquare 32,2,0,9
 ChangeSquare 22,12,0,9

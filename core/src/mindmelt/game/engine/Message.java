@@ -31,4 +31,8 @@ public class Message {
     public String getMessage() {
         return message;
     }
+
+    public Color getColour() {
+        return colour;
+    }
 }

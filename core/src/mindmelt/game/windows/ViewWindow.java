@@ -18,9 +18,7 @@ public class ViewWindow extends Window {
 
     private final int SIZE = 9;
     private final int HALF = SIZE/2;
-    private int tile[][];
     private List<DispXY> dispList;
-    private boolean light;
 
     public ViewWindow(int x, int y, int w, int h) {
         super(x, y, w, h);
@@ -45,10 +43,12 @@ public class ViewWindow extends Window {
         public int x;
         public int y;
         public String string;
-        DispXYString(int x, int y, String string) {
+        public Color colour;
+        DispXYString(int x, int y, String string, Color colour) {
             this.x = x;
             this.y = y;
             this.string = string;
+            this.colour = colour;
         }
     }
 
@@ -71,13 +71,9 @@ public class ViewWindow extends Window {
     private void displayPosition(int px, int py, int pz, int dir, MindmeltGDX game) {
         Engine engine = game.engine;
         int mask[][] = new int[SIZE][SIZE]; //0 = see & thru, 1 = see & not thru, 2 = not see & not thru
-        List<Obj> obj[][] = new ArrayList[SIZE][SIZE];
-        Obj top[][] = new Obj[SIZE][SIZE];
-        //boolean dark = !game.world.getLight() && !light || false;
-        boolean dark = false;
-        if (engine.getLighting()>60f) engine.setLighting(0);
-        float darkness = 3f*(engine.getLighting()/60f);
-        //if(game.world.getLight() || light) darkness = 0f;
+        float darkness = 0;
+        if(!game.world.getLight())
+            darkness = 3f*engine.getPlayer().getLight();
 
         for (DispXY xy : dispList) {
             boolean canSee = game.world.getTile(px+xy.xf, py+xy.yf, pz).isSeeThru();
@@ -89,9 +85,6 @@ public class ViewWindow extends Window {
             if(xy.xf <= 1 && xy.xf >= -1 && xy.yf <= 1 && xy.yf >= -1 && engine.isXray()) {
                 mask[xy.xf+HALF][xy.yf+HALF] = 0;
             }
-            if((xy.xf > 1 || xy.xf < -1 || xy.yf > 1 || xy.yf < -1) && dark) {
-                mask[xy.xf+HALF][xy.yf+HALF] = 2;
-            }
         }
 
         // Draw landscape
@@ -101,8 +94,8 @@ public class ViewWindow extends Window {
                 int sx = px+x;
                 int sy = py+y;
                 int sz = pz;
-                float bright = 1f-darkness*(float)(Math.sqrt(x*x+y*y)/Math.sqrt(HALF*HALF*2));
-                bright = 1f-darkness*Math.max(Math.abs(x),Math.abs(y))/HALF;
+                //float bright = 1f-darkness*(float)(Math.sqrt(x*x+y*y)/Math.sqrt(HALF*HALF*2));
+                float bright = 1f-darkness*Math.max(Math.abs(x),Math.abs(y))/HALF;
                 int tile = game.world.getTile(sx, sy, sz).getIcon();
                 int xx = dir==0 ? x : dir==1 ? y : dir==2 ? -x : -y;
                 int yy = dir==0 ? y : dir==1 ? -x : dir==2 ? -y : x;
@@ -112,7 +105,7 @@ public class ViewWindow extends Window {
                     if (objects!=null) {
                         for (Obj ob : objects) {
                             drawTile(HALF+xx, HALF+yy, ob.getIcon(),bright, game);
-                            DispXYString xys = new DispXYString( HALF+xx, HALF+yy,ob.getMessage());
+                            DispXYString xys = new DispXYString( HALF+xx, HALF+yy,ob.getMessage(),Color.BLUE);
                             if(xys.string!="")
                                 xyStrings.add(xys);
                         }
@@ -120,7 +113,7 @@ public class ViewWindow extends Window {
                     //messages
                     Message message = engine.getMessage(sx,sy,sz);
                     if(message!=null) {
-                        DispXYString xys = new DispXYString( HALF+xx, HALF+yy, message.getMessage());
+                        DispXYString xys = new DispXYString( HALF+xx, HALF+yy, message.getMessage(),message.getColour());
                         xyStrings.add(xys);
                     }
                 } else {
@@ -131,7 +124,7 @@ public class ViewWindow extends Window {
 
         //Display any strings
         for(DispXYString xys:xyStrings ) {
-            drawString(xys.x, xys.y, Color.BLUE, xys.string, game);
+            drawString(xys.x, xys.y, xys.colour, xys.string, game);
         }
     }
 

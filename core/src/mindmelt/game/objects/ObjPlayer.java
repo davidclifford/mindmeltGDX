@@ -11,6 +11,7 @@ import mindmelt.game.engine.Engine;
 public class ObjPlayer extends Obj {
 
     private int level = 1;
+    private float light = 1f;
 
     public ObjPlayer() {
         inventory = new Inventory(24);
@@ -33,5 +34,13 @@ public class ObjPlayer extends Obj {
         Obj holding = inventory.getHandObject();
         if(holding==null) return false;
         return (holding.getId()==obj);
+    }
+
+    public float getLight() {
+        return light;
+    }
+
+    public void setLight(float light) {
+        this.light = light;
     }
 }
