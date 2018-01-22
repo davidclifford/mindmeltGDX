@@ -92,18 +92,18 @@ public class PlayScreen implements Screen, InputProcessor {
             else if (b==2) button = new DirectionSpellButton(b%7, b/7, b+135);
             else if (b==3) button = new CoordsSpellButton(b%7, b/7, b+135);
             else if (b==4) button = new LightSpellButton(b%7, b/7, b+135);
-            else if (b==5) button = new SpellButton(b%7, b/7, b+135);
-            else if (b==6) button = new SpellButton(b%7, b/7, b+135);
+            else if (b==5) button = new XraySpellButton(b%7, b/7, b+135);
+            else if (b==6) button = new WaterSpellButton(b%7, b/7, b+135);
             else if (b==7) button = new SpellButton(b%7, b/7, b+135);
             else if (b==8) button = new SpellButton(b%7, b/7, b+135);
             else if (b==9) button = new SpellButton(b%7, b/7, b+135);
             else if (b==10) button = new SpellButton(b%7, b/7, b+135);
-            else if (b==11) button = new SpellButton(b%7, b/7, b+135);
+            else if (b==11) button = new ForcefieldSpellButton(b%7, b/7, b+135);
             else if (b==12) button = new SpellButton(b%7, b/7, b+135);
             else if (b==13) button = new SpellButton(b%7, b/7, b+135);
             button.setState(Button.UP);
             spellWindow.addElement(button);
-            activeButtons.add((SpellButton)button);
+            activeButtons.add(button);
         }
 
         game.objects = new ObjectStore();

@@ -12,6 +12,9 @@ public class ObjPlayer extends Obj {
 
     private int level = 1;
     private float light = 1f;
+    private boolean xray = false;
+    private boolean water = false;
+    private boolean forcefield = false;
 
     public ObjPlayer() {
         inventory = new Inventory(24);
@@ -42,5 +45,29 @@ public class ObjPlayer extends Obj {
 
     public void setLight(float light) {
         this.light = light;
+    }
+
+    public boolean isXray() {
+        return xray;
+    }
+
+    public void setXray(boolean xray) {
+        this.xray = xray;
+    }
+
+    public boolean isWater() {
+        return water;
+    }
+
+    public void setWater(boolean water) {
+        this.water = water;
+    }
+
+    public boolean isForcefield() {
+        return forcefield;
+    }
+
+    public void setForcefield(boolean forcefield) {
+        this.forcefield = forcefield;
     }
 }

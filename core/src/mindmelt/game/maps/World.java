@@ -5,6 +5,7 @@ import mindmelt.game.code.CodeStore;
 import mindmelt.game.code.Instruction;
 import mindmelt.game.code.Trigger;
 import mindmelt.game.objects.Obj;
+import mindmelt.game.objects.ObjPlayer;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -331,10 +332,16 @@ public class World implements ITileAccess {
     }
     
     public boolean canEnter(Obj ob, int x, int y, int z) {
-        if (getTile(x,y,z).canEnter()) {
+        TileType tile = getTile(x,y,z);
+        if (tile.canEnter()) {
             if(getTopObject(x,y,z)== null || ob.isPlayer() || !getTopObject(x,y,z).isBlocked()) {
                 return !(ob.isMonster() && inNoMonsterArea(x,y,z));
             }
+        }
+        if(ob.isPlayer()) {
+            ObjPlayer player = (ObjPlayer) ob;
+            if (tile == TileType.water && player.isWater()) return true;
+            if ((tile == TileType.forcefield || tile == TileType.hiddenff) && player.isForcefield()) return true;
         }
         return false;
     }

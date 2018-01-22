@@ -7,6 +7,7 @@ import mindmelt.game.engine.Engine;
 import mindmelt.game.engine.Message;
 import mindmelt.game.gui.Window;
 import mindmelt.game.objects.Obj;
+import mindmelt.game.objects.ObjPlayer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,10 +71,11 @@ public class ViewWindow extends Window {
 
     private void displayPosition(int px, int py, int pz, int dir, MindmeltGDX game) {
         Engine engine = game.engine;
+        ObjPlayer player = engine.getPlayer();
         int mask[][] = new int[SIZE][SIZE]; //0 = see & thru, 1 = see & not thru, 2 = not see & not thru
         float darkness = 0;
         if(!game.world.getLight())
-            darkness = 3f*engine.getPlayer().getLight();
+            darkness = 3f*player.getLight();
 
         for (DispXY xy : dispList) {
             boolean canSee = game.world.getTile(px+xy.xf, py+xy.yf, pz).isSeeThru();
@@ -82,7 +84,7 @@ public class ViewWindow extends Window {
             } else if (mask[xy.xt+HALF][xy.yt+HALF]>=1) {
                 mask[xy.xf+HALF][xy.yf+HALF] = 2;
             }
-            if(xy.xf <= 1 && xy.xf >= -1 && xy.yf <= 1 && xy.yf >= -1 && engine.isXray()) {
+            if(xy.xf <= 1 && xy.xf >= -1 && xy.yf <= 1 && xy.yf >= -1 && player.isXray()) {
                 mask[xy.xf+HALF][xy.yf+HALF] = 0;
             }
         }
