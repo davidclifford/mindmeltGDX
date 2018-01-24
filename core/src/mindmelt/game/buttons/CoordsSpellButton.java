@@ -19,7 +19,7 @@ public class CoordsSpellButton extends SpellButton{
             Gdx.app.log("Spell","Coords");
             ObjPlayer player = engine.getPlayer();
             String mess = String.format("Your coords are %d,%d,%d",player.getX(),player.getY(),player.getZ());
-            Message message = new Message(player.getX()-2,player.getY(),player.getZ(),mess, Color.BLUE,1000L);
+            Message message = new Message(player.getX(),player.getY(),player.getZ(),mess, Color.FIREBRICK,1000L);
             engine.addMessage(message);
             setExpiry(engine,SINGLEPRESS);
         }

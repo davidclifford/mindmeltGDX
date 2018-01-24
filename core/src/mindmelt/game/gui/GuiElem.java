@@ -181,7 +181,7 @@ public abstract class GuiElem {
     }
 
     protected void drawString(int x, int y, Color color, String text, MindmeltGDX game) {
-        game.font.setColor(Color.BLUE);
+        game.font.setColor(color);
         game.font.draw(game.batch,text,getAbsX()+x*SZ+1,height - (getAbsY()+y*SZ-SZ/2)-1);
         game.font.draw(game.batch,text,getAbsX()+x*SZ-1,height - (getAbsY()+y*SZ-SZ/2)-1);
         game.font.draw(game.batch,text,getAbsX()+x*SZ+1,height - (getAbsY()+y*SZ-SZ/2)+1);
@@ -192,6 +192,22 @@ public abstract class GuiElem {
         game.font.draw(game.batch,text,getAbsX()+x*SZ-2,height - (getAbsY()+y*SZ-SZ/2)+2);
         game.font.setColor(Color.WHITE);
         game.font.draw(game.batch,text,getAbsX()+x*SZ,height - (getAbsY()+y*SZ-SZ/2));
+    }
+
+
+    protected void drawMidString(int x, int y, Color color, String text, MindmeltGDX game) {
+        game.font.setColor(color);
+        float offset = (text.length())*3f-SZ/2f;
+        game.font.draw(game.batch,text,getAbsX()+x*SZ+1-offset,height - (getAbsY()+y*SZ-SZ/2)-1);
+        game.font.draw(game.batch,text,getAbsX()+x*SZ-1-offset,height - (getAbsY()+y*SZ-SZ/2)-1);
+        game.font.draw(game.batch,text,getAbsX()+x*SZ+1-offset,height - (getAbsY()+y*SZ-SZ/2)+1);
+        game.font.draw(game.batch,text,getAbsX()+x*SZ-1-offset,height - (getAbsY()+y*SZ-SZ/2)+1);
+        game.font.draw(game.batch,text,getAbsX()+x*SZ+2-offset,height - (getAbsY()+y*SZ-SZ/2)-2);
+        game.font.draw(game.batch,text,getAbsX()+x*SZ-2-offset,height - (getAbsY()+y*SZ-SZ/2)-2);
+        game.font.draw(game.batch,text,getAbsX()+x*SZ+2-offset,height - (getAbsY()+y*SZ-SZ/2)+2);
+        game.font.draw(game.batch,text,getAbsX()+x*SZ-2-offset,height - (getAbsY()+y*SZ-SZ/2)+2);
+        game.font.setColor(Color.WHITE);
+        game.font.draw(game.batch,text,getAbsX()+x*SZ-offset,height - (getAbsY()+y*SZ-SZ/2));
     }
 
     protected void drawIcon(int x, int y, int icon, MindmeltGDX game) {

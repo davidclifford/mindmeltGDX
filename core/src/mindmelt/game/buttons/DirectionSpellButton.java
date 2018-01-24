@@ -23,7 +23,7 @@ public class DirectionSpellButton extends SpellButton{
             int dir = player.getDirection();
             String direction = dirs[dir];
             String mess = String.format("You are facing %s",direction);
-            Message message = new Message(player.getX()-2,player.getY(),player.getZ(),mess, Color.BLUE,1000L);
+            Message message = new Message(player.getX(),player.getY(),player.getZ(),mess, Color.FIREBRICK,1000L);
             engine.addMessage(message);
             setExpiry(engine,SINGLEPRESS);
         }

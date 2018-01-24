@@ -126,7 +126,7 @@ public class ViewWindow extends Window {
 
         //Display any strings
         for(DispXYString xys:xyStrings ) {
-            drawString(xys.x, xys.y, xys.colour, xys.string, game);
+            drawMidString(xys.x, xys.y, xys.colour, xys.string, game);
         }
     }
 
