@@ -7,6 +7,7 @@ package mindmelt.game.objects;
 
 
 import mindmelt.game.engine.Engine;
+import mindmelt.game.maps.EntryExit;
 
 public class ObjPlayer extends Obj {
 
@@ -15,6 +16,10 @@ public class ObjPlayer extends Obj {
     private boolean xray = false;
     private boolean water = false;
     private boolean forcefield = false;
+    private int backX = 0;
+    private int backY = 0;
+    private int backZ = 0;
+    private String backMap = "";
 
     public ObjPlayer() {
         inventory = new Inventory(24);
@@ -69,5 +74,17 @@ public class ObjPlayer extends Obj {
 
     public void setForcefield(boolean forcefield) {
         this.forcefield = forcefield;
+    }
+
+    public void setBack(Engine engine) {
+        backX = getX();
+        backY = getY();
+        backZ = getZ();
+        backMap = engine.getWorld().getFilename();
+    }
+
+    public void goBack(Engine engine) {
+        EntryExit goBackTo = new EntryExit(0,0,0,backX,backY,backZ,backMap,"Back");
+        engine.moveToMap(goBackTo);
     }
 }

@@ -99,7 +99,7 @@ public class PlayScreen implements Screen, InputProcessor {
             else if (b==9) button = new SpellButton(b%7, b/7, b+135);
             else if (b==10) button = new SpellButton(b%7, b/7, b+135);
             else if (b==11) button = new ForcefieldSpellButton(b%7, b/7, b+135);
-            else if (b==12) button = new SpellButton(b%7, b/7, b+135);
+            else if (b==12) button = new BackSpellButton(b%7, b/7, b+135);
             else if (b==13) button = new SpellButton(b%7, b/7, b+135);
             button.setState(Button.UP);
             spellWindow.addElement(button);
