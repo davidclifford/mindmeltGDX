@@ -95,7 +95,7 @@ public class PlayScreen implements Screen, InputProcessor {
             else if (b==5) button = new XraySpellButton(b%7, b/7, b+135);
             else if (b==6) button = new WaterSpellButton(b%7, b/7, b+135);
             else if (b==7) button = new SpellButton(b%7, b/7, b+135);
-            else if (b==8) button = new SpellButton(b%7, b/7, b+135);
+            else if (b==8) button = new JumpSpellButton(b%7, b/7, b+135);
             else if (b==9) button = new SpellButton(b%7, b/7, b+135);
             else if (b==10) button = new SpellButton(b%7, b/7, b+135);
             else if (b==11) button = new ForcefieldSpellButton(b%7, b/7, b+135);
@@ -125,13 +125,6 @@ public class PlayScreen implements Screen, InputProcessor {
         setMouse(182);
 
         engine.setPlayerWait();
-
-        try {
-            String a = null;
-            int i = a.indexOf('x');
-        } catch (NullPointerException ex) {
-            Gdx.app.log("1","ERROR!");
-        }
     }
 
     private void setMouse(int sprite) {

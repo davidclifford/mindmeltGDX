@@ -6,7 +6,6 @@ import mindmelt.game.objects.ObjPlayer;
 
 public class BackSpellButton extends SpellButton{
 
-    static final float EXPIRY = 3*60;
     public BackSpellButton(int x, int y, int icon) {
         super(x, y, icon);
     }
