@@ -1,27 +1,17 @@
-package mindmelt.game.buttons;
+package mindmelt.game.spells;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import mindmelt.game.engine.Engine;
 import mindmelt.game.engine.Message;
 import mindmelt.game.maps.TileType;
 import mindmelt.game.objects.ObjPlayer;
 
-public class JumpSpellButton  extends SpellButton {
-    public JumpSpellButton(int x, int y, int icon) {
-        super(x, y, icon);
-    }
-
+public class JumpSpell extends Spell {
     private static final int MAXJUMP = 3;
 
     @Override
-    protected void activate(int x, int y, Engine engine) {
-        if (state==UP) {
-            state = DOWN;
-            Gdx.app.log("Spell","Jump");
+    public void activate(Engine engine) {
             jumpForward(engine);
-            setExpiry(engine,SINGLEPRESS);
-        }
     }
 
     private void jumpForward(Engine engine) {

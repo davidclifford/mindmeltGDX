@@ -2,12 +2,13 @@ package mindmelt.game.buttons;
 
 import com.badlogic.gdx.Gdx;
 import mindmelt.game.engine.Engine;
+import mindmelt.game.spells.Spell;
 
 public class ForcefieldSpellButton extends SpellButton{
 
     static final float EXPIRY = 3;
-    public ForcefieldSpellButton(int x, int y, int icon) {
-        super(x, y, icon);
+    public ForcefieldSpellButton(Spell spell, int x, int y, int icon) {
+        super(spell, x, y, icon);
     }
 
     @Override

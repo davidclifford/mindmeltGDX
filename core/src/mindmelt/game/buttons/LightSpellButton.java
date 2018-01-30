@@ -2,12 +2,13 @@ package mindmelt.game.buttons;
 
 import com.badlogic.gdx.Gdx;
 import mindmelt.game.engine.Engine;
+import mindmelt.game.spells.Spell;
 
 public class LightSpellButton extends SpellButton{
 
     static final float EXPIRY = 3*60;
-    public LightSpellButton(int x, int y, int icon) {
-        super(x, y, icon);
+    public LightSpellButton(Spell spell, int x, int y, int icon) {
+        super(spell, x, y, icon);
     }
 
     @Override

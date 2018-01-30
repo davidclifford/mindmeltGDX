@@ -1,6 +1,7 @@
 package mindmelt.game.engine;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.utils.TimeUtils;
 import mindmelt.game.MindmeltGDX;
 import mindmelt.game.buttons.SpellButton;
@@ -310,6 +311,12 @@ public class Engine {
 
     public void addMessage(Message message) {
         messages.add(message);
+    }
+
+    public void addMessage(String text) {
+        ObjPlayer player = getPlayer();
+        Message message = new Message(player.getX(),player.getY(),player.getZ(),text, Color.FIREBRICK,1000L);
+        addMessage(message);
     }
 
     public Message getMessage(int x, int y, int z) {

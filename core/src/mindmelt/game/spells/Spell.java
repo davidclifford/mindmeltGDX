@@ -45,9 +45,13 @@ public class Spell {
         this.learned = learned;
     }
 
-    public void update(Engine engine, float delta) {
+    public void update(Engine engine) {
 
     }
+
+    public void activate(Engine engine) {}
+
+    public void reset(Engine engine) {}
 
     public void render(MindmeltGDX game, float delta) {
 
