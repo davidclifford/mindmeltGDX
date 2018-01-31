@@ -14,13 +14,4 @@ public class TimedSpellButton extends SpellButton {
         spell.activate(engine);
     }
 
-    @Override
-    public void update(Engine engine) {
-        //if(!spell.isLearned()) return;
-        spell.update(engine);
-        if(spell.isActive())
-            state = DOWN;
-        else
-            state = UP;
-    }
 }

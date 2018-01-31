@@ -43,6 +43,7 @@ public class Button extends GuiElem {
 
     @Override
     public void renderThis(MindmeltGDX game, float delta) {
+        update(game.engine);
         if (state==UP) {
             drawIcon(0,0,activeIcon,game);
             drawIcon(0,0,upButton,game);
@@ -68,6 +69,8 @@ public class Button extends GuiElem {
             engine.debugChangeTiles();
         }
     }
+
+    public void update(Engine engine) {}
 
     public void reset() {
         state = UP;

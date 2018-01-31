@@ -5,9 +5,12 @@
  */
 package mindmelt.game.objects;
 
-
 import mindmelt.game.engine.Engine;
 import mindmelt.game.maps.EntryExit;
+import mindmelt.game.spells.Spell;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ObjPlayer extends Obj {
 
@@ -20,6 +23,7 @@ public class ObjPlayer extends Obj {
     private int backY = 0;
     private int backZ = 0;
     private String backMap = "";
+    private List<Spell> spells = new ArrayList<>();
 
     public ObjPlayer() {
         inventory = new Inventory(24);
@@ -36,6 +40,14 @@ public class ObjPlayer extends Obj {
     @Override
     public void update(Engine engine, float delta) {
         //auto stuff?
+    }
+
+    public void addSpell(Spell spell) {
+        spells.add(spell);
+    }
+
+    public List<Spell> getSpells() {
+        return spells;
     }
 
     public boolean isHolding(int obj) {

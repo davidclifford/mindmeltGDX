@@ -9,10 +9,12 @@ public class BackSpell extends Spell {
         Gdx.app.log("BackSpell","Save");
         ObjPlayer player = engine.getPlayer();
         player.setBack(engine);
+        setActive(true);
     }
     public void reset(Engine engine) {
         Gdx.app.log("BackSpell","Back");
         ObjPlayer player = engine.getPlayer();
         player.goBack(engine);
+        setActive(false);
     }
 }

@@ -22,6 +22,4 @@ public class ToggleSpellButton extends SpellButton {
             spell.reset(engine);
         }
     }
-
-    public void update(Engine engine) {}
 }

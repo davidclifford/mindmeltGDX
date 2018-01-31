@@ -46,8 +46,6 @@ public class PlayScreen implements Screen, InputProcessor {
     private Window backPackWindow;
     private Window statusWindow;
     private Window messageWindow;
-    private SpellButton button;
-    private List<SpellButton> activeButtons = new ArrayList<>();
 
     private boolean left;
     private boolean right;
@@ -86,27 +84,6 @@ public class PlayScreen implements Screen, InputProcessor {
         window.addElement(messageWindow);
         viewWindow.addElement(adjacentWindow);
 
-        //Set up spell buttons
-        for (int b=0;b<14;b++) {
-            if (b==0) button = new SpellButton(new Spell(),b%7, b/7, b+135);
-            else if (b==1) button = new SinglePressSpellButton(new CircleSpell(),b%7, b/7, b+135);
-            else if (b==2) button = new SinglePressSpellButton(new DirectionSpell(),b%7, b/7, b+135);
-            else if (b==3) button = new SinglePressSpellButton(new CoordsSpell(),b%7, b/7, b+135);
-            else if (b==4) button = new TimedSpellButton(new LightSpell(),b%7, b/7, b+135);
-            else if (b==5) button = new SpellButton(new Spell(),b%7, b/7, b+135);
-            else if (b==6) button = new SpellButton(new Spell(),b%7, b/7, b+135);
-            else if (b==7) button = new SpellButton(new Spell(),b%7, b/7, b+135);
-            else if (b==8) button = new SinglePressSpellButton(new JumpSpell(),b%7, b/7, b+135);
-            else if (b==9) button = new SpellButton(new Spell(),b%7, b/7, b+135);
-            else if (b==10) button = new SpellButton(new Spell(),b%7, b/7, b+135);
-            else if (b==11) button = new SpellButton(new Spell(),b%7, b/7, b+135);
-            else if (b==12) button = new ToggleSpellButton(new BackSpell(),b%7, b/7, b+135);
-            else if (b==13) button = new SpellButton(new Spell(),b%7, b/7, b+135);
-            button.setState(Button.UP);
-            spellWindow.addElement(button);
-            activeButtons.add(button);
-        }
-
         game.objects = new ObjectStore();
         //game.objects.convertObjects("OBJ.DAT","initial.obj");
         game.objects.loadObjects("initial");
@@ -117,8 +94,9 @@ public class PlayScreen implements Screen, InputProcessor {
         game.objects.initMap(game.world);
         game.player = (ObjPlayer) game.objects.getPlayer();
 
+        setSpellButtons(game.player); //default until game loaded
+
         engine = new Engine(game);
-        engine.setButtons(activeButtons);
         game.engine = engine;
 
         wilhelm = game.manager.get("sound/wilhelm.ogg");
@@ -126,6 +104,32 @@ public class PlayScreen implements Screen, InputProcessor {
         setMouse(182);
 
         engine.setPlayerWait();
+    }
+
+    private void setSpellButtons(ObjPlayer player) {
+        //Set up spell buttons
+        SpellButton button = null;
+        Spell spell = null;
+        for (int b=0;b<14;b++) {
+            if (b==0) button = new SpellButton(spell=new Spell(),b%7, b/7, b+135);
+            else if (b==1) button = new SinglePressSpellButton(spell=new CircleSpell(),b%7, b/7, b+135);
+            else if (b==2) button = new SinglePressSpellButton(spell=new DirectionSpell(),b%7, b/7, b+135);
+            else if (b==3) button = new SinglePressSpellButton(spell=new CoordsSpell(),b%7, b/7, b+135);
+            else if (b==4) button = new TimedSpellButton(spell=new LightSpell(),b%7, b/7, b+135);
+            else if (b==5) button = new SpellButton(spell=new Spell(),b%7, b/7, b+135);
+            else if (b==6) button = new SpellButton(spell=new Spell(),b%7, b/7, b+135);
+            else if (b==7) button = new SpellButton(spell=new Spell(),b%7, b/7, b+135);
+            else if (b==8) button = new SinglePressSpellButton(spell=new JumpSpell(),b%7, b/7, b+135);
+            else if (b==9) button = new SpellButton(spell=new Spell(),b%7, b/7, b+135);
+            else if (b==10) button = new SpellButton(spell=new Spell(),b%7, b/7, b+135);
+            else if (b==11) button = new SpellButton(spell=new Spell(),b%7, b/7, b+135);
+            else if (b==12) button = new ToggleSpellButton(spell=new BackSpell(),b%7, b/7, b+135);
+            else if (b==13) button = new SpellButton(spell=new Spell(),b%7, b/7, b+135);
+            //button.setState(Button.OFF);
+            spellWindow.addElement(button);
+            spell.setLearned(true);
+            player.addSpell(spell);
+        }
     }
 
     private void setMouse(int sprite) {
@@ -171,7 +175,7 @@ public class PlayScreen implements Screen, InputProcessor {
     }
 
     private void updateSpells() {
-        activeButtons.stream().forEach(sb -> sb.update(engine));
+        engine.getPlayer().getSpells().stream().forEach(sp -> sp.update(engine));
     }
 
     private void updateMouse() {

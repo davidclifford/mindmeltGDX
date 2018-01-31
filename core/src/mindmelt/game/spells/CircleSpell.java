@@ -9,6 +9,6 @@ public class CircleSpell extends Spell {
         Gdx.app.log("Spell", "Circle");
         EntryExit circle = new EntryExit(0, 0, 0, 40, 39, 0, "world", "Circle");
         engine.moveToMap(circle);
-        engine.addMessage("Return to the Stone circle");
+        engine.addMessage("Back to the Stone Circle");
     }
 }

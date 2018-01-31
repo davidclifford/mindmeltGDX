@@ -8,7 +8,7 @@ import mindmelt.game.spells.Spell;
 public class SpellButton extends Button {
 
     protected float time;
-    protected static final float SINGLEPRESS = 0.2f;
+    protected static final float SINGLEPRESS = 0.5f;
     protected Spell spell;
 
     public SpellButton(Spell spell, int x, int y, int icon) {
@@ -17,22 +17,20 @@ public class SpellButton extends Button {
     }
 
     protected void activate(int x, int y, Engine engine) {
-        if (state==OFF) return;
-        state = DOWN;
-        Gdx.app.log("Spell","Spell "+activeIcon);
-        setExpiry(engine,SINGLEPRESS);
-        spell.activate(engine);
     }
 
     public void update(Engine engine) {
-        if(state==OFF) return;
-        if(engine.getSystemTime()>time) {
+        if(!spell.isLearned())
+            state = OFF;
+        else if(spell.isActive())
+            state = DOWN;
+        else
             state = UP;
-        }
     }
 
     protected void setExpiry(Engine engine, float expiry) {
         time = engine.getSystemTime() + expiry;
+        Gdx.app.log("time=",""+time);
     }
     public float getTime() { return time; }
 }
