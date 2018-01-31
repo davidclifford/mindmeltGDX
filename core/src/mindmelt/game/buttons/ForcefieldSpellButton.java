@@ -6,7 +6,7 @@ import mindmelt.game.spells.Spell;
 
 public class ForcefieldSpellButton extends SpellButton{
 
-    static final float EXPIRY = 3;
+    static final long EXPIRY = 3L * 1000000000L;
     public ForcefieldSpellButton(Spell spell, int x, int y, int icon) {
         super(spell, x, y, icon);
     }
@@ -24,7 +24,7 @@ public class ForcefieldSpellButton extends SpellButton{
     @Override
     public void update(Engine engine) {
         if(state!=DOWN) return;
-        float systemTime = engine.getSystemTime();
+        long systemTime = engine.getSystemTime();
         if(systemTime>time) {
             state = UP;
             engine.getPlayer().setForcefield(false);

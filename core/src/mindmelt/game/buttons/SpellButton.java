@@ -7,8 +7,8 @@ import mindmelt.game.spells.Spell;
 
 public class SpellButton extends Button {
 
-    protected float time;
-    protected static final float SINGLEPRESS = 0.5f;
+    protected long time;
+    protected static final long SINGLEPRESS = 1000000000L/5L;
     protected Spell spell;
 
     public SpellButton(Spell spell, int x, int y, int icon) {
@@ -28,7 +28,7 @@ public class SpellButton extends Button {
             state = UP;
     }
 
-    protected void setExpiry(Engine engine, float expiry) {
+    protected void setExpiry(Engine engine, long expiry) {
         time = engine.getSystemTime() + expiry;
         Gdx.app.log("time=",""+time);
     }

@@ -178,8 +178,8 @@ public class Engine {
         }
     }
 
-    public float getSystemTime() {
-        return TimeUtils.nanoTime()/1000000000f;
+    public long getSystemTime() {
+        return TimeUtils.nanoTime();
     }
 
     public TileType getTile(int x, int y, int z) {
