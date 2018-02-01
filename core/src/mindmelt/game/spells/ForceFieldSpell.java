@@ -2,8 +2,8 @@ package mindmelt.game.spells;
 
 import mindmelt.game.engine.Engine;
 
-public class LightSpell extends TimedSpell {
-    static final long EXPIRY = 5L * 60L * 1000000000L;
+public class ForceFieldSpell extends TimedSpell {
+    static final long EXPIRY = 2L * 1000000000L;
 
     @Override
     public void activate(Engine engine) {
@@ -14,11 +14,7 @@ public class LightSpell extends TimedSpell {
     @Override
     public void update(Engine engine) {
         long elapsed = expiry - engine.getSystemTime();
-        if(elapsed<0L) {
-            setActive(false);
-            return;
-        }
-        float light = (EXPIRY-elapsed)/((float)EXPIRY);
-        engine.getPlayer().setLight(light);
+        setActive(elapsed>0L);
+        engine.getPlayer().setForcefield(isActive());
     }
 }

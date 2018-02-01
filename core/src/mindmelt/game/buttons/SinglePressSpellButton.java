@@ -22,7 +22,6 @@ public class SinglePressSpellButton extends SpellButton {
         if(!spell.isLearned()) {
             state = OFF;
         } else if(time>engine.getSystemTime()) {
-            Gdx.app.log("down=", "" + engine.getSystemTime());
             state = DOWN;
         } else {
             state = UP;
