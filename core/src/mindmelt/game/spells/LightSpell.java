@@ -8,16 +8,13 @@ public class LightSpell extends TimedSpell {
     @Override
     public void activate(Engine engine) {
         init(engine, EXPIRY);
-        setActive(true);
     }
 
     @Override
     public void update(Engine engine) {
         long elapsed = expiry - engine.getSystemTime();
-        if(elapsed<0L) {
-            setActive(false);
-            return;
-        }
+        setActive(elapsed>0L);
+        if(!isActive()) return;
         float light = (EXPIRY-elapsed)/((float)EXPIRY);
         engine.getPlayer().setLight(light);
     }

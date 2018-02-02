@@ -8,7 +8,6 @@ public class WaterSpell extends TimedSpell {
     @Override
     public void activate(Engine engine) {
         init(engine, EXPIRY);
-        setActive(true);
     }
 
     @Override
