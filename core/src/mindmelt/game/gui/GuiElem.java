@@ -176,6 +176,13 @@ public abstract class GuiElem {
         game.batch.draw(game.getTile(pixel), xx, height - yy);
     }
 
+    protected void plot2(int x, int y, Color color, MindmeltGDX game) {
+        plot(x,y,color,game);
+        plot(x+1,y,color,game);
+        plot(x,y+1,color,game);
+        plot(x+1,y+1,color,game);
+    }
+
     protected void drawText(int x, int y, Color color, String text, MindmeltGDX game) {
         game.font.setColor(color);
         game.font.draw(game.batch, text, getAbsX() + x, Gdx.graphics.getHeight() - getAbsY() - y);
@@ -232,10 +239,10 @@ public abstract class GuiElem {
     protected void zap(int x1, int y1, int x2, int y2, MindmeltGDX game) {
         float dx = (x2-x1);
         float dy = (y2-y1);
-        float dist = abs((int)dx)+abs((int)dy);
+        float dist = abs((int)dx)+abs((int)dy)*2;
         float xx1 = x1 * SZ + SZ / 2;
         float yy1 = y1 * SZ + SZ / 2;
-        for(int i=0; i<dist-1; i++) {
+        for(int i=0; i<dist; i++) {
             int rx = MathUtils.random(SZ)-SZ/2;
             int ry = MathUtils.random(SZ)-SZ/2;
             float xx2 = xx1+(dx/dist)*SZ+rx/2;
@@ -273,7 +280,7 @@ public abstract class GuiElem {
         int y = y0;
 
         for (int x = x0; x < x1; x++) {
-            plot(x,y,colour,game);
+            plot2(x,y,colour,game);
             if (d > 0) {
                 y = y + yi;
                 d = d - 2 * dx;
@@ -294,7 +301,7 @@ public abstract class GuiElem {
         int x = x0;
 
         for (int y = y0; y < y1; y++) {
-            plot(x, y, colour, game);
+            plot2(x, y, colour, game);
             if (d > 0) {
                 x = x + xi;
                 d = d - 2 * dy;
