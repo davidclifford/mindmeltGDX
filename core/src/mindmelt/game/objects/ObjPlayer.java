@@ -20,6 +20,7 @@ public class ObjPlayer extends Obj {
     private boolean water = false;
     private boolean forcefield = false;
     private boolean stun = false;
+    private boolean zap = false;
     private int backX = 0;
     private int backY = 0;
     private int backZ = 0;
@@ -95,6 +96,14 @@ public class ObjPlayer extends Obj {
 
     public void setStun(boolean stun) {
         this.stun = stun;
+    }
+
+    public boolean isZap() {
+        return zap;
+    }
+
+    public void setZap(boolean zap) {
+        this.zap = zap;
     }
 
     public void setBack(Engine engine) {

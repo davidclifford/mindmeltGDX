@@ -20,10 +20,17 @@ public class ViewWindow extends Window {
     private final int SIZE = 9;
     private final int HALF = SIZE / 2;
     private List<DispXY> dispList;
+    private List<Coords> zaps;
 
     public ViewWindow(int x, int y, int w, int h) {
         super(x, y, w, h);
         dispInit();
+    }
+
+    private class Coords {
+        int x;
+        int y;
+        Coords(int x, int y) {this.x=x; this.y=y;}
     }
 
     private class DispXY {
@@ -75,6 +82,7 @@ public class ViewWindow extends Window {
     private void displayPosition(int px, int py, int pz, int dir, MindmeltGDX game) {
         Engine engine = game.engine;
         ObjPlayer player = engine.getPlayer();
+        zaps = new ArrayList<>();
         int mask[][] = new int[SIZE][SIZE]; //0 = see & thru, 1 = see & not thru, 2 = not see & not thru
         float darkness = 0;
         if (!game.world.getLight())
@@ -109,8 +117,7 @@ public class ViewWindow extends Window {
                     List<Obj> objects = game.world.getObjects(sx, sy, sz);
                     if (objects != null) {
                         for (Obj ob : objects) {
-                            displayObject(HALF + xx, HALF + yy, ob, bright, game)
-//                            drawTile(HALF+xx, HALF+yy, ob.getIcon(),bright, game);
+                            displayObject(HALF + xx, HALF + yy, ob, bright, game);
                             DispXYString xys = new DispXYString(HALF + xx, HALF + yy, ob.getMessage(), Color.BLUE);
                             if (xys.string != "")
                                 xyStrings.add(xys);
@@ -132,10 +139,31 @@ public class ViewWindow extends Window {
         for (DispXYString xys : xyStrings) {
             drawMidString(xys.x, xys.y, xys.colour, xys.string, game);
         }
+        //Display Zaps
+        for(Coords coords : zaps) {
+            zapMonster(HALF,HALF,coords.x,coords.y,game);
+        }
     }
 
-    private void drawObject(int x, int y, Obj ob, float bright, MindmeltGDX game) {
-        drawTile(HALF+xx, HALF+yy, ob.getIcon(),bright,game);
+    private void displayObject(int x, int y, Obj ob, float bright, MindmeltGDX game) {
+        if(ob.isMonster() && (game.player.isStun() || game.player.isZap())) {
+            if(game.player.isStun()) {
+                long time = game.engine.getSystemTime();
+                if (time % 100000000L > 50000000L)
+                    drawTile(x, y, ob.getIcon(), bright / 2f, game);
+                else
+                    drawTile(x, y, ob.getIcon(), bright, game);
+            } else if(game.player.isZap()) {
+                drawTile(x, y, ob.getIcon(), bright, game);
+                zaps.add(new Coords(x,y));
+            }
+        } else {
+            drawTile(x, y, ob.getIcon(), bright, game);
+        }
+    }
+
+    private void zapMonster(int x1, int y1, int x2, int y2, MindmeltGDX game) {
+        zap(x1,y1,x2,y2,game);
     }
 
     @Override
