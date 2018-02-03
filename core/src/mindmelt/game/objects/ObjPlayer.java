@@ -19,6 +19,7 @@ public class ObjPlayer extends Obj {
     private boolean xray = false;
     private boolean water = false;
     private boolean forcefield = false;
+    private boolean stun = false;
     private int backX = 0;
     private int backY = 0;
     private int backZ = 0;
@@ -88,6 +89,14 @@ public class ObjPlayer extends Obj {
         this.forcefield = forcefield;
     }
 
+    public boolean isStun() {
+        return stun;
+    }
+
+    public void setStun(boolean stun) {
+        this.stun = stun;
+    }
+
     public void setBack(Engine engine) {
         backX = getX();
         backY = getY();
@@ -98,5 +107,9 @@ public class ObjPlayer extends Obj {
     public void goBack(Engine engine) {
         EntryExit goBackTo = new EntryExit(0,0,0,backX,backY,backZ,backMap,"Back");
         engine.moveToMap(goBackTo);
+    }
+
+    public void setHealthMax() {
+        strength = level*10 + 10;
     }
 }

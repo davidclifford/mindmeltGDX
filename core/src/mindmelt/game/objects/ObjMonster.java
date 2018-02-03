@@ -11,6 +11,7 @@ public class ObjMonster extends Obj {
     @Override
     public void update(Engine engine, float delta) {
         Obj player = engine.getObjects().getPlayer();
+        if(((ObjPlayer)player).isStun()) return;
         int px = player.getX();
         int py = player.getY();
 

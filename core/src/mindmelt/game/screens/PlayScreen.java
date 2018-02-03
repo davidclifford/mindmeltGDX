@@ -118,10 +118,10 @@ public class PlayScreen implements Screen, InputProcessor {
             else if (b==4) button = new TimedSpellButton(spell=new LightSpell(),b%7, b/7, b+135);
             else if (b==5) button = new TimedSpellButton(spell=new XraySpell(),b%7, b/7, b+135);
             else if (b==6) button = new TimedSpellButton(spell=new WaterSpell(),b%7, b/7, b+135);
-            else if (b==7) button = new SpellButton(spell=new Spell(),b%7, b/7, b+135);
+            else if (b==7) button = new TimedSpellButton(spell=new StunSpell(),b%7, b/7, b+135);
             else if (b==8) button = new SinglePressSpellButton(spell=new JumpSpell(),b%7, b/7, b+135);
             else if (b==9) button = new SpellButton(spell=new Spell(),b%7, b/7, b+135);
-            else if (b==10) button = new SpellButton(spell=new Spell(),b%7, b/7, b+135);
+            else if (b==10) button = new SinglePressSpellButton(spell=new HealthSpell(),b%7, b/7, b+135);
             else if (b==11) button = new TimedSpellButton(spell=new ForceFieldSpell(),b%7, b/7, b+135);
             else if (b==12) button = new ToggleSpellButton(spell=new BackSpell(),b%7, b/7, b+135);
             else if (b==13) button = new SpellButton(spell=new Spell(),b%7, b/7, b+135);
