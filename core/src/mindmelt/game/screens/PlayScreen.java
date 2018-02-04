@@ -11,9 +11,11 @@ import com.badlogic.gdx.graphics.TextureData;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import mindmelt.game.MindmeltGDX;
-import mindmelt.game.buttons.*;
+import mindmelt.game.buttons.SinglePressSpellButton;
+import mindmelt.game.buttons.SpellButton;
+import mindmelt.game.buttons.TimedSpellButton;
+import mindmelt.game.buttons.ToggleSpellButton;
 import mindmelt.game.engine.Engine;
-import mindmelt.game.gui.Button;
 import mindmelt.game.gui.GuiElem;
 import mindmelt.game.gui.Window;
 import mindmelt.game.maps.World;
@@ -23,7 +25,6 @@ import mindmelt.game.objects.ObjectStore;
 import mindmelt.game.spells.*;
 import mindmelt.game.windows.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -111,7 +112,7 @@ public class PlayScreen implements Screen, InputProcessor {
         SpellButton button = null;
         Spell spell = null;
         for (int b=0;b<14;b++) {
-            if (b==0) button = new SpellButton(spell=new Spell(),b%7, b/7, b+135);
+            if (b==0) button = new SinglePressSpellButton(spell=new MindMeltSpell(),b%7, b/7, b+135);
             else if (b==1) button = new SinglePressSpellButton(spell=new CircleSpell(),b%7, b/7, b+135);
             else if (b==2) button = new SinglePressSpellButton(spell=new DirectionSpell(),b%7, b/7, b+135);
             else if (b==3) button = new SinglePressSpellButton(spell=new CoordsSpell(),b%7, b/7, b+135);
@@ -124,7 +125,7 @@ public class PlayScreen implements Screen, InputProcessor {
             else if (b==10) button = new SinglePressSpellButton(spell=new HealthSpell(),b%7, b/7, b+135);
             else if (b==11) button = new TimedSpellButton(spell=new ForceFieldSpell(),b%7, b/7, b+135);
             else if (b==12) button = new ToggleSpellButton(spell=new BackSpell(),b%7, b/7, b+135);
-            else if (b==13) button = new SpellButton(spell=new Spell(),b%7, b/7, b+135);
+            else if (b==13) button = new ToggleSpellButton(spell=new MapSpell(),b%7, b/7, b+135);
             //button.setState(Button.OFF);
             spellWindow.addElement(button);
             spell.setLearned(true);

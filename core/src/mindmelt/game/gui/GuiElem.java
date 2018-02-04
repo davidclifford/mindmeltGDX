@@ -183,6 +183,14 @@ public abstract class GuiElem {
         plot(x+1,y+1,color,game);
     }
 
+    protected void plot(int pixSize, int x, int y, Color color, MindmeltGDX game) {
+        for(int p1=0;p1<pixSize;p1++) {
+            for(int p2=0;p2<pixSize;p2++) {
+                plot(x + p1, y + p2, color, game);
+            }
+        }
+    }
+
     protected void drawText(int x, int y, Color color, String text, MindmeltGDX game) {
         game.font.setColor(color);
         game.font.draw(game.batch, text, getAbsX() + x, Gdx.graphics.getHeight() - getAbsY() - y);

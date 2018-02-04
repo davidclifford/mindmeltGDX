@@ -26,6 +26,8 @@ public class ObjPlayer extends Obj {
     private int backZ = 0;
     private String backMap = "";
     private List<Spell> spells = new ArrayList<>();
+    private List<ObjPerson> mindmeltedPeople = new ArrayList<>();
+    private boolean mapActive = false;
 
     public ObjPlayer() {
         inventory = new Inventory(24);
@@ -56,6 +58,14 @@ public class ObjPlayer extends Obj {
         Obj holding = inventory.getHandObject();
         if(holding==null) return false;
         return (holding.getId()==obj);
+    }
+
+    public boolean isMapActive() {
+        return mapActive;
+    }
+
+    public void setMapActive(boolean mapActive) {
+        this.mapActive = mapActive;
     }
 
     public float getLight() {
@@ -120,5 +130,20 @@ public class ObjPlayer extends Obj {
 
     public void setHealthMax() {
         strength = level*10 + 10;
+    }
+
+    public boolean alreadyMindmelted(ObjPerson person) {
+        return (mindmeltedPeople.contains(person));
+    }
+
+    public void setMindmelted(ObjPerson person) {
+        if(mindmeltedPeople.contains(person)) return;
+        mindmeltedPeople.add(person);
+    }
+
+    public void levelUp() {
+        level++;
+        setHealthMax();
+        //set spells
     }
 }

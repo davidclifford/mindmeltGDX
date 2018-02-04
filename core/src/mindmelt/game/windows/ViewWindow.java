@@ -6,6 +6,7 @@ import mindmelt.game.MindmeltGDX;
 import mindmelt.game.engine.Engine;
 import mindmelt.game.engine.Message;
 import mindmelt.game.gui.Window;
+import mindmelt.game.maps.TileType;
 import mindmelt.game.objects.Obj;
 import mindmelt.game.objects.ObjPlayer;
 
@@ -145,6 +146,23 @@ public class ViewWindow extends Window {
         }
     }
 
+    private void displayMap(int mx, int my, int mz, MindmeltGDX game) {
+        int size = 50;
+        int pixSize = 6;
+        Engine engine = game.engine;
+        long time = engine.getSystemTime()/100000000L;
+        ObjPlayer player = engine.getPlayer();
+        for(int y=-size/2;y<size/2;y++) {
+            for (int x = -size/2; x < size/2; x++) {
+                TileType tile = engine.getTile(mx+x,my+y,mz);
+                plot(pixSize, x*pixSize+w/2,y*pixSize+h/2,tile.getColor(),game);
+            }
+        }
+        Color pixel = Color.WHITE;
+        if(time%2L==0) pixel = Color.BLACK;
+        plot(pixSize,w/2,h/2,pixel,game);
+    }
+
     private void displayObject(int x, int y, Obj ob, float bright, MindmeltGDX game) {
         if(ob.isMonster() && (game.player.isStun() || game.player.isZap())) {
             if(game.player.isStun()) {
@@ -176,7 +194,11 @@ public class ViewWindow extends Window {
         int playerZ = game.player.getZ();
         int direction = game.player.getDirection();
 
-        displayPosition(playerX,playerY,playerZ,direction,game);
+        if(game.player.isMapActive()) {
+            displayMap(playerX, playerY, playerZ, game);
+        } else {
+            displayPosition(playerX, playerY, playerZ, direction, game);
+        }
 
     }
 
