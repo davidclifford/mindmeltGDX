@@ -18,6 +18,7 @@ import mindmelt.game.buttons.ToggleSpellButton;
 import mindmelt.game.engine.Engine;
 import mindmelt.game.gui.GuiElem;
 import mindmelt.game.gui.Window;
+import mindmelt.game.maps.TileType;
 import mindmelt.game.maps.World;
 import mindmelt.game.objects.Obj;
 import mindmelt.game.objects.ObjPlayer;
@@ -195,16 +196,18 @@ public class PlayScreen implements Screen, InputProcessor {
         int py = engine.getPlayerY();
         int pz = engine.getPlayerZ();
         int dir = engine.getPlayerDirection();
-
+        int ox = px;
+        int oy = py;
+        int oz = pz;
         int a[] = {1,0,-1,0};
         int b[] = {0,-1,0,1};
 
         if ((up||down||right||left) && engine.isPlayerReady(delta)) {
-            if (up) {
+            if (up && !(right||left)) {
                 px-=b[dir];
                 py-=a[dir];
             }
-            if (down) {
+            if (down && !(right||left)) {
                 px+=b[dir];
                 py+=a[dir];
             }
@@ -217,9 +220,13 @@ public class PlayScreen implements Screen, InputProcessor {
                 py+=b[dir];
             }
             Obj topOb=engine.getTopObject(px,py,pz);
-            if (engine.isCheat() || (engine.canEnter(game.player,px,py,pz) && (topOb==null || !topOb.isBlocked()))) {
+            TileType tile = engine.getTile(px,py,pz);
+            if (engine.isCheat() || (engine.canEnter(game.player,px,py,pz) && (topOb==null || !topOb.isPlayerBlocked()))) {
                 engine.moveObjToMap(game.player,px, py, pz);
-            } else {
+                if (topOb!=null && (topOb.isPerson() || topOb.isAnimal())) {
+                    engine.moveObjToMap(topOb,ox,oy,oz);
+                }
+            } else if (tile==TileType.door){
                 engine.activateTile(px,py,pz);
             }
         }

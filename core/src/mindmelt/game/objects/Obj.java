@@ -300,10 +300,14 @@ public class Obj {
     
     public boolean isAnimal() {
         return type.equals("animal");
-    } 
-    
+    }
+
     public boolean isBlocked() {
         return isMonster() || isPlayer() || isPerson() || isAnimal();
+    }
+
+    public boolean isPlayerBlocked() {
+        return isMonster() || isPlayer();
     }
 
     public String getMessage() {
