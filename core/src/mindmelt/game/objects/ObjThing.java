@@ -16,6 +16,7 @@ public class ObjThing extends Obj {
 
     @Override
     public void update(Engine engine, float delta) {
+        updateMessage(engine);
         //throwing
     }
 }

@@ -43,6 +43,14 @@ public class ObjPlayer extends Obj {
 
     @Override
     public void update(Engine engine, float delta) {
+        updateMessage(engine);
+        if(strength<=0) {
+            //DEAD
+            EntryExit death = new EntryExit(0,0,0,40,39,0,"world","You are dead");
+            engine.moveToMap(death);
+            engine.addMessage("You are DEAD!");
+            setHealthMax();
+        }
         //auto stuff?
     }
 

@@ -8,6 +8,7 @@ import mindmelt.game.engine.Message;
 import mindmelt.game.gui.Window;
 import mindmelt.game.maps.TileType;
 import mindmelt.game.objects.Obj;
+import mindmelt.game.objects.ObjMonster;
 import mindmelt.game.objects.ObjPlayer;
 
 import java.util.ArrayList;
@@ -119,7 +120,7 @@ public class ViewWindow extends Window {
                     if (objects != null) {
                         for (Obj ob : objects) {
                             displayObject(HALF + xx, HALF + yy, ob, bright, game);
-                            DispXYString xys = new DispXYString(HALF + xx, HALF + yy, ob.getMessage(), Color.BLUE);
+                            DispXYString xys = new DispXYString(HALF + xx, HALF + yy, ob.getMessage(), ob.getMessageColour());
                             if (xys.string != "")
                                 xyStrings.add(xys);
                         }
@@ -173,7 +174,10 @@ public class ViewWindow extends Window {
                     drawTile(x, y, ob.getIcon(), bright, game);
             } else if(game.player.isZap()) {
                 drawTile(x, y, ob.getIcon(), bright, game);
-                zaps.add(new Coords(x,y));
+                if(!ob.isDead()) {
+                    ((ObjMonster) ob).zap(game.engine); //not good coding
+                    zaps.add(new Coords(x, y));
+                }
             }
         } else {
             drawTile(x, y, ob.getIcon(), bright, game);

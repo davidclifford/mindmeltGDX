@@ -238,7 +238,7 @@ public class Engine {
                 doEntryExit(x, y, z);
             } else {
                 EntryExit entry = getEntryExit(x, y, z);
-                player.setMessage(entry.getDescription());
+                player.setMessage(this, entry.getDescription());
             }
         }
         

@@ -15,5 +15,8 @@ public class ZapSpell extends TimedSpell {
         long elapsed = expiry - engine.getSystemTime();
         setActive(elapsed>0L);
         engine.getPlayer().setZap(isActive());
+        if(!isActive()) {
+            engine.getObjects().resetZap();
+        }
     }
 }

@@ -114,4 +114,10 @@ public class ObjectStore {
         if(ob<0 || ob>NUM_OBJECTS-1) return null;
         return objects[ob];
     }
+
+    public void resetZap() {
+        current.stream().forEach(ob -> {
+            if(ob.isMonster()) ((ObjMonster)ob).setZapped(false);
+        } );
+    }
 }

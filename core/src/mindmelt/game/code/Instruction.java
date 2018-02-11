@@ -164,7 +164,7 @@ public class Instruction {
     }
 
     private boolean doMessage(Trigger trig, Engine engine) {
-        engine.addMessage(new Message(trig.getX(),trig.getY(),trig.getZ(),text, Color.BLUE, 1000L));
+        engine.addMessage(new Message(trig.getX(),trig.getY(),trig.getZ(),text, Color.CYAN, 1000L));
         return true;
     }
 

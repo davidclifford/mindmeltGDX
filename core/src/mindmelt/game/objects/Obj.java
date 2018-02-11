@@ -3,10 +3,15 @@ package mindmelt.game.objects;
 
 import java.util.List;
 import java.util.Random;
+
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.math.MathUtils;
 import mindmelt.game.engine.Engine;
+import mindmelt.game.engine.Message;
 import mindmelt.game.maps.World;
 
 public class Obj {
+    public static final int DEAD_ICON = 183;
     public int id = 0;
     public int x = 0;
     public int y = 0;
@@ -18,7 +23,9 @@ public class Obj {
     public float speed = 0.3f;
     public float wait = 0;
     public String message = "";
-    
+    public Color messColour;
+    private long expiry = 0;
+
     public Obj inside = null;
 
     public Inventory inventory = new Inventory();
@@ -307,22 +314,36 @@ public class Obj {
     }
 
     public boolean isPlayerBlocked() {
-        return isMonster() || isPlayer();
+        return (isMonster() && !isDead());
     }
 
     public String getMessage() {
         return message;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    private void setExpiry(Engine engine) {
+        expiry = engine.getSystemTime()+1000000000L;
     }
-    
+
+    public void setMessage(Engine engine, String message) {
+        this.message = message;
+        setExpiry(engine);
+    }
+
+    public void setMessage(Engine engine, String message, Color colour) {
+        setMessage(engine, message);
+        this.messColour = colour;
+    }
+
+    public void updateMessage(Engine engine) {
+        if(engine.getSystemTime()>=expiry) {
+            message = "";
+        }
+    }
     public boolean isReady(float delta) {
         wait+=delta;
-        if (wait>=speed) {
+        if (!isDead() && wait>=speed) {
             wait=0;
-            setMessage("");
             return true;
         }
         return false;
@@ -334,6 +355,7 @@ public class Obj {
     }
 
     public void update(Engine engine, float delta) {
+        updateMessage(engine);
         int dx = x;
         int dy = y;
 
@@ -354,4 +376,30 @@ public class Obj {
         return (s<0) ? -1 : (s>0) ? 1 : 0;
     }
 
+    public void attack(Engine engine, int hits) {
+        hits(engine, hits);
+    }
+
+    public void attack(Engine engine) {}
+
+    public void talkTo(Engine engine) {}
+
+    public void hits(Engine engine, int hits) {
+        if(strength<=0) return; //already dead
+        strength -= hits;
+        strength = (strength<0) ? 0 : strength;
+        Color colour = Color.GREEN;
+        if(strength<20) colour = Color.YELLOW;
+        if(strength<10) colour = Color.RED;
+        String damage = ""+hits;
+        setMessage(engine,damage,colour);
+    }
+
+    public Color getMessageColour() {
+        return messColour;
+    }
+
+    public boolean isDead() {
+        return (strength<=0);
+    }
 }
