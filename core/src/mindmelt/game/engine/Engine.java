@@ -210,7 +210,7 @@ public class Engine {
     public int getPlayerY() { return objects.getPlayer().getY(); }
     public int getPlayerZ() { return objects.getPlayer().getZ(); }
     public int getPlayerDirection() { return objects.getPlayer().getDirection(); }
-    public boolean isPlayerReady(float delta) { return objects.getPlayer().isReady(delta); }
+    public boolean isPlayerReady(Engine engine) { return objects.getPlayer().isReady(engine); }
 
     public void activateTile(int x, int y, int z) {
         Obj player = getPlayer();

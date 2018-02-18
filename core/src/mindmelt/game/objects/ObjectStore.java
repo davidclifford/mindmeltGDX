@@ -66,8 +66,8 @@ public class ObjectStore {
                 Obj in = objects[inside];
                 int icon = Integer.parseInt(line[11]);
                 Obj ob = Obj.builder(type).id(id).name(name).description(desc).setCoords(x,y,z).inside(in).mapId(mapId).order(order).strength(strength).icon(icon);
-                ob.setSpeed(rand.nextFloat()+0.2f);
-                if(id==1) ob.setSpeed(0.2f);
+                ob.setSpeed(rand.nextInt(10)+10L);
+                if(id==1) ob.setSpeed(2L);
                 objects[id] = ob;
             }
         } catch(Exception e) {

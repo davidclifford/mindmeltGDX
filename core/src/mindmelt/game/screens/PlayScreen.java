@@ -202,7 +202,7 @@ public class PlayScreen implements Screen, InputProcessor {
         int a[] = {1,0,-1,0};
         int b[] = {0,-1,0,1};
 
-        if ((up||down||right||left) && engine.isPlayerReady(delta)) {
+        if ((up||down||right||left) && engine.isPlayerReady(engine)) {
             if (up && !(right||left)) {
                 px-=b[dir];
                 py-=a[dir];
@@ -225,7 +225,9 @@ public class PlayScreen implements Screen, InputProcessor {
                 engine.moveObjToMap(game.player,px, py, pz);
                 if (topOb!=null && (topOb.isPerson() || topOb.isAnimal())) {
                     engine.moveObjToMap(topOb,ox,oy,oz);
+                    topOb.resetWait(engine);
                 }
+                game.player.resetWait(engine);
             } else if (tile==TileType.door){
                 engine.activateTile(px,py,pz);
             }

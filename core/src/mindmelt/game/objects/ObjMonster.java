@@ -15,8 +15,7 @@ public class ObjMonster extends Obj {
     @Override
     public void update(Engine engine, float delta) {
         updateMessage(engine);
-
-        if(isReady(delta)) {
+        if(isReady(engine) && !isDead()) {
             Obj player = engine.getObjects().getPlayer();
             if (((ObjPlayer) player).isStun()) return;
             int px = player.getX();
@@ -56,6 +55,7 @@ public class ObjMonster extends Obj {
             } else {
                 //engine.activateTile(dx, dy, z);
             }
+            resetWait(engine);
         }
     }
 

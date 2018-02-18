@@ -20,8 +20,8 @@ public class Obj {
     public int strength;
     public int order;
     public int dir = 0;
-    public float speed = 0.3f;
-    public float wait = 0;
+    public long speed = 1000000000L/3L;
+    public long wait;
     public String message = "";
     public Color messColour;
     private long expiry = 0;
@@ -168,19 +168,19 @@ public class Obj {
         return this;
     }
 
-    public float getSpeed() {
+    public long getSpeed() {
         return speed;
     }
 
-    public void setSpeed(float speed) {
-        this.speed = speed;
+    public void setSpeed(long speed) {
+        this.speed = speed*100000000L;
     }
 
-    public float getWait() {
+    public long getWait() {
         return wait;
     }
 
-    public void setWait(float wait) {
+    public void setWait(long wait) {
         this.wait = wait;
     }
 
@@ -340,13 +340,8 @@ public class Obj {
             message = "";
         }
     }
-    public boolean isReady(float delta) {
-        wait+=delta;
-        if (!isDead() && wait>=speed) {
-            wait=0;
-            return true;
-        }
-        return false;
+    public boolean isReady(Engine engine) {
+        return (engine.getSystemTime()>wait);
     }
 
     public void rotate(int d) {
@@ -356,6 +351,11 @@ public class Obj {
 
     public void update(Engine engine, float delta) {
         updateMessage(engine);
+
+        //don't move if next to player
+        ObjPlayer player = engine.getPlayer();
+        if(abs(x-player.getX())<=1 && abs(y-player.getY())<=1 ) return;
+
         int dx = x;
         int dy = y;
 
@@ -365,11 +365,18 @@ public class Obj {
             dy += rand.nextInt(2)*2-1;
         }
 
-        if (isReady(delta)) {
+        if (isReady(engine)) {
             if (engine.canEnter(this, dx, dy, z)) {
                 engine.moveObjToMap(this, dx, dy, z);
+                resetWait(engine);
             }
         }
+    }
+
+    private int abs(int i) { return (i<0) ? -i : i; }
+
+    public void resetWait(Engine engine) {
+        wait = engine.getSystemTime() + speed;
     }
 
     protected int sign(int s) {
