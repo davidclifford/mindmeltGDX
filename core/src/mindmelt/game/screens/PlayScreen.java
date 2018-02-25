@@ -267,6 +267,27 @@ public class PlayScreen implements Screen, InputProcessor {
 
     @Override
     public boolean keyDown(int keycode) {
+        if (engine.getPlayer().isTalking()) {
+            return talkInput(keycode);
+        } else {
+            return moveInput(keycode);
+        }
+    }
+
+    private boolean talkInput(int keycode) {
+        ObjPlayer player = engine.getPlayer();
+        switch (keycode) {
+            case Input.Keys.ESCAPE:
+                player.stopTalking(engine);
+                break;
+            default:
+                player.talkInput(engine, keycode);
+                break;
+        }
+        return true;
+    }
+
+    private boolean moveInput(int keycode) {
         switch (keycode) {
             case Input.Keys.ESCAPE:
                 exitGame = true;

@@ -1,13 +1,13 @@
 id,name,desc,type,x,y,z,map,inside,order,strength,icon
 1,player,player,player,40,39,0,1,0,0,20,61
 //aporto
-2,gib,Gib,type,8,38,0,3,0,0,32,97
+2,gib,Gib,person,8,38,0,3,0,0,32,97
 3,minton,Minton,person,36,18,0,3,0,0,6,93
 4,winino,Winino,person,30,13,0,3,0,0,39,94
 5,tetian,Tetian,person,30,34,0,3,0,0,49,93
 6,sellene,Sellene,person,11,4,0,3,0,0,32,94
-7,cat,Cat,type,31,9,0,3,0,0,5,99
-8,dog,Dog,type,10,40,0,3,0,0,12,100
+7,cat,Cat,animal,31,9,0,3,0,0,5,99
+8,dog,Dog,animal,10,40,0,3,0,0,12,100
 //kiston
 9,horse,Horse,animal,8,1,0,7,0,0,19,119
 10,horiz,Horiz,person,4,8,0,7,0,0,14,97
@@ -18,7 +18,7 @@ id,name,desc,type,x,y,z,map,inside,order,strength,icon
 14,Kesla,Kesla,person,34,33,0,9,0,0,32,94
 15,Marie,Marie,person,34,18,0,9,0,0,41,89
 //cave
-16,cat,cat,animal,11,2,0,5,0,0,48,100
+16,cat,Cat,animal,11,2,0,5,0,0,48,100
 //hove
 17,Yik,Yik,person,29,22,0,6,0,0,21,93
 18,Dofty,Dofty,person,14,13,0,6,0,0,37,89
@@ -42,7 +42,7 @@ id,name,desc,type,x,y,z,map,inside,order,strength,icon
 //world
 32,Uptik,Uptik,person,32,14,0,1,0,0,29,92
 33,Rinnor,Rinnor,animal,60,20,0,1,0,0,2,91
-34,madcol,Mad Col,type,8,57,0,1,0,0,26,84
+34,madcol,Mad Col,person,8,57,0,1,0,0,26,84
 //nowhere
 35,name,desc,type,0,0,0,0,0,0,34,62
 36,name,desc,type,0,0,0,0,0,0,34,78
@@ -90,7 +90,7 @@ id,name,desc,type,x,y,z,map,inside,order,strength,icon
 //world
 67,Quoxonia,Quoxonia,person,22,62,0,1,0,0,0,90
 68,Finbar,Finbar,person,32,56,0,1,0,0,0,91
-69,Fingle,Fingle,type,62,54,0,1,0,0,0,92
+69,Fingle,Fingle,person,62,54,0,1,0,0,0,92
 //pennin
 70,drong,Drong,person,9,24,0,9,0,0,0,93
 71,arias,Arias,person,23,36,0,9,0,0,0,93

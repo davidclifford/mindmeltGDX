@@ -327,4 +327,9 @@ public class Engine {
         messages.expireMessages();
     }
 
+    public void talkTo(int person) {
+        //can also include talking pictures
+
+    }
+
 }

@@ -4,8 +4,12 @@ import mindmelt.game.code.Code;
 import mindmelt.game.code.CodeStore;
 import mindmelt.game.code.Instruction;
 import mindmelt.game.code.Trigger;
+import mindmelt.game.engine.Engine;
 import mindmelt.game.objects.Obj;
 import mindmelt.game.objects.ObjPlayer;
+import mindmelt.game.talk.Dialogue;
+import mindmelt.game.talk.Talk;
+import mindmelt.game.talk.TalkStore;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -21,6 +25,7 @@ public class World implements ITileAccess {
     private CodeStore codeStore = new CodeStore();
     private List<Area> areas = new ArrayList<>();
     private List<Area> nomonsters = new ArrayList<>();
+    private TalkStore talkStore;
 
     private int id = 0;
     private int version = 0;
@@ -259,11 +264,42 @@ public class World implements ITileAccess {
     }
     
     private void readTalk(BufferedReader input) {
+        boolean finished = false;
+        talkStore = new TalkStore();
         String line;
-        while( (line=readLine(input))!= null) {
+        int id = 0;
+        while (!finished) {
+            while ((line = readLine(input)) != null && !line.startsWith("-")) {
+                String kv[] = keyValue(line);
+                switch (kv[0]) {
+                    case "id":
+                        id = Integer.parseInt(kv[1]);
+                        break;
+                    default:
+                        System.out.println(String.format("Unknown talk property %s", kv[1]));
+                        return;
+                }
+            }
+            Talk talk = new Talk(id);
+            talkStore.addTalk(talk);
+            while ((line = readLine(input)) != null && !line.startsWith("-")) {
+                String keyword = "";
+                String reply = "";
+                int replyCode = 0;
+                String params[] = line.split(",");
+                if(params.length>=2) {
+                    keyword = params[0];
+                    reply = params[1];
+                }
+                if (params.length==3) {
+                    replyCode = Integer.parseInt(params[2]);
+                }
+                Dialogue dialogue = new Dialogue(keyword, reply, replyCode);
+                talk.addDialogue(dialogue);
+            }
             if(line.startsWith("--"))
-                return;
-        }        
+                finished = true;
+        }
     }
     
     private void loadWorld(String mapName) {
@@ -404,5 +440,9 @@ public class World implements ITileAccess {
 
     public CodeStore getCodeStore() {
         return codeStore;
+    }
+
+    public String talkTo(int id, String word, Engine engine) {
+        return talkStore.getReply(id, word, engine);
     }
 }

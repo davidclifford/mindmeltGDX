@@ -5,6 +5,8 @@
  */
 package mindmelt.game.objects;
 
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Color;
 import mindmelt.game.engine.Engine;
 import mindmelt.game.maps.EntryExit;
 import mindmelt.game.spells.Spell;
@@ -28,6 +30,9 @@ public class ObjPlayer extends Obj {
     private List<Spell> spells = new ArrayList<>();
     private List<ObjPerson> mindmeltedPeople = new ArrayList<>();
     private boolean mapActive = false;
+    private boolean talking = false;
+    private Obj personTalkingTo;
+    private String saying = "";
 
     public ObjPlayer() {
         inventory = new Inventory(24);
@@ -39,6 +44,14 @@ public class ObjPlayer extends Obj {
 
     public void setLevel(int level) {
         this.level = level;
+    }
+
+    public boolean isTalking() {
+        return talking;
+    }
+
+    public void setTalking(boolean talking) {
+        this.talking = talking;
     }
 
     @Override
@@ -153,5 +166,49 @@ public class ObjPlayer extends Obj {
         level++;
         setHealthMax();
         //set spells
+    }
+
+
+    public void sayThis(Engine engine, String message) {
+        if(!talking) return;
+        setExpiry(engine,1000);
+        messColour = Color.WHITE;
+        this.message = "You Say> "+message+"#";
+    }
+
+    public void startTalking(Engine engine, Obj person) {
+        talking = true;
+        personTalkingTo = person;
+        saying = "";
+        sayThis(engine,  saying);
+    }
+
+    public void stopTalking(Engine engine) {
+        talking = false;
+        personTalkingTo.setExpiry(engine,1);
+        personTalkingTo = null;
+        saying = "";
+        setMessage(engine, "");
+        setExpiry(engine,0);
+    }
+
+    public void talkInput(Engine engine, int input) {
+        String in = Input.Keys.toString(input).toLowerCase();
+        if(input==Input.Keys.BACKSPACE ) {
+            if (saying.length() > 0) {
+                saying = saying.substring(0, saying.length() - 1);
+            }
+        } else if (input==Input.Keys.ENTER) {
+            if(saying.length()==0) {
+                saying = "bye";
+            }
+            personTalkingTo.replyTo(engine, saying);
+            if(saying.equals("bye"))
+                stopTalking(engine);
+            saying = "";
+        } else {
+            saying += in;
+        }
+        sayThis(engine, saying );
     }
 }

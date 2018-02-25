@@ -321,8 +321,12 @@ public class Obj {
         return message;
     }
 
-    private void setExpiry(Engine engine) {
+    protected void setExpiry(Engine engine) {
         expiry = engine.getSystemTime()+1000000000L;
+    }
+
+    protected void setExpiry(Engine engine, int secs) {
+        expiry = engine.getSystemTime()+(secs*1000000000L);
     }
 
     public void setMessage(Engine engine, String message) {
@@ -389,7 +393,15 @@ public class Obj {
 
     public void attack(Engine engine) {}
 
-    public void talkTo(Engine engine) {}
+    public void talkTo(Engine engine) {
+        engine.getPlayer().startTalking(engine, this);
+    }
+
+    public void replyTo(Engine engine, String saying) {
+        String reply = engine.getWorld().talkTo(id, saying, engine);
+        setMessage(engine,reply,Color.GREEN);
+        setExpiry(engine,1000);
+    }
 
     public void hits(Engine engine, int hits) {
         if(strength<=0) return; //already dead
