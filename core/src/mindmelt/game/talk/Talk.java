@@ -4,12 +4,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Talk {
-    int id;
+    private int id;
+    private boolean sayfirst;
+    private boolean talkfirst;
     List<Dialogue> dialogue;
 
     public Talk(int id) {
         this.id = id;
         this.dialogue = new ArrayList<>();
+    }
+
+    public boolean isSayfirst() {
+        return sayfirst;
+    }
+
+    public void setSayfirst(boolean sayfirst) {
+        this.sayfirst = sayfirst;
+    }
+
+    public boolean isTalkfirst() {
+        return talkfirst;
+    }
+
+    public void setTalkfirst(boolean talkfirst) {
+        this.talkfirst = talkfirst;
     }
 
     public Dialogue getReply(String word) {

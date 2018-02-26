@@ -268,6 +268,8 @@ public class World implements ITileAccess {
         talkStore = new TalkStore();
         String line;
         int id = 0;
+        boolean sayfirst = false;
+        boolean talkfirst = false;
         while (!finished) {
             while ((line = readLine(input)) != null && !line.startsWith("-")) {
                 String kv[] = keyValue(line);
@@ -275,12 +277,20 @@ public class World implements ITileAccess {
                     case "id":
                         id = Integer.parseInt(kv[1]);
                         break;
+                    case "sayfirst":
+                        sayfirst = Integer.parseInt(kv[1])==1;
+                        break;
+                    case "talkfirst":
+                        talkfirst = Integer.parseInt(kv[1])==1;
+                        break;
                     default:
                         System.out.println(String.format("Unknown talk property %s", kv[1]));
                         return;
                 }
             }
             Talk talk = new Talk(id);
+            talk.setSayfirst(sayfirst);
+            talk.setTalkfirst(talkfirst);
             talkStore.addTalk(talk);
             while ((line = readLine(input)) != null && !line.startsWith("-")) {
                 String keyword = "";
@@ -297,7 +307,7 @@ public class World implements ITileAccess {
                 Dialogue dialogue = new Dialogue(keyword, reply, replyCode);
                 talk.addDialogue(dialogue);
             }
-            if(line.startsWith("--"))
+            if(line==null || line.startsWith("--"))
                 finished = true;
         }
     }
