@@ -13,13 +13,13 @@ to=61,29,0
 --
 @code
 Reply 63,1
-GotObject 148
-Message Put back my spinning wheel
+HasObject 148
+Say Put back my spinning wheel
 -
 Reply 6,1
-GotObject 147
-MoveObject 9,2,1,147
-Message I'll have my Moonball back!
+HasObject 147
+MoveObject 9,2,0,147
+Say I'll have my Moonball back!
 --
 @talk
 id=6
@@ -34,13 +34,13 @@ dontknow,Ask someone else
 -
 id=63
 -
-name,Tetia,1
-job,I weave cloth,1
-weave,Weave cloth,1
-cloth,For my husband,1
-husband,The tailor,1
-tailor,He's around here somewhere,1
-bye,Bye
+name,Tetia
+job,I weave cloth
+weave,Weave cloth
+cloth,For my husband
+husband,The tailor
+tailor,He's around here somewhere
+bye,Bye,1
 dontknow,Ask my husband
 -
 id=64

@@ -38,6 +38,10 @@ public class Inventory {
 
     public void objToInventory(Obj obj) {
         objects.add(obj);
+        for(int s=0; s<inventorySize; s++) {
+            if (slot[s]==null)
+                slot[s] = obj;
+        }
     }
 
     public List<Obj> getObjects() {

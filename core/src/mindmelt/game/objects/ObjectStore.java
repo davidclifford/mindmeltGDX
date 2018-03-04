@@ -103,6 +103,10 @@ public class ObjectStore {
         return objects[id].x==x && objects[id].y==y &&objects[id].z==z;
     }
 
+    public boolean isObjectIn(int obj, Obj insideOf) {
+        return (objects[obj].inside == insideOf);
+    }
+
     public void addToActiveObjects(Obj ob) {
         if (!ob.isInMap()) 
             return;

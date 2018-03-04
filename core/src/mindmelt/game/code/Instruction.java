@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Color;
 import mindmelt.game.engine.Engine;
 import mindmelt.game.engine.Message;
 import mindmelt.game.maps.TileType;
+import mindmelt.game.objects.Obj;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
@@ -71,10 +72,14 @@ public class Instruction {
         Gdx.app.log("Command",String.format("%s %s",command,text));
         if(command.equals("Message")) {
             return doMessage(trigger, engine);
+        } else if(command.equals("Say")) {
+            return say(trigger, engine);
         } else if(command.equals("Execute")) {
             return executeRoutine(trigger, engine);
         } else if (command.equals("GotObject")) {
             return gotObject(trigger, engine);
+        } else if (command.equals("HasObject")) {
+            return hasObject(trigger, engine);
         } else if (command.equals("OpenClose")) {
             return openClose(trigger, engine);
         } else if (command.equals("Open")) {
@@ -89,12 +94,19 @@ public class Instruction {
             return isType(trigger, engine);
         } else if (command.equals("ObjectAt")) {
             return objectAt(trigger, engine);
+        } else if (command.equals("ObjectIn")) {
+            return objectIn(trigger, engine);
+        } else if (command.equals("GetObject")) {
+            return getObject(trigger, engine);
         } else if (command.equals("MoveObject")) {
             return moveObject(trigger, engine);
         } else if (command.equals("MovePlayer")) {
             return movePlayer(trigger, engine);
         } else if (command.equals("AtPosition")) {
-            return atPosition(trigger, engine);        }
+            return atPosition(trigger, engine);
+        } else if (command.equals("MoveObjectInto")) {
+            return moveObjectInto(trigger, engine);
+        }
         return true;
     }
 
@@ -115,6 +127,16 @@ public class Instruction {
         int tz = iargs.get(2);
         int ob = iargs.get(3);
         engine.moveObjToMap(ob,tx,ty,tz);
+        return true;
+    }
+
+    private boolean getObject(Trigger trigger, Engine engine) {
+        engine.getObjects().getObject(iargs.get(0)).moveToObject(engine.getPlayer(),engine.getWorld());
+        return true;
+    }
+
+    private boolean moveObjectInto(Trigger trigger, Engine engine) {
+        engine.getObjects().getObject(iargs.get(0)).moveToObject(engine.getObjects().getObject(iargs.get(1)),engine.getWorld());
         return true;
     }
 
@@ -168,6 +190,20 @@ public class Instruction {
         return true;
     }
 
+    private boolean say(Trigger trig, Engine engine) {
+        Obj person = engine.getObjects().getObject(trig.getX());
+        int x = person.getX();
+        int y = person.getY();
+        int z = person.getZ();
+        engine.addMessage(new Message(x,y,z, text, Color.CYAN, 1000L));
+        return true;
+    }
+
+    private boolean hasObject(Trigger trigger, Engine engine) {
+        int obj = iargs.get(0);
+        return (engine.getPlayer().isHolding(obj) || engine.getObjects().isObjectIn(obj,engine.getPlayer()));
+    }
+
     private boolean gotObject(Trigger trigger, Engine engine) {
         int obj = iargs.get(0);
         return (engine.getPlayer().isHolding(obj));
@@ -179,6 +215,10 @@ public class Instruction {
         int z = iargs.get(2);
         openCloseIt(x,y,z,engine);
         return true;
+    }
+
+    private boolean objectIn(Trigger trigger, Engine engine) {
+        return (engine.getObjects().getObject(iargs.get(0)).isInside(iargs.get(1)));
     }
 
     private boolean open(Trigger trigger, Engine engine) {

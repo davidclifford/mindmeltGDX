@@ -57,6 +57,10 @@ public class Obj {
         return (this.x == x && this.y == y && this.z == z);
     }
 
+    public boolean isInside(int container) {
+        return isInObject() && inside.getId()==container;
+    }
+
     public void moveToObject(Obj obTo, World world) {
         if (isInMap()) unlink(world);
         if (isInObject()) unlink();

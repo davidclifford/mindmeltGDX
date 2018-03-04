@@ -125,17 +125,17 @@ id,name,desc,type,x,y,z,map,inside,order,strength,icon
 97,name,desc,type,0,0,0,0,0,0,0,60
 98,name,desc,type,0,0,0,0,0,0,0,60
 99,name,desc,type,0,0,0,0,0,0,0,60
-100,scroll,X-ray scroll,thing,44,64,0,0,0,0,0,102
-101,scroll,Stun scroll,thing,68,64,0,0,0,0,0,102
-102,scroll,Zap scroll,thing,67,64,0,0,0,0,0,102
-103,scroll,Heal scroll,thing,58,64,0,0,0,0,0,102
-104,scroll,Back scroll,thing,45,64,0,0,0,0,0,102
-105,scroll,Overview scroll,thing,69,64,0,0,0,0,0,102
-106,key,Jail key,thing,55,64,0,0,0,0,0,103
-107,money,Bag of Money,thing,72,64,0,0,0,0,0,105
-108,letter,Letter,thing,80,64,0,0,0,0,0,106
-109,book,Stories,thing,78,64,0,0,0,0,0,107
-110,recipe,Recipe,thing,52,64,0,0,0,0,0,106
+100,scroll,X-ray scroll,thing,44,64,0,0,44,0,0,102
+101,scroll,Stun scroll,thing,68,64,0,0,68,0,0,102
+102,scroll,Zap scroll,thing,67,64,0,0,67,0,0,102
+103,scroll,Heal scroll,thing,58,64,0,0,58,0,0,102
+104,scroll,Back scroll,thing,45,64,0,0,45,0,0,102
+105,scroll,Overview scroll,thing,69,64,0,0,69,0,0,102
+106,key,Jail key,thing,55,64,0,0,55,0,0,103
+107,money,Bag of Money,thing,72,64,0,0,72,0,0,105
+108,letter,Letter,thing,80,64,0,0,80,0,0,106
+109,book,Stories,thing,78,64,0,0,78,0,0,107
+110,recipe,Recipe,thing,52,64,0,0,52,0,0,106
 //kiston
 111,key,King key,thing,2,3,0,7,0,0,0,104
 //aporto
