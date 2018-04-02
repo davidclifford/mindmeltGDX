@@ -47,7 +47,7 @@ public class PlayScreen implements Screen, InputProcessor {
     private Window adjacentWindow;
     private Window backPackWindow;
     private Window statusWindow;
-    private Window messageWindow;
+    private Window textWindow;
 
     private boolean left;
     private boolean right;
@@ -76,14 +76,14 @@ public class PlayScreen implements Screen, InputProcessor {
         backPackWindow = (BackpackWindow) new BackpackWindow(11,1, 8, 3).setName("Backpack");
         statusWindow = (Window) new StatusWindow(11,5, 8, 2).setName("Status");
         spellWindow = (SpellWindow) new SpellWindow(11,8,7,2).setName("Spells");
-        messageWindow = (Window) new Window(0,11,20,4).setName("Messages");
+        textWindow = (TextWindow) new TextWindow(0,11,20,4).setName("Messages");
         adjacentWindow = (AdjacentWindow) new AdjacentWindow(3,3,3,3).setName("Adjacent");
 
         window.addElement(spellWindow);
         window.addElement(viewWindow);
         window.addElement(backPackWindow);
         window.addElement(statusWindow);
-        window.addElement(messageWindow);
+        window.addElement(textWindow);
         viewWindow.addElement(adjacentWindow);
 
         game.objects = new ObjectStore();

@@ -32,12 +32,17 @@ public class Engine {
     private List<Trigger> triggerQueue = new ArrayList<>();
     private Messages messages = new Messages();
     private List<SpellButton> activeButtons;
+    private TextLines textLines = new TextLines();
 
     public Engine(MindmeltGDX game) {
         changeTiles = new HashMap<>();
         this.game = game;
         this.world = game.world;
         this.objects = game.objects;
+    }
+
+    public TextLines getTextLines() {
+        return textLines;
     }
 
     public boolean isXray() {
@@ -310,6 +315,7 @@ public class Engine {
     }
 
     public void addMessage(Message message) {
+        getTextLines().addLine(message.getMessage(),message.getColour());
         messages.add(message);
     }
 

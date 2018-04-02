@@ -1,14 +1,12 @@
 package mindmelt.game.objects;
 // basic objects
 
+import com.badlogic.gdx.graphics.Color;
+import mindmelt.game.engine.Engine;
+import mindmelt.game.maps.World;
+
 import java.util.List;
 import java.util.Random;
-
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.math.MathUtils;
-import mindmelt.game.engine.Engine;
-import mindmelt.game.engine.Message;
-import mindmelt.game.maps.World;
 
 public class Obj {
     public static final int DEAD_ICON = 183;
@@ -334,13 +332,14 @@ public class Obj {
     }
 
     public void setMessage(Engine engine, String message) {
-        this.message = message;
-        setExpiry(engine);
+        setMessage(engine, message, Color.WHITE);
     }
 
     public void setMessage(Engine engine, String message, Color colour) {
-        setMessage(engine, message);
+        this.message = message;
         this.messColour = colour;
+        engine.getTextLines().addLine(message, colour);
+        setExpiry(engine);
     }
 
     public void updateMessage(Engine engine) {

@@ -174,6 +174,10 @@ public class ObjPlayer extends Obj {
         setExpiry(engine,1000);
         messColour = Color.WHITE;
         this.message = "You Say> "+message+"#";
+        if(message.length()==0)
+            engine.getTextLines().addLine(this.message, messColour);
+        else
+            engine.getTextLines().updateCurrentLine(this.message, messColour);
     }
 
     public void startTalking(Engine engine, Obj person) {
