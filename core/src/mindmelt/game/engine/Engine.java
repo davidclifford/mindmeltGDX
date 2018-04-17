@@ -13,6 +13,7 @@ import mindmelt.game.objects.Inventory;
 import mindmelt.game.objects.Obj;
 import mindmelt.game.objects.ObjPlayer;
 import mindmelt.game.objects.ObjectStore;
+import mindmelt.game.talk.Talking;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -33,6 +34,7 @@ public class Engine {
     private Messages messages = new Messages();
     private List<SpellButton> activeButtons;
     private TextLines textLines = new TextLines();
+    private Talking talking = new Talking();
 
     public Engine(MindmeltGDX game) {
         changeTiles = new HashMap<>();
@@ -338,4 +340,15 @@ public class Engine {
 
     }
 
+    public boolean isTalking() {
+        return talking.isTalking();
+    }
+
+    public void setPlayerTalkCoords(int xx, int yy) {
+        talking.setPlayerTalkCoords(xx,yy);
+    }
+
+    public void setPersonTalkCoords(int xx, int yy) {
+        talking.setPersonTalkCoords(xx,yy);
+    }
 }

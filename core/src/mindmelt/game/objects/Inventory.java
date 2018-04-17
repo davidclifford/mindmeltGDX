@@ -38,9 +38,16 @@ public class Inventory {
 
     public void objToInventory(Obj obj) {
         objects.add(obj);
+        if(hand==obj) return;
         for(int s=0; s<inventorySize; s++) {
-            if (slot[s]==null)
+            if (slot[s]==obj)
+                return;
+        }
+        for(int s=0; s<inventorySize; s++) {
+            if (slot[s]==null) {
                 slot[s] = obj;
+                return;
+            }
         }
     }
 
@@ -49,8 +56,8 @@ public class Inventory {
     }
 
     public void objToHand(Obj obj, Engine engine) {
-        obj.moveToObject(engine.getPlayer(),engine.getWorld());
         hand = obj;
+        obj.moveToObject(engine.getPlayer(),engine.getWorld());
     }
 
     public void handToInventory(int s) {

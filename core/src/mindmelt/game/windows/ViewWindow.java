@@ -123,6 +123,9 @@ public class ViewWindow extends Window {
                             DispXYString xys = new DispXYString(HALF + xx, HALF + yy, ob.getMessage(), ob.getMessageColour());
                             if (xys.string != "")
                                 xyStrings.add(xys);
+                            if(ob.isPlayer()) {
+                                engine.setPlayerTalkCoords(xx,yy);
+                            }
                         }
                     }
                     //messages
@@ -145,6 +148,13 @@ public class ViewWindow extends Window {
         for(Coords coords : zaps) {
             zapMonster(HALF,HALF,coords.x,coords.y,game);
         }
+        //Display talking
+        displayTalk(engine);
+    }
+
+    private void displayTalk(Engine engine) {
+        if(!engine.isTalking()) return;
+
     }
 
     private void displayMap(int mx, int my, int mz, MindmeltGDX game) {
