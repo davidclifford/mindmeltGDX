@@ -142,7 +142,7 @@ public class ViewWindow extends Window {
 
         //Display any strings
         for (DispXYString xys : xyStrings) {
-            drawMidString(xys.x, xys.y, xys.colour, xys.string, game);
+            drawMidStringInBox(xys.x, xys.y, xys.colour, xys.string, game);
         }
         //Display Zaps
         for(Coords coords : zaps) {

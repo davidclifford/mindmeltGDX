@@ -3,6 +3,8 @@ package mindmelt.game.gui;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.MathUtils;
 import mindmelt.game.MindmeltGDX;
 import mindmelt.game.engine.Engine;
@@ -223,6 +225,29 @@ public abstract class GuiElem {
         game.font.setColor(color);
         game.font.draw(game.batch, text, getAbsX() + x * SZ - offset, height - (getAbsY() + y * SZ - SZ / 2));
         game.font.draw(game.batch, text, getAbsX() + x * SZ - offset + 1, height - (getAbsY() + y * SZ - SZ / 2));
+    }
+
+    protected void drawMidStringInBox(int x, int y, Color color, String text, MindmeltGDX game) {
+        game.font.setColor(Color.BLACK);
+        float offset = (text.length()) * 3f - SZ / 2f;
+        drawBox(x, y, text.length(), color, game);
+        game.font.setColor(color);
+        game.font.draw(game.batch, text, getAbsX() + x * SZ - offset, height - (getAbsY() + y * SZ - SZ / 2));
+        game.font.draw(game.batch, text, getAbsX() + x * SZ - offset + 1, height - (getAbsY() + y * SZ - SZ / 2));
+    }
+
+    protected void drawBox(int x, int y, int width, Color color, MindmeltGDX game) {
+        float offset = (width) * 3f - SZ/2f + SZ/8f;
+        Pixmap box;
+        int w = width*7+7;
+        box = new Pixmap(w, SZ, Pixmap.Format.RGBA8888);
+        box.setColor(Color.BLACK);
+        box.fillRectangle(0,0,w, SZ/2);
+        box.setColor(color);
+        box.drawRectangle(0, 0, w, SZ/2);
+        Texture boxtex = new Texture( box );
+        game.batch.draw(boxtex, getAbsX() + x*SZ - offset, height - (getAbsY()+y*SZ) - SZ/3);
+        box.dispose();
     }
 
     protected void drawIcon(int x, int y, int icon, MindmeltGDX game) {
