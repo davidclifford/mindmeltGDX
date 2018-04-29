@@ -82,6 +82,8 @@ public class ViewWindow extends Window {
     }
 
     private void displayPosition(int px, int py, int pz, int dir, MindmeltGDX game) {
+        int a[] = {0,1,0,-1};
+        int b[] = {-1,0,1,0};
         Engine engine = game.engine;
         ObjPlayer player = engine.getPlayer();
         zaps = new ArrayList<>();
@@ -120,7 +122,13 @@ public class ViewWindow extends Window {
                     if (objects != null) {
                         for (Obj ob : objects) {
                             displayObject(HALF + xx, HALF + yy, ob, bright, game);
-                            DispXYString xys = new DispXYString(HALF + xx, HALF + yy, ob.getMessage(), ob.getMessageColour());
+                            DispXYString xys;
+                            if (ob.isPerson() && (((dir==0 || dir==2) && ob.getY() == player.getY())
+                                    || ((dir==1 || dir==3) && ob.getX() == player.getX()))) {
+                                xys = new DispXYString(HALF + xx, HALF + yy - 1, ob.getMessage(), ob.getMessageColour());
+                            } else {
+                                xys = new DispXYString(HALF + xx, HALF + yy, ob.getMessage(), ob.getMessageColour());
+                            }
                             if (xys.string != "")
                                 xyStrings.add(xys);
                             if(ob.isPlayer()) {
