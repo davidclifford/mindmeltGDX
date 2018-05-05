@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.Color;
 import mindmelt.game.engine.Engine;
 import mindmelt.game.maps.EntryExit;
 import mindmelt.game.spells.Spell;
+import mindmelt.game.talk.Talking;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,9 +31,7 @@ public class ObjPlayer extends Obj {
     private List<Spell> spells = new ArrayList<>();
     private List<ObjPerson> mindmeltedPeople = new ArrayList<>();
     private boolean mapActive = false;
-    private boolean talking = false;
-    private Obj personTalkingTo;
-    private String saying = "";
+    private Talking talking;
 
     public ObjPlayer() {
         inventory = new Inventory(24);
@@ -46,12 +45,12 @@ public class ObjPlayer extends Obj {
         this.level = level;
     }
 
-    public boolean isTalking() {
-        return talking;
+    public boolean isTalking(Engine engine) {
+        return engine.getTalking().isTalking();
     }
 
-    public void setTalking(boolean talking) {
-        this.talking = talking;
+    public void setTalking(Engine engine, boolean talking) {
+        engine.getTalking().setTalking(talking);
     }
 
     @Override
@@ -170,34 +169,27 @@ public class ObjPlayer extends Obj {
 
 
     public void sayThis(Engine engine, String message) {
-        if(!talking) return;
+        if(!engine.getTalking().isTalking()) return;
         setExpiry(engine,1000);
-        messColour = Color.WHITE;
-        this.message = "You Say> "+message+"#";
-        if(message.length()==0)
-            engine.getTextLines().addLine(this.message, messColour);
-        else
-            engine.getTextLines().updateCurrentLine(this.message, messColour);
+        engine.getTalking().setPlayerTalk(message);
     }
 
     public void startTalking(Engine engine, Obj person) {
-        talking = true;
-        personTalkingTo = person;
-        saying = "";
-        sayThis(engine,  saying);
+        ObjPlayer player = engine.getPlayer();
+        talking = engine.getTalking();
+        talking.setTalking(true);
+        talking.setOtherTalk("");
+        talking.setPlayerTalk("");
+        talking.setPlayerCoords(player.getX(), player.getY(), player.getZ() );
     }
 
     public void stopTalking(Engine engine) {
-        talking = false;
-        personTalkingTo.setExpiry(engine,1);
-        personTalkingTo = null;
-        saying = "";
-        setMessage(engine, "");
-        setExpiry(engine,0);
+        talking.setTalking(false);
     }
 
     public void talkInput(Engine engine, int input) {
         String in = Input.Keys.toString(input).toLowerCase();
+        String saying = talking.getPlayerTalk();
         if(input==Input.Keys.BACKSPACE ) {
             if (saying.length() > 0) {
                 saying = saying.substring(0, saying.length() - 1);
@@ -206,7 +198,7 @@ public class ObjPlayer extends Obj {
             if(saying.length()==0) {
                 saying = "bye";
             }
-            personTalkingTo.replyTo(engine, saying);
+            //personTalkingTo.replyTo(engine, saying);
             if(saying.equals("bye"))
                 stopTalking(engine);
             saying = "";

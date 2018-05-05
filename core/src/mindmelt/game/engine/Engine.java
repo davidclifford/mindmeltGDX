@@ -335,20 +335,7 @@ public class Engine {
         messages.expireMessages();
     }
 
-    public void talkTo(int person) {
-        //can also include talking pictures
-
-    }
-
-    public boolean isTalking() {
-        return talking.isTalking();
-    }
-
-    public void setPlayerTalkCoords(int xx, int yy) {
-        talking.setPlayerTalkCoords(xx,yy);
-    }
-
-    public void setPersonTalkCoords(int xx, int yy) {
-        talking.setPersonTalkCoords(xx,yy);
+    public Talking getTalking() {
+        return talking;
     }
 }

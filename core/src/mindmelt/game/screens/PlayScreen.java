@@ -267,7 +267,7 @@ public class PlayScreen implements Screen, InputProcessor {
 
     @Override
     public boolean keyDown(int keycode) {
-        if (engine.getPlayer().isTalking()) {
+        if (engine.getTalking().isTalking()) {
             return talkInput(keycode);
         } else {
             return moveInput(keycode);

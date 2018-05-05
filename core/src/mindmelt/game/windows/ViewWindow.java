@@ -10,6 +10,7 @@ import mindmelt.game.maps.TileType;
 import mindmelt.game.objects.Obj;
 import mindmelt.game.objects.ObjMonster;
 import mindmelt.game.objects.ObjPlayer;
+import mindmelt.game.talk.Talking;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -86,6 +87,8 @@ public class ViewWindow extends Window {
         int b[] = {-1,0,1,0};
         Engine engine = game.engine;
         ObjPlayer player = engine.getPlayer();
+        Talking talking = engine.getTalking();
+
         zaps = new ArrayList<>();
         int mask[][] = new int[SIZE][SIZE]; //0 = see & thru, 1 = see & not thru, 2 = not see & not thru
         float darkness = 0;
@@ -123,17 +126,9 @@ public class ViewWindow extends Window {
                         for (Obj ob : objects) {
                             displayObject(HALF + xx, HALF + yy, ob, bright, game);
                             DispXYString xys;
-                            if (ob.isPerson() && (((dir==0 || dir==2) && ob.getY() == player.getY())
-                                    || ((dir==1 || dir==3) && ob.getX() == player.getX()))) {
-                                xys = new DispXYString(HALF + xx, HALF + yy - 1, ob.getMessage(), ob.getMessageColour());
-                            } else {
-                                xys = new DispXYString(HALF + xx, HALF + yy, ob.getMessage(), ob.getMessageColour());
-                            }
+                            xys = new DispXYString(HALF + xx, HALF + yy, ob.getMessage(), ob.getMessageColour());
                             if (xys.string != "")
                                 xyStrings.add(xys);
-                            if(ob.isPlayer()) {
-                                engine.setPlayerTalkCoords(xx,yy);
-                            }
                         }
                     }
                     //messages
@@ -141,6 +136,15 @@ public class ViewWindow extends Window {
                     if (message != null) {
                         DispXYString xys = new DispXYString(HALF + xx, HALF + yy, message.getMessage(), message.getColour());
                         xyStrings.add(xys);
+                    }
+                    //talking
+                    if (talking.isTalking()) {
+                        // set display coords for player and talking thing
+                        if(talking.isPlayerAt(sx,sy,sz)) {
+                            talking.setPlayerScreenCoords(HALF + xx, HALF + yy);
+                        } else if (talking.isOtherAt(sx,sy,sz)) {
+                            talking.setOtherScreenCoords(HALF + xx, HALF + yy);
+                        }
                     }
                 } else {
                     drawTile(HALF + xx, HALF + yy, 0, bright, game);
@@ -157,12 +161,14 @@ public class ViewWindow extends Window {
             zapMonster(HALF,HALF,coords.x,coords.y,game);
         }
         //Display talking
-        displayTalk(engine);
+        displayTalk(engine, game);
     }
 
-    private void displayTalk(Engine engine) {
-        if(!engine.isTalking()) return;
-
+    private void displayTalk(Engine engine, MindmeltGDX game) {
+        Talking talking = engine.getTalking();
+        if(talking.isTalking()) {
+            drawMidStringInBox(talking.getPlayerScreenX(), talking.getPlayerScreenY(), Color.WHITE, "You say> "+talking.getPlayerTalk()+"#", game);
+        }
     }
 
     private void displayMap(int mx, int my, int mz, MindmeltGDX game) {
