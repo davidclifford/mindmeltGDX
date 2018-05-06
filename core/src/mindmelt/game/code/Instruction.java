@@ -106,7 +106,16 @@ public class Instruction {
             return atPosition(trigger, engine);
         } else if (command.equals("MoveObjectInto")) {
             return moveObjectInto(trigger, engine);
+        } else if (command.equals("TalkTo")) {
+            return talkTo(trigger, engine);
         }
+        return true;
+    }
+
+    private boolean talkTo(Trigger trigger, Engine engine) {
+        int who = iargs.get(0);
+        int which = iargs.get(1);
+        engine.getPlayer().startTalking(engine, who, trigger.getX(), trigger.getY(), trigger.getZ());
         return true;
     }
 

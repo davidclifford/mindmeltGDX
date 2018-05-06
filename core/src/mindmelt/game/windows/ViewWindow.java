@@ -166,8 +166,16 @@ public class ViewWindow extends Window {
 
     private void displayTalk(Engine engine, MindmeltGDX game) {
         Talking talking = engine.getTalking();
-        if(talking.isTalking()) {
-            drawMidStringInBox(talking.getPlayerScreenX(), talking.getPlayerScreenY(), Color.WHITE, "You say> "+talking.getPlayerTalk()+"#", game);
+        int px = talking.getPlayerScreenX();
+        int py = talking.getPlayerScreenY();
+        int ox = talking.getOtherScreenX();
+        int oy = talking.getOtherScreenY();
+        if (py==oy) oy -= 1;
+        if (talking.isTalking()) {
+            drawMidStringInBox(px, py, Color.WHITE, "You say> "+talking.getPlayerTalk()+"#", game);
+            if( talking.getOtherTalk().length() > 0) {
+                drawMidStringInBox(ox, oy, Color.GREEN, talking.getOtherTalk(), game);
+            }
         }
     }
 

@@ -8,6 +8,7 @@ package mindmelt.game.objects;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import mindmelt.game.engine.Engine;
+import mindmelt.game.engine.Message;
 import mindmelt.game.maps.EntryExit;
 import mindmelt.game.spells.Spell;
 import mindmelt.game.talk.Talking;
@@ -168,19 +169,30 @@ public class ObjPlayer extends Obj {
     }
 
 
-    public void sayThis(Engine engine, String message) {
-        if(!engine.getTalking().isTalking()) return;
-        setExpiry(engine,1000);
+    public void sayThis(Engine engine, String message, boolean bye) {
+        //setExpiry(engine,1000);
         engine.getTalking().setPlayerTalk(message);
+        String reply = engine.getWorld().talkTo(engine.getTalking().getOther(), message, engine);
+        if(bye) {
+            int xx = engine.getTalking().getOtherX();
+            int yy = engine.getTalking().getOtherY();
+            int zz = engine.getTalking().getOtherZ();
+            Message mess = new Message(xx, yy, zz, reply, Color.GREEN, 1000);
+            engine.addMessage(mess);
+        } else {
+            engine.getTalking().setOtherTalk(reply);
+        }
     }
 
-    public void startTalking(Engine engine, Obj person) {
+    public void startTalking(Engine engine, int other, int xx, int yy, int zz) {
         ObjPlayer player = engine.getPlayer();
         talking = engine.getTalking();
         talking.setTalking(true);
         talking.setOtherTalk("");
         talking.setPlayerTalk("");
         talking.setPlayerCoords(player.getX(), player.getY(), player.getZ() );
+        talking.setOtherCoords(xx, yy, zz);
+        talking.setOther(other);
     }
 
     public void stopTalking(Engine engine) {
@@ -198,13 +210,13 @@ public class ObjPlayer extends Obj {
             if(saying.length()==0) {
                 saying = "bye";
             }
-            //personTalkingTo.replyTo(engine, saying);
+            sayThis(engine, saying, saying.equals("bye"));
             if(saying.equals("bye"))
                 stopTalking(engine);
             saying = "";
         } else {
             saying += in;
         }
-        sayThis(engine, saying );
+        talking.setPlayerTalk(saying);
     }
 }

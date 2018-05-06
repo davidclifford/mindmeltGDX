@@ -45,11 +45,9 @@ public class AdjacentWindow extends Window {
                 //attack monster
                 topObj.attack(engine);
             } else if(topObj.isPerson()){
-                topObj.talkTo(engine);
-                //talk to person
+                engine.getWorld().talkTo(engine, topObj.getId(), px, py, pz);
             } else if(topObj.isAnimal()) {
-                topObj.talkTo(engine);
-                //animal
+                engine.getWorld().talkTo(engine, topObj.getId(), px, py, pz);
             }
         } else {
             Gdx.app.log("Activate tile ",String.format("%d,%d,%d",px,py,pz));

@@ -1,5 +1,6 @@
 package mindmelt.game.maps;
 
+import com.badlogic.gdx.graphics.Color;
 import mindmelt.game.code.Code;
 import mindmelt.game.code.CodeStore;
 import mindmelt.game.code.Instruction;
@@ -454,5 +455,13 @@ public class World implements ITileAccess {
 
     public String talkTo(int id, String word, Engine engine) {
         return talkStore.getReply(id, word, engine);
+    }
+
+    public void talkTo(Engine engine, int other, int x, int y, int z) {
+        engine.getPlayer().startTalking(engine, other, x, y, z);
+    }
+
+    public void replyTo(Engine engine, String saying) {
+        String reply = engine.getWorld().talkTo(id, saying, engine);
     }
 }

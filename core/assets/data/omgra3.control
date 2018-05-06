@@ -83,3 +83,12 @@ MoveAll 6,6,2
 Teleport 3,2,1
 MoveAll 8,2,0
 --
+@talk
+id=92
+-
+    ,What is your name?
+name,What is your name?
+job ,What is your name?
+argmo,You now know what to do,1
+bye ,Remember!
+--

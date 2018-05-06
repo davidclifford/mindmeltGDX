@@ -4,17 +4,20 @@ import mindmelt.game.objects.Obj;
 
 public class Talking {
     private boolean talking = false;
+
     private int playerX;
     private int playerY;
     private int pX;
     private int pY;
     private int pZ;
+    private String playerTalk = "";
+
+    private int other;
     private int otherX;
     private int otherY;
     private int oX;
     private int oY;
     private int oZ;
-    private String playerTalk = "";
     private String otherTalk = "";
 
     public boolean isTalking() {
@@ -85,5 +88,25 @@ public class Talking {
 
     public void setOtherTalk(String otherTalk) {
         this.otherTalk = otherTalk;
+    }
+
+    public int getOther() {
+        return other;
+    }
+
+    public void setOther(int other) {
+        this.other = other;
+    }
+
+    public int getOtherX() {
+        return oX;
+    }
+
+    public int getOtherY() {
+        return oY;
+    }
+
+    public int getOtherZ() {
+        return oZ;
     }
 }
