@@ -169,19 +169,11 @@ public class ObjPlayer extends Obj {
     }
 
 
-    public void sayThis(Engine engine, String message, boolean bye) {
+    public void sayThis(Engine engine, String message) {
         //setExpiry(engine,1000);
         engine.getTalking().setPlayerTalk(message);
         String reply = engine.getWorld().talkTo(engine.getTalking().getOther(), message, engine);
-        if(bye) {
-            int xx = engine.getTalking().getOtherX();
-            int yy = engine.getTalking().getOtherY();
-            int zz = engine.getTalking().getOtherZ();
-            Message mess = new Message(xx, yy, zz, reply, Color.GREEN, 1000);
-            engine.addMessage(mess);
-        } else {
-            engine.getTalking().setOtherTalk(reply);
-        }
+        engine.getTalking().setOtherTalk(reply);
     }
 
     public void startTalking(Engine engine, int other, int xx, int yy, int zz) {
@@ -197,6 +189,7 @@ public class ObjPlayer extends Obj {
 
     public void stopTalking(Engine engine) {
         talking.setTalking(false);
+        talking.setTimeout(engine,2000L);
     }
 
     public void talkInput(Engine engine, int input) {
@@ -210,7 +203,7 @@ public class ObjPlayer extends Obj {
             if(saying.length()==0) {
                 saying = "bye";
             }
-            sayThis(engine, saying, saying.equals("bye"));
+            sayThis(engine, saying);
             if(saying.equals("bye"))
                 stopTalking(engine);
             saying = "";

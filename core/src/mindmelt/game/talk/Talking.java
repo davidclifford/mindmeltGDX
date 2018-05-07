@@ -1,9 +1,11 @@
 package mindmelt.game.talk;
 
+import mindmelt.game.engine.Engine;
 import mindmelt.game.objects.Obj;
 
 public class Talking {
     private boolean talking = false;
+    private long timeout = 0L;
 
     private int playerX;
     private int playerY;
@@ -22,6 +24,13 @@ public class Talking {
 
     public boolean isTalking() {
         return talking;
+    }
+    public boolean isReplying(Engine engine) {
+        return talking || (engine.getSystemTime() < timeout);
+    }
+
+    public void setTimeout(Engine engine, long timeout) {
+        this.timeout = engine.getSystemTime() + timeout*1000000L;
     }
 
     public void setTalking(boolean talking) {
