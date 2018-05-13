@@ -202,7 +202,7 @@ public class ViewWindow extends Window {
         if(ob.isMonster() && (game.player.isStun() || game.player.isZap())) {
             if(game.player.isStun()) {
                 long time = game.engine.getSystemTime();
-                if (time % 100000000L > 50000000L)
+                if (time % 100000000L > 50000000L && ob.getStrength() > 0)
                     drawTile(x, y, ob.getIcon(), bright / 2f, game);
                 else
                     drawTile(x, y, ob.getIcon(), bright, game);
