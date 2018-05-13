@@ -230,13 +230,14 @@ public abstract class GuiElem {
     protected void drawMidStringInBox(int x, int y, Color color, String text, MindmeltGDX game) {
         game.font.setColor(Color.BLACK);
         float offset = (text.length()) * 3f - SZ / 2f;
-        drawBox(x, y, text.length(), color, game);
+        Texture tex = drawBox(x, y, text.length(), color, game);
         game.font.setColor(color);
         game.font.draw(game.batch, text, getAbsX() + x * SZ - offset, height - (getAbsY() + y * SZ - SZ / 2));
         game.font.draw(game.batch, text, getAbsX() + x * SZ - offset + 1, height - (getAbsY() + y * SZ - SZ / 2));
+        tex.dispose();
     }
 
-    protected void drawBox(int x, int y, int width, Color color, MindmeltGDX game) {
+    protected Texture drawBox(int x, int y, int width, Color color, MindmeltGDX game) {
         float offset = (width) * 3f - SZ/2f + SZ/8f;
         Pixmap box;
         int w = width*7+7;
@@ -248,6 +249,7 @@ public abstract class GuiElem {
         Texture boxtex = new Texture( box );
         game.batch.draw(boxtex, getAbsX() + x*SZ - offset, height - (getAbsY()+y*SZ) - SZ/3);
         box.dispose();
+        return boxtex;
     }
 
     protected void drawIcon(int x, int y, int icon, MindmeltGDX game) {
