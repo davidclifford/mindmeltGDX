@@ -190,12 +190,12 @@ public class ViewWindow extends Window {
         for(int y=-size/2;y<size/2;y++) {
             for (int x = -size/2; x < size/2; x++) {
                 TileType tile = engine.getTile(mx+x,my+y,mz);
-                plot(pixSize, x*pixSize+w/2,y*pixSize+h/2,tile.getColor(),game);
+                plot(PIXEL6,x*pixSize+w/2,y*pixSize+h/2,tile.getColor(),game);
             }
         }
         Color pixel = Color.WHITE;
         if(time%2L==0) pixel = Color.BLACK;
-        plot(pixSize,w/2,h/2,pixel,game);
+        plot(PIXEL6,w/2, h/2, pixel, game);
     }
 
     private void displayObject(int x, int y, Obj ob, float bright, MindmeltGDX game) {

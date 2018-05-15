@@ -17,8 +17,10 @@ import java.util.List;
  */
 public abstract class GuiElem {
     static final public int SZ = 32;
-    static final protected int pixel = 184;
-    static final protected int height = 480 - 32;
+    static final protected int PIXEL = 184;
+    static final protected int PIXEL2 = 185;
+    static final protected int PIXEL6 = 186;
+    static final protected int height = Gdx.graphics.getHeight() - 32;
     static final protected boolean debug = false;
 
     static final protected int SQUARE = 124;
@@ -161,36 +163,21 @@ public abstract class GuiElem {
 
     protected void rectangle(int x, int y, int w, int h, MindmeltGDX game) {
         for (int xx = x; xx < x + w; xx++) {
-            plot(xx, y, Color.CYAN, game);
-            plot(xx, y + h, Color.RED, game);
+            plot(PIXEL, xx, y, Color.CYAN, game);
+            plot(PIXEL, xx, y + h, Color.RED, game);
         }
         for (int yy = y; yy < y + h; yy++) {
-            plot(x, yy, Color.YELLOW, game);
-            plot(x + w, yy, Color.MAGENTA, game);
+            plot(PIXEL, x, yy, Color.YELLOW, game);
+            plot(PIXEL, x + w, yy, Color.MAGENTA, game);
         }
         game.batch.setColor(Color.WHITE);
     }
 
-    protected void plot(int x, int y, Color color, MindmeltGDX game) {
+    protected void plot(int pixel, int x, int y, Color color, MindmeltGDX game) {
         int xx = getAbsX() + x;
         int yy = getAbsY() + y;
         game.batch.setColor(color);
         game.batch.draw(game.getTile(pixel), xx, height - yy);
-    }
-
-    protected void plot2(int x, int y, Color color, MindmeltGDX game) {
-        plot(x,y,color,game);
-        plot(x+1,y,color,game);
-        plot(x,y+1,color,game);
-        plot(x+1,y+1,color,game);
-    }
-
-    protected void plot(int pixSize, int x, int y, Color color, MindmeltGDX game) {
-        for(int p1=0;p1<pixSize;p1++) {
-            for(int p2=0;p2<pixSize;p2++) {
-                plot(x + p1, y + p2, color, game);
-            }
-        }
     }
 
     protected void drawText(int x, int y, Color color, String text, MindmeltGDX game) {
@@ -314,7 +301,7 @@ public abstract class GuiElem {
         int y = y0;
 
         for (int x = x0; x < x1; x++) {
-            plot2(x,y,colour,game);
+            plot(PIXEL2, x,y,colour,game);
             if (d > 0) {
                 y = y + yi;
                 d = d - 2 * dx;
@@ -335,7 +322,7 @@ public abstract class GuiElem {
         int x = x0;
 
         for (int y = y0; y < y1; y++) {
-            plot2(x, y, colour, game);
+            plot(PIXEL2, x, y, colour, game);
             if (d > 0) {
                 x = x + xi;
                 d = d - 2 * dy;
