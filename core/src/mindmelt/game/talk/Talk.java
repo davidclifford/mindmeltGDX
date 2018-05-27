@@ -35,6 +35,11 @@ public class Talk {
             if (d.isKeyword(word))
                 return d;
         }
+        //Don't know
+        for(Dialogue d:dialogue) {
+            if (d.isKeyword("dontknow"))
+                return d;
+        }
         return null;
     }
 

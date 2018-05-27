@@ -50,20 +50,6 @@ public class ViewWindow extends Window {
         }
     }
 
-    private class DispXYString {
-        public int x;
-        public int y;
-        public String string;
-        public Color colour;
-
-        DispXYString(int x, int y, String string, Color colour) {
-            this.x = x;
-            this.y = y;
-            this.string = string;
-            this.colour = colour;
-        }
-    }
-
     private int sgn(int a) {
         return a < 0 ? -1 : (a > 0 ? 1 : 0);
     }
@@ -83,15 +69,14 @@ public class ViewWindow extends Window {
     }
 
     private void displayPosition(int px, int py, int pz, int dir, MindmeltGDX game) {
-        int a[] = {0,1,0,-1};
-        int b[] = {-1,0,1,0};
         Engine engine = game.engine;
         ObjPlayer player = engine.getPlayer();
         Talking talking = engine.getTalking();
-
+        DisplayStrings displayStrings = new DisplayStrings();
         zaps = new ArrayList<>();
         int mask[][] = new int[SIZE][SIZE]; //0 = see & thru, 1 = see & not thru, 2 = not see & not thru
         float darkness = 0;
+
         if (!game.world.getLight())
             darkness = 3f * player.getLight();
 
@@ -108,7 +93,6 @@ public class ViewWindow extends Window {
         }
 
         // Draw landscape
-        List<DispXYString> xyStrings = new ArrayList<>();
         for (int y = -HALF; y <= HALF; y++) {
             for (int x = -HALF; x <= HALF; x++) {
                 int sx = px + x;
@@ -125,20 +109,18 @@ public class ViewWindow extends Window {
                     if (objects != null) {
                         for (Obj ob : objects) {
                             displayObject(HALF + xx, HALF + yy, ob, bright, game);
-                            DispXYString xys;
-                            xys = new DispXYString(HALF + xx, HALF + yy, ob.getMessage(), ob.getMessageColour());
-                            if (xys.string != "")
-                                xyStrings.add(xys);
+                            if(ob.getMessage()!="") {
+                                displayStrings.add(HALF + xx, HALF + yy, ob.getMessage(), ob.getMessageColour());
+                            }
                         }
                     }
                     //messages
                     Message message = engine.getMessage(sx, sy, sz);
                     if (message != null) {
-                        DispXYString xys = new DispXYString(HALF + xx, HALF + yy, message.getMessage(), message.getColour());
-                        xyStrings.add(xys);
+                        displayStrings.add(HALF + xx, HALF + yy, message.getMessage(), message.getColour());
                     }
                     //talking
-                    if (talking.isTalking()) {
+                    if (talking.isTalking() || talking.isReplying(engine)) {
                         // set display coords for player and talking thing
                         if(talking.isPlayerAt(sx,sy,sz)) {
                             talking.setPlayerScreenCoords(HALF + xx, HALF + yy);
@@ -153,18 +135,18 @@ public class ViewWindow extends Window {
         }
 
         //Display any strings
-        for (DispXYString xys : xyStrings) {
-            drawMidStringInBox(xys.x, xys.y, xys.colour, xys.string, game);
+        for (DispXYString xys : displayStrings.getDispXYStrings() ) {
+            drawMidStringInBox(xys.getX(), xys.getY(), xys.getColour(), xys.getString(), game);
         }
         //Display Zaps
         for(Coords coords : zaps) {
             zapMonster(HALF,HALF,coords.x,coords.y,game);
         }
         //Display talking
-        displayTalk(engine, game);
+        displayTalk(engine, game, displayStrings);
     }
 
-    private void displayTalk(Engine engine, MindmeltGDX game) {
+    private void displayTalk(Engine engine, MindmeltGDX game, DisplayStrings displayStrings) {
         Talking talking = engine.getTalking();
         if (!talking.isReplying(engine) && !talking.isTalking())
             return;
@@ -177,6 +159,9 @@ public class ViewWindow extends Window {
             drawMidStringInBox(px, py, Color.WHITE, "You say> " + talking.getPlayerTalk() + "#", game);
         }
         if( talking.isReplying(engine) && talking.getOtherTalk().length() > 0) {
+            if(displayStrings.isAlreadyMessageAt(ox,oy)) {
+                oy--;
+            }
             drawMidStringInBox(ox, oy, Color.GREEN, talking.getOtherTalk(), game);
         }
     }

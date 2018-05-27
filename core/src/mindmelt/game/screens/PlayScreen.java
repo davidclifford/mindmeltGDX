@@ -236,7 +236,7 @@ public class PlayScreen implements Screen, InputProcessor {
 
     private void updateObjects(float delta) {
         List<Obj> objects =  game.objects.getActiveObjects();
-        objects.stream().forEach(obj -> obj.update(game.engine,delta));
+        objects.forEach(obj -> obj.update(game.engine,delta));
     }
 
     @Override
@@ -327,6 +327,9 @@ public class PlayScreen implements Screen, InputProcessor {
                 break;
             case Input.Keys.F3:
                 engine.setXray(!engine.isXray());
+                break;
+            case Input.Keys.T:
+                engine.talkAdjacent();
                 break;
             default:
                 Gdx.app.log("Key = ",""+keycode);

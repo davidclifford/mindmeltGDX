@@ -7,18 +7,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TalkStore {
-    private List<Talk> talking;
+    private List<Talk> talkList;
 
     public TalkStore() {
-        this.talking = new ArrayList<>();
+        this.talkList = new ArrayList<>();
     }
 
     public void addTalk(Talk talk) {
-        talking.add(talk);
+        talkList.add(talk);
+    }
+
+    public boolean replyFirst(int id) {
+        for(Talk t: talkList) {
+            if (t.getId() == id) {
+                if(t.isTalkfirst())
+                    return true;
+            }
+        }
+        return false;
     }
 
     public String getReply(int id, String keyword, Engine engine) {
-        for(Talk t:talking) {
+        for(Talk t: talkList) {
             if (t.getId() == id) {
                 Dialogue reply = t.getReply(keyword);
                 if (reply != null) {
@@ -42,6 +52,6 @@ public class TalkStore {
             case 2:
                 return "I don't know about that";
         }
-        return "Dunno";
+        return "Dunno, what you are saying";
     }
 }

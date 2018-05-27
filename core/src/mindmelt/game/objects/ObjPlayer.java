@@ -6,9 +6,7 @@
 package mindmelt.game.objects;
 
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.Color;
 import mindmelt.game.engine.Engine;
-import mindmelt.game.engine.Message;
 import mindmelt.game.maps.EntryExit;
 import mindmelt.game.spells.Spell;
 import mindmelt.game.talk.Talking;
@@ -170,7 +168,6 @@ public class ObjPlayer extends Obj {
 
 
     public void sayThis(Engine engine, String message) {
-        //setExpiry(engine,1000);
         engine.getTalking().setPlayerTalk(message);
         String reply = engine.getWorld().talkTo(engine.getTalking().getOther(), message, engine);
         engine.getTalking().setOtherTalk(reply);
@@ -180,7 +177,11 @@ public class ObjPlayer extends Obj {
         ObjPlayer player = engine.getPlayer();
         talking = engine.getTalking();
         talking.setTalking(true);
-        talking.setOtherTalk("");
+        if(engine.getWorld().talkFirst(other)) {
+            talking.setOtherTalk(engine.getWorld().talkTo(other, "greeting", engine));
+        } else {
+            talking.setOtherTalk("");
+        }
         talking.setPlayerTalk("");
         talking.setPlayerCoords(player.getX(), player.getY(), player.getZ() );
         talking.setOtherCoords(xx, yy, zz);
