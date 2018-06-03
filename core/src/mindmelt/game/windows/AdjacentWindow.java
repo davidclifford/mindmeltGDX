@@ -33,12 +33,12 @@ public class AdjacentWindow extends Window {
             int fy = topObj.getY();
             int fz = topObj.getZ();
             engine.getPlayerInventory().objToHand(topObj,engine);
-            engine.fromTo(fx,fy,fz,0,0,0);
+            engine.fromTo(topObj,fx,fy,fz,0,0,0);
         // Drop
         } else if (engine.getPlayerHandObject()!=null && engine.canEnter(engine.getPlayerHandObject(),px,py,pz)) {
             if(topObj==null || (topObj!=null && !topObj.isBlocked())) {
                 engine.getPlayerInventory().handToMap(px,py,pz,engine);
-                engine.fromTo(0,0,0, px, py, pz);
+                engine.fromTo(topObj,0,0,0, px, py, pz);
             }
         } else if(topObj != null) {
             if (topObj.isMonster()){

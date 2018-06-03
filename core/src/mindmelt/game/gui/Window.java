@@ -15,4 +15,9 @@ public class Window extends GuiElem {
     protected void renderThis(MindmeltGDX game, float delta) {
         if (debug) rectangle(0,0,w,h,game);
     }
+
+
+    protected int sgn(int a) {
+        return a < 0 ? -1 : (a > 0 ? 1 : 0);
+    }
 }

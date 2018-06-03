@@ -108,7 +108,7 @@ public class Engine {
         int fy = object.getY();
         int fz = object.getZ();
         object.moveToMap(tx, ty, tz, this);
-        fromTo(fx, fy, fz, tx, ty, tz);
+        fromTo(object, fx, fy, fz, tx, ty, tz);
     }
 
 
@@ -118,45 +118,47 @@ public class Engine {
         moveObjToMap(object,tx,ty,tz);
     }
 
-    public void fromTo(int fx, int fy, int fz, int tx, int ty, int tz) {
+    public void fromTo(Obj ob, int fx, int fy, int fz, int tx, int ty, int tz) {
         TileType fromTile = world.getTile(fx, fy, fz);
         TileType toTile = world.getTile(tx, ty, tz);
-        fromTo(fromTile, toTile, fx, fy, fz, tx, ty, tz);
+        fromTo(ob, fromTile, toTile, fx, fy, fz, tx, ty, tz);
     }
 
-    public void fromTo(TileType fromTile, TileType toTile, int fx, int fy, int fz, int tx, int ty, int tz) {
+    public void fromTo(Obj ob, TileType fromTile, TileType toTile, int fx, int fy, int fz, int tx, int ty, int tz) {
         //From
-        if(fromTile == TileType.presurepad || fromTile==TileType.hiddenpp) {
+        if((ob == null || !ob.inAir()) && (fromTile == TileType.presurepad || fromTile==TileType.hiddenpp)) {
             if(world.getObjects(fx,fy,fz)==null) //empty
                 addTrigger("PadOff",fx,fy,fz);
         }
 
         //To
-        if(toTile == TileType.presurepad || toTile==TileType.hiddenpp) {
+        if((ob == null || !ob.inAir()) && (toTile == TileType.presurepad || toTile==TileType.hiddenpp)) {
             if(world.getObjects(tx,ty,tz)!= null && world.getObjects(tx,ty,tz).size()==1) //first object to land on pad
                 addTrigger("PadOn",tx,ty,tz);
         }
         if(toTile == TileType.teleport || toTile == TileType.hiddentele) {
             addTrigger("Teleport",tx,ty,tz);
         }
-        if(toTile == TileType.pit || toTile == TileType.hiddenpit) {
+        if((ob == null || !ob.inAir()) && (toTile == TileType.pit || toTile == TileType.hiddenpit)) {
             moveAllToMap(tx,ty,tz,tx,ty,tz+1);
         }
-        Obj topObj = world.getTopObject(tx,ty,tz);
-        if(topObj==null || !topObj.isPlayer())
+
+        if(ob == null || !ob.isPlayer())
             return;
+
+        //Player only
         if(toTile == TileType.leftturn)
-            getPlayer().rotate(-1);
+            ob.rotate(-1);
         if(toTile == TileType.rightturn)
-            getPlayer().rotate(1);
+            ob.rotate(1);
         if(toTile == TileType.uturn)
-            getPlayer().rotate(2);
+            ob.rotate(2);
    }
 
     public void moveAllToMap(int xf, int yf, int zf, int xt, int yt, int zt) {
         List<Obj> all = world.removeAllObjects(xf,yf,zf);
         world.addAllObjects(all,xt,yt,zt);
-        fromTo(xf,yf,zf, xt,yt,zt);
+        fromTo(world.getTopObject(xf,yf,zf),xf,yf,zf, xt,yt,zt);
     }
 
     public boolean canEnter(Obj ob, int x, int y, int z) {
@@ -284,7 +286,7 @@ public class Engine {
             changeTiles.put(coord, new ChangeTile(x, y, z, world.getId(), current));
         }
         // CODE
-        fromTo(oldTile, newTile, x,y,z, x,y,z);
+        fromTo(world.getTopObject(x,y,z), oldTile, newTile, x,y,z, x,y,z);
     }
 
     public void debugChangeTiles() {

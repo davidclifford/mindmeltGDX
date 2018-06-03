@@ -50,10 +50,6 @@ public class ViewWindow extends Window {
         }
     }
 
-    private int sgn(int a) {
-        return a < 0 ? -1 : (a > 0 ? 1 : 0);
-    }
-
     private void dispInit() {
         dispList = new ArrayList<>();
         for (int i = 1; i <= HALF; i++) { //distance out

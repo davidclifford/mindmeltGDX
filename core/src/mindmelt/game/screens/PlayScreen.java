@@ -48,6 +48,7 @@ public class PlayScreen implements Screen, InputProcessor {
     private Window backPackWindow;
     private Window statusWindow;
     private Window textWindow;
+    private Window throwWindow;
 
     private boolean left;
     private boolean right;
@@ -78,6 +79,7 @@ public class PlayScreen implements Screen, InputProcessor {
         spellWindow = (SpellWindow) new SpellWindow(11,8,7,2).setName("Spells");
         textWindow = (TextWindow) new TextWindow(0,11,20,4).setName("Messages");
         adjacentWindow = (AdjacentWindow) new AdjacentWindow(3,3,3,3).setName("Adjacent");
+        throwWindow = (ThrowWindow) new ThrowWindow(0,0,9,9).setName("Throw");
 
         window.addElement(spellWindow);
         window.addElement(viewWindow);
@@ -85,6 +87,7 @@ public class PlayScreen implements Screen, InputProcessor {
         window.addElement(statusWindow);
         window.addElement(textWindow);
         viewWindow.addElement(adjacentWindow);
+        viewWindow.addElement(throwWindow);
 
         game.objects = new ObjectStore();
         //game.objects.convertObjects("OBJ.DAT","initial.obj");

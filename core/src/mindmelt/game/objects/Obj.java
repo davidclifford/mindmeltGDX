@@ -18,14 +18,12 @@ public class Obj {
     public int strength;
     public int order;
     public int dir = 0;
-    public long speed = 1000000000L/3L;
+    public long speed = 1000000000L/10L;
     public long wait;
     public String message = "";
     public Color messColour;
     private long expiry = 0;
-
     public Obj inside = null;
-
     public Inventory inventory = new Inventory();
     
     public int icon = 0;
@@ -34,6 +32,13 @@ public class Obj {
     public String type = "object";
     
     public Random rand = new Random();
+
+    protected boolean inAir;
+    protected int ix;
+    protected int iy;
+    protected long throwTime;
+
+    public boolean inAir() {return inAir; }
     
     public boolean isInMap() {
         return (mapId != 0);
@@ -57,6 +62,13 @@ public class Obj {
 
     public boolean isInside(int container) {
         return isInObject() && inside.getId()==container;
+    }
+
+    public void throwObj(Engine engine, int dx, int dy, long time) {
+        ix = dx;
+        iy = dy;
+        throwTime = engine.getSystemTime() + time*100000000L;
+        inAir = true;
     }
 
     public void moveToObject(Obj obTo, World world) {
@@ -347,6 +359,7 @@ public class Obj {
             message = "";
         }
     }
+
     public boolean isReady(Engine engine) {
         return (engine.getSystemTime()>wait);
     }
@@ -358,29 +371,9 @@ public class Obj {
 
     public void update(Engine engine, float delta) {
         updateMessage(engine);
-
-        //don't move if next to player
-        ObjPlayer player = engine.getPlayer();
-        if(abs(x-player.getX())<=1 && abs(y-player.getY())<=1 ) return;
-
-        int dx = x;
-        int dy = y;
-
-        if (rand.nextInt(2)==0) {
-            dx += rand.nextInt(2)*2-1;
-        } else {
-            dy += rand.nextInt(2)*2-1;
-        }
-
-        if (isReady(engine)) {
-            if (engine.canEnter(this, dx, dy, z)) {
-                engine.moveObjToMap(this, dx, dy, z);
-                resetWait(engine);
-            }
-        }
     }
 
-    private int abs(int i) { return (i<0) ? -i : i; }
+    protected int abs(int i) { return (i<0) ? -i : i; }
 
     public void resetWait(Engine engine) {
         wait = engine.getSystemTime() + speed;
