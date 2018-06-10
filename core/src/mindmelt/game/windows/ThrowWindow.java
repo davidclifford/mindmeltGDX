@@ -7,8 +7,14 @@ import mindmelt.game.objects.Obj;
 import mindmelt.game.objects.ObjPlayer;
 
 public class ThrowWindow extends Window {
-    public ThrowWindow(int x, int y, int w, int h) {
+
+    private int dx;
+    private int dy;
+
+    public ThrowWindow(int x, int y, int w, int h, int dx, int dy) {
         super(x, y, w, h);
+        this.dx = dx;
+        this.dy = dy;
     }
 
     protected void activate(int x, int y, Engine engine) {
@@ -17,11 +23,9 @@ public class ThrowWindow extends Window {
 
         ObjPlayer player = engine.getPlayer();
         int dir = player.getDirection();
-        int sx = sgn(x/SZ-4);
-        int sy = sgn(y/SZ-4);
-        int xx = dir == 0 ? sx : dir == 1 ? -sy : dir == 2 ? -sx : sy;
-        int yy = dir == 0 ? sy : dir == 1 ? sx : dir == 2 ? -sy : -sx;
-        Gdx.app.log("ThrowWindow",String.format("x = %d, y = %d", xx, yy));
+        int xx = dir == 0 ? dx : dir == 1 ? -dy : dir == 2 ? -dx : dy;
+        int yy = dir == 0 ? dy : dir == 1 ? dx : dir == 2 ? -dy : -dx;
+        Gdx.app.log("ThrowWindow",String.format("[%s], x = %d, y = %d", name, xx, yy));
         engine.getPlayerInventory().handToMap(player.getX(),player.getY(),player.getZ(),engine);
         ob.setSpeed(1L);
         ob.throwObj(engine, xx, yy, 5);

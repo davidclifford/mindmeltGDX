@@ -48,7 +48,10 @@ public class PlayScreen implements Screen, InputProcessor {
     private Window backPackWindow;
     private Window statusWindow;
     private Window textWindow;
-    private Window throwWindow;
+    private Window throwWindowT;
+    private Window throwWindowR;
+    private Window throwWindowB;
+    private Window throwWindowL;
 
     private boolean left;
     private boolean right;
@@ -79,7 +82,10 @@ public class PlayScreen implements Screen, InputProcessor {
         spellWindow = (SpellWindow) new SpellWindow(11,8,7,2).setName("Spells");
         textWindow = (TextWindow) new TextWindow(0,11,20,4).setName("Messages");
         adjacentWindow = (AdjacentWindow) new AdjacentWindow(3,3,3,3).setName("Adjacent");
-        throwWindow = (ThrowWindow) new ThrowWindow(0,0,9,9).setName("Throw");
+        throwWindowT = (ThrowWindow) new ThrowWindow(2,0,5,2, 0, -1).setName("Throw top");
+        throwWindowR = (ThrowWindow) new ThrowWindow(7,2,2,5, 1, 0).setName("Throw right");
+        throwWindowB = (ThrowWindow) new ThrowWindow(2,7,5,2, 0, 1).setName("Throw bottom");
+        throwWindowL = (ThrowWindow) new ThrowWindow(0,2,2,5, -1, 0).setName("Throw left");
 
         window.addElement(spellWindow);
         window.addElement(viewWindow);
@@ -87,7 +93,10 @@ public class PlayScreen implements Screen, InputProcessor {
         window.addElement(statusWindow);
         window.addElement(textWindow);
         viewWindow.addElement(adjacentWindow);
-        viewWindow.addElement(throwWindow);
+        viewWindow.addElement(throwWindowT);
+        viewWindow.addElement(throwWindowR);
+        viewWindow.addElement(throwWindowL);
+        viewWindow.addElement(throwWindowB);
 
         game.objects = new ObjectStore();
         //game.objects.convertObjects("OBJ.DAT","initial.obj");
