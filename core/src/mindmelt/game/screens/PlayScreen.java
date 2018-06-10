@@ -141,7 +141,7 @@ public class PlayScreen implements Screen, InputProcessor {
             else if (b==13) button = new ToggleSpellButton(spell=new MapSpell(),b%7, b/7, b+135);
             //button.setState(Button.OFF);
             spellWindow.addElement(button);
-            spell.setLearned(true);
+            spell.setLearned(b<2);
             player.addSpell(spell);
         }
     }

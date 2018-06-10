@@ -164,8 +164,41 @@ public class ObjPlayer extends Obj {
         level++;
         setHealthMax();
         //set spells
+/*
+100,scroll,X-ray scroll,thing,44,64,0,0,44,0,0,102
+101,scroll,Stun scroll,thing,68,64,0,0,68,0,0,102
+102,scroll,Zap scroll,thing,67,64,0,0,67,0,0,102
+103,scroll,Heal scroll,thing,58,64,0,0,58,0,0,102
+104,scroll,Back scroll,thing,45,64,0,0,45,0,0,102
+105,scroll,Overview scroll,thing,69,64,0,0,69,0,0,102
+ */
+        switch (level) {
+            case 2:
+                spells.get(2).setLearned(true); //dir
+                break;
+            case 3:
+                spells.get(3).setLearned(true); //coord
+                break;
+            case 4:
+                spells.get(4).setLearned(true); //light
+                spells.get(5).setLearned(true); //xray
+                break;
+            case 5:
+                spells.get(6).setLearned(true); //water
+                spells.get(7).setLearned(true); //stun
+                break;
+            case 6:
+                spells.get(8).setLearned(true); //jump
+                spells.get(9).setLearned(true); //zap
+                spells.get(10).setLearned(true); //health
+                break;
+            case 7:
+                spells.get(11).setLearned(true); //FF
+                spells.get(12).setLearned(true); //back
+                spells.get(13).setLearned(true); //map
+                break;
+        }
     }
-
 
     public void sayThis(Engine engine, String message) {
         engine.getTalking().setPlayerTalk(message);
