@@ -164,6 +164,10 @@ public class Engine {
     public boolean canEnter(Obj ob, int x, int y, int z) {
         return world.canEnter(ob, x,y,z);
     }
+
+    public boolean canSmell(int x, int y, int z) {
+        return world.canSmell(x, y, z);
+    }
     
     public boolean isAnEntryExit(int x, int y, int z) {
         return world.isEntryExit(x, y, z);

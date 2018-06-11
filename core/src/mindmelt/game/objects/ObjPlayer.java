@@ -16,6 +16,7 @@ import java.util.List;
 
 public class ObjPlayer extends Obj {
 
+    private static final int SIZE = 9;
     private int level = 1;
     private float light = 1f;
     private boolean xray = false;
@@ -31,6 +32,7 @@ public class ObjPlayer extends Obj {
     private List<ObjPerson> mindmeltedPeople = new ArrayList<>();
     private boolean mapActive = false;
     private Talking talking;
+    private int smellMap[][] = new int[SIZE][SIZE];
 
     public ObjPlayer() {
         inventory = new Inventory(24);
@@ -63,6 +65,51 @@ public class ObjPlayer extends Obj {
             setHealthMax();
         }
         //auto stuff?
+        updateSmellMap(engine);
+    }
+
+    private void updateSmellMap(Engine engine) {
+        for(int i=0; i<SIZE; i++) {
+            for (int j=0; j<SIZE; j++) {
+                smellMap[i][j] = SIZE*SIZE;
+            }
+        }
+        adjacent(engine, x, y, 1);
+        // display
+//        for(int i=0; i<SIZE; i++) {
+//            String line = "";
+//            for (int j=0; j<SIZE; j++) {
+//                line += smellMap[i][j];
+//            }
+//            System.out.println(line);
+//        }
+//        System.out.println("---------");
+    }
+
+    private void adjacent(Engine engine, int x1, int y1, int dist) {
+        if((x1!=x || y1!=y) && !engine.canSmell(x1, y1, z))
+            return;
+        int sx = x1 - x + SIZE/2;
+        int sy = y1 - y + SIZE/2;
+        if(sx>=0 && sx<SIZE && sy>=0 && sy<SIZE) {
+            if(smellMap[sx][sy] > dist) {
+                smellMap[sx][sy] = dist;
+                adjacent(engine, x1 + 1, y1, dist + 1);
+                adjacent(engine, x1, y1 + 1, dist + 1);
+                adjacent(engine, x1 - 1, y1, dist + 1);
+                adjacent(engine, x1, y1 - 1, dist + 1);
+            }
+        }
+    }
+
+    public int getSmellDist(int mx, int my, int mz) {
+        if(mz != z) return 0;
+        int sx = mx - x + SIZE/2;
+        int sy = my - y + SIZE/2;
+        if(sx>=0 && sx<SIZE && sy>=0 && sy<SIZE) {
+            return smellMap[sx][sy];
+        }
+        return SIZE*SIZE;
     }
 
     public void addSpell(Spell spell) {

@@ -376,11 +376,21 @@ public class World implements ITileAccess {
             String line;
 
     }
+
+    public boolean canSmell(int x, int y, int z) {
+        TileType tile = getTile(x,y,z);
+        if (tile.canEnter()) {
+            //if(getTopObject(x,y,z) == null || !getTopObject(x,y,z).isBlocked()) {
+                return !(inNoMonsterArea(x,y,z));
+            //}
+        }
+        return false;
+    }
     
     public boolean canEnter(Obj ob, int x, int y, int z) {
         TileType tile = getTile(x,y,z);
         if (tile.canEnter()) {
-            if(getTopObject(x,y,z)== null || ob.isPlayer() || !getTopObject(x,y,z).isBlocked()) {
+            if(getTopObject(x,y,z) == null || ob.isPlayer() || !getTopObject(x,y,z).isBlocked()) {
                 return !(ob.isMonster() && inNoMonsterArea(x,y,z));
             }
         }

@@ -16,14 +16,49 @@ public class ObjMonster extends Obj {
     public void update(Engine engine, float delta) {
         updateMessage(engine);
         if(isReady(engine) && !isDead()) {
-            Obj player = engine.getObjects().getPlayer();
-            if (((ObjPlayer) player).isStun()) return;
+            ObjPlayer player = (ObjPlayer)engine.getObjects().getPlayer();
+            if (player.isStun()) return;
+
             int px = player.getX();
             int py = player.getY();
 
             int dx = x;
             int dy = y;
+            int smellDist = player.getSmellDist(x, y, z);
+            int sd;
+            boolean r = true;
+            if((sd=player.getSmellDist(x+1, y, z)) < smellDist) {
+                dx = x+1;
+                dy = y;
+                smellDist = sd;
+                r = false;
+            }
+            if((sd=player.getSmellDist(x-1, y, z)) < smellDist) {
+                dx = x-1;
+                dy = y;
+                smellDist = sd;
+                r = false;
+            }
+            if((sd=player.getSmellDist(x, y+1, z)) < smellDist) {
+                dx = x;
+                dy = y+1;
+                smellDist = sd;
+                r = false;
+            }
+            if((player.getSmellDist(x, y-1, z)) < smellDist) {
+                dx = x;
+                dy = y-1;
+                r = false;
+            }
 
+            if(r) {
+                if (rand.nextInt(2) == 0) {
+                    dx += rand.nextInt(2) * 2 - 1;
+                } else {
+                    dy += rand.nextInt(2) * 2 - 1;
+                }
+            }
+/*
             int difx = px - x;
             int dify = py - y;
             if (difx * difx + dify * dify > SMELL_DIST * SMELL_DIST) {
@@ -45,7 +80,7 @@ public class ObjMonster extends Obj {
                 dx += nx;
                 dy += ny;
             }
-
+*/
             if(player.getX() == dx && player.getY() == dy && player.getZ() == z) {
                 int hits = strength/10 + MathUtils.random(5);
                 player.attack(engine, hits);
