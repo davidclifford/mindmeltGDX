@@ -189,7 +189,7 @@ public class PlayScreen implements Screen, InputProcessor {
     }
 
     private void updateSpells() {
-        engine.getPlayer().getSpells().stream().forEach(sp -> sp.update(engine));
+        engine.getPlayer().getSpells().forEach(sp -> sp.update(engine));
     }
 
     private void updateMouse() {
@@ -339,6 +339,9 @@ public class PlayScreen implements Screen, InputProcessor {
                 break;
             case Input.Keys.F3:
                 engine.setXray(!engine.isXray());
+                break;
+            case Input.Keys.F4:
+                engine.getPlayer().levelUp();
                 break;
             case Input.Keys.T:
                 engine.talkAdjacent();

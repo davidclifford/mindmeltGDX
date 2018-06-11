@@ -4,8 +4,7 @@ package mindmelt.game.objects;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
 import mindmelt.game.engine.Engine;
-import mindmelt.game.engine.Message;
-import mindmelt.game.maps.World;
+import mindmelt.game.maps.TileType;
 
 public class ObjMonster extends Obj {
 
@@ -33,19 +32,19 @@ public class ObjMonster extends Obj {
                 smellDist = sd;
                 r = false;
             }
-            if((sd=player.getSmellDist(x-1, y, z)) < smellDist) {
+            if((sd=player.getSmellDist(x-1, y, z)) < smellDist || (sd==smellDist && rand.nextBoolean())) {
                 dx = x-1;
                 dy = y;
                 smellDist = sd;
                 r = false;
             }
-            if((sd=player.getSmellDist(x, y+1, z)) < smellDist) {
+            if((sd=player.getSmellDist(x, y+1, z)) < smellDist || (sd==smellDist && rand.nextBoolean())) {
                 dx = x;
                 dy = y+1;
                 smellDist = sd;
                 r = false;
             }
-            if((player.getSmellDist(x, y-1, z)) < smellDist) {
+            if((sd=player.getSmellDist(x, y-1, z)) < smellDist || (sd==smellDist && rand.nextBoolean())) {
                 dx = x;
                 dy = y-1;
                 r = false;
@@ -91,6 +90,22 @@ public class ObjMonster extends Obj {
                 //engine.activateTile(dx, dy, z);
             }
             resetWait(engine);
+        }
+
+        //regenerating monsters
+        if(isDead() && mapId==1) {
+            ObjPlayer player = (ObjPlayer)engine.getObjects().getPlayer();
+            if(abs(player.getX()-x)>4 || abs(player.getY()-y)>4) {
+                int nx = rand.nextInt(80);
+                int ny = rand.nextInt(80);
+                if (engine.getTopObject(nx, ny, 0) == null && engine.getTile(nx, ny, getZ()) == TileType.grass) {
+                    setStrength(rand.nextInt(20) + 10);
+                    setSpeed(rand.nextInt(10) + 5);
+                    setIcon(rand.nextInt(17) + 62);
+                    engine.moveObjToMap(this, nx, ny, getZ());
+                    resetWait(engine);
+                }
+            }
         }
     }
 
