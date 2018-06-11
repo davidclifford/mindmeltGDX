@@ -349,8 +349,8 @@ public class Engine {
         int px = getPlayerX();
         int py = getPlayerY();
         int pz = getPlayerZ();
-        for(int y=py-1;y<py+1;y++) {
-            for(int x=px-1;x<px+1;x++) {
+        for(int y=py-1;y<=py+1;y++) {
+            for(int x=px-1;x<=px+1;x++) {
                 Obj topObj = getTopObject(x, y, pz);
                 if (topObj != null && topObj.isPerson()){
                     getWorld().talkTo(this, topObj.getId(), x, y, pz);
