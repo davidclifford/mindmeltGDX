@@ -196,6 +196,7 @@ bard,I collect stories
 stories|story,I'll swap a story for a spell
 spell|swap|stun,A stun spell,1
 greeting,I'm Finbar the Bard
+bye,Be seeing you
 -
 id=69
 -
@@ -243,7 +244,7 @@ mad,Because of the Monsters
 monsters,They pop up from nowhere
 nowhere,When one stands near the stones
 stone|stones,In the circle
-bibble,Bibble! 
+bibble,Bobble!
 dontknow,Bibble! 
 bye,Bottoms up
 --

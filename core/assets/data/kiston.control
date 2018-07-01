@@ -16,39 +16,39 @@ Reply 52,1
 ObjectIn 110,52
 GetObject 110
 -
-Activate 35,8,1
+Activate 35,8,0
 GotObject 111
 OpenClose
 -
-Activate 22,12,1
+Activate 22,12,0
 GotObject 111
 OpenClose
 -
-Activate 21,15,1
+Activate 21,15,0
 GotObject 111
 OpenClose
 -
-Activate 21,21,1
+Activate 21,21,0
 GotObject 111
 OpenClose
 -
-Activate 20,23,1
+Activate 20,23,0
 GotObject 111
 OpenClose
 -
-Activate 18,27,1
+Activate 18,27,0
 GotObject 111
 OpenClose
 -
-Activate 21,28,1
+Activate 21,28,0
 GotObject 111
 OpenClose
 -
-Activate 21,30,1
+Activate 21,30,0
 GotObject 111
 OpenClose
 -
-Activate 24,32,1
+Activate 24,32,0
 GotObject 111
 OpenClose
 --
