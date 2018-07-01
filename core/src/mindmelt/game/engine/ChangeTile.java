@@ -9,13 +9,15 @@ public class ChangeTile {
     private int z;
     private int map;
     private int icon;
+    private int change;
 
-    public ChangeTile(int x, int y, int z, int map, int icon) {
+    public ChangeTile(int x, int y, int z, int map, int icon, int change) {
         this.x = x;
         this.y = y;
         this.z = z;
         this.map = map;
         this.icon = icon;
+        this.change = change;
     }
 
     public int getX() {
@@ -56,5 +58,13 @@ public class ChangeTile {
 
     public void setIcon(int icon) {
         this.icon = icon;
+    }
+
+    public int getChange() {
+        return change;
+    }
+
+    public void setChange(int change) {
+        this.change = change;
     }
 }

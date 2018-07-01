@@ -12,10 +12,10 @@ to=8,74,0
 from=21,36,0
 --
 @code
-Activate 19,33,1
+Activate 19,33,0
 Message Main Office
 -
-Activate 23,33,1
+Activate 23,33,0
 Message Private
 -
 Reply 55,2
@@ -30,9 +30,9 @@ Reply 24,2
 GotObject 106
 Message Give the key back later
 -
-Activate 35,28,1
+Activate 35,28,0
 ObjectIn 106,55
-GetObject 106 
+GetObject 106
 -
 Reply 55,1
 ObjectIn 106,55
@@ -48,121 +48,121 @@ GetObject 103
 MoveObjectInto 108,58
 Message Take the heal spell
 -
-Activate 3,21,1
+Activate 3,21,0
 GotObject 106
 OpenClose
 -
-Activate 7,21,1
+Activate 7,21,0
 GotObject 106
 OpenClose
 -
-Activate 11,21,1
+Activate 11,21,0
 GotObject 106
 OpenClose
 -
-Activate 15,21,1
+Activate 15,21,0
 GotObject 106
 OpenClose
 -
-Activate 27,21,1
+Activate 27,21,0
 GotObject 106
 OpenClose
 -
-Activate 31,21,1
+Activate 31,21,0
 GotObject 106
 OpenClose
 -
-Activate 35,21,1
+Activate 35,21,0
 GotObject 106
 OpenClose
 -
-Activate 39,21,1
+Activate 39,21,0
 GotObject 106
 OpenClose
 -
-Activate 3,23,1
+Activate 3,23,0
 GotObject 106
 OpenClose
 -
-Activate 7,23,1
+Activate 7,23,0
 GotObject 106
 OpenClose
 -
-Activate 11,23,1
+Activate 11,23,0
 GotObject 106
 OpenClose
 -
-Activate 15,23,1
+Activate 15,23,0
 GotObject 106
 OpenClose
 -
-Activate 27,23,1
+Activate 27,23,0
 GotObject 106
 OpenClose
 -
-Activate 31,23,1
+Activate 31,23,0
 GotObject 106
 OpenClose
 -
-Activate 35,23,1
+Activate 35,23,0
 GotObject 106
 OpenClose
 -
-Activate 39,23,1
+Activate 39,23,0
 GotObject 106
 OpenClose
 -
-Activate 17,22,1
+Activate 17,22,0
 GotObject 106
 OpenClose
 -
-Activate 25,22,1
+Activate 25,22,0
 GotObject 106
 OpenClose
 -
-PadOn 3,22,1
+PadOn 3,22,0
 Execute CloseGates
 -
-PadOn 7,22,1
+PadOn 7,22,0
 Execute CloseGates
 -
-PadOn 11,22,1
+PadOn 11,22,0
 Execute CloseGates
 -
-PadOn 15,22,1
+PadOn 15,22,0
 Execute CloseGates
 -
-PadOn 27,22,1
+PadOn 27,22,0
 Execute CloseGates
 -
-PadOn 31,22,1
+PadOn 31,22,0
 Execute CloseGates
 -
-PadOn 35,22,1
+PadOn 35,22,0
 Execute CloseGates
 -
-PadOn 39,22,1
+PadOn 39,22,0
 Execute CloseGates
 -
 Routine CloseGates
-Close 3,21,1
-Close 7,21,1
-Close 11,21,1
-Close 15,21,1
-Close 27,21,1
-Close 31,21,1
-Close 35,21,1
-Close 39,21,1
-Close 3,23,1
-Close 7,23,1
-Close 11,23,1
-Close 15,23,1
-Close 27,23,1
-Close 31,23,1
-Close 35,23,1
-Close 39,31,1
-Close 17,22,1
-Close 25,22,1
+Close 3,21,0
+Close 7,21,0
+Close 11,21,0
+Close 15,21,0
+Close 27,21,0
+Close 31,21,0
+Close 35,21,0
+Close 39,21,0
+Close 3,23,0
+Close 7,23,0
+Close 11,23,0
+Close 15,23,0
+Close 27,23,0
+Close 31,23,0
+Close 35,23,0
+Close 39,23,0
+Close 17,22,0
+Close 25,22,0
 --
 @talk
 id=43

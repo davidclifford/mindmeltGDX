@@ -458,6 +458,11 @@ public class World implements ITileAccess {
         setTile(x,y,z,tile);
     }
 
+    public void setIcon(int x, int y, int z, int icon) {
+        TileType tile = TileType.getTileType(icon);
+        setTile(x,y,z,tile);
+    }
+
     public CodeStore getCodeStore() {
         return codeStore;
     }

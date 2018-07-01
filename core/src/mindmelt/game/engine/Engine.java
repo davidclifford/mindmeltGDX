@@ -183,11 +183,20 @@ public class Engine {
             if(!entry.getToMap().equals(world.getFilename())) {
                 world = new World();
                 world.loadMap(entry.getToMap());
+                overlay();
                 objects.initMap(world);
             }
             objects.getPlayer().moveToMap(entry.getToX(),entry.getToY(),entry.getToZ(), this);
             game.world = world;
             game.objects = objects;
+        }
+    }
+
+    private void overlay() {
+        for(ChangeTile tile : changeTiles.values()) {
+            if(tile.getMap()==world.getId()) {
+                world.setIcon(tile.getX(),tile.getY(),tile.getZ(),tile.getChange());
+            }
         }
     }
 
@@ -287,7 +296,7 @@ public class Engine {
             changeTiles.remove(coord);
         }
         if (original == null || original.getIcon() != newTile.getIcon()) {
-            changeTiles.put(coord, new ChangeTile(x, y, z, world.getId(), current));
+            changeTiles.put(coord, new ChangeTile(x, y, z, world.getId(), current, newTile.getIcon()));
         }
         // CODE
         fromTo(world.getTopObject(x,y,z), oldTile, newTile, x,y,z, x,y,z);
