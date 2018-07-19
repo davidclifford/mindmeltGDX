@@ -63,7 +63,7 @@ public class PlayScreen implements Screen, InputProcessor {
     private Pixmap newMouse;
     private int lastMouse;
 
-    public PlayScreen(MindmeltGDX game) {
+    public PlayScreen(MindmeltGDX game, String status) {
 
         tex = game.tileImages.getTextureData();
         tex.prepare();
@@ -98,15 +98,24 @@ public class PlayScreen implements Screen, InputProcessor {
         viewWindow.addElement(throwWindowL);
         viewWindow.addElement(throwWindowB);
 
-        game.objects = new ObjectStore();
-        //game.objects.convertObjects("OBJ.DAT","initial.obj");
-        game.objects.loadObjects("initial");
+        System.out.println(String.format("Game = %s",status));
 
-        game.world = new World();
-        game.world.loadMap("world");
+        if (game.objects!=null && status.equals("load")) {
 
-        game.objects.initMap(game.world);
-        game.player = (ObjPlayer) game.objects.getPlayer();
+        } else if (game.objects!=null && status.equals("save")) {
+            game.objects.saveObjects("saved");
+
+        } else { //new game
+            game.objects = new ObjectStore();
+            //game.objects.convertObjects("OBJ.DAT","initial.obj");
+            game.objects.loadObjects("initial");
+
+            game.world = new World();
+            game.world.loadMap("world");
+
+            game.objects.initMap(game.world);
+            game.player = (ObjPlayer) game.objects.getPlayer();
+        }
 
         setSpellButtons(game.player); //default until game loaded
 

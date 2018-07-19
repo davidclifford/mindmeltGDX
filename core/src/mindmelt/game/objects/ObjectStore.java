@@ -1,6 +1,7 @@
 package mindmelt.game.objects;
 
 import com.opencsv.CSVReader;
+import com.opencsv.CSVWriter;
 import mindmelt.game.maps.World;
 
 import java.io.BufferedWriter;
@@ -70,6 +71,35 @@ public class ObjectStore {
                 if(id==1) ob.setSpeed(2L);
                 objects[id] = ob;
             }
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void saveObjects(String filename) {
+        try {
+            CSVWriter writer = new CSVWriter(new FileWriter("data/"+filename+".obj"),',','\'','\\',"\n");
+            String header[] = {"id","name","desc","type","x","y","z","map","inside","order","strength","icon"};
+            writer.writeNext(header,false);
+            for(Obj obj : objects) {
+                if(obj==null) continue;
+                String line[] = new String[12];
+                line[0] = ""+obj.getId();
+                line[1] = ""+obj.getName();
+                line[2] = ""+obj.getDescription();
+                line[3] = ""+obj.getType();
+                line[4] = ""+obj.getX();
+                line[5] = ""+obj.getY();
+                line[6] = ""+obj.getZ();
+                line[7] = ""+obj.getMapId();
+                line[8] = ""+(obj.getInside()==null ? 0 : obj.getInside().getId());
+                line[9] = ""+obj.getOrder();
+                line[10] = ""+obj.getStrength();
+                line[11] = ""+obj.getIcon();
+
+                writer.writeNext(line,false);
+            }
+            writer.close();
         } catch(Exception e) {
             e.printStackTrace();
         }

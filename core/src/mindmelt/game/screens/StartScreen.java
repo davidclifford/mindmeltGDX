@@ -29,6 +29,8 @@ public class StartScreen  implements Screen {
     private Skin skin;
     private TextButton startGame;
     private TextButton exitGame;
+    private TextButton loadGame;
+    private TextButton saveGame;
 
     public StartScreen(MindmeltGDX game) {
         this.game = game;
@@ -40,13 +42,31 @@ public class StartScreen  implements Screen {
         stage = new Stage();
         Gdx.input.setInputProcessor(stage);
 
-        startGame = button("Start Game", skin);
+        startGame = button("Start NEW Game", skin);
+        loadGame = button("Load Game",skin);
+        saveGame = button("Save Game", skin);
         exitGame = button("Exit Game",skin);
 
         startGame.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                StartScreen.this.game.setScreen(new PlayScreen( StartScreen.this.game));
+                StartScreen.this.game.setScreen(new PlayScreen(game,"new"));
+                StartScreen.this.dispose();
+            }
+        });
+
+        loadGame.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                StartScreen.this.game.setScreen(new PlayScreen( game,"load"));
+                StartScreen.this.dispose();
+            }
+        });
+
+        saveGame.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                StartScreen.this.game.setScreen(new PlayScreen( game,"save"));
                 StartScreen.this.dispose();
             }
         });
@@ -63,9 +83,13 @@ public class StartScreen  implements Screen {
         table.setWidth(stage.getWidth());
         table.align(Align.center | Align.top);
         table.setPosition(0,Gdx.graphics.getHeight());
-        table.padTop(200);
+        table.padTop(160);
         table.add(startGame);
-        table.row().pad(20);
+        table.row().pad(10);
+        table.add(loadGame);
+        table.row().pad(10);
+        table.add(saveGame);
+        table.row().pad(10);
         table.add(exitGame);
 
         stage.addActor(table);
@@ -105,8 +129,14 @@ public class StartScreen  implements Screen {
         if(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
             dispose();
             game.exit();
-        } else if(Gdx.input.isKeyJustPressed(Input.Keys.ANY_KEY)) {
-            game.setScreen(new PlayScreen(game));
+        } else if(Gdx.input.isKeyJustPressed(Input.Keys.L)) {
+            game.setScreen(new PlayScreen(game,"load"));
+            dispose();
+        } else if(Gdx.input.isKeyJustPressed(Input.Keys.S)) {
+            game.setScreen(new PlayScreen(game,"save"));
+            dispose();
+        } else if(Gdx.input.isKeyJustPressed(Input.Keys.N)) {
+            game.setScreen(new PlayScreen(game,"new"));
             dispose();
         }
     }
