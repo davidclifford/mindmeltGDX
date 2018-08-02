@@ -102,6 +102,15 @@ public class PlayScreen implements Screen, InputProcessor {
 
         if (game.objects!=null && status.equals("load")) {
 
+            game.objects = new ObjectStore();
+            game.objects.loadObjects("saved");
+
+            game.world = new World();
+            game.world.loadMap("world");
+
+            game.objects.initMap(game.world);
+            game.player = (ObjPlayer) game.objects.getPlayer();
+
         } else if (game.objects!=null && status.equals("save")) {
             game.objects.saveObjects("saved");
 
