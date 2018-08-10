@@ -6,11 +6,13 @@
 package mindmelt.game.objects;
 
 import com.badlogic.gdx.Input;
+import com.opencsv.CSVWriter;
 import mindmelt.game.engine.Engine;
 import mindmelt.game.maps.EntryExit;
 import mindmelt.game.spells.Spell;
 import mindmelt.game.talk.Talking;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -210,7 +212,11 @@ public class ObjPlayer extends Obj {
     public void levelUp() {
         level++;
         setHealthMax();
+        setSpells(level);
+    }
         //set spells
+
+    public void setSpells(int level) {
 /*
 100,scroll,X-ray scroll,thing,44,64,0,0,44,0,0,102
 101,scroll,Stun scroll,thing,68,64,0,0,68,0,0,102
@@ -292,5 +298,114 @@ public class ObjPlayer extends Obj {
             saying += in;
         }
         talking.setPlayerTalk(saying);
+    }
+
+    public void saveStatus(Engine engine, String name) {
+        String filename = "data/"+name+".pla";
+        String line = "";
+        BufferedWriter output = null;
+        try {
+            output = new BufferedWriter(new FileWriter(filename));
+
+            output.write("map="+engine.getWorld().getFilename()+"\n");
+            output.write("level="+getLevel()+"\n");
+            output.write("light="+getLight()+"\n");
+            output.write("ff="+isForcefield()+"\n");
+            output.write("water="+isWater()+"\n");
+            output.write("stun="+isStun()+"\n");
+            output.write("xray="+isXray()+"\n");
+            output.write("zap="+isZap()+"\n");
+            output.write("backmap="+backMap+"\n");
+            output.write("backx="+backX+"\n");
+            output.write("backy="+backY+"\n");
+            output.write("backz="+backZ+"\n");
+            output.write("mapactive="+isMapActive()+"\n");
+            //spells learned
+            int spellNum = 0;
+            for(Spell spell : getSpells()) {
+                output.write("spell="+spellNum+","+(spell.isLearned()?1:0)+","+(spell.isActive()?1:0)+"\n");
+                spellNum++;
+            }
+            output.close();
+        } catch (Exception e) {
+            System.out.println("Error "+e.getMessage());
+        }
+    }
+
+    public String loadStatus(Engine engine, String name) {
+        String filename = "data/"+name+".pla";
+        String line;
+        String mapName = null;
+        BufferedReader input = null;
+
+        try {
+            input = new BufferedReader((new FileReader(filename)));
+
+            while((line = input.readLine()) != null) {
+                if(line.length()==0) continue;
+                if(line.startsWith("//")) continue;
+
+                String parts[] = line.split("=");
+                if(parts.length != 2) continue;
+                String key = parts[0];
+                String value = parts[1];
+                switch (key) {
+                    case "map":
+                        mapName = value;
+                        break;
+                    case "spell":
+                        String spellParts[] = value.split(",");
+                        int sp = Integer.parseInt(spellParts[0]);
+                        Spell spell = spells.get(sp);
+                        spell.setLearned(spellParts[1].equals("1"));
+                        spell.setActive(spellParts[2].equals("1"));
+                        break;
+                    case "level":
+                        level = Integer.parseInt(value);
+                        break;
+                    case "light":
+                        light = Float.parseFloat(value);
+                        break;
+                    case "ff":
+                        forcefield = Boolean.parseBoolean(value);
+                        break;
+                    case "water":
+                        water = Boolean.parseBoolean(value);
+                        break;
+                    case "stun":
+                        stun = Boolean.parseBoolean(value);
+                        break;
+                    case "xray":
+                        xray = Boolean.parseBoolean(value);
+                        break;
+                    case "zap":
+                        zap = Boolean.parseBoolean(value);
+                        break;
+                    case "mapactive":
+                        mapActive = Boolean.parseBoolean(value);
+                        break;
+                    case "backmap":
+                        backMap = value;
+                        break;
+                    case "backx":
+                        backX = Integer.parseInt(value);
+                        break;
+                    case "backy":
+                        backY = Integer.parseInt(value);
+                        break;
+                    case "backz":
+                        backZ = Integer.parseInt(value);
+                        break;
+                    default:
+                        System.out.println("Unknown key: "+line);
+                }
+            }
+            input.close();
+        } catch (Exception e) {
+            System.out.println("Error: "+e);
+            e.printStackTrace();
+            System.exit(1);
+        }
+        return mapName;
     }
 }

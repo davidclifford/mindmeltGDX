@@ -100,21 +100,27 @@ public class PlayScreen implements Screen, InputProcessor {
 
         System.out.println(String.format("Game = %s",status));
 
-        if (game.objects!=null && status.equals("load")) {
+        if (game.objects!=null && status.equals("save")) {
+
+            game.objects.saveObjects("saved");
+            game.player.saveStatus(game.engine, "saved");
+        }
+        if (status.equals("load") || status.equals("save")) {
 
             game.objects = new ObjectStore();
             game.objects.loadObjects("saved");
 
+            game.player = (ObjPlayer) game.objects.getPlayer();
+            setSpellButtons(game.player, false);
+            String mapName = game.player.loadStatus(game.engine,"saved");
+
             game.world = new World();
-            game.world.loadMap("world");
+            game.world.loadMap(mapName);
 
             game.objects.initMap(game.world);
-            game.player = (ObjPlayer) game.objects.getPlayer();
-
-        } else if (game.objects!=null && status.equals("save")) {
-            game.objects.saveObjects("saved");
 
         } else { //new game
+
             game.objects = new ObjectStore();
             //game.objects.convertObjects("OBJ.DAT","initial.obj");
             game.objects.loadObjects("initial");
@@ -124,21 +130,17 @@ public class PlayScreen implements Screen, InputProcessor {
 
             game.objects.initMap(game.world);
             game.player = (ObjPlayer) game.objects.getPlayer();
-        }
 
-        setSpellButtons(game.player); //default until game loaded
+            setSpellButtons(game.player, true); //default until game loaded
+        }
 
         engine = new Engine(game);
         game.engine = engine;
-
-        wilhelm = game.manager.get("sound/wilhelm.ogg");
-
         setMouse(182);
-
         engine.setPlayerWait();
     }
 
-    private void setSpellButtons(ObjPlayer player) {
+    private void setSpellButtons(ObjPlayer player, boolean isNew) {
         //Set up spell buttons
         SpellButton button = null;
         Spell spell = null;
@@ -157,9 +159,10 @@ public class PlayScreen implements Screen, InputProcessor {
             else if (b==11) button = new TimedSpellButton(spell=new ForceFieldSpell(),b%7, b/7, b+135);
             else if (b==12) button = new ToggleSpellButton(spell=new BackSpell(),b%7, b/7, b+135);
             else if (b==13) button = new ToggleSpellButton(spell=new MapSpell(),b%7, b/7, b+135);
-            //button.setState(Button.OFF);
             spellWindow.addElement(button);
-            spell.setLearned(b<2);
+            if (isNew) {
+                spell.setLearned(b<2);
+            }
             player.addSpell(spell);
         }
     }
