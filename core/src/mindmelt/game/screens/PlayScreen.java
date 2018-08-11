@@ -101,12 +101,11 @@ public class PlayScreen implements Screen, InputProcessor {
         System.out.println(String.format("Game = %s",status));
 
         if (game.objects!=null && status.equals("save")) {
-
             game.objects.saveObjects("saved");
             game.player.saveStatus(game.engine, "saved");
         }
-        if (status.equals("load") || status.equals("save")) {
 
+        if (status.equals("load") || status.equals("save")) {
             game.objects = new ObjectStore();
             game.objects.loadObjects("saved");
 
@@ -118,9 +117,7 @@ public class PlayScreen implements Screen, InputProcessor {
             game.world.loadMap(mapName);
 
             game.objects.initMap(game.world);
-
         } else { //new game
-
             game.objects = new ObjectStore();
             //game.objects.convertObjects("OBJ.DAT","initial.obj");
             game.objects.loadObjects("initial");

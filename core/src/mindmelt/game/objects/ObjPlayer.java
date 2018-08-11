@@ -358,7 +358,7 @@ public class ObjPlayer extends Obj {
                         int sp = Integer.parseInt(spellParts[0]);
                         Spell spell = spells.get(sp);
                         spell.setLearned(spellParts[1].equals("1"));
-                        spell.setActive(spellParts[2].equals("1"));
+                        if (spellParts[2].equals("1")) spell.activate(engine);
                         break;
                     case "level":
                         level = Integer.parseInt(value);

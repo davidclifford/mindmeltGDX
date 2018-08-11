@@ -13,6 +13,8 @@ public class Spell {
     private boolean active;
     private boolean learned;
 
+    private long time;
+
     public String getName() {
         return name;
     }
@@ -54,6 +56,8 @@ public class Spell {
     public void reset(Engine engine) {}
 
     public void render(MindmeltGDX game, float delta) {
+
+
 
     }
 }
