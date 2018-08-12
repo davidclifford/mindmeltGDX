@@ -16,6 +16,40 @@ desc=Level 2
 from=26,26,0
 to=26,26,0
 --
+@talk
+id=90
+talkfirst=1
+sayfirst=1
+-
+greeting,I am a riddling picture
+name,I have no name
+job,A magic riddling picture
+riddle,What is the map number?
+map,A view overhead
+number,A number in the map
+0,Wrong!,2
+1,Wrong!,2
+2,Wrong!,2
+3,Wrong!,2
+4,Wrong!,2
+5,Wrong!,2
+6,Wrong!,2
+7,Wrong!,2
+8,Wrong!,2
+9,Wrong!,2
+zero,Wrong!,2
+one,Wrong!,2
+two,Wrong!,2
+three,Wrong!,2
+four,Wrong!,2
+five,Wrong!,2
+six,Wrong!,2
+seven,Wrong!,2
+eight,Wrong!,2
+nine,Wrong!,2
+10,Correct!,1
+ten,Correct!,1
+--
 @code
 // Code
 //hidden teleports to below
@@ -99,7 +133,7 @@ MoveAll 6,12,0
 Activate 14,1,0
 TalkTo 90,0
 -
-Reply 90,0
+Reply 90,1
 Open 15,2,0
 -
 Reply 90,2
