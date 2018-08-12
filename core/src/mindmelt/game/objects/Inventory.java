@@ -87,4 +87,11 @@ public class Inventory {
         hand.moveToMap(x,y,z,engine);
         hand = null;
     }
+
+    public void initSlots() {
+        int s=0;
+        for(Obj ob:objects) {
+            slot[s++] = ob;
+        }
+    }
 }

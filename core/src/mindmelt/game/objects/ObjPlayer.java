@@ -6,13 +6,15 @@
 package mindmelt.game.objects;
 
 import com.badlogic.gdx.Input;
-import com.opencsv.CSVWriter;
 import mindmelt.game.engine.Engine;
 import mindmelt.game.maps.EntryExit;
 import mindmelt.game.spells.Spell;
 import mindmelt.game.talk.Talking;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -407,5 +409,9 @@ public class ObjPlayer extends Obj {
             System.exit(1);
         }
         return mapName;
+    }
+
+    public void initInventory() {
+        inventory.initSlots();
     }
 }

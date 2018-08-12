@@ -78,7 +78,7 @@ public class Obj {
         obTo.addObject(this);
     }
     
-    private void addObject(Obj ob) {
+    public void addObject(Obj ob) {
         inventory.objToInventory(ob);
     }
     

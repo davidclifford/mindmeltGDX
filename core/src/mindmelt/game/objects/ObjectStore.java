@@ -64,12 +64,15 @@ public class ObjectStore {
                 int inside = Integer.parseInt(line[8]);
                 int order = Integer.parseInt(line[9]);
                 int strength = Integer.parseInt(line[10]);
-                Obj in = objects[inside];
                 int icon = Integer.parseInt(line[11]);
+                Obj in = (inside>0) ? objects[inside] : null;
                 Obj ob = Obj.builder(type).id(id).name(name).description(desc).setCoords(x,y,z).inside(in).mapId(mapId).order(order).strength(strength).icon(icon);
                 ob.setSpeed(rand.nextInt(10)+5L);
                 if(id==1) ob.setSpeed(2L);
                 objects[id] = ob;
+                if(in!=null) {
+                    in.addObject(ob);
+                }
             }
         } catch(Exception e) {
             e.printStackTrace();

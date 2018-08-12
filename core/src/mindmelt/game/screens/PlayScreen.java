@@ -111,12 +111,16 @@ public class PlayScreen implements Screen, InputProcessor {
 
             game.player = (ObjPlayer) game.objects.getPlayer();
             setSpellButtons(game.player, false);
-            String mapName = game.player.loadStatus(game.engine,"saved");
 
             game.world = new World();
-            game.world.loadMap(mapName);
+            engine = new Engine(game);
+            game.engine = engine;
 
+            String mapName = game.player.loadStatus(game.engine,"saved");
+            game.world.loadMap(mapName);
             game.objects.initMap(game.world);
+            game.player.initInventory();
+
         } else { //new game
             game.objects = new ObjectStore();
             //game.objects.convertObjects("OBJ.DAT","initial.obj");
@@ -129,10 +133,10 @@ public class PlayScreen implements Screen, InputProcessor {
             game.player = (ObjPlayer) game.objects.getPlayer();
 
             setSpellButtons(game.player, true); //default until game loaded
+            engine = new Engine(game);
+            game.engine = engine;
         }
 
-        engine = new Engine(game);
-        game.engine = engine;
         setMouse(182);
         engine.setPlayerWait();
     }
