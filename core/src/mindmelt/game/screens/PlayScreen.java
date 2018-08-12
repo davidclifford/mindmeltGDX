@@ -103,6 +103,7 @@ public class PlayScreen implements Screen, InputProcessor {
         if (game.objects!=null && status.equals("save")) {
             game.objects.saveObjects("saved");
             game.player.saveStatus(game.engine, "saved");
+            game.engine.saveChangeTiles("saved");
         }
 
         if (status.equals("load") || status.equals("save")) {
@@ -118,6 +119,8 @@ public class PlayScreen implements Screen, InputProcessor {
 
             String mapName = game.player.loadStatus(game.engine,"saved");
             game.world.loadMap(mapName);
+            game.engine.loadChangeTiles("saved");
+            game.engine.overlay();
             game.objects.initMap(game.world);
             game.player.initInventory();
 

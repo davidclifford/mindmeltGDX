@@ -15,6 +15,10 @@ import mindmelt.game.objects.ObjPlayer;
 import mindmelt.game.objects.ObjectStore;
 import mindmelt.game.talk.Talking;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -192,7 +196,7 @@ public class Engine {
         }
     }
 
-    private void overlay() {
+    public void overlay() {
         for(ChangeTile tile : changeTiles.values()) {
             if(tile.getMap()==world.getId()) {
                 world.setIcon(tile.getX(),tile.getY(),tile.getZ(),tile.getChange());
@@ -290,7 +294,7 @@ public class Engine {
         TileType oldTile = world.getTile(x,y,z);
         int current = oldTile.getId();
         world.changeTile(x, y, z, newTile);
-        String coord = String.format("%d:%d:%d,%d", x, y, z, world.getId());
+        String coord = String.format("%d:%d:%d:%d", x, y, z, world.getId());
         ChangeTile original = changeTiles.get(coord);
         if (original != null) {
             changeTiles.remove(coord);
@@ -367,5 +371,60 @@ public class Engine {
                 }
             }
         }
+    }
+
+    public void saveChangeTiles(String name) {
+        String filename = "data/" + name + ".ovr";
+        StringBuilder line = null;
+        BufferedWriter output = null;
+        try {
+            output = new BufferedWriter(new FileWriter(filename));
+
+            for(ChangeTile ct : changeTiles.values()) {
+                line = new StringBuilder();
+                line.append(ct.getX() + ",");
+                line.append(ct.getY() + ",");
+                line.append(ct.getZ() + ",");
+                line.append(ct.getMap() + ",");
+                line.append(ct.getIcon() + ",");
+                line.append(ct.getChange() + "\n");
+                output.write(line.toString());
+            }
+            output.close();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            System.exit(1);
+        }
+    }
+
+    public void loadChangeTiles(String name) {
+        String filename = "data/"+name+".ovr";
+        String line;
+        BufferedReader input = null;
+
+        try {
+            input = new BufferedReader((new FileReader(filename)));
+
+            while ((line = input.readLine()) != null) {
+                if (line.length() == 0) continue;
+                if (line.startsWith("//")) continue;
+
+                String p[] = line.split(",");
+                int x = Integer.parseInt(p[0]);
+                int y = Integer.parseInt(p[1]);
+                int z = Integer.parseInt(p[2]);
+                int map = Integer.parseInt(p[3]);
+                int original = Integer.parseInt(p[4]);
+                int id = Integer.parseInt(p[5]);
+                String coord = String.format("%d:%d:%d:%d", x, y, z, map);
+                changeTiles.put(coord, new ChangeTile(x, y, z, map, original, id));
+            }
+            input.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            System.exit(1);
+        }
+
     }
 }
