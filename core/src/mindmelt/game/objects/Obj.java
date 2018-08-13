@@ -24,6 +24,7 @@ public class Obj {
     public Color messColour;
     private long expiry = 0;
     public Obj inside = null;
+    public int insideId = 0;
     public Inventory inventory = new Inventory();
     
     public int icon = 0;
@@ -182,6 +183,11 @@ public class Obj {
         return this;
     }
 
+    public Obj insideId(int id) {
+        this.insideId = id;
+        return this;
+    }
+
     public long getSpeed() {
         return speed;
     }
@@ -324,7 +330,7 @@ public class Obj {
     }
 
     public boolean isBlocked() {
-        return isMonster() || isPlayer() || isPerson() || isAnimal();
+        return (isMonster() && !isDead()) || isPlayer() || isPerson() || isAnimal();
     }
 
     public boolean isPlayerBlocked() {
@@ -406,5 +412,14 @@ public class Obj {
 
     public boolean isDead() {
         return (strength<=0);
+    }
+
+    protected void unloadObjects(Engine engine) {
+        if(!inventory.hasObjects()) return;
+        List<Obj> contents = inventory.getContents();
+        for(int i=0; i<contents.size(); i++) {
+            Obj ob = contents.get(i);
+            ob.moveToMap(getX(),getY(),getZ(),engine);
+        }
     }
 }

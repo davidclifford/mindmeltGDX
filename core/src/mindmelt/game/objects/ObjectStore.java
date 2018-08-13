@@ -65,13 +65,18 @@ public class ObjectStore {
                 int order = Integer.parseInt(line[9]);
                 int strength = Integer.parseInt(line[10]);
                 int icon = Integer.parseInt(line[11]);
-                Obj in = (inside>0) ? objects[inside] : null;
-                Obj ob = Obj.builder(type).id(id).name(name).description(desc).setCoords(x,y,z).inside(in).mapId(mapId).order(order).strength(strength).icon(icon);
+                Obj ob = Obj.builder(type).id(id).name(name).description(desc).setCoords(x,y,z).insideId(inside).mapId(mapId).order(order).strength(strength).icon(icon);
                 ob.setSpeed(rand.nextInt(10)+5L);
                 if(id==1) ob.setSpeed(2L);
                 objects[id] = ob;
-                if(in!=null) {
-                    in.addObject(ob);
+            }
+            reader.close();
+
+            //add objects to inventories
+            for(Obj ob : objects) {
+                if(ob!=null && ob.insideId!=0) {
+                    ob.inside = objects[ob.insideId];
+                    ob.inside.addObject(ob);
                 }
             }
         } catch(Exception e) {

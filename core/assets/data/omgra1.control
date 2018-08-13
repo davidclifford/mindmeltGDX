@@ -282,22 +282,22 @@ Message You Bloody Cheat!
 -
 // 4 doors and 4 keys
 Activate 2,30,0
-GotType 63
+GotObject 137
 OpenClose
 DestroyType 63
 -
 Activate 2,29,0
-GotType 63
+GotObject 136
 OpenClose
 DestroyType 63
 -
 Activate 2,28,0
-GotType 63
+GotObject 135
 OpenClose
 DestroyType 63
 -
 Activate 2,27,0
-GotType 63
+GotObject 134
 OpenClose
 DestroyType 63
 --

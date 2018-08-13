@@ -42,8 +42,11 @@ public class BackpackWindow extends Window {
         if(inv.getHandObject()==null) {
             inv.inventoryToHand(pos);
         } else {
-            if(inv.getObject(pos)==null)
+            if(inv.getObject(pos)==null && !inv.getHandObject().isMonster())
                 inv.handToInventory(pos);
+            else
+                if(inv.getHandObject().isMonster()) engine.addMessage("You cant keep a corpse!");
         }
+
     }
 }

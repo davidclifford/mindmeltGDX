@@ -172,13 +172,13 @@ id,name,desc,type,x,y,z,map,inside,order,strength,icon
 130,rock,Rock,thing,8,37,0,13,0,0,0,121
 131,key,Gold key,thing,6,10,0,13,0,0,0,118
 //omgra1
-132,key,Gold key,thing,34,10,0,14,0,0,0,118
+132,key,Yellow key,thing,34,10,0,14,0,0,0,118
 133,key,Virtual key,thing,37,38,0,14,0,0,0,122
 //nowhere
-134,key,Magenta key,thing,212,64,0,0,0,0,0,123
-135,key,Magenta key,thing,213,64,0,0,0,0,0,123
-136,key,Magenta key,thing,214,64,0,0,0,0,0,123
-137,key,Magenta key,thing,215,64,0,0,0,0,0,123
+134,key,Magenta key,thing,0,0,0,0,212,0,0,123
+135,key,Magenta key,thing,0,0,0,0,213,0,0,123
+136,key,Magenta key,thing,0,0,0,0,214,0,0,123
+137,key,Magenta key,thing,0,0,0,0,215,0,0,123
 //pennin
 138,knife,Ranger knife,thing,5,24,0,9,0,0,0,169
 139,loaf,Bread,thing,19,29,0,9,0,0,0,170

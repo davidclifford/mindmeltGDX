@@ -94,4 +94,8 @@ public class Inventory {
             slot[s++] = ob;
         }
     }
+
+    public List<Obj> getContents() {
+        return objects;
+    }
 }

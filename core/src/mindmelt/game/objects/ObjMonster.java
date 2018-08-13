@@ -118,7 +118,7 @@ public class ObjMonster extends Obj {
     }
 
     public void hits(Engine engine, int hits) {
-        if(strength<=0) return; //already dead
+        if(isDead()) return; //already dead
         strength -= hits;
         strength = (strength<0) ? 0 : strength;
         Color colour = Color.GREEN;
@@ -126,7 +126,10 @@ public class ObjMonster extends Obj {
         if(strength<10) colour = Color.RED;
         String damage = ""+hits;
         setMessage(engine,damage,colour);
-        if(isDead()) icon = DEAD_ICON;
+        if(isDead()) {
+            icon = DEAD_ICON;
+            unloadObjects(engine);
+        }
     }
 
     public void zap(Engine engine) {
