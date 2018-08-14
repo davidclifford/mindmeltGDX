@@ -2,7 +2,7 @@
 version=1
 id=14
 name=omgra1
-description=Level 1
+description=Omgra's Castle 1
 light=false
 --
 @entry
@@ -49,6 +49,7 @@ eight,Wrong!,2
 nine,Wrong!,2
 10,Correct!,1
 ten,Correct!,1
+bye,Good luck
 --
 @code
 // Code

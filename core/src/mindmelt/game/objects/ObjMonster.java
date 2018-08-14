@@ -119,7 +119,7 @@ public class ObjMonster extends Obj {
 
     public void hits(Engine engine, int hits) {
         if(isDead()) return; //already dead
-        strength -= hits;
+        if(!isOmgra()) strength -= hits;
         strength = (strength<0) ? 0 : strength;
         Color colour = Color.GREEN;
         if(strength<20) colour = Color.YELLOW;
@@ -134,11 +134,12 @@ public class ObjMonster extends Obj {
 
     public void zap(Engine engine) {
         if(hasBeenZapped) return;
-        hits(engine, 5);
+        hits(engine, 5+rand.nextInt(engine.getPlayer().getLevel()));
         hasBeenZapped = true;
     }
 
     public void setZapped(boolean hasBeenZapped) {
         this.hasBeenZapped = hasBeenZapped;
     }
+
 }

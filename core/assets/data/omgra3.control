@@ -2,7 +2,7 @@
 version=1
 id=16
 name=omgra3
-description=Dungeon
+description=Omgra's Dungeon
 light=false
 --
 @entry
@@ -15,11 +15,14 @@ desc=Level 2
 Activate 7,1,0
 Message No Runes Beyond!
 -
+Activate 6,1,0
+Message Throw each Rune down a pit
+-
 Activate 6,7,0
 Message Rune Room
 -
 // Pad opens pits and returns runes to rune room
-PadOn 8,2,0
+PadOn 7,2,0
 Execute MoveRunesToRoom
 -
 Routine MoveRunesToRoom

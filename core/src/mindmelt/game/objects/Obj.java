@@ -422,4 +422,8 @@ public class Obj {
             ob.moveToMap(getX(),getY(),getZ(),engine);
         }
     }
+
+    public boolean isOmgra() {
+        return id==255;
+    }
 }

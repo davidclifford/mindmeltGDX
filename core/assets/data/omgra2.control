@@ -2,8 +2,27 @@
 version=1
 id=15
 name=omgra2
-description=Level 2
+description=Omgra's Castle 2
 light=false
+--
+@talk
+id=91
+talkfirst=1
+sayfirst=1
+-
+greeting,xxyy of compass points?
+name,Another riddling picture
+job,To annoy you!
+2337,Correct,1
+compass,North south east & west
+point,Co-ordinate
+pole,No!
+north,Where do they meet?
+south,Where do they meet?
+east,Where do they meet?
+west,Where do they meet?
+xxyy,Co-ords eg 1523 x=15 y=23
+bye,A bit tricky eh?
 --
 @entry
 filename=omgra1
@@ -147,7 +166,7 @@ Message East
 -
 // Talking picture 
 Activate 39,40,0
-TalkTo 91,1
+TalkTo 91,0
 -		     
 // picture opens gate
 Reply 91,1

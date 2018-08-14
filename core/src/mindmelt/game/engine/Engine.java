@@ -427,4 +427,9 @@ public class Engine {
         }
 
     }
+
+    public void finishGame() {
+        System.out.println("YOU HAVE WON!");
+        System.exit(0);
+    }
 }

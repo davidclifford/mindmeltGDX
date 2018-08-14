@@ -24,7 +24,7 @@ public class ObjThing extends Obj {
         }
         if(throwTime < engine.getSystemTime()) {
             inAir = false;
-            moveToMap(x,y,z,engine);
+            engine.moveObjToMap(this, x,y,z);
             return;
         }
 
