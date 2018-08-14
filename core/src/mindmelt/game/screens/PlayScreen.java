@@ -38,6 +38,7 @@ public class PlayScreen implements Screen, InputProcessor {
     private Batch batch;
     private BitmapFont font;
     private boolean exitGame;
+    private boolean wonGame;
     private Random rand;
     private Sound wilhelm;
 
@@ -73,6 +74,7 @@ public class PlayScreen implements Screen, InputProcessor {
         this.batch = game.batch;
         this.font = game.font;
         exitGame = false;
+        wonGame = false;
         Gdx.input.setInputProcessor(this);
 
         window = (MainWindow) new MainWindow(0,0,20,15).setName("Main");
@@ -210,6 +212,8 @@ public class PlayScreen implements Screen, InputProcessor {
         if(exitGame) {
             game.setScreen(new StartScreen(game));
             dispose();
+        } else if(wonGame) {
+            game.setScreen(new StartScreen(game)); //change to win screen
         }
     }
 
@@ -269,6 +273,7 @@ public class PlayScreen implements Screen, InputProcessor {
                 engine.activateTile(px,py,pz);
             }
         }
+        wonGame = game.player.wonGame();
     }
 
     private void updateObjects(float delta) {

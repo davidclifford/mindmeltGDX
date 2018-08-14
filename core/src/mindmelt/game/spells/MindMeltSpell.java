@@ -40,7 +40,7 @@ public class MindMeltSpell extends Spell {
                         int status = mindmelt((ObjPerson)person, player);
                         if(status==ALREADY || status==MINDMELT) return status;
                     } else if (person.isOmgra()) {
-                        engine.finishGame();
+                        player.winGame();
                     }
                 }
             }

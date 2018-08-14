@@ -21,6 +21,7 @@ import java.util.List;
 public class ObjPlayer extends Obj {
 
     private static final int SIZE = 9;
+    private boolean wonGame = false;
     private int level = 1;
     private float light = 1f;
     private boolean xray = false;
@@ -413,5 +414,14 @@ public class ObjPlayer extends Obj {
 
     public void initInventory() {
         inventory.initSlots();
+    }
+
+
+    public void winGame() {
+        wonGame = true;
+    }
+
+    public boolean wonGame() {
+        return wonGame;
     }
 }
