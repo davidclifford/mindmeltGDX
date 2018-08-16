@@ -371,7 +371,7 @@ public class PlayScreen implements Screen, InputProcessor {
                 engine.setXray(!engine.isXray());
                 break;
             case Input.Keys.F4:
-                engine.getPlayer().levelUp();
+                engine.getPlayer().levelUp(engine);
                 break;
             case Input.Keys.F5:
                 engine.setDebugView(!engine.isDebugView());

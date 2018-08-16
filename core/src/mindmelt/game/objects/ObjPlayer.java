@@ -212,14 +212,14 @@ public class ObjPlayer extends Obj {
         mindmeltedPeople.add(person);
     }
 
-    public void levelUp() {
+    public void levelUp(Engine engine) {
         level++;
         setHealthMax();
-        setSpells(level);
+        setSpells(level,engine);
     }
         //set spells
 
-    public void setSpells(int level) {
+    public void setSpells(int level, Engine engine) {
 /*
 100,scroll,X-ray scroll,thing,44,64,0,0,44,0,0,102
 101,scroll,Stun scroll,thing,68,64,0,0,68,0,0,102
@@ -228,31 +228,29 @@ public class ObjPlayer extends Obj {
 104,scroll,Back scroll,thing,45,64,0,0,45,0,0,102
 105,scroll,Overview scroll,thing,69,64,0,0,69,0,0,102
  */
-        switch (level) {
-            case 2:
-                spells.get(2).setLearned(true); //dir
-                break;
-            case 3:
-                spells.get(3).setLearned(true); //coord
-                break;
-            case 4:
-                spells.get(4).setLearned(true); //light
-                spells.get(5).setLearned(true); //xray
-                break;
-            case 5:
-                spells.get(6).setLearned(true); //water
-                spells.get(7).setLearned(true); //stun
-                break;
-            case 6:
-                spells.get(8).setLearned(true); //jump
-                spells.get(9).setLearned(true); //zap
-                spells.get(10).setLearned(true); //health
-                break;
-            case 7:
-                spells.get(11).setLearned(true); //FF
-                spells.get(12).setLearned(true); //back
-                spells.get(13).setLearned(true); //map
-                break;
+        if(level>=2) {
+            spells.get(2).setLearned(true); //dir
+        }
+        if(level>=3) {
+            spells.get(3).setLearned(true); //coord
+        }
+        if(level>=4) {
+            spells.get(4).setLearned(true); //light
+            if (engine.getObjects().getObject(100).isInside(id)) spells.get(5).setLearned(true); //xray
+        }
+        if(level>=5) {
+            spells.get(6).setLearned(true); //water
+            if (engine.getObjects().getObject(101).isInside(id)) spells.get(7).setLearned(true); //stun
+        }
+        if(level>=6) {
+            spells.get(8).setLearned(true); //jump
+            if (engine.getObjects().getObject(102).isInside(id)) spells.get(9).setLearned(true); //zap
+            if (engine.getObjects().getObject(103).isInside(id)) spells.get(10).setLearned(true); //health
+        }
+        if(level>=7) {
+            spells.get(11).setLearned(true); //FF
+            if (engine.getObjects().getObject(104).isInside(id)) spells.get(12).setLearned(true); //back
+            if (engine.getObjects().getObject(105).isInside(id)) spells.get(13).setLearned(true); //map
         }
     }
 

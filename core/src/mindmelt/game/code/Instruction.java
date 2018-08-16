@@ -6,6 +6,7 @@ import mindmelt.game.engine.Engine;
 import mindmelt.game.engine.Message;
 import mindmelt.game.maps.TileType;
 import mindmelt.game.objects.Obj;
+import mindmelt.game.objects.ObjPlayer;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
@@ -140,7 +141,12 @@ public class Instruction {
     }
 
     private boolean getObject(Trigger trigger, Engine engine) {
-        engine.getObjects().getObject(iargs.get(0)).moveToObject(engine.getPlayer(),engine.getWorld());
+        Obj ob = engine.getObjects().getObject(iargs.get(0));
+        ob.moveToObject(engine.getPlayer(), engine.getWorld());
+        if(ob.getId()>=100 && ob.getId()<=105) { //scrolls
+            ObjPlayer player = engine.getPlayer();
+            player.setSpells(player.getLevel(), engine);
+        }
         return true;
     }
 

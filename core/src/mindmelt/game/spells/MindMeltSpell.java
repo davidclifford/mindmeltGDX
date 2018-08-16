@@ -17,7 +17,7 @@ public class MindMeltSpell extends Spell {
         int status = checkSurround(engine);
         if(status==MINDMELT) {
             message = "Mindmelted!";
-            engine.getPlayer().levelUp();
+            engine.getPlayer().levelUp(engine);
         } else if(status==NOONE) {
             message = "No-one to Mindmelt!";
         } else if(status==ALREADY) {
