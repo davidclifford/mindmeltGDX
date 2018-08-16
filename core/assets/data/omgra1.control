@@ -91,6 +91,9 @@ ChangeSquare 3,10,0,9
 Teleport 3,16,1
 MoveAll 3,16,0
 -
+Teleport 3,14,1
+MoveAll 2,14,0
+-
 // Pad changes to hidden pit
 PadOn 2,16,0
 ChangeSquare 2,15,0,40

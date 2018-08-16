@@ -373,6 +373,9 @@ public class PlayScreen implements Screen, InputProcessor {
             case Input.Keys.F4:
                 engine.getPlayer().levelUp();
                 break;
+            case Input.Keys.F5:
+                engine.setDebugView(!engine.isDebugView());
+                break;
             case Input.Keys.T:
                 engine.talkAdjacent();
                 break;

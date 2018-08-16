@@ -24,6 +24,7 @@ public class ViewWindow extends Window {
     private final int HALF = SIZE / 2;
     private List<DispXY> dispList;
     private List<Coords> zaps;
+    private boolean debugView = false;
 
     public ViewWindow(int x, int y, int w, int h) {
         super(x, y, w, h);
@@ -69,6 +70,8 @@ public class ViewWindow extends Window {
         ObjPlayer player = engine.getPlayer();
         Talking talking = engine.getTalking();
         DisplayStrings displayStrings = new DisplayStrings();
+        boolean debugView = engine.isDebugView();
+
         zaps = new ArrayList<>();
         int mask[][] = new int[SIZE][SIZE]; //0 = see & thru, 1 = see & not thru, 2 = not see & not thru
         float darkness = 0;
@@ -96,7 +99,7 @@ public class ViewWindow extends Window {
                 int sz = pz;
                 //float bright = 1f-darkness*(float)(Math.sqrt(x*x+y*y)/Math.sqrt(HALF*HALF*2));
                 float bright = 1f - darkness * Math.max(Math.abs(x), Math.abs(y)) / HALF;
-                int tile = game.world.getTile(sx, sy, sz).getIcon();
+                int tile = game.world.getTile(sx, sy, sz).getIcon(debugView);
                 int xx = dir == 0 ? x : dir == 1 ? y : dir == 2 ? -x : -y;
                 int yy = dir == 0 ? y : dir == 1 ? -x : dir == 2 ? -y : x;
                 if (mask[x + HALF][y + HALF] < 2 || engine.isSeeall()) {

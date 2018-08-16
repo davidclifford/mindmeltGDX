@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Color;
 public class TileType {
     private int id = 0;
     private int icon = 0;
+    private int debugIcon = 0;
     private String name = "space";
     private boolean canEnter = false;
     private boolean seeThru = false;
@@ -17,12 +18,12 @@ public class TileType {
     public static final TileType space = new TileType(0).name("space").ch('$').color(Color.BLACK);
     public static final TileType floor = new TileType(1).name("floor").enter().seeThru().ch(' ').icon(1).color(Color.BROWN);
     public static final TileType presurepad = new TileType(2).name("pressure pad").enter().seeThru().ch('o').icon(2).color(Color.LIGHT_GRAY);
-    public static final TileType hiddenpp = new TileType(3).name("hidden presure pad").enter().seeThru().ch('.').icon(3).color(Color.BROWN);
-    public static final TileType hiddentele = new TileType(4).name("hidden teleport").enter().seeThru().ch('t').icon(4).color(Color.BROWN);
-    public static final TileType leftturn = new TileType(5).name("left turn").enter().seeThru().ch(')').icon(5).color(Color.BROWN);
-    public static final TileType rightturn = new TileType(6).name("right turn").enter().seeThru().ch('(').icon(6).color(Color.BROWN);
-    public static final TileType uturn = new TileType(7).name("U turn").enter().seeThru().ch('U').icon(7).color(Color.BROWN);
-    public static final TileType hiddenff = new TileType(8).name("hidden force field").seeThru().ch('z').icon(8).color(Color.BROWN);
+    public static final TileType hiddenpp = new TileType(3).name("hidden presure pad").enter().seeThru().ch('.').icon(1,3).color(Color.BROWN);
+    public static final TileType hiddentele = new TileType(4).name("hidden teleport").enter().seeThru().ch('t').icon(1,4).color(Color.BROWN);
+    public static final TileType leftturn = new TileType(5).name("left turn").enter().seeThru().ch(')').icon(1,5).color(Color.BROWN);
+    public static final TileType rightturn = new TileType(6).name("right turn").enter().seeThru().ch('(').icon(1,6).color(Color.BROWN);
+    public static final TileType uturn = new TileType(7).name("U turn").enter().seeThru().ch('U').icon(1,7).color(Color.BROWN);
+    public static final TileType hiddenff = new TileType(8).name("hidden force field").seeThru().ch('z').icon(1,8).color(Color.BROWN);
     public static final TileType pit = new TileType(9).name("pit").enter().seeThru().ch('X').icon(9).color(Color.LIGHT_GRAY);
     public static final TileType wall = new TileType(10).name("wall").ch('#').icon(10).color(Color.GRAY);
     public static final TileType uplever = new TileType(11).name("up lever").ch('\\').icon(11).color(Color.LIGHT_GRAY);
@@ -54,7 +55,7 @@ public class TileType {
     public static final TileType path = new TileType(37).name("path").ch('=').seeThru().enter().icon(37).color(Color.BROWN);
     public static final TileType bridge = new TileType(38).name("bridge").ch('-').seeThru().enter().icon(38).color(Color.BROWN);
     public static final TileType waterfall = new TileType(39).name("waterfall").ch('W').seeThru().icon(39).color(Color.CYAN);
-    public static final TileType hiddenpit = new TileType(40).name("hidden pit").ch('x').seeThru().enter().icon(40).color(Color.BROWN);
+    public static final TileType hiddenpit = new TileType(40).name("hidden pit").ch('x').seeThru().enter().icon(1,40).color(Color.BROWN);
     public static final TileType rocks = new TileType(41).name("rocks").ch('O').icon(41).color(Color.GRAY);
     public static final TileType fence = new TileType(42).name("fence").ch('F').seeThru().icon(42).color(Color.BROWN);
     public static final TileType house = new TileType(43).name("house").ch('H').seeThru().enter().icon(43).color(Color.FIREBRICK);
@@ -89,8 +90,19 @@ public class TileType {
         this.id = id;
     }
 
+    private TileType debugIcon(int icon) {
+        this.debugIcon = icon;
+        return this;
+    }
+
     private TileType icon(int icon) {
         this.icon = icon;
+        this.debugIcon = icon;
+        return this;
+    }
+    private TileType icon(int icon, int debugIcon) {
+        this.icon = icon;
+        this.debugIcon = debugIcon;
         return this;
     }
     private TileType name(String name) {
@@ -137,6 +149,10 @@ public class TileType {
 
     public int getIcon() {
         return icon;
+    }
+
+    public int getIcon(boolean debug) {
+        return debug ? debugIcon : icon;
     }
 
     public void setIcon(int icon) {

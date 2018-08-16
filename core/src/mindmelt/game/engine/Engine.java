@@ -33,6 +33,7 @@ public class Engine {
     private boolean light = false;
     private boolean seeall = false;
     private boolean cheat = false;
+    private boolean debugView = false;
     private float lighting = 0f;
     private List<Trigger> triggerQueue = new ArrayList<>();
     private Messages messages = new Messages();
@@ -45,6 +46,14 @@ public class Engine {
         this.game = game;
         this.world = game.world;
         this.objects = game.objects;
+    }
+
+    public boolean isDebugView() {
+        return debugView;
+    }
+
+    public void setDebugView(boolean debugView) {
+        this.debugView = debugView;
     }
 
     public TextLines getTextLines() {
@@ -299,8 +308,8 @@ public class Engine {
         if (original != null) {
             changeTiles.remove(coord);
         }
-        if (original == null || original.getIcon() != newTile.getIcon()) {
-            changeTiles.put(coord, new ChangeTile(x, y, z, world.getId(), current, newTile.getIcon()));
+        if (original == null || original.getId() != newTile.getId()) {
+            changeTiles.put(coord, new ChangeTile(x, y, z, world.getId(), current, newTile.getId()));
         }
         // CODE
         fromTo(world.getTopObject(x,y,z), oldTile, newTile, x,y,z, x,y,z);
@@ -310,7 +319,7 @@ public class Engine {
         changeTiles.entrySet().forEach(
                 changeTile -> {
                     ChangeTile tile = changeTile.getValue();
-                    Gdx.app.log("debugChangeTiles",String.format("%d,%d,%d,%d = %d",tile.getX(),tile.getY(),tile.getZ(),tile.getMap(),tile.getIcon()));
+                    Gdx.app.log("debugChangeTiles",String.format("%d,%d,%d,%d = %d",tile.getX(),tile.getY(),tile.getZ(),tile.getMap(),tile.getId()));
                 }
         );
 
@@ -386,7 +395,7 @@ public class Engine {
                 line.append(ct.getY() + ",");
                 line.append(ct.getZ() + ",");
                 line.append(ct.getMap() + ",");
-                line.append(ct.getIcon() + ",");
+                line.append(ct.getId() + ",");
                 line.append(ct.getChange() + "\n");
                 output.write(line.toString());
             }
