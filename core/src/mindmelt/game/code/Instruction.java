@@ -45,8 +45,6 @@ public class Instruction {
             trigs.addAll(iargs);
             iargs = trigs;
         }
-        Gdx.app.log("Instruction code",""+commandCode);
-        Gdx.app.log("Args", StringUtils.join(iargs, ","));
     }
 
     private int getCommandCode(String command) {
@@ -70,7 +68,6 @@ public class Instruction {
     }
 
     public boolean run(Engine engine) {
-        Gdx.app.log("Command",String.format("%s %s",command,text));
         if(command.equals("Message")) {
             return doMessage(trigger, engine);
         } else if(command.equals("Say")) {

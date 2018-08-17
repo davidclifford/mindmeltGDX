@@ -37,7 +37,7 @@ public class BackpackWindow extends Window {
     @Override
     protected void activate(int x, int y, Engine engine) {
         int pos = ((x/SZ)+(y/SZ)*(w/SZ));
-        System.out.println(String.format("Backpack %d,%d = %d",x/SZ,y/SZ,pos));
+        //System.out.println(String.format("Backpack %d,%d = %d",x/SZ,y/SZ,pos));
         Inventory inv = engine.getPlayerInventory();
         if(inv.getHandObject()==null) {
             inv.inventoryToHand(pos);

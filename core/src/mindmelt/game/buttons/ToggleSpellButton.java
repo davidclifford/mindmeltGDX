@@ -14,11 +14,9 @@ public class ToggleSpellButton extends SpellButton {
         if (state==OFF) return;
         if (state==UP) {
             state = DOWN;
-            Gdx.app.log("Toggle button","DOWN");
             spell.activate(engine);
         } else if(state == DOWN) {
             state = UP;
-            Gdx.app.log("Toggle button","UP");
             spell.reset(engine);
         }
     }

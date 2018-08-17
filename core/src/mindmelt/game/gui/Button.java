@@ -63,8 +63,6 @@ public class Button extends GuiElem {
         } else if (state==DOWN) {
             state = UP;
         }
-        //Gdx.audio.newSound(Gdx.files.internal("sound/wilhelm.ogg")).play();
-        Gdx.app.log("spell = ",""+activeIcon);
         if (activeIcon==148) {
             engine.debugChangeTiles();
         }

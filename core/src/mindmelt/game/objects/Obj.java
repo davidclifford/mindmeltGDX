@@ -270,6 +270,7 @@ public class Obj {
     }
 
     public String getDescription() {
+        if(isMonster() && isDead()) return "Putrid corpse";
         return description;
     }
 
@@ -356,7 +357,7 @@ public class Obj {
     public void setMessage(Engine engine, String message, Color colour) {
         this.message = message;
         this.messColour = colour;
-        engine.getTextLines().addLine(message, colour);
+        //engine.getTextLines().addLine(message, colour);
         setExpiry(engine);
     }
 

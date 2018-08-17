@@ -30,7 +30,6 @@ public class SpellButton extends Button {
 
     protected void setExpiry(Engine engine, long expiry) {
         time = engine.getSystemTime() + expiry;
-        Gdx.app.log("time=",""+time);
     }
     public float getTime() { return time; }
 }

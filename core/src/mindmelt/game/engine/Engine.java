@@ -280,13 +280,11 @@ public class Engine {
     }
 
     public void addTrigger(String trigger, int x, int y, int z) {
-        Gdx.app.log("addTrigger",String.format("%s: %d,%d,%d",trigger,x,y,z));
         Trigger trigg = new Trigger(trigger,x,y,z);
         triggerQueue.add(trigg);
     }
 
     public void addTrigger(String trigger) {
-        Gdx.app.log("addTrigger",String.format("%s",trigger));
         Trigger trigg = new Trigger(trigger);
         triggerQueue.add(trigg);
     }
@@ -345,13 +343,13 @@ public class Engine {
     }
 
     public void addMessage(Message message) {
-        getTextLines().addLine(message.getMessage(),message.getColour());
+        //getTextLines().addLine(message.getMessage(),message.getColour());
         messages.add(message);
     }
 
     public void addMessage(String text) {
         ObjPlayer player = getPlayer();
-        Message message = new Message(player.getX(),player.getY(),player.getZ(),text, Color.FIREBRICK,1000L);
+        Message message = new Message(player.getX(),player.getY(),player.getZ(),text, Color.MAGENTA,1000L);
         addMessage(message);
     }
 

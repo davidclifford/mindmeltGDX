@@ -100,7 +100,7 @@ public class PlayScreen implements Screen, InputProcessor {
         viewWindow.addElement(throwWindowL);
         viewWindow.addElement(throwWindowB);
 
-        System.out.println(String.format("Game = %s",status));
+        //System.out.println(String.format("Game = %s",status));
 
         if (game.objects!=null && status.equals("save")) {
             game.objects.saveObjects("saved");

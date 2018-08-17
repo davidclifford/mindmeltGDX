@@ -13,9 +13,9 @@ to=74,9,0
 --
 @talk
 id=29
-bye=Have faith
-dontknow=God only knows
 -
+bye,Have faith
+dontknow=God only knows
 name,Mirog
 job,I'm a monk
 monk,I look after the grapes
@@ -26,7 +26,7 @@ id=30
 -
 name,Faznilo
 job,I look after the plants
-plant|plants,I talk to them       
+plant|plants,I talk to them
 talk,Its supposed to help them grow
 supposed,Maybe I'm boring them
 grow,Into healthy plants 
@@ -41,7 +41,7 @@ job,I'm a new monk
 monk,I feel better now
 better,I was not feeling myself
 new,I was once a lumber jack
-lumber|lumberjack|lumber jack|jack,But I got into bad habbits
+lumber|lumberjack|lumber jack|jack,But I got into bad habits
 bad|habbits,And bad jokes!
 bye,Have faith
 dontknow,God only knows
@@ -61,7 +61,7 @@ brother,Welcome
 garden,At the back
 bye,Fairwell
 dontknow,God only knows
-greeting,Welcome brother, are you a new monk?
+greeting,Welcome brother
 -
 id=47
 -

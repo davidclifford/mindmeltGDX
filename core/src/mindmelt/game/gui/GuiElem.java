@@ -104,13 +104,10 @@ public abstract class GuiElem {
     public GuiElem click(int x, int y, Engine engine) {
         int xx = x - this.x;
         int yy = y - this.y;
-        Gdx.app.log(getName(), String.format("x=%d,y=%d", xx, yy));
         GuiElem el = findElem(xx, yy);
         if (el != null)
             return el.click(xx, yy, engine);
         //do something
-        Gdx.app.log("do it", String.format("%s:x=%d,y=%d", getName(), xx / SZ, yy / SZ));
-
         activate(xx, yy, engine);
 
         return this;

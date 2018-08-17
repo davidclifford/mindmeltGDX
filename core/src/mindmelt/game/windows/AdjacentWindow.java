@@ -25,7 +25,6 @@ public class AdjacentWindow extends Window {
         int px = engine.getPlayerX()+xx;
         int py = engine.getPlayerY()+yy;
         int pz = engine.getPlayerZ();
-        Gdx.app.log("AdjacentWindow", String.format("%d,%d", px, py));
         Obj topObj = engine.getTopObject(px, py, pz);
         //Pick up
         if (topObj != null && !topObj.isBlocked() && engine.getPlayerHandObject() == null) {
@@ -50,7 +49,6 @@ public class AdjacentWindow extends Window {
                 engine.getWorld().talkTo(engine, topObj.getId(), px, py, pz);
             }
         } else {
-            Gdx.app.log("Activate tile ",String.format("%d,%d,%d",px,py,pz));
             engine.activateTile(px, py, pz);
         }
     }

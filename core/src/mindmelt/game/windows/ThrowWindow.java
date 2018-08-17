@@ -25,7 +25,6 @@ public class ThrowWindow extends Window {
         int dir = player.getDirection();
         int xx = dir == 0 ? dx : dir == 1 ? -dy : dir == 2 ? -dx : dy;
         int yy = dir == 0 ? dy : dir == 1 ? dx : dir == 2 ? -dy : -dx;
-        Gdx.app.log("ThrowWindow",String.format("[%s], x = %d, y = %d", name, xx, yy));
         engine.getPlayerInventory().handToMap(player.getX(),player.getY(),player.getZ(),engine);
         ob.setSpeed(1L);
         ob.throwObj(engine, xx, yy, 5);

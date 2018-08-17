@@ -12,7 +12,6 @@ public class SinglePressSpellButton extends SpellButton {
     public void activate(int x, int y, Engine engine) {
         if(state==OFF) return;
         state = DOWN;
-        Gdx.app.log("Spell","Spell "+activeIcon);
         setExpiry(engine,SINGLEPRESS);
         spell.activate(engine);
     }
