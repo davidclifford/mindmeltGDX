@@ -38,7 +38,7 @@ public class Engine {
     private List<Trigger> triggerQueue = new ArrayList<>();
     private Messages messages = new Messages();
     private List<SpellButton> activeButtons;
-    private TextLines textLines = new TextLines();
+    private Journal journal = new Journal();
     private Talking talking = new Talking();
 
     public Engine(MindmeltGDX game) {
@@ -56,8 +56,8 @@ public class Engine {
         this.debugView = debugView;
     }
 
-    public TextLines getTextLines() {
-        return textLines;
+    public Journal getJournal() {
+        return journal;
     }
 
     public boolean isXray() {
@@ -342,8 +342,18 @@ public class Engine {
         from.moveToObject(to, world);
     }
 
+    public String addToJournal(String text) {
+        String parts[] = text.split(":");
+        if(parts.length<2) return text;
+        getJournal().addLine(parts[1],Color.YELLOW);
+        return parts[0];
+    }
+
     public void addMessage(Message message) {
-        //getTextLines().addLine(message.getMessage(),message.getColour());
+        if(message.getMessage().contains(":")) {
+            String pretext = addToJournal(message.getMessage());
+            message.updateMessage(pretext);
+        }
         messages.add(message);
     }
 

@@ -357,7 +357,7 @@ public class Obj {
     public void setMessage(Engine engine, String message, Color colour) {
         this.message = message;
         this.messColour = colour;
-        //engine.getTextLines().addLine(message, colour);
+        //engine.getJournal().addLine(message, colour);
         setExpiry(engine);
     }
 

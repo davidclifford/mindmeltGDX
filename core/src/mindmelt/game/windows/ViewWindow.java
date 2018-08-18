@@ -161,7 +161,8 @@ public class ViewWindow extends Window {
             if(displayStrings.isAlreadyMessageAt(ox,oy)) {
                 oy--;
             }
-            drawMidStringInBox(ox, oy, Color.GREEN, talking.getOtherTalk(), game);
+            String otherTalk = engine.addToJournal(talking.getOtherTalk());
+            drawMidStringInBox(ox, oy, Color.GREEN, otherTalk, game);
         }
     }
 

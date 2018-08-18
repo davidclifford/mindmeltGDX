@@ -82,7 +82,7 @@ public class PlayScreen implements Screen, InputProcessor {
         backPackWindow = (BackpackWindow) new BackpackWindow(11,1, 8, 3).setName("Backpack");
         statusWindow = (Window) new StatusWindow(11,5, 8, 2).setName("Status");
         spellWindow = (SpellWindow) new SpellWindow(11,8,7,2).setName("Spells");
-        textWindow = (TextWindow) new TextWindow(0,11,20,4).setName("Messages");
+        textWindow = (JournalWindow) new JournalWindow(0,11,20,4).setName("Messages");
         adjacentWindow = (AdjacentWindow) new AdjacentWindow(3,3,3,3).setName("Adjacent");
         throwWindowT = (ThrowWindow) new ThrowWindow(2,0,5,2, 0, -1).setName("Throw top");
         throwWindowR = (ThrowWindow) new ThrowWindow(7,2,2,5, 1, 0).setName("Throw right");
@@ -106,6 +106,7 @@ public class PlayScreen implements Screen, InputProcessor {
             game.objects.saveObjects("saved");
             game.player.saveStatus(game.engine, "saved");
             game.engine.saveChangeTiles("saved");
+            game.engine.getJournal().saveJournal("saved");
         }
 
         if (status.equals("load") || status.equals("save")) {
@@ -125,7 +126,7 @@ public class PlayScreen implements Screen, InputProcessor {
             game.engine.overlay();
             game.objects.initMap(game.world);
             game.player.initInventory();
-
+            engine.getJournal().loadJournal( "saved");
         } else { //new game
             game.objects = new ObjectStore();
             //game.objects.convertObjects("OBJ.DAT","initial.obj");
@@ -140,6 +141,8 @@ public class PlayScreen implements Screen, InputProcessor {
             setSpellButtons(game.player, true); //default until game loaded
             engine = new Engine(game);
             game.engine = engine;
+
+            engine.getJournal().loadJournal("initial");
         }
 
         setMouse(182);
@@ -378,6 +381,12 @@ public class PlayScreen implements Screen, InputProcessor {
                 break;
             case Input.Keys.T:
                 engine.talkAdjacent();
+                break;
+            case Input.Keys.COMMA:
+                engine.getJournal().scrollUp();
+                break;
+            case Input.Keys.PERIOD:
+                engine.getJournal().scrollDown();
                 break;
             default:
                 Gdx.app.log("Key = ",""+keycode);

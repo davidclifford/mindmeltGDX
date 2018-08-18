@@ -35,4 +35,8 @@ public class Message {
     public Color getColour() {
         return colour;
     }
+
+    public void updateMessage(String mess) {
+        message = mess;
+    }
 }
