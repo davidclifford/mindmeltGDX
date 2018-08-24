@@ -5,8 +5,8 @@ import mindmelt.game.engine.Engine;
 import mindmelt.game.spells.Spell;
 
 public class ToggleSpellButton extends SpellButton {
-    public ToggleSpellButton(Spell spell, int x, int y, int icon) {
-        super(spell, x, y, icon);
+    public ToggleSpellButton(Spell spell, int x, int y, int icon, String name) {
+        super(spell, x, y, icon, name);
     }
 
     @Override

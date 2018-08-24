@@ -5,8 +5,8 @@ import mindmelt.game.engine.Engine;
 import mindmelt.game.spells.Spell;
 
 public class SinglePressSpellButton extends SpellButton {
-    public SinglePressSpellButton(Spell spell, int x, int y, int icon) {
-        super(spell, x, y, icon);
+    public SinglePressSpellButton(Spell spell, int x, int y, int icon, String name) {
+        super(spell, x, y, icon, name);
     }
 
     public void activate(int x, int y, Engine engine) {

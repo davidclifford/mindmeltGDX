@@ -4,8 +4,8 @@ import mindmelt.game.engine.Engine;
 import mindmelt.game.spells.Spell;
 
 public class TimedSpellButton extends SpellButton {
-    public TimedSpellButton(Spell spell, int x, int y, int icon) {
-        super(spell, x, y, icon);
+    public TimedSpellButton(Spell spell, int x, int y, int icon, String name) {
+        super(spell, x, y, icon, name);
     }
 
     @Override

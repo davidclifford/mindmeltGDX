@@ -14,7 +14,7 @@ public class JournalWindow extends Window {
 
     protected void renderThis(MindmeltGDX game, float delta) {
         Journal text = game.engine.getJournal();
-        for (int line=0; line<10; line++)
+        for (int line=0; line<12; line++)
         {
             drawText(0,line*SZ/3, text.getTextColor(line),text.getTextLine(line),game);
         }

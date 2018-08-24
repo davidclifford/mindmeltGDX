@@ -113,6 +113,22 @@ public abstract class GuiElem {
         return this;
     }
 
+    public GuiElem toolTip(int x, int y, Engine engine) {
+        int xx = x - this.x;
+        int yy = y - this.y;
+        GuiElem el = findElem(xx, yy);
+        if (el != null)
+            return el.toolTip(xx, yy, engine);
+        //do something
+        showToolTip(xx, yy, engine);
+
+        return this;
+    }
+
+    protected void showToolTip(int x, int y, Engine engine) {
+        Gdx.app.log("Tool:",""+getName());
+    }
+
     protected void activate(int x, int y, Engine engine) {
         //do nowt for now
     }

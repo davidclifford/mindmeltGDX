@@ -11,8 +11,8 @@ public class SpellButton extends Button {
     protected static final long SINGLEPRESS = 1000000000L/5L;
     protected Spell spell;
 
-    public SpellButton(Spell spell, int x, int y, int icon) {
-        super(x, y, icon);
+    public SpellButton(Spell spell, int x, int y, int icon, String name) {
+        super(x, y, icon, name);
         this.spell = spell;
     }
 

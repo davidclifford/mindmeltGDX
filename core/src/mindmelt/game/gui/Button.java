@@ -20,9 +20,10 @@ public class Button extends GuiElem {
     protected int inactiveIcon = 149;
     protected int state = OFF;
 
-    public Button(int x, int y, int icon) {
+    public Button(int x, int y, int icon, String name) {
         super(x, y, 1, 1);
         activeIcon = icon;
+        this.name = name;
     }
 
     public int getActiveIcon() {

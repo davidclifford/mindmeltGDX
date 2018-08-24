@@ -33,13 +33,13 @@ public class Journal {
     }
 
     public String getTextLine(int line) {
-        int relLine = currentLine-10+line;
+        int relLine = currentLine-12+line;
         if(relLine<0 || relLine>currentLine) return "";
         return textStore.get(relLine);
     }
 
     public Color getTextColor(int line) {
-        int relLine = currentLine-10+line;
+        int relLine = currentLine-12+line;
         if(relLine<0 || relLine>currentLine) return Color.WHITE;
         return textColour.get(relLine);
     }
