@@ -216,7 +216,7 @@ public class PlayScreen implements Screen, InputProcessor {
             game.setScreen(new StartScreen(game));
             dispose();
         } else if(wonGame) {
-            game.setScreen(new StartScreen(game)); //change to win screen
+            game.setScreen(new EndScreen(game));
         }
     }
 

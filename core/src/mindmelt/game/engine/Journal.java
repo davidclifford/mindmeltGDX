@@ -67,7 +67,6 @@ public class Journal {
             input = new BufferedReader((new FileReader(filename)));
             boolean firstLine = true;
             while ((line = input.readLine()) != null) {
-                System.out.println(line);
                 if (line.length() == 0) continue;
                 if (line.startsWith("//")) continue;
                 if(firstLine) {
@@ -100,7 +99,6 @@ public class Journal {
                 String line = textStore.get(i);
                 String color = textColour.get(i).toString();
                 output.write(String.format("%s%s\n",color,line));
-                System.out.println(textColour.get(i).toString());
             }
             output.close();
         } catch (Exception e) {
