@@ -48,9 +48,12 @@ id=64
 name,Beth
 job,Wood Ranger
 ranger,I trap wild beasts
-wood,There is an enchanted wood
-beast|beasts,I've heard of a werebear in the woods
-enchanted,To the far west of Aporto
+wood|woods,There is an enchanted wood
+beast|beasts,I've heard of a werebeast in the woods:A werebeast is in an enchanted wood
+enchanted,To the far west of Aporto:Find enchanted wood on far west coast
+werebeast,A beast that was once a man
+man,Poor man
+trap|wild,Wild beasts
 bye,Bye bye
 dontknow,Ask someone else
 -
@@ -59,7 +62,7 @@ id=62
 name,Ternios
 job,A blacksmith
 blacksmith,I make the bars for the prison
-prison,On the far south west coast
+prison,On the far south west coast:Find a prison on the far SW coast
 bye,Goodbye
 dontknow,Ask someone else
 -
@@ -78,7 +81,7 @@ id=65
 name,Grinpus
 job,A Farmer
 farmer,I used to work for the King
-king,In Kiston to the south
+king,In Kiston to the south:Kingdom of Kiston south of Aporto
 bye,Ooh Arr
 dontknow,Ask someone else
 -
@@ -87,7 +90,7 @@ id=2
 name,Gib
 job,I just play
 play,Games and such
-game,Like crucket and footturnip
+game|games|such,Like crucket and footturnip
 bye,Byesy Bye
 dontknow,Ask someone else
 -
@@ -96,14 +99,14 @@ id=66
 name,Winina
 job,I'm just a girl
 evil,Omgra defends the pits
-pits|pit,Jen in Milloc may know more
+pits|pit,Jen in Milloc may know more:Ask Jen in Milloc about the pits
 omgra,The EVIL one
 bye,Ta ta
 dontknow,Ask someone else
 -
 id=3
 -
-name,Minton 
+name,Minton
 job,A carpenter
 carpenter,Some call me chippy
 chippy,A nickname
