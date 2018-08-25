@@ -1,6 +1,5 @@
 package mindmelt.game.gui;
 
-import com.badlogic.gdx.Gdx;
 import mindmelt.game.MindmeltGDX;
 import mindmelt.game.engine.Engine;
 

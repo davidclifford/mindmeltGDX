@@ -126,7 +126,7 @@ public abstract class GuiElem {
     }
 
     protected void showToolTip(int x, int y, Engine engine) {
-        Gdx.app.log("Tool:",""+getName());
+        engine.setToolTip(getName());
     }
 
     protected void activate(int x, int y, Engine engine) {

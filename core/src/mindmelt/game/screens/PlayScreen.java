@@ -78,17 +78,17 @@ public class PlayScreen implements Screen, InputProcessor {
         wonGame = false;
         Gdx.input.setInputProcessor(this);
 
-        window = (MainWindow) new MainWindow(0,0,20,15).setName("Main");
-        viewWindow = (ViewWindow) new ViewWindow(1,1,9,9).setName("View");
-        backPackWindow = (BackpackWindow) new BackpackWindow(11,1, 8, 3).setName("Backpack");
-        statusWindow = (Window) new StatusWindow(11,5, 8, 2).setName("Status");
-        spellWindow = (SpellWindow) new SpellWindow(11,8,7,2).setName("Spells");
-        textWindow = (JournalWindow) new JournalWindow(0,11,20,4).setName("Messages");
-        adjacentWindow = (AdjacentWindow) new AdjacentWindow(3,3,3,3).setName("Adjacent");
-        throwWindowT = (ThrowWindow) new ThrowWindow(2,0,5,2, 0, -1).setName("Throw top");
-        throwWindowR = (ThrowWindow) new ThrowWindow(7,2,2,5, 1, 0).setName("Throw right");
-        throwWindowB = (ThrowWindow) new ThrowWindow(2,7,5,2, 0, 1).setName("Throw bottom");
-        throwWindowL = (ThrowWindow) new ThrowWindow(0,2,2,5, -1, 0).setName("Throw left");
+        window = (MainWindow) new MainWindow(0,0,20,15).setName("Main window");
+        viewWindow = (ViewWindow) new ViewWindow(1,1,9,9).setName("View area");
+        backPackWindow = (BackpackWindow) new BackpackWindow(11,1, 8, 3).setName("Backpack window");
+        statusWindow = (Window) new StatusWindow(11,5, 8, 2).setName("Status window");
+        spellWindow = (SpellWindow) new SpellWindow(11,8,7,2).setName("Spell window");
+        textWindow = (JournalWindow) new JournalWindow(0,11,20,4).setName("Journal window");
+        adjacentWindow = (AdjacentWindow) new AdjacentWindow(3,3,3,3).setName("Adjacent area");
+        throwWindowT = (ThrowWindow) new ThrowWindow(2,0,5,2, 0, -1).setName("Throw top area");
+        throwWindowR = (ThrowWindow) new ThrowWindow(7,2,2,5, 1, 0).setName("Throw right area");
+        throwWindowB = (ThrowWindow) new ThrowWindow(2,7,5,2, 0, 1).setName("Throw bottom area");
+        throwWindowL = (ThrowWindow) new ThrowWindow(0,2,2,5, -1, 0).setName("Throw left area");
 
         window.addElement(spellWindow);
         window.addElement(viewWindow);
@@ -148,7 +148,7 @@ public class PlayScreen implements Screen, InputProcessor {
 
         setMouse(182);
         engine.setPlayerWait();
-        mouseWait = game.engine.getSystemTime()+5000000;
+        //mouseWait = game.engine.getSystemTime()+5000000;
     }
 
     private void setSpellButtons(ObjPlayer player, boolean isNew) {
@@ -156,20 +156,20 @@ public class PlayScreen implements Screen, InputProcessor {
         SpellButton button = null;
         Spell spell = null;
         for (int b=0;b<14;b++) {
-            if (b==0) button = new SinglePressSpellButton(spell=new MindMeltSpell(),b%7, b/7, b+135, "Mindmelt");
-            else if (b==1) button = new SinglePressSpellButton(spell=new CircleSpell(),b%7, b/7, b+135, "Circle teleport");
-            else if (b==2) button = new SinglePressSpellButton(spell=new DirectionSpell(),b%7, b/7, b+135, "Direction");
-            else if (b==3) button = new SinglePressSpellButton(spell=new CoordsSpell(),b%7, b/7, b+135, "Coords");
-            else if (b==4) button = new TimedSpellButton(spell=new LightSpell(),b%7, b/7, b+135, "Light");
-            else if (b==5) button = new TimedSpellButton(spell=new XraySpell(),b%7, b/7, b+135, "Xray");
-            else if (b==6) button = new TimedSpellButton(spell=new WaterSpell(),b%7, b/7, b+135, "Water walk");
-            else if (b==7) button = new TimedSpellButton(spell=new StunSpell(),b%7, b/7, b+135, "Stun");
-            else if (b==8) button = new SinglePressSpellButton(spell=new JumpSpell(),b%7, b/7, b+135, "Jump teleport");
-            else if (b==9) button = new TimedSpellButton(spell=new ZapSpell(),b%7, b/7, b+135, "Zap");
-            else if (b==10) button = new SinglePressSpellButton(spell=new HealthSpell(),b%7, b/7, b+135, "Health");
-            else if (b==11) button = new TimedSpellButton(spell=new ForceFieldSpell(),b%7, b/7, b+135, "Forcefield walk");
-            else if (b==12) button = new ToggleSpellButton(spell=new BackSpell(),b%7, b/7, b+135, "Back teleport");
-            else if (b==13) button = new ToggleSpellButton(spell=new MapSpell(),b%7, b/7, b+135,"Map");
+            if (b==0) button = new SinglePressSpellButton(spell=new MindMeltSpell(),b%7, b/7, b+135, "Mindmelt spell");
+            else if (b==1) button = new SinglePressSpellButton(spell=new CircleSpell(),b%7, b/7, b+135, "Circle teleport spell");
+            else if (b==2) button = new SinglePressSpellButton(spell=new DirectionSpell(),b%7, b/7, b+135, "Direction spell");
+            else if (b==3) button = new SinglePressSpellButton(spell=new CoordsSpell(),b%7, b/7, b+135, "Coords spell");
+            else if (b==4) button = new TimedSpellButton(spell=new LightSpell(),b%7, b/7, b+135, "Light spell");
+            else if (b==5) button = new TimedSpellButton(spell=new XraySpell(),b%7, b/7, b+135, "Xray spell");
+            else if (b==6) button = new TimedSpellButton(spell=new WaterSpell(),b%7, b/7, b+135, "Water walk spell");
+            else if (b==7) button = new TimedSpellButton(spell=new StunSpell(),b%7, b/7, b+135, "Stun spell");
+            else if (b==8) button = new SinglePressSpellButton(spell=new JumpSpell(),b%7, b/7, b+135, "Jump teleport spell");
+            else if (b==9) button = new TimedSpellButton(spell=new ZapSpell(),b%7, b/7, b+135, "Zap spell");
+            else if (b==10) button = new SinglePressSpellButton(spell=new HealthSpell(),b%7, b/7, b+135, "Health spell");
+            else if (b==11) button = new TimedSpellButton(spell=new ForceFieldSpell(),b%7, b/7, b+135, "Forcefield walk spell");
+            else if (b==12) button = new ToggleSpellButton(spell=new BackSpell(),b%7, b/7, b+135, "Back teleport spell");
+            else if (b==13) button = new ToggleSpellButton(spell=new MapSpell(),b%7, b/7, b+135,"Map spell");
             spellWindow.addElement(button);
             if (isNew) {
                 spell.setLearned(b<2);
@@ -210,9 +210,7 @@ public class PlayScreen implements Screen, InputProcessor {
 
         batch.begin();
           updateMouse();
-          toolTips();
           window.render(game,delta);
-          //font.draw(batch, "fps: " + Gdx.graphics.getFramesPerSecond(), 0, 16);
         batch.end();
 
         if(exitGame) {
@@ -220,12 +218,6 @@ public class PlayScreen implements Screen, InputProcessor {
             dispose();
         } else if(wonGame) {
             game.setScreen(new EndScreen(game));
-        }
-    }
-
-    private void toolTips() {
-        if(mouseWait > game.engine.getSystemTime()) {
-            return;
         }
     }
 
@@ -438,8 +430,6 @@ public class PlayScreen implements Screen, InputProcessor {
 
     @Override
     public boolean mouseMoved(int screenX, int screenY) {
-        //Gdx.app.log("Coords",""+screenX+","+screenY+":"+(game.engine.getSystemTime()-mouseWait));
-        mouseWait = game.engine.getSystemTime()+500000000L;
         window.toolTip(screenX, screenY, engine);
         return false;
     }

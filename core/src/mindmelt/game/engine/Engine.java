@@ -35,6 +35,7 @@ public class Engine {
     private boolean cheat = false;
     private boolean debugView = false;
     private float lighting = 0f;
+    private String toolTip = "";
     private List<Trigger> triggerQueue = new ArrayList<>();
     private Messages messages = new Messages();
     private List<SpellButton> activeButtons;
@@ -444,4 +445,13 @@ public class Engine {
         }
 
     }
+
+    public String getToolTip() {
+        return toolTip;
+    }
+
+    public void setToolTip(String toolTip) {
+        this.toolTip = toolTip;
+    }
+
 }
