@@ -4,6 +4,7 @@ id=15
 name=omgra2
 description=Omgra's Castle 2
 light=false
+death=26,26,0
 --
 @talk
 id=91

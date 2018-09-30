@@ -34,10 +34,10 @@ id=44
 sayfirst=1
 -
 name,I am the great Ramog
-job,I'm a retired mage
-retired,I have lossed my magic
-lossed,It just went one day
-magic,I know a usefull spell
+job,I'm a retired Mage
+retired,I have lost my magic
+lost,It just went one day
+magic,I know a useful spell
 spell,Have the X-ray spell,1
 greeting,Welcome wizard
 bye,Use magic wisely

@@ -88,25 +88,25 @@ to=38,20,0,W
 @code
 // Stone circle
 Activate 40,36,0
-Message Mage:Find a Mage to Mindmelt
+Message Mage:Find a Mage to Mindmelt with
 -
 Activate 42,37,0
-Message Wizard:Find a Wizard to Mindmelt
+Message Wizard:You are a Wizard that needs to regain his powers
 -
 Activate 43,39,0
-Message Prisoner:Find a Prisoner to Mindmelt
+Message Prisoner:Find a Prisoner to Mindmelt with
 -
 Activate 42,41,0
-Message King:Find a King to Mindmelt
+Message King:Find a King to Mindmelt with
 -
 Activate 40,42,0
-Message Werebeast:Find a Werebeast to Mindmelt
+Message Werebeast:Find a Werebeast to Mindmelt with
 -
 Activate 38,41,0
-Message Monk:Find a Monk to Mindmelt
+Message Monk:Find a Monk to Mindmelt with
 -
 Activate 37,39,0
-Message Hermit:Find a Hermit to Mindmelt
+Message Hermit:Find a Hermit to Mindmelt with
 -
 Activate 38,37,0
 Message Evil One:Find Omgra and destroy him
@@ -149,9 +149,9 @@ poor,But not in wits!
 old,Older than you maybe
 wits,I know many things
 thing|things,Like spells
-spell,Whats my name?:Find the witch's name and get a spell
+spell,Whats my name?:Find out the Witch's name and get a spell
 quox|quoxonia,You can have a zap spell,1
-rune,I know of no rune FOOL
+rune,I know of no runes FOOL
 greeting,I'm a poor old woman
 dontknow,Wibble wobble!
 bye,Nice Chat

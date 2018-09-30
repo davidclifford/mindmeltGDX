@@ -45,7 +45,7 @@ ranger,A wood ranger
 wood,Beware the enchanted wood
 beware,They say there are caves beneath
 enchanted,To the south of here
-cave,But no one knows where
+cave,But no one knows where:Find an entrance to a cave beneath the Enchanted Wood
 bye,Hi Ho
 -
 id=71
@@ -57,7 +57,7 @@ digger,I dig holes
 busy,'Cause of the monsters
 monsters,They kill people
 hole,Like pits
-pits,Ask Jen about them
+pits,Ask Jen about them:Ask Jen about the pits
 bye,Ho Hum
 -
 id=72
@@ -66,7 +66,7 @@ name,Garina
 job,I used to work for my brother
 brother,He is now in prison
 prison,Can you take the money?
-money,So you can see how he is
+money,So you can see how he is:Take the bag of money to the prison
 bye,Thank you friend,1
 -
 id=73
@@ -75,7 +75,7 @@ name,Bib
 job,I'm just a boy
 boy,But I know a girl
 girl,Winina in Aporto
-winina,She's very smart
+winina,She's very smart:Talk to Winina in Aporto
 bye,Be smart
 -
 id=14

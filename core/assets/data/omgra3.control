@@ -4,6 +4,7 @@ id=16
 name=omgra3
 description=Omgra's Dungeon
 light=false
+death=2,2,0
 --
 @entry
 filename=omgra2

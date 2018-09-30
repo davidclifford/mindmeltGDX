@@ -23,8 +23,8 @@ name,Fyshfays
 job,A fisherman
 fish,Fish fish lovely fish
 love,I love fish
-rune,I've heard of one in Aporto
-aporto,In the bushes making the O
+rune,I've heard of one in Aporto:Find a rune in the bushes in Aporto
+bush|aporto,In the bushes making the O:The rune is in the bushes that make an O
 bye,Fishy Fish
 dontknow,Fish?
 -
@@ -56,10 +56,10 @@ milk,I used to milk the cows
 cows|cow,But now they are gone
 gone,Ask Nir about it
 pits,The pits are in OMGRA's castle
-cast,On the lowest level
+cast,On the lowest level:The pits are in Omgra's Castle on the lowest level
 lowest,There are three levels
-level,Throw the runes in the pits
-rune,Ask Kathin about them
+level,Throw the runes in the pits:Throw all 5 runes in the pits
+rune,Ask Kathin about them:Ask Kathin about the runes
 omgra,The EVIL one
 bye,Where are the cows?
 dontknow,Say again?
@@ -87,11 +87,10 @@ id=77
 name,Bella
 job,A fisher
 fish,I like to row on the river
-rune,The mage might know
 river,I go to many places
-place,I like to see the old mage
+place,I like to see the old Mage
 mage,On an island in the lake
-lake,To the north of here  
+lake,To the north of here:Find the Mage on an island north of Milloc
 bye,Kissy kiss
 dontknow,Say again?
 -

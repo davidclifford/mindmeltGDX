@@ -8,6 +8,7 @@ package mindmelt.game.objects;
 import com.badlogic.gdx.Input;
 import mindmelt.game.engine.Engine;
 import mindmelt.game.maps.EntryExit;
+import mindmelt.game.maps.World;
 import mindmelt.game.spells.Spell;
 import mindmelt.game.talk.Talking;
 
@@ -63,8 +64,18 @@ public class ObjPlayer extends Obj {
     public void update(Engine engine, float delta) {
         updateMessage(engine);
         if(strength<=0) {
-            //DEAD
-            EntryExit death = new EntryExit(0,0,0,40,39,0,"world","You are dead");
+            World world =  engine.getWorld();
+            String map = world.getName();
+            int deathX = world.getDeathX();
+            int deathY = world.getDeathY();
+            int deathZ = world.getDeathZ();
+            if (deathX==0 && deathY==0 && deathZ==0) {
+                deathX = 40;
+                deathY = 39;
+                deathZ = 0;
+                map = "world";
+            }
+            EntryExit death = new EntryExit(0,0,0,deathX,deathY,deathZ,map,"You are dead");
             engine.moveToMap(death);
             engine.addMessage("You are DEAD!");
             setHealthMax();

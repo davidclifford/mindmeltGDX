@@ -30,8 +30,8 @@ id=80
 name,Wyma
 job,A dancer
 dancer,I liked to dance for my husband
-husband,He is now in jail
-jail|letter,Can you take this letter to him?,1
+husband,He is now in Dorma prison
+prison|letter,Can you take this letter to him?,1:Take letter to Wym in Dorma prison
 bye,Tra la la
 dontknow,Say again
 -
@@ -55,14 +55,14 @@ id=81
 name,Kathin
 job,I help my dad
 dad,The farmer
-rune,There are five runes
-five,Marked O M G R and A
+rune,There are five runes:There are 5 runes
+five,Marked O M G R and A:The Runes are marked O,M,G,R & A
 marked,Tell me which one you seek
-o,Ask the fisherman
-m,A holy man may help
-g,A crook knows that
-r,A witches curse?
-a,A guard I think
+o,Ask the fisherman:Ask a fisherman about the O rune
+m,A holy man may help:Ask a Holy man about the M rune
+g,A crook knows that:Ask a crook about the G rune
+r,A witches curse?:Ask someone cursed about the R rune
+a,A guard I think:Ask a guard about the A rune
 bye,So long
 dontknow,Say again
 -

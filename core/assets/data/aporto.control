@@ -49,8 +49,8 @@ name,Beth
 job,Wood Ranger
 ranger,I trap wild beasts
 wood|woods,There is an enchanted wood
-beast|beasts,I've heard of a werebeast in the woods:A werebeast is in an enchanted wood
-enchanted,To the far west of Aporto:Find enchanted wood on far west coast
+beast|beasts,I've heard of a werebeast in the woods:Find a Werebeast in the Enchanted Wood
+enchanted,To the far west of Aporto:Find the Enchanted Wood on far west coast
 werebeast,A beast that was once a man
 man,Poor man
 trap|wild,Wild beasts
@@ -81,7 +81,7 @@ id=65
 name,Grinpus
 job,A Farmer
 farmer,I used to work for the King
-king,In Kiston to the south:Kingdom of Kiston south of Aporto
+king,In Kiston to the south:Find the King in Kiston south of Aporto
 bye,Ooh Arr
 dontknow,Ask someone else
 -
@@ -90,7 +90,7 @@ id=2
 name,Gib
 job,I just play
 play,Games and such
-game|games|such,Like crucket and footturnip
+game|games|such,Like crucket and foot-turnip
 bye,Byesy Bye
 dontknow,Ask someone else
 -
@@ -99,7 +99,7 @@ id=66
 name,Winina
 job,I'm just a girl
 evil,Omgra defends the pits
-pits|pit,Jen in Milloc may know more:Ask Jen in Milloc about the pits
+pits|pit,Jen in Milloc may know more:Ask Jen in Milloc about the pits that Omgra defends
 omgra,The EVIL one
 bye,Ta ta
 dontknow,Ask someone else

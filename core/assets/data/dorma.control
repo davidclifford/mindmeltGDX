@@ -181,9 +181,8 @@ name,I am Frid
 job,I'm head guard
 guard,Of Dorma Prison
 head,I charge the money
-charge,This is a privitised jail
-money|privitised,Give me money to see a prisoner,1
-prisoner,To see one give me some money,1
+charge|money|privitised,Give me money to see a prisoner,1:Get a bag of money to see the prisoners
+prisoner,To see one give me some money,1:Get a bag of money to see the prisoners
 bye,Be good!
 dontknow,Come again?
 -
@@ -193,7 +192,7 @@ name,I am Frod
 job,I guard the prisoners
 guard,Of Dorma Prison
 prison|prisoners,Have you come to see someone?
-someone|see,Give Frid the money        
+someone|see,Give Frid a bag of money
 bye,Be good!
 dontknow,Come again?
 -
@@ -212,9 +211,9 @@ id=58
 name,Wym
 job,I was once a mage like yourself
 mage,I know a spell
-spell,The heal spell
-heal,If you get me a letter from my wife
-wife,A dancer in Hove
+spell,The heal spell,1
+heal,If you get me a letter from my wife:Get a letter from Wym's wife for a spell
+wife,A dancer in Hove:Find Wym's wife that is a dancer in Hove
 letter,Have you the letter?,1
 bye,Goodbye
 dontknow,You What?
@@ -231,8 +230,8 @@ id=59
 name,Who wants to know
 job,I'm a political prisoner
 political,Dishonesty is the best policy      
-rune,Like the one near Kiston?
-kiston,On the peninsular north of Kiston
+rune,Like the one near Kiston?:Find a rune near Kiston
+kiston,On the peninsular north of Kiston:Kiston is on the NW peninsular
 bye,Close the door after
 dontknow,You What?
 -

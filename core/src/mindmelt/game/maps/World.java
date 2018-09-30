@@ -33,6 +33,9 @@ public class World implements ITileAccess {
     private String name = "";
     private String description = "";
     private String filename = "";
+    private int deathX = 0;
+    private int deathY = 0;
+    private int deathZ = 0;
 
     private Area getArea(int x, int y, int z) {
         for(Area area: areas) {
@@ -186,6 +189,12 @@ public class World implements ITileAccess {
                     break;
                 case "light" :
                     light = kv[1].equals("true");
+                    break;
+                case "death" :
+                    String[] death = kv[1].split(",");
+                    deathX = Integer.parseInt(death[0]);
+                    deathY = Integer.parseInt(death[1]);
+                    deathZ = Integer.parseInt(death[2]);
                     break;
                 default:
                     System.out.println("Unknown control header keyword "+kv[0]);            }
@@ -481,5 +490,17 @@ public class World implements ITileAccess {
 
     public void replyTo(Engine engine, String saying) {
         String reply = engine.getWorld().talkTo(id, saying, engine);
+    }
+
+    public int getDeathX() {
+        return deathX;
+    }
+
+    public int getDeathY() {
+        return deathY;
+    }
+
+    public int getDeathZ() {
+        return deathZ;
     }
 }

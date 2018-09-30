@@ -38,11 +38,9 @@ id=40
 -
 name,Morag
 job,I'm a new monk
-monk,I feel better now
-better,I was not feeling myself
-new,I was once a lumber jack
+new|monk,I was once a lumber jack
 lumber|lumberjack|lumber jack|jack,But I got into bad habits
-bad|habbits,And bad jokes!
+bad|habits,And bad jokes!
 bye,Have faith
 dontknow,God only knows
 -
@@ -69,8 +67,8 @@ name,Bron
 job,A Monk
 monk,Unlike my cousin
 brot,He became a hermit
-herm,In a cave on a hill
-cave|hill,On the island east of Aporto
+herm,In a cave on a hill:Find a Hermit in a cave on a hill
+cave|hill,On the island east of Aporto:Find the hill on the island east of Aporto
 bye,Have faith
 dontknow,God only knows
 -
@@ -98,9 +96,8 @@ job,A monk
 monk,A life of poverty
 poverty,And obedience
 obedience,And itchy underwear
-rune,It's in the prison yard
-prison,Dorma
-yard,Far North West corner
+rune,It's in the prison yard:Find a rune in the prison yard
+yard|prison|jail,Far North West corner of Dorma prison's yard:Dorma prison yard's far NW corner
 dontknow,God only knows
 bye,Have faith
 -

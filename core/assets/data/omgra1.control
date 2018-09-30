@@ -4,6 +4,7 @@ id=14
 name=omgra1
 description=Omgra's Castle 1
 light=false
+death=4,12,0
 --
 @entry
 filename=omgra0
