@@ -188,6 +188,11 @@ public class Obj {
         return this;
     }
 
+    public Obj speed(long id) {
+        this.speed = id;
+        return this;
+    }
+
     public long getSpeed() {
         return speed;
     }

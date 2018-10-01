@@ -181,8 +181,8 @@ name,I am Frid
 job,I'm head guard
 guard,Of Dorma Prison
 head,I charge the money
-charge|money|privitised,Give me money to see a prisoner,1:Get a bag of money to see the prisoners
-prisoner,To see one give me some money,1:Get a bag of money to see the prisoners
+charge|money,Give me money to see a prisoner:Get a bag of money to see the prisoners,1
+prisoner,To see one give me some money:Get a bag of money to see the prisoners,1
 bye,Be good!
 dontknow,Come again?
 -

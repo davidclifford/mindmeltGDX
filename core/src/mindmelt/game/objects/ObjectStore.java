@@ -65,9 +65,10 @@ public class ObjectStore {
                 int order = Integer.parseInt(line[9]);
                 int strength = Integer.parseInt(line[10]);
                 int icon = Integer.parseInt(line[11]);
-                Obj ob = Obj.builder(type).id(id).name(name).description(desc).setCoords(x,y,z).insideId(inside).mapId(mapId).order(order).strength(strength).icon(icon);
-                ob.setSpeed(rand.nextInt(10)+5L);
-                if(id==1) ob.setSpeed(2L);
+                long speed = Long.parseLong(line[12]);
+                Obj ob = Obj.builder(type).id(id).name(name).description(desc).setCoords(x,y,z).insideId(inside).mapId(mapId).order(order).strength(strength).icon(icon).speed(speed);
+                //ob.setSpeed(rand.nextInt(10)+5L);
+                //if(id==1) ob.setSpeed(2L);
                 objects[id] = ob;
             }
             reader.close();
@@ -87,11 +88,11 @@ public class ObjectStore {
     public void saveObjects(String filename) {
         try {
             CSVWriter writer = new CSVWriter(new FileWriter("data/"+filename+".obj"),',','\'','\\',"\n");
-            String header[] = {"id","name","desc","type","x","y","z","map","inside","order","strength","icon"};
+            String header[] = {"id","name","desc","type","x","y","z","map","inside","order","strength","icon","speed"};
             writer.writeNext(header,false);
             for(Obj obj : objects) {
                 if(obj==null) continue;
-                String line[] = new String[12];
+                String line[] = new String[13];
                 line[0] = ""+obj.getId();
                 line[1] = ""+obj.getName();
                 line[2] = ""+obj.getDescription();
@@ -104,6 +105,7 @@ public class ObjectStore {
                 line[9] = ""+obj.getOrder();
                 line[10] = ""+obj.getStrength();
                 line[11] = ""+obj.getIcon();
+                line[12] = ""+obj.getSpeed();
 
                 writer.writeNext(line,false);
             }

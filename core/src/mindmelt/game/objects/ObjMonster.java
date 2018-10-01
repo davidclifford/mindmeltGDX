@@ -100,7 +100,7 @@ public class ObjMonster extends Obj {
                 int ny = rand.nextInt(80);
                 if (engine.getTopObject(nx, ny, 0) == null && engine.getTile(nx, ny, getZ()) == TileType.grass) {
                     setStrength(rand.nextInt(20) + 10);
-                    setSpeed(rand.nextInt(10) + 5);
+                    setSpeed(rand.nextInt(5) + 5);
                     setIcon(rand.nextInt(17) + 62);
                     engine.moveObjToMap(this, nx, ny, getZ());
                     resetWait(engine);
