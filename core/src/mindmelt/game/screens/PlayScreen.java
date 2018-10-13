@@ -10,12 +10,12 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.TextureData;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import mindmelt.game.Actions.Action;
+import mindmelt.game.Actions.JournalUpAction;
 import mindmelt.game.MindmeltGDX;
-import mindmelt.game.buttons.SinglePressSpellButton;
-import mindmelt.game.buttons.SpellButton;
-import mindmelt.game.buttons.TimedSpellButton;
-import mindmelt.game.buttons.ToggleSpellButton;
+import mindmelt.game.buttons.*;
 import mindmelt.game.engine.Engine;
+import mindmelt.game.gui.Button;
 import mindmelt.game.gui.GuiElem;
 import mindmelt.game.gui.Window;
 import mindmelt.game.maps.TileType;
@@ -49,7 +49,7 @@ public class PlayScreen implements Screen, InputProcessor {
     private Window adjacentWindow;
     private Window backPackWindow;
     private Window statusWindow;
-    private Window textWindow;
+    private Window journalWindow;
     private Window throwWindowT;
     private Window throwWindowR;
     private Window throwWindowB;
@@ -83,7 +83,7 @@ public class PlayScreen implements Screen, InputProcessor {
         backPackWindow = (BackpackWindow) new BackpackWindow(11,1, 8, 3).setName("Backpack window");
         statusWindow = (Window) new StatusWindow(11,5, 8, 2).setName("Status window");
         spellWindow = (SpellWindow) new SpellWindow(11,8,7,2).setName("Spell window");
-        textWindow = (JournalWindow) new JournalWindow(0,11,20,4).setName("Journal window");
+        journalWindow = (JournalWindow) new JournalWindow(0,11,20,4).setName("Journal window");
         adjacentWindow = (AdjacentWindow) new AdjacentWindow(3,3,3,3).setName("Adjacent area");
         throwWindowT = (ThrowWindow) new ThrowWindow(2,0,5,2, 0, -1).setName("Throw top area");
         throwWindowR = (ThrowWindow) new ThrowWindow(7,2,2,5, 1, 0).setName("Throw right area");
@@ -94,12 +94,14 @@ public class PlayScreen implements Screen, InputProcessor {
         window.addElement(viewWindow);
         window.addElement(backPackWindow);
         window.addElement(statusWindow);
-        window.addElement(textWindow);
+        window.addElement(journalWindow);
         viewWindow.addElement(adjacentWindow);
         viewWindow.addElement(throwWindowT);
         viewWindow.addElement(throwWindowR);
         viewWindow.addElement(throwWindowL);
         viewWindow.addElement(throwWindowB);
+
+        setupJournalButtons();
 
         //System.out.println(String.format("Game = %s",status));
 
@@ -149,6 +151,12 @@ public class PlayScreen implements Screen, InputProcessor {
         setMouse(182);
         engine.setPlayerWait();
         //mouseWait = game.engine.getSystemTime()+5000000;
+    }
+
+    private void setupJournalButtons(){
+        Action upAction = new JournalUpAction();
+        Button upButton = new JournalButton(0,0,130,"Up", upAction);
+        journalWindow.addElement(upButton);
     }
 
     private void setSpellButtons(ObjPlayer player, boolean isNew) {
