@@ -153,10 +153,10 @@ public class PlayScreen implements Screen, InputProcessor {
     }
 
     private void setupJournalButtons(){
-        journalWindow.addElement(new JournalButton(19,0,131,"Top", new JournalTopAction()));
-        journalWindow.addElement(new JournalButton(19,1,130,"Up", new JournalUpAction()));
-        journalWindow.addElement(new JournalButton(19,2,133,"Down", new JournalDownAction()));
-        journalWindow.addElement(new JournalButton(19,3,132,"Bottom", new JournalBottomAction()));
+        journalWindow.addElement(new JournalButton(19,0,131,"Go To Top ", new JournalTopAction()));
+        journalWindow.addElement(new JournalButton(19,1,130,"Scroll Up", new JournalUpAction()));
+        journalWindow.addElement(new JournalButton(19,2,133,"Scroll Down", new JournalDownAction()));
+        journalWindow.addElement(new JournalButton(19,3,132,"Go To Bottom", new JournalBottomAction()));
     }
 
     private void setSpellButtons(ObjPlayer player, boolean isNew) {
