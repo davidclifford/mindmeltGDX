@@ -17,6 +17,7 @@ public class Journal {
     private List<Color> textColour = new ArrayList<>();
     private Set<String> text = new LinkedHashSet<>();
     private int currentLine = 0;
+    private final int LINES_ON_SCREEN = 12;
 
     public void addLine(String line, Color colour) {
         if(text.contains(line)) return;
@@ -33,17 +34,25 @@ public class Journal {
     }
 
     public String getTextLine(int line) {
-        int relLine = currentLine-12+line;
+        int relLine = currentLine-LINES_ON_SCREEN+line;
         if(relLine<0 || relLine>currentLine) return "";
         return textStore.get(relLine);
     }
 
     public Color getTextColor(int line) {
-        int relLine = currentLine-12+line;
+        int relLine = currentLine-LINES_ON_SCREEN+line;
         if(relLine<0 || relLine>currentLine) return Color.WHITE;
         return textColour.get(relLine);
     }
 
+    public void scrollTop() {
+        if(currentLine==1) return;
+        currentLine = textStore.size() > LINES_ON_SCREEN ? LINES_ON_SCREEN : textStore.size();
+    }
+    public void scrollBottom() {
+        if(currentLine>=textStore.size()) return;
+        currentLine = textStore.size();
+    }
     public void scrollUp() {
         if(currentLine==1) return;
         currentLine--;

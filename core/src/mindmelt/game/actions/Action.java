@@ -1,4 +1,4 @@
-package mindmelt.game.Actions;
+package mindmelt.game.actions;
 
 import mindmelt.game.engine.Engine;
 

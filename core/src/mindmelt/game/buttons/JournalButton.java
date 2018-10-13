@@ -1,6 +1,6 @@
 package mindmelt.game.buttons;
 
-import mindmelt.game.Actions.Action;
+import mindmelt.game.actions.Action;
 import mindmelt.game.engine.Engine;
 import mindmelt.game.gui.Button;
 

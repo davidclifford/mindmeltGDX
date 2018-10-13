@@ -10,8 +10,7 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.TextureData;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import mindmelt.game.Actions.Action;
-import mindmelt.game.Actions.JournalUpAction;
+import mindmelt.game.actions.*;
 import mindmelt.game.MindmeltGDX;
 import mindmelt.game.buttons.*;
 import mindmelt.game.engine.Engine;
@@ -154,9 +153,10 @@ public class PlayScreen implements Screen, InputProcessor {
     }
 
     private void setupJournalButtons(){
-        Action upAction = new JournalUpAction();
-        Button upButton = new JournalButton(0,0,130,"Up", upAction);
-        journalWindow.addElement(upButton);
+        journalWindow.addElement(new JournalButton(19,0,131,"Top", new JournalTopAction()));
+        journalWindow.addElement(new JournalButton(19,1,130,"Up", new JournalUpAction()));
+        journalWindow.addElement(new JournalButton(19,2,133,"Down", new JournalDownAction()));
+        journalWindow.addElement(new JournalButton(19,3,132,"Bottom", new JournalBottomAction()));
     }
 
     private void setSpellButtons(ObjPlayer player, boolean isNew) {
