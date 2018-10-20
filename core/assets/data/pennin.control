@@ -17,19 +17,19 @@ ObjectIn 107,72
 GetObject 107
 -
 Reply 11,1
-GotObject 144
+HasObject 144
 MoveObject 19,3,0,144
 -
 Reply 11,1
-GotObject 143
+HasObject 143
 MoveObject 19,3,0,143
 -
 Reply 12,1
-GotObject 141
+HasObject 141
 Message Have you seen my chopper?
 -
 Reply 13,1
-GotObject 142
+HasObject 142
 Message I need that wood!
 -
 Actvate 5,15,0

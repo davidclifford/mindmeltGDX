@@ -1,12 +1,12 @@
 id,name,desc,type,x,y,z,map,inside,order,strength,icon,speed
-1,player,player,player,40,39,0,1,0,0,20,61,200000000
-2,gib,Gib,person,9,38,0,3,0,0,32,97,1000000000
-3,minton,Minton,person,37,20,0,3,0,0,6,93,1000000000
-4,winino,Winino,person,30,14,0,3,0,0,39,94,1000000000
-5,tetian,Tetian,person,31,32,0,3,0,0,49,93,1000000000
-6,sellene,Sellene,person,11,5,0,3,0,0,32,94,1000000000
-7,cat,Cat,animal,28,7,0,3,0,0,5,99,1000000000
-8,dog,Dog,animal,7,40,0,3,0,0,12,100,1000000000
+1,player,player,player,27,20,0,12,0,0,20,61,200000000
+2,gib,Gib,person,26,41,0,3,0,0,32,97,1000000000
+3,minton,Minton,person,37,14,0,3,0,0,6,93,1000000000
+4,winino,Winino,person,32,12,0,3,0,0,39,94,1000000000
+5,tetian,Tetian,person,35,32,0,3,0,0,49,93,1000000000
+6,sellene,Sellene,person,24,16,0,3,0,0,32,94,1000000000
+7,cat,Cat,animal,42,3,0,3,0,0,5,99,1000000000
+8,dog,Dog,animal,4,32,0,3,0,0,12,100,1000000000
 9,horse,Horse,animal,8,1,0,7,0,0,19,119,1000000000
 10,horiz,Horiz,person,4,8,0,7,0,0,14,97,1000000000
 11,Astori,Astori,person,14,5,0,9,0,0,24,94,1000000000
@@ -15,14 +15,14 @@ id,name,desc,type,x,y,z,map,inside,order,strength,icon,speed
 14,Kesla,Kesla,person,34,33,0,9,0,0,32,94,1000000000
 15,Marie,Marie,person,34,18,0,9,0,0,41,89,1000000000
 16,cat,Cat,animal,11,2,0,5,0,0,48,100,1000000000
-17,Yik,Yik,person,29,20,0,6,0,0,21,93,1000000000
-18,Dofty,Dofty,person,15,14,0,6,0,0,37,89,1000000000
-19,Katin,Katin,person,20,27,0,6,0,0,31,96,1000000000
-20,Nella,Nella,person,38,25,0,6,0,0,48,95,1000000000
-21,Eldrid,Eldrid,person,35,13,0,6,0,0,16,98,1000000000
-22,mik,Mik the Nik,person,2,24,0,12,0,0,28,82,1000000000
-23,ekki,Fast Ekki,person,30,24,0,12,0,0,13,82,1000000000
-24,Frud,Frud,person,21,9,0,12,0,0,20,87,1000000000
+17,Yik,Yik,person,20,17,0,6,0,0,21,93,1000000000
+18,Dofty,Dofty,person,13,13,0,6,0,0,37,89,1000000000
+19,Katin,Katin,person,22,31,0,6,0,0,31,96,1000000000
+20,Nella,Nella,person,34,26,0,6,0,0,48,95,1000000000
+21,Eldrid,Eldrid,person,36,10,0,6,0,0,16,98,1000000000
+22,mik,Mik the Nik,person,3,25,0,12,0,0,28,82,1000000000
+23,ekki,Fast Ekki,person,31,25,0,12,0,0,13,82,1000000000
+24,Frud,Frud,person,21,11,0,12,0,0,20,87,1000000000
 25,Wyne,Wyne,person,29,21,0,8,0,0,39,98,1000000000
 26,Borri,Borri,person,35,23,0,8,0,0,34,98,1000000000
 27,Lil,Lil,person,16,20,0,8,0,0,25,96,1000000000
@@ -30,9 +30,9 @@ id,name,desc,type,x,y,z,map,inside,order,strength,icon,speed
 29,Mirog,Mirog,person,25,2,0,4,0,0,48,79,1000000000
 30,Faznilo,Faznilo,person,24,18,0,4,0,0,34,79,1000000000
 31,dog,dog,animal,3,14,0,10,0,0,27,99,1000000000
-32,Uptik,Uptik,person,34,9,0,1,0,0,29,92,1000000000
-33,Rinnor,Rinnor,animal,61,22,0,1,0,0,2,91,1000000000
-34,madcol,Mad Col,person,8,58,0,1,0,0,26,84,1000000000
+32,Uptik,Uptik,person,36,12,0,1,0,0,29,92,1000000000
+33,Rinnor,Rinnor,animal,54,16,0,1,0,0,2,91,1000000000
+34,madcol,Mad Col,person,10,57,0,1,0,0,26,84,1000000000
 35,name,desc,type,0,0,0,0,0,0,34,62,1000000000
 36,name,desc,type,0,0,0,0,0,0,34,78,1000000000
 37,name,desc,type,0,0,0,0,0,0,13,66,1000000000
@@ -41,7 +41,7 @@ id,name,desc,type,x,y,z,map,inside,order,strength,icon,speed
 40,Morag,Morag,person,19,8,0,4,0,0,0,79,1000000000
 41,Romag,King Romag,person,19,4,0,7,0,0,0,80,1000000000
 42,Margo,margo,person,6,5,0,10,0,0,0,81,1000000000
-43,Gorma,Gorma,person,12,25,0,12,0,0,0,82,1000000000
+43,Gorma,Gorma,person,10,24,0,12,0,0,0,82,1000000000
 44,Ramog,ramog,person,21,15,0,11,0,0,0,83,1000000000
 45,Garom,Garom,person,4,7,0,5,0,0,0,84,1000000000
 46,Peta,Peta,person,7,25,0,4,0,0,0,79,1000000000
@@ -53,21 +53,21 @@ id,name,desc,type,x,y,z,map,inside,order,strength,icon,speed
 52,delio,Delio,person,6,17,0,7,0,0,0,88,1000000000
 53,suzo,Suzo,person,35,13,0,7,0,0,0,89,1000000000
 54,kizo,Kizo,person,24,34,0,7,0,0,0,87,1000000000
-55,Frid,Frid,person,3,32,0,12,0,0,0,87,1000000000
-56,frod,Frod,person,21,25,0,12,0,0,0,87,1000000000
-57,Grunk,Grunk,person,7,18,0,12,0,0,0,82,1000000000
-58,Wym,Wym,person,26,19,0,12,0,0,0,82,1000000000
-59,who,who,person,40,25,0,12,0,0,0,82,1000000000
-60,josk,Big Josk,person,14,25,0,12,0,0,0,82,1000000000
+55,Frid,Frid,person,6,29,0,12,0,0,0,87,1000000000
+56,frod,Frod,person,19,17,0,12,0,0,0,87,1000000000
+57,Grunk,Grunk,person,7,19,0,12,0,0,0,82,1000000000
+58,Wym,Wym,person,27,19,0,12,0,0,0,82,1000000000
+59,who,who,person,38,25,0,12,0,0,0,82,1000000000
+60,josk,Big Josk,person,16,25,0,12,0,0,0,82,1000000000
 61,Joms,Joms,person,21,34,0,11,0,0,0,85,1000000000
-62,ternios,Ternios,person,17,2,0,3,0,0,0,93,1000000000
-63,tetia,Tetia,person,28,31,0,3,0,0,0,94,1000000000
+62,ternios,Ternios,person,21,2,0,3,0,0,0,93,1000000000
+63,tetia,Tetia,person,27,32,0,3,0,0,0,94,1000000000
 64,beth,Beth,person,16,17,0,3,0,0,0,95,1000000000
-65,grinpus,Grinpus,person,8,15,0,3,0,0,0,98,1000000000
-66,winina,Winina,person,32,11,0,3,0,0,0,96,1000000000
-67,Quoxonia,Quoxonia,person,17,70,0,1,0,0,0,90,1000000000
-68,Finbar,Finbar,person,29,54,0,1,0,0,0,91,1000000000
-69,Fingle,Fingle,person,66,57,0,1,0,0,0,92,1000000000
+65,grinpus,Grinpus,person,11,12,0,3,0,0,0,98,1000000000
+66,winina,Winina,person,33,13,0,3,0,0,0,96,1000000000
+67,Quoxonia,Quoxonia,person,22,74,0,1,0,0,0,90,1000000000
+68,Finbar,Finbar,person,32,60,0,1,0,0,0,91,1000000000
+69,Fingle,Fingle,person,69,57,0,1,0,0,0,92,1000000000
 70,drong,Drong,person,9,24,0,9,0,0,0,93,1000000000
 71,arias,Arias,person,23,36,0,9,0,0,0,93,1000000000
 72,garina,Garina,person,30,2,0,9,0,0,0,94,1000000000
@@ -77,10 +77,10 @@ id,name,desc,type,x,y,z,map,inside,order,strength,icon,speed
 76,Jen,Jen,person,8,34,0,8,0,0,0,95,1000000000
 77,Bella,Bella,person,33,10,0,8,0,0,0,95,1000000000
 78,Rebina,Rebina,person,28,37,0,8,0,0,0,96,1000000000
-79,Henium,Henium,person,12,2,0,6,0,0,0,98,1000000000
-80,Wyma,Wyma,person,3,32,0,6,0,0,0,95,1000000000
-81,Kathin,Kathin,person,25,11,0,6,0,0,0,96,1000000000
-82,Barp,Barp,person,4,21,0,6,0,0,0,97,1000000000
+79,Henium,Henium,person,10,11,0,6,0,0,0,98,1000000000
+80,Wyma,Wyma,person,13,26,0,6,0,0,0,95,1000000000
+81,Kathin,Kathin,person,22,9,0,6,0,0,0,96,1000000000
+82,Barp,Barp,person,4,19,0,6,0,0,0,97,1000000000
 83,name,desc,type,0,0,0,0,0,0,0,60,1000000000
 84,name,desc,type,0,0,0,0,0,0,0,60,1000000000
 85,name,desc,type,0,0,0,0,0,0,0,60,1000000000
@@ -104,18 +104,18 @@ id,name,desc,type,x,y,z,map,inside,order,strength,icon,speed
 103,scroll,Heal scroll,thing,58,64,0,0,58,0,0,102,1000000000
 104,scroll,Back scroll,thing,45,64,0,0,45,0,0,102,1000000000
 105,scroll,Overview scroll,thing,69,64,0,0,69,0,0,102,1000000000
-106,key,Jail key,thing,55,64,0,0,55,0,0,103,1000000000
+106,key,Jail key,thing,0,0,0,0,1,0,0,103,1000000000
 107,money,Bag of Money,thing,72,64,0,0,72,0,0,105,1000000000
-108,letter,Letter,thing,80,64,0,0,80,0,0,106,1000000000
+108,letter,Letter,thing,80,64,0,0,1,0,0,106,1000000000
 109,book,Stories,thing,78,64,0,0,78,0,0,107,1000000000
 110,recipe,Recipe,thing,52,64,0,0,52,0,0,106,1000000000
 111,key,King key,thing,2,3,0,7,0,0,0,104,1000000000
-112,orune,O rune,thing,0,0,0,0,1,0,0,108,1000000000
+112,orune,O rune,thing,16,25,0,3,0,0,0,108,1000000000
 113,mrune,M rune,thing,2,2,0,12,0,0,0,109,1000000000
 114,grune,G rune,thing,75,58,0,1,0,0,0,110,1000000000
 115,rrune,R rune,thing,4,14,0,10,0,0,0,111,1000000000
 116,arune,A rune,thing,21,28,0,4,0,0,0,112,1000000000
-117,turf,Turf,thing,0,0,0,0,1,0,0,114,1000000000
+117,turf,Turf,thing,16,25,0,3,0,0,0,114,1000000000
 118,turf,Turf,thing,2,2,0,12,0,0,0,114,1000000000
 119,turf,Turf,thing,75,58,0,1,0,0,0,114,1000000000
 120,floor,Floor,thing,4,14,0,10,0,0,0,113,1000000000
@@ -149,7 +149,7 @@ id,name,desc,type,x,y,z,map,inside,order,strength,icon,speed
 148,wheel,Spinning wheel,thing,27,30,0,3,0,0,0,177,1000000000
 149,scisors,Scisors,thing,34,32,0,3,0,0,0,178,1000000000
 150,hoe,Hoe,thing,8,10,0,3,0,0,0,179,1000000000
-151,saw,Saw,thing,37,17,0,3,0,0,0,180,1000000000
+151,saw,Saw,thing,0,0,0,0,1,0,0,180,1000000000
 152,loop,Barrel loop,thing,35,14,0,3,0,0,0,181,1000000000
 153,name,desc,type,0,0,0,0,0,0,33,61,1000000000
 154,name,desc,type,0,0,0,0,0,0,33,61,1000000000
@@ -178,79 +178,79 @@ id,name,desc,type,x,y,z,map,inside,order,strength,icon,speed
 177,name,desc,type,0,0,0,0,0,0,33,61,1000000000
 178,name,desc,type,0,0,0,0,0,0,33,61,1000000000
 179,name,desc,type,0,0,0,0,0,0,33,61,1000000000
-180,monster,monster,monster,48,20,0,1,0,0,19,67,900000000
-181,monster,monster,monster,67,56,0,1,0,0,14,65,700000000
-182,monster,monster,monster,6,59,0,1,0,0,27,76,800000000
-183,monster,monster,monster,13,67,0,1,0,0,23,68,900000000
-184,monster,monster,monster,57,48,0,1,0,0,15,62,500000000
-185,monster,monster,monster,30,68,0,1,0,0,25,65,900000000
-186,monster,monster,monster,57,29,0,1,0,0,26,63,600000000
-187,monster,monster,monster,9,12,0,1,0,0,28,69,600000000
-188,monster,monster,monster,12,16,0,1,0,0,16,66,700000000
-189,monster,monster,monster,22,10,0,1,0,0,20,65,500000000
-190,monster,monster,monster,13,28,0,1,0,0,23,65,700000000
-191,monster,monster,monster,20,9,0,1,0,0,11,63,700000000
-192,monster,monster,monster,39,8,0,1,0,0,29,69,500000000
-193,monster,monster,monster,11,72,0,1,0,0,27,74,900000000
-194,monster,monster,monster,25,58,0,1,0,0,13,72,900000000
-195,monster,monster,monster,35,9,0,1,0,0,16,76,500000000
-196,monster,monster,monster,29,70,0,1,0,0,20,72,800000000
-197,monster,monster,monster,21,41,0,1,0,0,16,66,600000000
-198,monster,monster,monster,27,37,0,1,0,0,10,75,600000000
-199,monster,monster,monster,21,36,0,1,0,0,15,65,800000000
-200,gremlin,gremlin,monster,5,24,0,13,0,0,88,62,1000000000
+180,monster,monster,monster,21,10,0,1,0,0,14,68,900000000
+181,monster,monster,monster,64,71,0,1,0,0,17,71,600000000
+182,monster,monster,monster,34,11,0,1,0,0,20,73,800000000
+183,monster,monster,monster,44,39,0,1,0,0,20,77,900000000
+184,monster,monster,monster,44,18,0,1,0,0,23,70,900000000
+185,monster,monster,monster,19,58,0,1,0,0,18,65,900000000
+186,monster,monster,monster,54,25,0,1,0,0,26,66,700000000
+187,monster,monster,monster,6,70,0,1,0,0,26,72,600000000
+188,monster,monster,monster,6,18,0,1,0,0,29,78,500000000
+189,monster,monster,monster,18,50,0,1,0,0,25,69,600000000
+190,monster,monster,monster,44,66,0,1,0,0,22,68,500000000
+191,monster,monster,monster,18,49,0,1,0,0,28,67,700000000
+192,monster,monster,monster,39,8,0,1,0,0,27,65,700000000
+193,monster,monster,monster,38,21,0,1,0,0,12,76,500000000
+194,monster,monster,monster,6,40,0,1,0,0,10,76,500000000
+195,monster,monster,monster,41,33,0,1,0,0,19,76,900000000
+196,monster,monster,monster,24,49,0,1,0,0,28,75,800000000
+197,monster,monster,monster,34,9,0,1,0,0,28,65,800000000
+198,monster,monster,monster,48,29,0,1,0,0,15,75,900000000
+199,monster,monster,monster,9,68,0,1,0,0,25,72,800000000
+200,gremlin,gremlin,monster,5,26,0,13,0,0,88,62,1000000000
 201,warg,warg,monster,2,20,0,13,0,0,64,63,1000000000
 202,wurm,wurm,monster,14,16,0,13,0,0,54,64,1000000000
-203,octo,octo,monster,22,28,0,13,0,0,84,65,1000000000
+203,octo,octo,monster,22,30,0,13,0,0,84,65,1000000000
 204,gnome,gnome,monster,35,21,0,13,0,0,74,66,1000000000
 205,centaur,centaur,monster,17,4,0,13,0,0,64,67,1000000000
 206,harpy,harpy,monster,10,12,0,13,0,0,54,68,1000000000
-207,ogre,ogre,monster,2,11,0,13,0,0,99,69,1000000000
-208,mummy,mummy,monster,12,4,0,13,0,0,80,78,1000000000
+207,ogre,ogre,monster,2,10,0,13,0,0,99,69,1000000000
+208,mummy,mummy,monster,12,3,0,13,0,0,80,78,1000000000
 209,slug,slug,monster,10,8,0,13,0,0,90,76,1000000000
-210,shroom,desc,monster,26,18,0,14,0,0,100,155,1000000000
+210,shroom,desc,monster,27,18,0,14,0,0,100,155,1000000000
 211,eye,desc,monster,36,29,0,14,0,0,75,156,1000000000
-212,dalek,desc,monster,11,28,0,14,0,0,80,158,1000000000
-213,dalek,desc,monster,13,34,0,14,0,0,80,158,1000000000
-214,dalek,desc,monster,6,38,0,14,0,0,80,158,1000000000
-215,dalek,desc,monster,10,25,0,14,0,0,80,158,1000000000
+212,dalek,desc,monster,12,28,0,14,0,0,80,158,1000000000
+213,dalek,desc,monster,14,34,0,14,0,0,80,158,1000000000
+214,dalek,desc,monster,8,38,0,14,0,0,80,158,1000000000
+215,dalek,desc,monster,10,27,0,14,0,0,80,158,1000000000
 216,shroom,desc,monster,26,26,0,14,0,0,100,155,1000000000
 217,trog,desc,monster,26,21,0,15,0,0,80,168,1000000000
 218,trog,desc,monster,29,26,0,15,0,0,80,168,1000000000
-219,trog,desc,monster,26,29,0,15,0,0,80,168,1000000000
-220,trog,desc,monster,20,20,0,15,0,0,80,168,1000000000
-221,cyclops,desc,monster,38,29,0,15,0,0,75,159,1000000000
+219,trog,desc,monster,26,30,0,15,0,0,80,168,1000000000
+220,trog,desc,monster,20,21,0,15,0,0,80,168,1000000000
+221,cyclops,desc,monster,38,28,0,15,0,0,75,159,1000000000
 222,cyclops,desc,monster,24,22,0,15,0,0,75,159,1000000000
 223,cloud,desc,monster,33,4,0,15,0,0,77,154,1000000000
 224,lamprey,desc,monster,20,10,0,15,0,0,99,163,1000000000
 225,spiro,desc,monster,6,14,0,15,0,0,90,165,1000000000
-226,spiro,desc,monster,4,16,0,15,0,0,95,165,1000000000
+226,spiro,desc,monster,4,15,0,15,0,0,95,165,1000000000
 227,spiro,desc,monster,8,14,0,15,0,0,95,165,1000000000
 228,spiro,desc,monster,10,14,0,15,0,0,95,165,1000000000
-229,shrimp,desc,monster,6,5,0,15,0,0,65,153,1000000000
+229,shrimp,desc,monster,6,3,0,15,0,0,65,153,1000000000
 230,shrimp,desc,monster,5,2,0,15,0,0,65,153,1000000000
 231,shrimp,desc,monster,4,2,0,15,0,0,65,153,1000000000
 232,name,desc,monster,12,2,0,16,0,0,120,158,1000000000
 233,name,desc,monster,10,4,0,16,0,0,120,158,1000000000
-234,name,desc,monster,23,14,0,16,0,0,99,164,1000000000
+234,name,desc,monster,24,14,0,16,0,0,99,164,1000000000
 235,name,desc,monster,20,2,0,16,0,0,99,164,1000000000
 236,name,desc,monster,39,6,0,16,0,0,75,166,1000000000
 237,name,desc,monster,24,38,0,16,0,0,150,161,1000000000
 238,name,desc,monster,10,30,0,16,0,0,150,161,1000000000
-239,name,desc,monster,8,14,0,16,0,0,130,167,1000000000
-240,name,desc,monster,32,38,0,16,0,0,130,167,1000000000
+239,name,desc,monster,9,14,0,16,0,0,130,167,1000000000
+240,name,desc,monster,32,40,0,16,0,0,130,167,1000000000
 241,name,desc,monster,16,12,0,16,0,0,130,167,1000000000
-242,name,desc,monster,9,20,0,16,0,0,80,166,1000000000
-243,name,desc,monster,27,22,0,16,0,0,110,162,1000000000
-244,name,desc,monster,36,23,0,16,0,0,110,162,1000000000
-245,name,desc,monster,38,29,0,16,0,0,110,162,1000000000
+242,name,desc,monster,10,20,0,16,0,0,80,166,1000000000
+243,name,desc,monster,28,23,0,16,0,0,110,162,1000000000
+244,name,desc,monster,36,22,0,16,0,0,110,162,1000000000
+245,name,desc,monster,38,30,0,16,0,0,110,162,1000000000
 246,name,desc,monster,26,14,0,16,0,0,150,161,1000000000
 247,name,desc,monster,8,28,0,16,0,0,150,161,1000000000
 248,name,desc,monster,18,26,0,16,0,0,60,163,1000000000
-249,name,desc,monster,24,31,0,16,0,0,200,160,1000000000
-250,name,desc,monster,34,29,0,16,0,0,200,160,1000000000
+249,name,desc,monster,24,32,0,16,0,0,200,160,1000000000
+250,name,desc,monster,35,28,0,16,0,0,200,160,1000000000
 251,name,desc,type,0,0,0,0,0,0,34,91,1000000000
 252,name,desc,type,0,0,0,0,0,0,34,91,1000000000
 253,name,desc,type,0,0,0,0,0,0,34,91,1000000000
 254,name,desc,type,0,0,0,0,0,0,34,91,1000000000
-255,Omgra,omgra,monster,7,6,2,16,0,0,255,101,1000000000
+255,Omgra,omgra,monster,6,6,2,16,0,0,255,101,1000000000

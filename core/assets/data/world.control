@@ -126,14 +126,14 @@ GetObject 102
 // Finbar - stun
 Reply 68,1
 ObjectIn 101,68
-GotObject 109
+HasObject 109
 GetObject 101
 MoveObjectInto 109,68
 -
 // Fingle - Overview
 Reply 69,1
 ObjectIn 105,69
-GotObject 110
+HasObject 110
 GetObject 105
 MoveObjectInto 110,68
 --

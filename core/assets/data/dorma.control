@@ -19,15 +19,15 @@ Activate 23,33,0
 Message Private
 -
 Reply 55,2
-GotObject 106
+HasObject 106
 Message Give the key back later
 -
 Reply 56,2
-GotObject 106
+HasObject 106
 Message Give the key back later
 -
 Reply 24,2
-GotObject 106
+HasObject 106
 Message Give the key back later
 -
 Activate 35,28,0
@@ -36,14 +36,14 @@ GetObject 106
 -
 Reply 55,1
 ObjectIn 106,55
-GotObject 107
+HasObject 107
 GetObject 106
 MoveObjectInto 107,55
 Message Take the key
 -
 Reply 58,1
-ObjectIn 58,103
-GotObject 108
+ObjectIn 103,58
+HasObject 108
 GetObject 103
 MoveObjectInto 108,58
 Message Take the heal spell
