@@ -60,6 +60,10 @@ public class ObjPlayer extends Obj {
         engine.getTalking().setTalking(talking);
     }
 
+    private int old_x;
+    private int old_y;
+
+
     @Override
     public void update(Engine engine, float delta) {
         updateMessage(engine);
@@ -91,15 +95,23 @@ public class ObjPlayer extends Obj {
             }
         }
         adjacent(engine, x, y, 1);
-        // display
+//        // display
+//
+//        if (x==old_x && y==old_y)
+//            return;
+//
 //        for(int i=0; i<SIZE; i++) {
 //            String line = "";
 //            for (int j=0; j<SIZE; j++) {
-//                line += smellMap[i][j];
+//                int dist = smellMap[j][i];
+//                line += (char)(dist<32 ? '@' + dist : '.');
 //            }
 //            System.out.println(line);
 //        }
 //        System.out.println("---------");
+//
+//        old_x = x;
+//        old_y = y;
     }
 
     private void adjacent(Engine engine, int x1, int y1, int dist) {
@@ -239,6 +251,8 @@ public class ObjPlayer extends Obj {
 104,scroll,Back scroll,thing,45,64,0,0,45,0,0,102
 105,scroll,Overview scroll,thing,69,64,0,0,69,0,0,102
  */
+        boolean all = false;
+
         if(level>=2) {
             spells.get(2).setLearned(true); //dir
         }
@@ -247,21 +261,21 @@ public class ObjPlayer extends Obj {
         }
         if(level>=4) {
             spells.get(4).setLearned(true); //light
-            if (engine.getObjects().getObject(100).isInside(id)) spells.get(5).setLearned(true); //xray
+            if (engine.getObjects().getObject(100).isInside(id)|all) spells.get(5).setLearned(true); //xray
         }
         if(level>=5) {
             spells.get(6).setLearned(true); //water
-            if (engine.getObjects().getObject(101).isInside(id)) spells.get(7).setLearned(true); //stun
+            if (engine.getObjects().getObject(101).isInside(id)|all) spells.get(7).setLearned(true); //stun
         }
         if(level>=6) {
             spells.get(8).setLearned(true); //jump
-            if (engine.getObjects().getObject(102).isInside(id)) spells.get(9).setLearned(true); //zap
-            if (engine.getObjects().getObject(103).isInside(id)) spells.get(10).setLearned(true); //health
+            if (engine.getObjects().getObject(102).isInside(id)|all) spells.get(9).setLearned(true); //zap
+            if (engine.getObjects().getObject(103).isInside(id)|all) spells.get(10).setLearned(true); //health
         }
         if(level>=7) {
             spells.get(11).setLearned(true); //FF
-            if (engine.getObjects().getObject(104).isInside(id)) spells.get(12).setLearned(true); //back
-            if (engine.getObjects().getObject(105).isInside(id)) spells.get(13).setLearned(true); //map
+            if (engine.getObjects().getObject(104).isInside(id)|all) spells.get(12).setLearned(true); //back
+            if (engine.getObjects().getObject(105).isInside(id)|all) spells.get(13).setLearned(true); //map
         }
     }
 
